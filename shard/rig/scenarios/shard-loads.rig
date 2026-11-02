@@ -1,0 +1,50 @@
+# W2.4h, review 38's first finding on a stock client: a world stream belongs to one load, and a newer load fences
+# it. The server deflates maze's streams 8 s late (shard.debug.stream-delay), so alpha's /sync of maze is still being
+# deflated when its /world transfer loads fortress; that late stream must never reach the client. It also shows that
+# each path that resends a world (/sync, the transfer) sends worldDataBegin first: the client counts the worlds it
+# loads (vanilla fires WorldLoadEvent for each) and reads the map it shows, through the js probe.
+#
+#   rig/run.sh --push server/build/install/shard --clients 1 --script rig/scenarios/shard-loads.rig \
+#     --server 'SHARD_OPTS=-Dshard.debug.stream-delay=maze=8s "$RIG"/vm/shard-server.sh maze fortress'
+timeout 6m
+
+# the server trains its AOT cache first (shard-l5.sh), about a minute
+wait port 240s
+alpha: join nounit
+wait log server /\(alpha\) has connected to maze/ 30s
+alpha: expect js "var loads = 0; Events.on(WorldLoadEvent, function(e){ loads++; }); 'counting'" /^counting$/
+alpha: expect js "Vars.state.map.name()" /^Maze$/
+
+# /sync alone: worldDataBegin, then maze again, 8 s late
+alpha: chat "/sync"
+alpha: expect js "loads" /^1$/ 30s
+alpha: expect js "Vars.state.map.name()" /^Maze$/
+alpha: expect connected
+wait 6s
+
+# /sync, then /world while maze's stream is still deflating. The client shows the loading screen after the
+# sync's worldDataBegin, so it sends the second command as its chat field would, through Call.sendChatMessage.
+alpha: expect js "Call.sendChatMessage('/sync'); 'sent'" /^sent$/
+wait 1s
+alpha: expect js "Call.sendChatMessage('/world fortress'); 'sent'" /^sent$/
+wait log server /\(alpha\) moves from maze to fortress/ 15s
+alpha: expect js "Vars.state.map.name()" /^Fortress$/ 30s
+alpha: expect js "loads" /^2$/
+# maze's late stream is done by now: fenced, it never comes
+wait 10s
+alpha: expect js "Vars.state.map.name()" /^Fortress$/
+alpha: expect js "loads" /^2$/
+alpha: expect connected
+alpha: shot in-fortress
+console players
+wait log server /alpha uuid=.* world=fortress state=in_world/ 10s
+
+# and back: maze comes 8 s late again, and nothing fences it this time
+alpha: chat "/world maze"
+wait log server /\(alpha\) moves from fortress to maze/ 15s
+alpha: expect js "Vars.state.map.name()" /^Maze$/ 30s
+alpha: expect js "loads" /^3$/
+alpha: expect connected
+# tick timing is shard-two-clients' and shard-maps' gate; here the server only has to stay error-free
+assert log server !/Exception|ERROR/
+assert clean all

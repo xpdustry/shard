@@ -1,0 +1,49 @@
+OK       clean: fails nothing
+CAUGHT   move: no formation offset: fails MoveOracleTest, StancesOracleTest
+           MoveOracleTest: 2 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 2 (1 failure) | 	org.opentest4j.AssertionFailedError: units #5 ==> expected: <#5 atrax t1 at 128.0(43000000),256.0(43800000) rot -3.0(c0400000) v 0.28866953(3e93cc7e),-0.08166943(bda7424d) hp 600.0(44160000) el
+           StancesOracleTest: 3 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 3 (1 failure) | 	org.opentest4j.AssertionFailedError: units #3 ==> expected: <#3 dagger t1 at 64.0(42800000),80.0(42a00000) rot 5.0(40a00000) v 0.15768974(3e21796b),0.19399472(3e46a68d) hp 150.0(43160000) el 0.
+CAUGHT   move: formation squeezes less: fails MoveOracleTest, StancesOracleTest
+           MoveOracleTest: 2 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 2 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#0 dagger t1 at 80.0(42a00000),240.0(43700000) rot 0.0(0) v 0.0(0),0.0(0) hp 150.0(43160000) el 0.0(0) [0.0(0) 0.0(0) 0 false -] [0.
+           StancesOracleTest: 2 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 3 (1 failure) | 	org.opentest4j.AssertionFailedError: units #3 ==> expected: <#3 dagger t1 at 64.0(42800000),80.0(42a00000) rot 5.0(40a00000) v 0.15768974(3e21796b),0.19399472(3e46a68d) hp 150.0(43160000) el 0.
+CAUGHT   move: the path goes to the plain destination: fails MoveOracleTest
+           MoveOracleTest: 2 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 3 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#0 dagger t1 at 80.0(42a00000),240.0(43700000) rot 9.530565E-5(38c7ded5) v 0.25(3e800000),0.0(0) hp 150.0(43160000) el 0.0(0) [0.0(0
+CAUGHT   move: the final point is exact: fails MoveOracleTest
+           MoveOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 121 (1 failure) | 	org.opentest4j.AssertionFailedError: units #2 ==> expected: <#2 dagger t1 at 200.18869(4348304e),300.09277(43960be0) rot 21.13626(41a9170f) v 0.46636274(3eeec719),0.18029363(3e389ee5) hp 150.
+CAUGHT   batches: every call its own batch: fails MoveOracleTest
+           MoveOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 2 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#0 dagger t1 at 80.0(42a00000),240.0(43700000) rot 5.0(40a00000) v 0.24023485(3e760020),0.06918969(3d8db353) hp 150.0(43160000) el 0
+CAUGHT   loadUnits: a shorter reach: fails PayloadCommandsOracleTest
+           PayloadCommandsOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 2: [all tcp PickedUnitPayload 02000000020200000003, all tcp PickedUnitPayload 02000000020200000005, all tcp PickedUnitPayload 02000000020200000004, all tcp PickedUnitPayload 02000000020200000006] vs [all tcp 
+CAUGHT   unloadPayload: no auto-drop: fails PayloadCommandsOracleTest
+           PayloadCommandsOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 380: [all tcp PayloadDropped 0200000001432335d8436f7b30] vs [] ==> expected: <1> but was: <0>
+CAUGHT   loadBlocks: no exact arrival: fails PayloadCommandsOracleTest
+           PayloadCommandsOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 25 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#1 mega t1 at 96.679(42c15ba6),103.785385(42cf921e) rot 265.0155(438481fc) v -0.019087771(bc9c5df5),-0.24009578(be75dbab) hp 460.0(
+CAUGHT   loopPayload: a shorter cooldown: fails PayloadCommandsOracleTest
+           PayloadCommandsOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 351 (1 failure) | 	org.opentest4j.AssertionFailedError: units #1 ==> expected: <#2 quad t1 at 382.34637(43bf2c56),320.01877(43a00267) rot 359.93903(43b3f832) v 0.47572938(3ef392cd),-0.030618366(bcfad35e) hp 600
+CAUGHT   enterPayload: no snap to the building: fails PayloadCommandsOracleTest
+           PayloadCommandsOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 3 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#1 dagger t1 at 80.0(42a00000),160.0(43200000) rot 0.0(0) v 0.0(0),0.0(0) hp 150.0(43160000) el 0.0(0) [0.0(0) 0.0(0) 0 false -] [0.
+CAUGHT   repair/rebuild/assist/mine: stances kept across a switch: fails SupportCommandsOracleTest
+           SupportCommandsOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 300 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#3 mega t1 at 111.354965(42deb5be),159.73183(431fbb59) rot 284.3427(438e2bde) v 0.0(0),0.0(0) hp 460.0(43e60000) el 1.0(3f800000) 
+CAUGHT   mine: no mineauto: fails SupportCommandsOracleTest
+           SupportCommandsOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 2 (1 failure) | 	org.opentest4j.AssertionFailedError: units #1 ==> expected: <#4 poly t1 at 96.09173(42c02ef7),191.96022(433ff5d1) rot 0.0(0) v 0.0(0),0.0(0) hp 400.0(43c80000) el 1.0(3f800000) [0.0(0) 0.0(0) 0
+CAUGHT   rebuild: patrol compatible: fails SupportCommandsOracleTest
+           SupportCommandsOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 300 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#3 mega t1 at 111.354965(42deb5be),159.73183(431fbb59) rot 284.3427(438e2bde) v 0.0(0),0.0(0) hp 460.0(43e60000) el 1.0(3f800000) 
+CAUGHT   unreachable: AI teams keep walking: fails SupportCommandsOracleTest
+           SupportCommandsOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 3 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#1 dagger t2 at 80.0(42a00000),192.0(43400000) rot 0.0(0) v 0.0(0),0.0(0) hp 150.0(43160000) el 0.0(0) [0.0(0) 0.0(0) 0 false -] [0.
+CAUGHT   holdfire: ignored: fails StancesOracleTest
+           StancesOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 5 (1 failure) | 	org.opentest4j.AssertionFailedError: units #1 ==> expected: <#1 dagger t1 at 128.0(43000000),272.0(43880000) rot -5.0(c0a00000) v 0.0(0),0.0(0) hp 150.0(43160000) el 0.0(0) [0.0(0) 0.0(0) 0 fal
+CAUGHT   pursuetarget: no pursuit: fails StancesOracleTest
+           StancesOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 278 (1 failure) | 	org.opentest4j.AssertionFailedError: units #4 ==> expected: <#4 mace t1 at 159.67886(431fadca),201.49754(43497f5f) rot 67.02803(42860e5a) v 0.19059671(3e432bc9),0.46224767(3eecabba) hp 550.0(
+CAUGHT   patrol: the finished point not requeued: fails StancesOracleTest
+           StancesOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 43 (1 failure) | 	org.opentest4j.AssertionFailedError: units #2 ==> expected: <#2 flare t1 at 156.16039(431c290f),320.4782(43a03d36) rot 352.90063(43b07348) v 2.67352(402b1af4),-0.37721434(bec1223d) hp 70.0(428
+CAUGHT   ram: ignored: fails StancesOracleTest
+           StancesOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 3 (2 failures) | 	org.opentest4j.AssertionFailedError: units #4 ==> expected: <#4 dagger t1 at 64.0(42800000),80.0(42a00000) rot 9.530565E-5(38c7ded5) v 0.24968809(3e7fae3c),-0.012484412(bc4c8b6b) hp 150.0(4316
+CAUGHT   boost: only for enterPayload: fails StancesOracleTest
+           StancesOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 2 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#0 nova t1 at 80.0(42a00000),80.0(42a00000) rot 0.0(0) v 0.0(0),0.0(0) hp 200.0(43480000) el 0.08(3da3d70a) [0.0(0) 0.0(0) 0 false -
+CAUGHT   stop: orders kept: fails StancesOracleTest
+           StancesOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: after frame 400 (1 failure) | 	org.opentest4j.AssertionFailedError: units #1 ==> expected: <#1 dagger t1 at 101.27339(42ca8bfa),313.8712(439cef83) rot 312.79437(439c65ae) v -0.18831025(be40d467),0.29502413(3e970d67) hp 150
+CAUGHT   holdposition: never allowed: fails SupportCommandsOracleTest
+           SupportCommandsOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 2 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#3 mega t1 at 112.09973(42e03310),160.00706(432001cf) rot 350.0(43af0000) v 0.0(0),0.0(0) hp 460.0(43e60000) el 1.0(3f800000) [0.0(0
+CAUGHT   item stances: mineauto kept: fails SupportCommandsOracleTest
+           SupportCommandsOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 200 (1 failure) | 	org.opentest4j.AssertionFailedError: units #1 ==> expected: <#4 poly t1 at 134.4401(430670aa),219.4754(435b79b4) rot 38.76455(421b0ee6) v 2.6901587E-4(398d0ab3),1.9508085E-4(394c8e9e) hp 400.
+CAUGHT   save: a unit attack target not looked up again: fails StancesOracleTest
+           StancesOracleTest: 1 of 3 failed; first: org.opentest4j.MultipleFailuresError: loaded (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#5 dagger t1 at 195.95848(4343f55f),88.086975(42b02c88) rot 302.37183(43972f98) v 0.4195058(3ed6c977),-0.27205673(be8b4b05) hp 150.0(431600

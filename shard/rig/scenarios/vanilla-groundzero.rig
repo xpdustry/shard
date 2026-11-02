@@ -1,0 +1,56 @@
+# The L5 gate against the real vanilla server: two stock v160.7 clients join Ground Zero, walk and see each other,
+# chat, run a slash command, and alpha builds a conveyor that the server's own console confirms. bravo rejoins and
+# must get the conveyor in its fresh world stream.
+#
+#   rig/run.sh --server 'vanilla serpulo/groundZero' --clients 2 --script rig/scenarios/vanilla-groundzero.rig
+#
+# Ground Zero's shard core sits at 129,55; the ground north of it is empty, and the wave timer is off.
+timeout 6m
+
+wait log server /Server loaded/ 60s
+console host Ground_Zero
+wait log server /Opened a server on port 6567/ 60s
+
+alpha: join
+bravo: join
+console players
+wait log server /Players: 2/ 5s
+all: shot joined
+
+# walk: each one moves, and the other one's client sees it where it really is
+alpha: mark
+alpha: hold D 400ms
+alpha: expect moved 3
+bravo: expect player alpha within 2 5s
+bravo: mark
+bravo: hold W+A 300ms
+bravo: expect moved 2
+alpha: expect player bravo within 2 5s
+all: shot walked
+
+# chat and a slash command
+alpha: chat "hello from alpha"
+wait log server /alpha: hello from alpha/ 10s
+bravo: expect chat /alpha.*hello from alpha/ 10s
+bravo: chat "/help"
+wait log server /<bravo: \/help>/ 10s
+bravo: expect chat /Commands/ 10s
+
+# build: pick the conveyor in the placement menu, rotate it up, click the tile; the server confirms it.
+# Ground Zero's core starts empty (the tutorial has you mine first), so stock it from the console.
+console fillitems sharded
+wait log server /Core filled/ 5s
+alpha: place conveyor tile 133 59 rot 1
+alpha: expect tile 133 59 conveyor 30s
+bravo: expect tile 133 59 conveyor 10s
+console js "rig-tile=" + Vars.world.tile(133, 59).block().name + " rotation=" + Vars.world.tile(133, 59).build.rotation + " team=" + Vars.world.tile(133, 59).team().name
+wait log server /rig-tile=conveyor rotation=1 team=sharded/ 10s
+all: shot conveyor
+
+# rejoin: the fresh world stream carries the conveyor
+bravo: rejoin
+bravo: expect tile 133 59 conveyor 10s
+bravo: shot rejoined
+
+assert clean all
+assert clean server

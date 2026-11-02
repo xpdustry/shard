@@ -1,0 +1,23 @@
+# Rig self-test, a deliberate failure: the server process is SIGKILLed from outside the rig in the middle of a run.
+# The verdict must be FAIL, naming the dead server; the clients' unexpected disconnects fail the log checks too.
+#
+#   rig/run.sh --server 'vanilla serpulo/groundZero' --clients 2 --script rig/scenarios/server-killed.rig --expect fail
+timeout 4m
+
+wait log server /Server loaded/ 60s
+console host Ground_Zero
+wait log server /Opened a server on port 6567/ 60s
+
+all: join
+alpha: mark
+alpha: hold D 400ms
+alpha: expect moved 3
+all: shot before-kill
+
+# the crash: nothing in the rig knows this is coming
+exec kill -9 "$RIG_SERVER_PID"
+wait 3s
+
+# never reached: the rig fails the run as soon as it sees the server gone
+console fillitems sharded
+alpha: place conveyor tile 133 59 rot 1

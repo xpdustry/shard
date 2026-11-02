@@ -1,0 +1,42 @@
+# W4.3 (WP73) on Shard, 2 clients on fog.msav (FogMap.java: fog on, a sharded core in the west and a crux core in the
+# east; each team has a dagger in sight of the other's core and one in the middle that nobody else sees), hosted as
+# PvP so the clients land on opposite teams (vanilla's assignTeam: the first by a random tie-break, the second on the
+# team with fewer players). Each client sees both of its own daggers, the enemy dagger by its own core, and not the
+# enemy's dagger in the middle: entity snapshots leave it out, per team. A rejoin's world stream leaves it out too.
+#
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp ~/shard/rig/scenarios/fog.msav maps/ \
+#     && PUSH=~/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh "fog pvp"' \
+#     --clients 2 --script rig/scenarios/shard-fog.rig
+timeout 6m
+
+wait port 120s
+alpha: join
+bravo: join
+all: shot joined
+
+# opposite teams: each client's team holds one player
+all: expect js "Vars.state.rules.fog + ' ' + Vars.state.rules.pvp" /^true true$/ 10s
+all: expect js "Groups.player.count(function(p){return p.team() == Vars.player.team()})" /^1(\.0)?$/ 10s
+alpha: expect js "Groups.player.find(function(p){return p != Vars.player}).team() != Vars.player.team()" /^true$/ 10s
+
+# a few snapshots in: its own two daggers, one enemy dagger, by its own core
+all: wait 3s
+all: expect js "Groups.unit.count(function(u){return u.team == Vars.player.team() && u.type == UnitTypes.dagger})" /^2(\.0)?$/ 10s
+all: expect js "Groups.unit.count(function(u){return u.team != Vars.player.team() && u.type == UnitTypes.dagger})" /^1(\.0)?$/ 10s
+all: expect js "Groups.unit.find(function(u){return u.team != Vars.player.team() && u.type == UnitTypes.dagger}).within(Vars.player.team().core(), 45 * 8)" /^true$/ 10s
+# and not the enemy's core unit, 180 tiles off
+all: expect js "Groups.unit.count(function(u){return u.team != Vars.player.team() && u.spawnedByCore})" /^0(\.0)?$/ 10s
+all: shot in-fog
+all: wait 5s
+all: expect js "Groups.unit.count(function(u){return u.team != Vars.player.team() && u.type == UnitTypes.dagger})" /^1(\.0)?$/ 10s
+
+# the world stream: a rejoin loads the same view
+bravo: rejoin
+bravo: wait 2s
+bravo: expect js "Groups.unit.count(function(u){return u.team == Vars.player.team() && u.type == UnitTypes.dagger})" /^2(\.0)?$/ 10s
+bravo: expect js "Groups.unit.count(function(u){return u.team != Vars.player.team() && u.type == UnitTypes.dagger})" /^1(\.0)?$/ 10s
+alpha: expect js "Groups.player.find(function(p){return p != Vars.player}).team() != Vars.player.team()" /^true$/ 10s
+all: shot rejoined
+all: wait 5s
+assert clean all
+assert clean server

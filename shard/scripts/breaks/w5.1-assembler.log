@@ -1,0 +1,71 @@
+OK       clean: fails nothing
+CAUGHT   assembler: drones built twice as fast: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 1: |   vanilla tank-assembler (11, 14) id 2 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 0.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/0.0
+CAUGHT   assembler: a new drone faces 0: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 9: |   vanilla unit assembly-drone id 42 team 1 at 88.0,112.0 rot 90.0 vel 0.0,0.0 health 90.0 added true assembler-ai 211.99002,164.00996 225.0 in position false tether 11,14 carries |   shard   unit assembly-d
+CAUGHT   assembler: drones placed 5 degrees off: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 9: |   vanilla unit assembly-drone id 42 team 1 at 88.0,112.0 rot 90.0 vel 0.0,0.0 health 90.0 added true assembler-ai 211.99002,164.00996 225.0 in position false tether 11,14 carries |   shard   unit assembly-d
+CAUGHT   assembler: drones face the area sideways: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 9: |   vanilla unit assembly-drone id 42 team 1 at 88.0,112.0 rot 90.0 vel 0.0,0.0 health 90.0 added true assembler-ai 211.99002,164.00996 225.0 in position false tether 11,14 carries |   shard   unit assembly-d
+CAUGHT   assembler: loaded drones not found: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 1300: |   vanilla tank-assembler (11, 14) id 13 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 0.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666
+CAUGHT   assembler: builds at full rate without drones: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 120: |   vanilla tank-assembler (11, 14) id 2 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 1.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/0
+CAUGHT   assembler: powerWarmup lerps from itself: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 1: |   vanilla tank-assembler (11, 14) id 2 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 0.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/0.0
+CAUGHT   assembler: a new tier keeps the progress: fails AssemblerOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 621: |   vanilla tank-assembler (11, 14) id 2 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 0.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/0
+CAUGHT   assembler: payloads thrown into a held area: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 344: |   vanilla time 344.0 random -6808851389056090585,8077479966923818055 next id 73 |   shard   time 344.0 random 8077479966923818055,1143824179354236962 next id 73 |   vanilla mech-assembler (11, 56) id 24 t
+CAUGHT   assembler: takes one payload more: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 90: |   vanilla payload-conveyor (7, 14) id 8 team 1 rot 0 at 56.0,112.0 health 360.0 enabled true added true payload false efficiency 1.0 items none liquids none progress 0.0 itemRotation 9.530565E-5 animation 
+CAUGHT   assembler: consumes past the cap: fails AssemblerOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 443: |   vanilla power-source (9, 9) id 2 team 1 rot 0 at 72.0,72.0 health 40.0 enabled true added false payload false efficiency 0.0 items none liquids none power 0.0 links [] graph 2/16666.666/0.0/0.0 |   shar
+CAUGHT   assembler: ground units don't hold the area: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 240: |   vanilla tank-assembler (11, 14) id 2 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 0.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/0
+CAUGHT   assembler: buildings don't hold the area: fails AssemblerOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 155: |   vanilla tank-assembler (11, 12) id 0 team 1 rot 0 at 88.0,96.0 health 2800.0 enabled true added true payload false efficiency 1.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/2.
+CAUGHT   assembler: the unit check box 1.2 hit sizes: fails AssemblerOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 52: |   vanilla ship-assembler (11, 35) id 13 team 1 rot 0 at 88.0,280.0 health 3600.0 enabled true added true payload false efficiency 0.0 items [] liquids [cyanogen=120.0] power 1.0 links [] graph 2/16666.666/
+CAUGHT   assembler: units of the output type count when same: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 240: |   vanilla tank-assembler (11, 14) id 2 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 0.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/0
+CAUGHT   spawned: no position jitter: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: java.lang.AssertionError: Calls in frame 239, Call 0 ==> expected: <all udp UnitSpawn 000000432b000000000000000000090000000000000000000000000000000000462be00000ffffffff05000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+CAUGHT   spawned: the unit faces a quarter turn off: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: java.lang.AssertionError: Calls in frame 239, Call 0 ==> expected: <all udp UnitSpawn 000000432b000000000000000000090000000000000000000000000000000000462be00000ffffffff05000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+CAUGHT   spawned: no rally point: fails AssemblerOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: java.lang.AssertionError: Calls in frame 261, Call 0 ==> expected: <all udp UnitSpawn 00000044050100000000000000000000000009000143e00000438c00000000003f800000000000000000000045bb800000ffffffff02000000000000000000000000000000000000000000000000000000000000000000
+CAUGHT   spawned: no sound pitch drawn: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 239: |   vanilla time 239.0 random -3565170210424947917,566759474171464959 next id 68 |   shard   time 239.0 random 2544718318731183989,-3565170210424947917 next id 68
+CAUGHT   yeet: no sound pitch drawn: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 119: |   vanilla time 119.0 random -679270284058504419,-5519956261138897033 next id 66 |   shard   time 119.0 random -3176995168006555771,6313331929821136433 next id 66
+CAUGHT   spawned: payloads kept: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 239: |   vanilla tank-assembler (11, 14) id 2 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 1.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/2
+CAUGHT   module: throws into a held area: fails AssemblerOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 1199: |   vanilla time 1199.0 random -5909660064898048078,-8084948063236408861 next id 126 |   shard   time 1199.0 random 6419704804866207521,1249119401523822918 next id 126 |   vanilla tank-assembler (11, 14) i
+CAUGHT   module: never raises the tier: fails AssemblerOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 620: |   vanilla tank-assembler (11, 14) id 2 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 1.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/2
+CAUGHT   module: fits a tile further out: fails AssemblerOracleTest, AssemblerPlacementOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 620: |   vanilla tank-assembler (11, 14) id 2 team 1 rot 0 at 88.0,112.0 health 2800.0 enabled true added true payload false efficiency 1.0 items [] liquids [cyanogen=90.0] power 1.0 links [] graph 2/16666.666/2
+           AssemblerPlacementOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: 286 differences ==> expected: <[]> but was: <[basic-assembler-module canPlaceOn at 12,2 rot 1: vanilla false, basic-assembler-module validPlace at 12,2 rot 1: vanilla false, basic-assembler-module canPlaceOn at 13,2 rot 1: 
+CAUGHT   placement: touching edges allowed below: fails AssemblerPlacementOracleTest
+           AssemblerPlacementOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: 383 differences ==> expected: <[]> but was: <[tank-assembler canPlaceOn at 6,16 rot 1: vanilla false, tank-assembler canPlaceOn at 7,16 rot 1: vanilla false, tank-assembler canPlaceOn at 8,16 rot 1: vanilla false, tank-asse
+CAUGHT   placement: construct sites ignored: fails AssemblerPlacementOracleTest
+           AssemblerPlacementOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: 5174 differences ==> expected: <[]> but was: <[tank-assembler canPlaceOn at 33,9 rot 1: vanilla false, tank-assembler validPlace at 33,9 rot 1: vanilla false, tank-assembler canPlaceOn at 34,9 rot 1: vanilla false, tank-ass
+CAUGHT   ai: faces its angle from 10 units: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 59: |   vanilla unit assembly-drone id 47 team 1 at 103.60059,491.0606 rot 64.06739 vel 0.5734967,1.1666625 health 90.0 added true assembler-ai 107.99003,499.99002 315.0 in position false tether 11,56 carries | 
+CAUGHT   ai: in position within 30 degrees: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 82: |   vanilla unit assembly-drone id 46 team 1 at 108.71445,333.85562 rot 336.94733 vel -0.21066739,-0.52939194 health 90.0 added true assembler-ai 107.99003,331.99002 315.0 in position false tether 11,35 carr
+CAUGHT   ai: smoother approach: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 62: |   vanilla unit assembly-drone id 46 team 1 at 104.98522,326.0032 rot 63.76779 vel 0.58314663,1.1618692 health 90.0 added true assembler-ai 107.99003,331.99002 315.0 in position false tether 11,35 carries |
+CAUGHT   codec: payloads saved last first: fails AssemblerOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: frame 300: block snapshots ==> expected: <21 000c000601a0447a00008101030108ffff0000000041a0000042b4000001002b0002000900000000000000000000000000000000004503400000ffffffff010000000000000000000000000042b40000000000000000000000
+CAUGHT   codec: drone ids off by one: fails AssemblerOracleTest
+           AssemblerOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: frame 300: block snapshots ==> expected: <21 000c000601a0447a00008101030108ffff0000000041a0000042b4000001002b0002000900000000000000000000000000000000004503400000ffffffff010000000000000000000000000042b40000000000000000000000
+CAUGHT   codec: payload amounts off by one: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: frame 300: block snapshots ==> expected: <21 000c000601a0447a00008101030108ffff0000000041a0000042b4000001002b0002000900000000000000000000000000000000004503400000ffffffff010000000000000000000000000042b40000000000000000000000
+CAUGHT   codec: the rally point not read: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: ship-assembler at (11, 35): save chunk ==> expected: <0145610000800103010f000000003f8000000001000a42f00000ffff000000000000000000000000003e173ac700fffe0100f3000000020600320000000143e00000438c0000> but was: <01456100008001030
+CAUGHT   Call: the drone id off by one: fails AssemblerOracleTest
+           AssemblerOracleTest: 2 of 2 failed; first: java.lang.AssertionError: Calls in frame 9, Call 0 ==> expected: <all tcp AssemblerDroneSpawned 000b000e0000002a> but was: <all tcp AssemblerDroneSpawned 000b000e0000002b> | units at the frame's start: | dump checks: |  shard unit assembly-drone id 42 at 88.0,
+34 of 34 breaks fail

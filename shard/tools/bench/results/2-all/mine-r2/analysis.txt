@@ -1,0 +1,16 @@
+RUN mine-r2    ticks=18090 dropped=0 tick p50=0.287 p99=1.151 ms total=1.821 tick=1.356 MiB/s tick=4.61 KiB/wtick gc=0 pause=0 ms
+     11.72 MiB  10.7%  Frame.udp:131  HeapByteBufferR
+     10.40 MiB   9.5%  UnitView.mounts:112  Codecs$Mount
+      4.99 MiB   4.5%  Frame.packet:65  [B
+      3.94 MiB   3.6%  MechUnitLayout.writeSync:91  ArrayList$Itr
+      3.65 MiB   3.3%  (no Shard frame)  AbstractQueuedSynchronizer$ConditionNode
+      3.35 MiB   3.1%  Writes.toByteArray:119  [B
+      2.92 MiB   2.7%  SpatialIndex.closestEnemy:217  SpatialIndex$ClosestEnemy
+      2.70 MiB   2.5%  Targets$$Lambda.accept:-1  Object;
+      2.52 MiB   2.3%  Frame.packet:75  [B
+      2.43 MiB   2.2%  Predict.intercept:44  Vec2
+      2.41 MiB   2.2%  Intents.snapshot:268  Snapshot
+      1.88 MiB   1.7%  Frame.udp:130  HeapByteBufferR
+      1.81 MiB   1.6%  Lz4.decompress:87  [B
+      1.80 MiB   1.6%  IntSeq.resize:273  [I
+      1.75 MiB   1.6%  NanoClock$1.awaitNanos:19  AbstractQueuedSynchronizer$ConditionNode

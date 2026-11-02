@@ -1,0 +1,8 @@
+== b1000-w100-t0 on 8 vCPUs (hypervisor steal during run: 3 cpu-seconds)
+[09:41:55.091] SUMMARY worlds=100 players=1000 cpu=21.4% cpuPer100p=2.14% late[n=419529 p50=55us p99=87us p999=26623us max=138074us] tick[n=419529 p50=1us p99=21us p999=127us max=137809us] dropped=632 slow=0 spam=0 deadlines=0
+BOT SUMMARY bots=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 join[n=1000 p50=131071us p99=147455us p999=153540us max=153540us] worldKB/bot=0.1
+bots t=90s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=2565 B/s tcp=40 B/s tx/bot=1046 B/s entities/bot/s=99 rtt[n=9982 p50=95us p99=45055us p999=139983us max=139983us] gap>20ms[n=49490 p50=212991us p99=327679us p999=337426us max=337426us]
+== b1000-w100-t30 on 8 vCPUs (hypervisor steal during run: 0 cpu-seconds)
+[09:43:35.632] SUMMARY worlds=100 players=1000 cpu=21.6% cpuPer100p=2.17% late[n=420150 p50=55us p99=71us p999=20479us max=47650us] tick[n=420150 p50=1us p99=27us p999=71us max=48839us] dropped=0 slow=0 spam=0 deadlines=0
+BOT SUMMARY bots=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=2315/2336 join[n=1000 p50=131071us p99=141941us p999=141941us max=141941us] worldKB/bot=0.1
+bots t=90s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=2315/2336 rx/bot: udp=3440 B/s tcp=52 B/s tx/bot=1047 B/s entities/bot/s=118 rtt[n=9984 p50=59us p99=127us p999=639us max=2080us] gap>20ms[n=52707 p50=212991us p99=212991us p999=212991us max=232867us]

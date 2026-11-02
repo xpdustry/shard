@@ -1,0 +1,927 @@
+{
+  "type": "unitStance",
+  "ordinal": 17,
+  "count": 30,
+  "entries": [ {
+    "id": 0,
+    "name": "stop",
+    "class": "mindustry.ai.UnitStance",
+    "fields": {
+      "id": 0,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "stop",
+      "icon": "cancel",
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "cancel_orders",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ ],
+      "toggle": false,
+      "incompatibleStanceBits": [ ],
+      "incompatibleCommandBits": [ ]
+    }
+  }, {
+    "id": 1,
+    "name": "holdfire",
+    "class": "mindustry.ai.UnitStance",
+    "fields": {
+      "id": 1,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "holdfire",
+      "icon": "none",
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_stance_hold_fire",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ ],
+      "toggle": true,
+      "incompatibleStanceBits": [ ],
+      "incompatibleCommandBits": [ ]
+    }
+  }, {
+    "id": 2,
+    "name": "pursuetarget",
+    "class": "mindustry.ai.UnitStance",
+    "fields": {
+      "id": 2,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "pursuetarget",
+      "icon": "right",
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_stance_pursue_target",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ ],
+      "toggle": true,
+      "incompatibleStanceBits": [ ],
+      "incompatibleCommandBits": [ ]
+    }
+  }, {
+    "id": 3,
+    "name": "patrol",
+    "class": "mindustry.ai.UnitStance$1",
+    "fields": {
+      "id": 3,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "patrol",
+      "icon": "refresh",
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_stance_patrol",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "incompatibleCommands": [ {
+        "$ref": "unitCommand:repair"
+      }, {
+        "$ref": "unitCommand:assist"
+      }, {
+        "$ref": "unitCommand:rebuild"
+      } ],
+      "incompatibleStances": [ ],
+      "toggle": true,
+      "incompatibleStanceBits": [ ],
+      "incompatibleCommandBits": [ 1, 2, 3 ]
+    }
+  }, {
+    "id": 4,
+    "name": "ram",
+    "class": "mindustry.ai.UnitStance",
+    "fields": {
+      "id": 4,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "ram",
+      "icon": "rightOpen",
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_stance_ram",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ ],
+      "toggle": true,
+      "incompatibleStanceBits": [ ],
+      "incompatibleCommandBits": [ ]
+    }
+  }, {
+    "id": 5,
+    "name": "boost",
+    "class": "mindustry.ai.UnitStance$2",
+    "fields": {
+      "id": 5,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "boost",
+      "icon": "up",
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_stance_boost",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "incompatibleCommands": [ {
+        "$ref": "unitCommand:rebuild"
+      }, {
+        "$ref": "unitCommand:repair"
+      }, {
+        "$ref": "unitCommand:assist"
+      }, {
+        "$ref": "unitCommand:enterPayload"
+      } ],
+      "incompatibleStances": [ ],
+      "toggle": true,
+      "incompatibleStanceBits": [ ],
+      "incompatibleCommandBits": [ 1, 2, 3, 5 ]
+    }
+  }, {
+    "id": 6,
+    "name": "holdposition",
+    "class": "mindustry.ai.UnitStance",
+    "fields": {
+      "id": 6,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "holdposition",
+      "icon": "effect",
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_stance_hold_position",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ ],
+      "toggle": true,
+      "incompatibleStanceBits": [ ],
+      "incompatibleCommandBits": [ ]
+    }
+  }, {
+    "id": 7,
+    "name": "mineauto",
+    "class": "mindustry.ai.UnitStance",
+    "fields": {
+      "id": 7,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "mineauto",
+      "icon": "settings",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ ],
+      "toggle": false,
+      "incompatibleStanceBits": [ 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29 ],
+      "incompatibleCommandBits": [ ]
+    }
+  }, {
+    "id": 8,
+    "name": "item-copper",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 8,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-copper",
+      "icon": "item-copper",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:copper"
+      }
+    }
+  }, {
+    "id": 9,
+    "name": "item-lead",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 9,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-lead",
+      "icon": "item-lead",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:lead"
+      }
+    }
+  }, {
+    "id": 10,
+    "name": "item-metaglass",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 10,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-metaglass",
+      "icon": "item-metaglass",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:metaglass"
+      }
+    }
+  }, {
+    "id": 11,
+    "name": "item-graphite",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 11,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-graphite",
+      "icon": "item-graphite",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:graphite"
+      }
+    }
+  }, {
+    "id": 12,
+    "name": "item-sand",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 12,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-sand",
+      "icon": "item-sand",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:sand"
+      }
+    }
+  }, {
+    "id": 13,
+    "name": "item-coal",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 13,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-coal",
+      "icon": "item-coal",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:coal"
+      }
+    }
+  }, {
+    "id": 14,
+    "name": "item-titanium",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 14,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-titanium",
+      "icon": "item-titanium",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:titanium"
+      }
+    }
+  }, {
+    "id": 15,
+    "name": "item-thorium",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 15,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-thorium",
+      "icon": "item-thorium",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:thorium"
+      }
+    }
+  }, {
+    "id": 16,
+    "name": "item-scrap",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 16,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-scrap",
+      "icon": "item-scrap",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:scrap"
+      }
+    }
+  }, {
+    "id": 17,
+    "name": "item-silicon",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 17,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-silicon",
+      "icon": "item-silicon",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:silicon"
+      }
+    }
+  }, {
+    "id": 18,
+    "name": "item-plastanium",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 18,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-plastanium",
+      "icon": "item-plastanium",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:plastanium"
+      }
+    }
+  }, {
+    "id": 19,
+    "name": "item-phase-fabric",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 19,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-phase-fabric",
+      "icon": "item-phase-fabric",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:phase-fabric"
+      }
+    }
+  }, {
+    "id": 20,
+    "name": "item-surge-alloy",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 20,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-surge-alloy",
+      "icon": "item-surge-alloy",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:surge-alloy"
+      }
+    }
+  }, {
+    "id": 21,
+    "name": "item-spore-pod",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 21,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-spore-pod",
+      "icon": "item-spore-pod",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:spore-pod"
+      }
+    }
+  }, {
+    "id": 22,
+    "name": "item-blast-compound",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 22,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-blast-compound",
+      "icon": "item-blast-compound",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:blast-compound"
+      }
+    }
+  }, {
+    "id": 23,
+    "name": "item-pyratite",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 23,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-pyratite",
+      "icon": "item-pyratite",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:pyratite"
+      }
+    }
+  }, {
+    "id": 24,
+    "name": "item-beryllium",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 24,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-beryllium",
+      "icon": "item-beryllium",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:beryllium"
+      }
+    }
+  }, {
+    "id": 25,
+    "name": "item-tungsten",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 25,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-tungsten",
+      "icon": "item-tungsten",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:tungsten"
+      }
+    }
+  }, {
+    "id": 26,
+    "name": "item-oxide",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 26,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-oxide",
+      "icon": "item-oxide",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:oxide"
+      }
+    }
+  }, {
+    "id": 27,
+    "name": "item-carbide",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 27,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-carbide",
+      "icon": "item-carbide",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:carbide"
+      }
+    }
+  }, {
+    "id": 28,
+    "name": "item-fissile-matter",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 28,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-fissile-matter",
+      "icon": "item-fissile-matter",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:fissile-matter"
+      }
+    }
+  }, {
+    "id": 29,
+    "name": "item-dormant-cyst",
+    "class": "mindustry.ai.ItemUnitStance",
+    "fields": {
+      "id": 29,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "item-dormant-cyst",
+      "icon": "item-dormant-cyst",
+      "keybind": null,
+      "incompatibleCommands": [ ],
+      "incompatibleStances": [ {
+        "$ref": "unitStance:mineauto"
+      } ],
+      "toggle": true,
+      "incompatibleStanceBits": [ 7 ],
+      "incompatibleCommandBits": [ ],
+      "item": {
+        "$ref": "item:dormant-cyst"
+      }
+    }
+  } ]
+}

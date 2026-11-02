@@ -1,0 +1,51 @@
+# W5.4's L5 (WP84): a stock client joins a map with a data patch and an embedded sprite (patches.msav, PatchesMap.java)
+# and plays it without errors: 40x30 stone, a core-shard at (8, 15), a mechanical drill on copper at (14, 15) feeding
+# four conveyors west into the core. The patch makes the drill (drillTime 600 -> 200) and the belt (speed 0.035 -> 0.08)
+# faster; it reaches the client only in the world stream's data patch section.
+#  1. The client's content is the patched one once it has loaded the world, and it holds the map's two assets.
+#  2. The drill's copper reaches the core: the client and the server simulate the patched blocks alike.
+#  3. Alpha builds a conveyor of its own, which the patched content prices and builds as usual.
+#  4. W6.2: the join's asset handshake (NetServer.java:330, 955-993). The client asks for the sprite it lacks and gets
+#     it before the world, so it never logs "Asset shard-mark.png: cache file not found" (SaveVersion.java:589);
+#     on a rejoin it has the sprite cached and asks for none.
+#
+#   scripts/vm-gradle.sh :server:installDist
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp "$RIG"/scenarios/patches.msav maps/patches.msav \
+#     && PUSH=/home/user/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh patches' --clients 1 --script rig/scenarios/shard-patches.rig
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p config/maps && cp "$RIG"/scenarios/patches.msav config/maps/patches.msav \
+#     && exec "$RIG"/vm/vanilla-server.sh -- host patches' --clients 1 --script rig/scenarios/shard-patches.rig
+timeout 6m
+
+wait port 90s
+alpha: join
+alpha: zoom 2
+alpha: shot joined
+
+# 1. the patched content, from the stream
+alpha: expect js "Blocks.conveyor.speed" /^0\.08/ 10s
+alpha: expect js "Blocks.mechanicalDrill.drillTime" /^200(\.0)?$/ 5s
+alpha: expect js "Vars.state.data.getPatches().size" /^1$/ 5s
+alpha: expect js "Vars.state.data.getAllAssets().size" /^2$/ 5s
+
+# 4. the sprite came by the asset handshake, before the world
+assert log alpha /Requesting 1 asset\(s\) from the server/
+assert log alpha /Receiving asset data/
+assert log alpha !/cache file not found/
+
+# 2. the drill's copper reaches the core
+alpha: expect js "Vars.player.team().core().items.get(Items.copper) >= 5" /^true$/ 90s
+alpha: shot copper
+
+# 3. a conveyor of alpha's own
+alpha: place conveyor tile 12 20 rot 0
+alpha: expect js "Vars.world.tile(12, 20).block().name" /^conveyor$/ 30s
+alpha: shot built
+
+# 4. a rejoin: the sprite is cached now, so the client asks for none and gets the world at once
+alpha: rejoin
+wait log alpha /Requesting 0 asset\(s\) from the server/ 60s
+alpha: expect js "Blocks.conveyor.speed" /^0\.08/ 30s
+assert log alpha !/cache file not found/
+alpha: shot rejoined
+wait 3s
+assert clean

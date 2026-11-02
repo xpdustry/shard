@@ -1,0 +1,708 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "title" : "Shard host config (shard.yml)",
+  "type" : "object",
+  "additionalProperties" : false,
+  "properties" : {
+    "schema-version" : {
+      "const" : 1
+    },
+    "server" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "name" : {
+          "description" : "The server name shown in the client's server list.",
+          "type" : "string",
+          "maxLength" : 100,
+          "default" : "Server",
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__SERVER__NAME"
+        },
+        "description" : {
+          "description" : "The line under the name in the server list; empty for none (vanilla wrote \"off\").",
+          "type" : "string",
+          "maxLength" : 100,
+          "default" : "",
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__SERVER__DESCRIPTION"
+        },
+        "motd" : {
+          "description" : "The message sent to a player when they join; empty for none (vanilla wrote \"off\").",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__SERVER__MOTD"
+        }
+      }
+    },
+    "net" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "bind" : {
+          "description" : "The game listener's address. The dev box binds 127.0.0.1 only; a VM or host may bind any address.",
+          "type" : "string",
+          "format" : "ip-address",
+          "default" : "127.0.0.1",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__NET__BIND"
+        },
+        "port" : {
+          "description" : "The game port, TCP and UDP; 0 picks a free one (tests).",
+          "type" : "integer",
+          "minimum" : 0,
+          "maximum" : 65535,
+          "default" : 6567,
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__NET__PORT"
+        },
+        "player-limit" : {
+          "description" : "The most players on the host at once; 0 for no limit. Admins may join past it.",
+          "type" : "integer",
+          "minimum" : 0,
+          "default" : 30,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__NET__PLAYER_LIMIT"
+        },
+        "allow-custom-clients" : {
+          "description" : "Whether clients that report a modified build may join.",
+          "type" : "boolean",
+          "default" : false,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__NET__ALLOW_CUSTOM_CLIENTS"
+        },
+        "packet-spam-limit" : {
+          "description" : "Packets a connection may send in 3 s before it is blacklisted and kicked.",
+          "type" : "integer",
+          "minimum" : 1,
+          "default" : 300,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__NET__PACKET_SPAM_LIMIT"
+        },
+        "chat-spam-limit" : {
+          "description" : "Chat packets a connection may send in 2 s before it is blacklisted and kicked.",
+          "type" : "integer",
+          "minimum" : 1,
+          "default" : 20,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__NET__CHAT_SPAM_LIMIT"
+        },
+        "snapshot-interval" : {
+          "description" : "How often entity snapshots go to clients.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "200ms",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__NET__SNAPSHOT_INTERVAL"
+        }
+      }
+    },
+    "host" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "worlds" : {
+          "description" : "The worlds hosted at startup, one entry each: \"[<id>=]<map> [<mode>]\". The map is a name from maps.vanilla-jar or maps.directory (its file name, or its name tag with _ for spaces, any case); the id defaults to the file name in lower case; the mode is survival, sandbox, attack, pvp or editor (default survival). Empty: nothing until the host console command.",
+          "type" : "array",
+          "maxItems" : 1024,
+          "items" : {
+            "type" : "string",
+            "maxLength" : 200
+          },
+          "default" : [ ],
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__HOST__WORLDS"
+        },
+        "join" : {
+          "description" : "The world a new player joins: fewest (the running world with the fewest players), first (the first running world in host.worlds order) or round-robin.",
+          "type" : "string",
+          "enum" : [ "fewest", "first", "round-robin" ],
+          "default" : "fewest",
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__HOST__JOIN"
+        },
+        "world-player-limit" : {
+          "description" : "The most players in one world at once, counting transfers on their way in; 0 for no limit. New in Shard.",
+          "type" : "integer",
+          "minimum" : 0,
+          "default" : 0,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__HOST__WORLD_PLAYER_LIMIT"
+        }
+      }
+    },
+    "maps" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "vanilla-jar" : {
+          "description" : "A vanilla v160.7 server or desktop jar, whose 18 default maps (maps/default/*.msav) may then be hosted. Empty for none.",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__MAPS__VANILLA_JAR"
+        },
+        "directory" : {
+          "description" : "A directory of custom .msav maps, relative to the working directory (vanilla's config/maps). It may be missing.",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "maps",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__MAPS__DIRECTORY"
+        }
+      }
+    },
+    "intents" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "inbox-capacity" : {
+          "description" : "Inputs a world's inbox holds between two ticks. Worlds created after a reload read it. New in Shard.",
+          "type" : "integer",
+          "minimum" : 64,
+          "maximum" : 1048576,
+          "default" : 4096,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__INTENTS__INBOX_CAPACITY"
+        },
+        "mailbox-bound" : {
+          "description" : "Reliable intents one session may have waiting for its world; past it the session is kicked, since reliable input is never dropped. Worlds created after a reload read it. New in Shard.",
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 65536,
+          "default" : 64,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__INTENTS__MAILBOX_BOUND"
+        },
+        "mailbox-quantum" : {
+          "description" : "Entries one session's mailbox moves into its world's inbox per turn of the round-robin pump. New in Shard.",
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 65536,
+          "default" : 16,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__INTENTS__MAILBOX_QUANTUM"
+        },
+        "inbox-reserve" : {
+          "description" : "Inbox slots intents never take, kept for joins, leaves and other sources: an eighth of the default capacity. It must stay below intents.inbox-capacity. New in Shard.",
+          "type" : "integer",
+          "minimum" : 0,
+          "maximum" : 1048576,
+          "default" : 512,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__INTENTS__INBOX_RESERVE"
+        }
+      }
+    },
+    "admin" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "whitelist" : {
+          "description" : "Whether only whitelisted players may join.",
+          "type" : "boolean",
+          "default" : false,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__ADMIN__WHITELIST"
+        },
+        "uuid-change-limit" : {
+          "description" : "Distinct UUIDs one address may present within admin.uuid-change-period before the address is banned; 0 or 1 disables the check.",
+          "type" : "integer",
+          "minimum" : 0,
+          "default" : 10,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__ADMIN__UUID_CHANGE_LIMIT"
+        },
+        "uuid-change-period" : {
+          "description" : "The window of admin.uuid-change-limit.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "3h",
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__ADMIN__UUID_CHANGE_PERIOD"
+        },
+        "kick-cooldown" : {
+          "description" : "How long a kicked, banned or vote-kicked player must wait to rejoin (vanilla hard-codes 30 s).",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "30s",
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__ADMIN__KICK_COOLDOWN"
+        }
+      }
+    },
+    "chat" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "anti-spam" : {
+          "description" : "Whether chat and block interaction are rate-limited, and repeat offenders kicked.",
+          "type" : "boolean",
+          "default" : true,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__CHAT__ANTI_SPAM"
+        },
+        "message-rate-limit" : {
+          "description" : "The least time between two messages from one player; 0 to disable.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "0s",
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__CHAT__MESSAGE_RATE_LIMIT"
+        },
+        "message-spam-kick" : {
+          "description" : "Messages inside the rate limit before the player is kicked; 0 to disable.",
+          "type" : "integer",
+          "minimum" : 0,
+          "default" : 3,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__CHAT__MESSAGE_SPAM_KICK"
+        },
+        "show-connect-messages" : {
+          "description" : "Whether joins and leaves are announced in chat.",
+          "type" : "boolean",
+          "default" : true,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__CHAT__SHOW_CONNECT_MESSAGES"
+        },
+        "log-commands" : {
+          "description" : "Whether player commands are logged.",
+          "type" : "boolean",
+          "default" : true,
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__CHAT__LOG_COMMANDS"
+        },
+        "retention" : {
+          "description" : "How long the chat log keeps messages; 0 to keep none. New in Shard.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "30d",
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__CHAT__RETENTION"
+        }
+      }
+    },
+    "game" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "strict" : {
+          "description" : "Whether player positions are corrected and duplicate names or ids are refused.",
+          "type" : "boolean",
+          "default" : true,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__STRICT"
+        },
+        "votekick" : {
+          "description" : "Whether players may vote to kick.",
+          "type" : "boolean",
+          "default" : true,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__VOTEKICK"
+        },
+        "interact-rate-window" : {
+          "description" : "The window of the block interaction rate limit.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "6s",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__INTERACT_RATE_WINDOW"
+        },
+        "interact-rate-limit" : {
+          "description" : "Block interactions allowed per window.",
+          "type" : "integer",
+          "minimum" : 1,
+          "default" : 25,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__INTERACT_RATE_LIMIT"
+        },
+        "interact-rate-kick" : {
+          "description" : "Block interactions inside one window that get the player kicked.",
+          "type" : "integer",
+          "minimum" : 1,
+          "default" : 60,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__INTERACT_RATE_KICK"
+        },
+        "round-extra-time" : {
+          "description" : "The wait between game over and the next map.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "12s",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__ROUND_EXTRA_TIME"
+        },
+        "shuffle" : {
+          "description" : "How a world picks its next map after a game over (vanilla's shufflemode): none ends the game by kicking its players and stopping the world; all, custom and builtin pick at random among game.maps of that kind (custom falls back to the default maps when there is no custom one), never the map just played unless it is the only one.",
+          "type" : "string",
+          "enum" : [ "none", "all", "custom", "builtin" ],
+          "default" : "custom",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__SHUFFLE"
+        },
+        "maps" : {
+          "description" : "A world's map registry: the maps its rotation picks from, by name as in host.worlds. Empty: every map the server can host (vanilla's Maps.all()). New in Shard.",
+          "type" : "array",
+          "maxItems" : 1024,
+          "items" : {
+            "type" : "string",
+            "maxLength" : 200
+          },
+          "default" : [ ],
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__MAPS"
+        },
+        "simulate-when-empty" : {
+          "description" : "Whether an empty world keeps simulating at 60 Hz. By default its time freezes (ARCHITECTURE.md §7); vanilla's autoPause=false is true here.",
+          "type" : "boolean",
+          "default" : false,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__SIMULATE_WHEN_EMPTY"
+        },
+        "auto-pause" : {
+          "description" : "Whether a world pauses its game while nobody is in it, as vanilla's autoPause: players see it paused, and the first one in resumes it, unless an admin paused it by hand.",
+          "type" : "boolean",
+          "default" : false,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__GAME__AUTO_PAUSE"
+        },
+        "universe-seconds" : {
+          "description" : "The universe's age in seconds that state snapshots send (vanilla's universe.seconds(), saved as utimei); outside a campaign nothing advances it.",
+          "type" : "integer",
+          "minimum" : 0,
+          "default" : 0,
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__GAME__UNIVERSE_SECONDS"
+        }
+      }
+    },
+    "persistence" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "autosave-interval" : {
+          "description" : "How often a running world writes a checkpoint. Always on (vanilla: autosave=false, every 300 s).",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "1m",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__PERSISTENCE__AUTOSAVE_INTERVAL"
+        },
+        "directory" : {
+          "description" : "Where world checkpoints and crash bundles go, one directory per world id, relative to the working directory.",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "data/worlds",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__PERSISTENCE__DIRECTORY"
+        },
+        "saves-directory" : {
+          "description" : "Where the console's save and load keep their slots, as <slot>.msav vanilla saves, relative to the working directory (vanilla: config/saves).",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "data/saves",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__PERSISTENCE__SAVES_DIRECTORY"
+        },
+        "keep-recent" : {
+          "description" : "Checkpoint generations kept per world.",
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 1000,
+          "default" : 3,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__PERSISTENCE__KEEP_RECENT"
+        },
+        "hibernate-after" : {
+          "description" : "How long a world stays empty before it hibernates; 0 never hibernates. New in Shard.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "10m",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__PERSISTENCE__HIBERNATE_AFTER"
+        },
+        "match-checkpoints" : {
+          "description" : "How often a world also writes a checkpoint it keeps for the whole match, for replays; 0 writes none. Rounded up to a multiple of 10 s (600 ticks, the replay keyframe). New in Shard.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "0s",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__PERSISTENCE__MATCH_CHECKPOINTS"
+        },
+        "resume" : {
+          "description" : "Whether a world hosted again after a restart, from the same map and mode, goes on from its last checkpoint instead of starting over: the match continues. A match that ended (a game over's reload, a stop) never resumes. New in Shard.",
+          "type" : "boolean",
+          "default" : false,
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__PERSISTENCE__RESUME"
+        }
+      }
+    },
+    "replay" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "record" : {
+          "description" : "Whether a world records its matches: a view stream to watch in a browser and a replay bundle (match checkpoints every 10 s, the inputs, the hashes). Turns persistence.match-checkpoints on at 10 s if it is off. Reloads live: a world starts recording at its next match checkpoint, in the match under way, and stops (closing the replay) when turned off. New in Shard.",
+          "type" : "boolean",
+          "default" : false,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__REPLAY__RECORD"
+        },
+        "directory" : {
+          "description" : "Where replays go, relative to the working directory: bundles/<build>/<match>/ and views/<match>.sview, plus views/<match>/ split for static hosting. Serving them is the web host's job.",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "data/replays",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__REPLAY__DIRECTORY"
+        },
+        "keep-bundles" : {
+          "description" : "How long replay bundles stay. build: while the Shard build that recorded them runs; a later build deletes them once their view stream is baked (a bundle only replays on its own build). forever: never deleted.",
+          "type" : "string",
+          "enum" : [ "build", "forever" ],
+          "default" : "build",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__REPLAY__KEEP_BUNDLES"
+        },
+        "keep-views" : {
+          "description" : "How long published view streams (.sview) stay; 0 keeps them until someone deletes them.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "0s",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__REPLAY__KEEP_VIEWS"
+        },
+        "pvp-views" : {
+          "description" : "When a PvP match's view stream is published for viewing. after-match: only once the match ends, so nobody watches the other team live. live: segment by segment, like other matches.",
+          "type" : "string",
+          "enum" : [ "after-match", "live" ],
+          "default" : "after-match",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__REPLAY__PVP_VIEWS"
+        },
+        "in-game" : {
+          "description" : "In-game replays, watched with the vanilla client in a replay world (note 37 P4). none: browsers only; v1 has no other choice.",
+          "type" : "string",
+          "enum" : [ "none" ],
+          "default" : "none",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__REPLAY__IN_GAME"
+        }
+      }
+    },
+    "storage" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "database" : {
+          "description" : "The SQLite database file, relative to the working directory. It must be on a local file system (WAL).",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "data/shard.db",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__STORAGE__DATABASE"
+        },
+        "synchronous" : {
+          "description" : "SQLite's synchronous mode. full syncs every commit; normal may lose the last commits on power loss.",
+          "type" : "string",
+          "enum" : [ "full", "normal" ],
+          "default" : "full",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__STORAGE__SYNCHRONOUS"
+        },
+        "writer-queue" : {
+          "description" : "Writes that may wait for the writer thread; past it, writes fail fast.",
+          "type" : "integer",
+          "minimum" : 16,
+          "maximum" : 1048576,
+          "default" : 4096,
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__STORAGE__WRITER_QUEUE"
+        },
+        "readers" : {
+          "description" : "Reader connections; reads past it wait their turn.",
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 64,
+          "default" : 4,
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__STORAGE__READERS"
+        },
+        "busy-timeout" : {
+          "description" : "How long a connection waits on a lock before it fails.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "5s",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__STORAGE__BUSY_TIMEOUT"
+        },
+        "backup-dir" : {
+          "description" : "Where online backups go, including the one taken before a migration.",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "data/backups",
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__STORAGE__BACKUP_DIR"
+        }
+      }
+    },
+    "ops" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "enabled" : {
+          "description" : "Whether the REST/SSE ops API runs (metrics, health, events).",
+          "type" : "boolean",
+          "default" : true,
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__OPS__ENABLED"
+        },
+        "bind" : {
+          "description" : "The ops API's address: loopback only. Reach it remotely through an authenticated TLS reverse proxy.",
+          "type" : "string",
+          "format" : "ip-address",
+          "pattern" : "^(127(\\.\\d{1,3}){3}|::1)$",
+          "default" : "127.0.0.1",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__OPS__BIND"
+        },
+        "port" : {
+          "description" : "The ops API's port.",
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 65535,
+          "default" : 7810,
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__OPS__PORT"
+        }
+      }
+    },
+    "log" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "level" : {
+          "description" : "The root log level (vanilla: debug=true is debug).",
+          "type" : "string",
+          "enum" : [ "trace", "debug", "info", "warn", "error" ],
+          "default" : "info",
+          "x-scope" : "host",
+          "x-reload" : "live",
+          "x-env" : "SHARD__LOG__LEVEL"
+        },
+        "format" : {
+          "description" : "json: one JSON object per line; text: a human pattern.",
+          "type" : "string",
+          "enum" : [ "json", "text" ],
+          "default" : "json",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__LOG__FORMAT"
+        },
+        "file" : {
+          "description" : "A log file, rolled by size, besides stdout; empty for stdout only.",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__LOG__FILE"
+        },
+        "max-file-size" : {
+          "description" : "The size at which log.file rolls over.",
+          "type" : "string",
+          "pattern" : "^\\d{1,15}(B|KiB|MiB|GiB)?$",
+          "default" : "5MiB",
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__LOG__MAX_FILE_SIZE"
+        }
+      }
+    },
+    "console" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "start-commands" : {
+          "description" : "Console commands run once at startup, in order.",
+          "type" : "array",
+          "maxItems" : 64,
+          "items" : {
+            "type" : "string",
+            "maxLength" : 1024
+          },
+          "default" : [ ],
+          "x-scope" : "host",
+          "x-reload" : "restart",
+          "x-env" : "SHARD__CONSOLE__START_COMMANDS"
+        }
+      }
+    }
+  }
+}

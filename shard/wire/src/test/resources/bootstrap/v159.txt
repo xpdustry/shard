@@ -1,0 +1,43 @@
+# ConnectPacket bodies written by build 159 (159), and the fields its
+# server reads back. Recorded by tools/wirelift/fixtures/bootstrap/record.sh; do not edit.
+
+case=official
+build=159
+versionType="official"
+name="frog"
+locale="en"
+usid="AAAAAAAAAAA="
+uuid="AQIDBAUGB/gAAAAAgnd62Q=="
+mobile=false
+color=-2916353
+mods=0
+body=0000009f0100086f6666696369616c01000466726f67010002656e01000c41414141414141414141413d01020304050607f80000000082777ad900ffd37fff00
+
+case=unicode
+build=159
+versionType="official"
+name="[accent]\u65e5\u672c\u0000\ud83d\udc38 \u00e9"
+locale="pt_BR"
+usid="c2hhcmQhIQ=="
+uuid="AQIDBAUGB/gAAAAAgnd62Q=="
+mobile=true
+color=-1
+mods=3
+mod="mod-a:1.0"
+mod="\u00e9t\u00e9"
+mod="x"
+body=0000009f0100086f6666696369616c0100195b616363656e745de697a5e69cacc080eda0bdedb0b820c3a901000570745f425201000c63326868636d516849513d3d01020304050607f80000000082777ad901ffffffff030100096d6f642d613a312e30010005c3a974c3a901000178
+
+case=nulls
+build=159
+versionType=null
+name=null
+locale=null
+usid=null
+uuid="AAAAAAAAAAAAAAAAZSLfaQ=="
+mobile=false
+color=0
+mods=2
+mod="custom"
+mod=null
+body=0000009f000000000000000000000000000000006522df69000000000002010006637573746f6d00

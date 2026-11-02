@@ -1,0 +1,2059 @@
+{
+  "type": "status",
+  "ordinal": 5,
+  "count": 23,
+  "entries": [ {
+    "id": 0,
+    "name": "none",
+    "class": "mindustry.type.StatusEffect",
+    "fields": {
+      "id": 0,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "none",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "none",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#ffffffff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 1,
+    "name": "burning",
+    "class": "mindustry.content.StatusEffects$1",
+    "fields": {
+      "id": 1,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "burning",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "burning",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 8.0,
+      "disarm": false,
+      "damage": 0.167,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#ffc455ff",
+      "effect": {
+        "$static": "Fx.burning"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ {
+        "$ref": "status:tarred"
+      } ],
+      "opposites": [ {
+        "$ref": "status:freezing"
+      }, {
+        "$ref": "status:wet"
+      } ],
+      "outline": true,
+      "transitions": {
+        "status:freezing": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:freezing"
+          }
+        },
+        "status:tarred": {
+          "$lambda": "mindustry.content.StatusEffects$1",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$same": "$"
+          }
+        },
+        "status:wet": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:wet"
+          }
+        }
+      },
+      "initblock": {
+        "$lambda": "mindustry.content.StatusEffects$1",
+        "$type": "java.lang.Runnable",
+        "arg$1": {
+          "$same": "$"
+        }
+      }
+    }
+  }, {
+    "id": 2,
+    "name": "freezing",
+    "class": "mindustry.content.StatusEffects$2",
+    "fields": {
+      "id": 2,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "freezing",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "freezing",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 0.8,
+      "speedMultiplier": 0.6,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 18.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#6ecdecff",
+      "effect": {
+        "$static": "Fx.freezing"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ {
+        "$ref": "status:blasted"
+      } ],
+      "opposites": [ {
+        "$ref": "status:burning"
+      }, {
+        "$ref": "status:melting"
+      } ],
+      "outline": true,
+      "transitions": {
+        "status:blasted": {
+          "$lambda": "mindustry.content.StatusEffects$2",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$same": "$"
+          }
+        },
+        "status:burning": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:burning"
+          }
+        },
+        "status:melting": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:melting"
+          }
+        }
+      },
+      "initblock": {
+        "$lambda": "mindustry.content.StatusEffects$2",
+        "$type": "java.lang.Runnable",
+        "arg$1": {
+          "$same": "$"
+        }
+      }
+    }
+  }, {
+    "id": 3,
+    "name": "unmoving",
+    "class": "mindustry.content.StatusEffects$3",
+    "fields": {
+      "id": 3,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "unmoving",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "unmoving",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 0.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#454545ff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 4,
+    "name": "slow",
+    "class": "mindustry.content.StatusEffects$4",
+    "fields": {
+      "id": 4,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "slow",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "slow",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 0.4,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": false,
+      "color": "#a2a2a2ff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ {
+        "$ref": "status:fast"
+      } ],
+      "outline": true,
+      "transitions": {
+        "status:fast": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:fast"
+          }
+        }
+      },
+      "initblock": {
+        "$lambda": "mindustry.content.StatusEffects$4",
+        "$type": "java.lang.Runnable",
+        "arg$1": {
+          "$same": "$"
+        }
+      }
+    }
+  }, {
+    "id": 5,
+    "name": "fast",
+    "class": "mindustry.content.StatusEffects$5",
+    "fields": {
+      "id": 5,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "fast",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "fast",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 1.6,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#ffad4dff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ {
+        "$ref": "status:slow"
+      } ],
+      "outline": true,
+      "transitions": {
+        "status:slow": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:slow"
+          }
+        }
+      },
+      "initblock": {
+        "$lambda": "mindustry.content.StatusEffects$5",
+        "$type": "java.lang.Runnable",
+        "arg$1": {
+          "$same": "$"
+        }
+      }
+    }
+  }, {
+    "id": 6,
+    "name": "wet",
+    "class": "mindustry.content.StatusEffects$6",
+    "fields": {
+      "id": 6,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "wet",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "wet",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 0.94,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 14.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.09,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#4169e1ff",
+      "effect": {
+        "$static": "Fx.wet"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ {
+        "$ref": "status:shocked"
+      } ],
+      "opposites": [ {
+        "$ref": "status:burning"
+      }, {
+        "$ref": "status:melting"
+      } ],
+      "outline": true,
+      "transitions": {
+        "status:burning": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:burning"
+          }
+        },
+        "status:melting": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:melting"
+          }
+        },
+        "status:shocked": {
+          "$lambda": "mindustry.content.StatusEffects$6",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$same": "$"
+          }
+        }
+      },
+      "initblock": {
+        "$lambda": "mindustry.content.StatusEffects$6",
+        "$type": "java.lang.Runnable",
+        "arg$1": {
+          "$same": "$"
+        }
+      }
+    }
+  }, {
+    "id": 7,
+    "name": "muddy",
+    "class": "mindustry.content.StatusEffects$7",
+    "fields": {
+      "id": 7,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "muddy",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "muddy",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 0.94,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.09,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": false,
+      "color": "#46382aff",
+      "effect": {
+        "$static": "Fx.muddy"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 8,
+    "name": "melting",
+    "class": "mindustry.content.StatusEffects$8",
+    "fields": {
+      "id": 8,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "melting",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "melting",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 0.8,
+      "speedMultiplier": 0.8,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.3,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#ffa166ff",
+      "effect": {
+        "$static": "Fx.melting"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ {
+        "$ref": "status:tarred"
+      } ],
+      "opposites": [ {
+        "$ref": "status:freezing"
+      }, {
+        "$ref": "status:wet"
+      } ],
+      "outline": true,
+      "transitions": {
+        "status:freezing": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:freezing"
+          }
+        },
+        "status:tarred": {
+          "$lambda": "mindustry.content.StatusEffects$8",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler"
+        },
+        "status:wet": {
+          "$lambda": "mindustry.type.StatusEffect",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler",
+          "arg$1": {
+            "$ref": "status:wet"
+          }
+        }
+      },
+      "initblock": {
+        "$lambda": "mindustry.content.StatusEffects$8",
+        "$type": "java.lang.Runnable",
+        "arg$1": {
+          "$same": "$"
+        }
+      }
+    }
+  }, {
+    "id": 9,
+    "name": "sapped",
+    "class": "mindustry.content.StatusEffects$9",
+    "fields": {
+      "id": 9,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "sapped",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "sapped",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 0.8,
+      "speedMultiplier": 0.7,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.1,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#665c9fff",
+      "effect": {
+        "$static": "Fx.sapped"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 10,
+    "name": "electrified",
+    "class": "mindustry.content.StatusEffects$10",
+    "fields": {
+      "id": 10,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "electrified",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "electrified",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 0.7,
+      "reloadMultiplier": 0.6,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.1,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#98ffa9ff",
+      "effect": {
+        "$static": "Fx.electrified"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 11,
+    "name": "spore-slowed",
+    "class": "mindustry.content.StatusEffects$11",
+    "fields": {
+      "id": 11,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "spore-slowed",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "spore-slowed",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 0.8,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.04,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#7457ceff",
+      "effect": {
+        "$static": "Fx.sapped"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 12,
+    "name": "tarred",
+    "class": "mindustry.content.StatusEffects$12",
+    "fields": {
+      "id": 12,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "tarred",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "tarred",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 0.6,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#313131ff",
+      "effect": {
+        "$static": "Fx.oily"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ {
+        "$ref": "status:burning"
+      }, {
+        "$ref": "status:melting"
+      } ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": {
+        "status:burning": {
+          "$lambda": "mindustry.content.StatusEffects$12",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler"
+        },
+        "status:melting": {
+          "$lambda": "mindustry.content.StatusEffects$12",
+          "$type": "mindustry.type.StatusEffect$TransitionHandler"
+        }
+      },
+      "initblock": {
+        "$lambda": "mindustry.content.StatusEffects$12",
+        "$type": "java.lang.Runnable",
+        "arg$1": {
+          "$same": "$"
+        }
+      }
+    }
+  }, {
+    "id": 13,
+    "name": "overdrive",
+    "class": "mindustry.content.StatusEffects$13",
+    "fields": {
+      "id": 13,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "overdrive",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "overdrive",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.4,
+      "healthMultiplier": 0.95,
+      "speedMultiplier": 1.15,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": -0.01,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": true,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#ffd37fff",
+      "effect": {
+        "$static": "Fx.overdriven"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 14,
+    "name": "overclock",
+    "class": "mindustry.content.StatusEffects$14",
+    "fields": {
+      "id": 14,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "overclock",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "overclock",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.15,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 1.15,
+      "reloadMultiplier": 1.25,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.07,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#ffd37fff",
+      "effect": {
+        "$static": "Fx.overclocked"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 15,
+    "name": "shielded",
+    "class": "mindustry.content.StatusEffects$15",
+    "fields": {
+      "id": 15,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "shielded",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "shielded",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 3.0,
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": false,
+      "color": "#ffd37fff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 16,
+    "name": "boss",
+    "class": "mindustry.content.StatusEffects$16",
+    "fields": {
+      "id": 16,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "boss",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "boss",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.3,
+      "healthMultiplier": 1.5,
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": true,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#f25555ff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 17,
+    "name": "shocked",
+    "class": "mindustry.content.StatusEffects$17",
+    "fields": {
+      "id": 17,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "shocked",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "shocked",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": true,
+      "dynamic": false,
+      "show": true,
+      "color": "#a9d8ffff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ {
+        "$ref": "status:wet"
+      } ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 18,
+    "name": "blasted",
+    "class": "mindustry.content.StatusEffects$18",
+    "fields": {
+      "id": 18,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "blasted",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "blasted",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": true,
+      "dynamic": false,
+      "show": true,
+      "color": "#ff795eff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ {
+        "$ref": "status:freezing"
+      } ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 19,
+    "name": "corroded",
+    "class": "mindustry.content.StatusEffects$19",
+    "fields": {
+      "id": 19,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "corroded",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "corroded",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 15.0,
+      "intervalDamage": 20.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.1,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": true,
+      "color": "#e4ffd6ff",
+      "effect": {
+        "$static": "Fx.corrosionVapor"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 20,
+    "name": "disarmed",
+    "class": "mindustry.content.StatusEffects$20",
+    "fields": {
+      "id": 20,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "disarmed",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "disarmed",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": true,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": false,
+      "color": "#e9ead3ff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 21,
+    "name": "invincible",
+    "class": "mindustry.content.StatusEffects$21",
+    "fields": {
+      "id": 21,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "invincible",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "invincible",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": "Infinity",
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": false,
+      "reactive": false,
+      "dynamic": false,
+      "show": false,
+      "color": "#ffffffff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  }, {
+    "id": 22,
+    "name": "dynamic",
+    "class": "mindustry.content.StatusEffects$22",
+    "fields": {
+      "id": 22,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "dynamic",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "dynamic",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": true,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "status",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "damageMultiplier": 1.0,
+      "healthMultiplier": 1.0,
+      "speedMultiplier": 1.0,
+      "reloadMultiplier": 1.0,
+      "buildSpeedMultiplier": 1.0,
+      "dragMultiplier": 1.0,
+      "transitionDamage": 0.0,
+      "disarm": false,
+      "damage": 0.0,
+      "intervalDamageTime": 0.0,
+      "intervalDamage": 0.0,
+      "intervalDamagePierce": false,
+      "effectChance": 0.15,
+      "parentizeEffect": false,
+      "permanent": true,
+      "reactive": false,
+      "dynamic": true,
+      "show": false,
+      "color": "#ffffffff",
+      "effect": {
+        "$static": "Fx.none"
+      },
+      "applyEffect": {
+        "$static": "Fx.none"
+      },
+      "applyExtend": false,
+      "applyColor": "#ffffffff",
+      "parentizeApplyEffect": false,
+      "affinities": [ ],
+      "opposites": [ ],
+      "outline": true,
+      "transitions": { },
+      "initblock": {
+        "$lambda": "mindustry.type.StatusEffect",
+        "$type": "java.lang.Runnable"
+      }
+    }
+  } ]
+}

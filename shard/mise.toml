@@ -1,0 +1,4 @@
+# Gradle runs on the JDK that builds Shard, so the build's toolchain (27) is the JVM running it. Boat VMs get it from
+# scripts/vm-gradle.sh.
+[tools]
+java = "temurin-27"

@@ -1,0 +1,21 @@
+W4.5: the send path in the bench's JFR recordings (base 9ae67530 vs fix/call-order-udp, alternating, one 8-vCPU VM).
+Scripts: udp_waits.py (waits under DatagramChannelImpl.send) and stacks.py (allocation stacks by thread), run on the VM
+against ~/bench-out/<run>/server.jfr. Sample weights are JFR estimates over each 60 s recording.
+
+Waits on the DatagramChannel's write lock (jdk.ThreadPark >= 10 ms, jdk.JavaMonitorEnter >= 20 ms, under
+DatagramChannelImpl.send): none in any run, base or this branch. W2.21's 213-345 ms waits don't reproduce with the
+server pinned to CPUs 0-3; on this branch no tick thread calls send at all (datagrams leave from each connection's
+writer).
+
+Sampled allocation on the send path:
+                                   base-r1   this branch r1
+tick threads, Frame.udp views      12.95 MiB  0
+writers (tcp-w*), total             4.99 MiB  5.38 MiB
+  Frame.tcp views                   2.89 MiB  0
+  AQS ConditionNode (writer waits)  0.54 MiB  2.63 MiB   writers now also wake for snapshot-only ticks
+  VirtualThread unpark tasks        -         1.65 MiB
+  JFR's SocketWriteEvent            1.47 MiB  -
+send path in all                   ~17.9 MiB  ~5.4 MiB, none of it on a tick thread
+
+Tick threads' allocation per world tick (summary.txt): base 12.90 / 12.91 KiB, this branch 12.60 / 12.92 KiB: within
+the runs' spread. Dropped ticks: 0 in all four runs.

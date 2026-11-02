@@ -1,0 +1,195 @@
+# A control for reconnects, against any server: alpha and bravo join, then rejoin 30 times each, idling 10 s after
+# every round (past Arc's 8 s keepalive, so each idle carries TCP). It waits on no server log, so it runs the same
+# against vanilla and Shard. `nounit` because Shard spawns no units until WP23; vanilla's units don't matter here.
+#
+#   rig/run.sh --clients 2 --script rig/scenarios/reconnect-stress.rig --server '"$RIG"/vm/vanilla-server.sh -- host Fork'
+#   rig/run.sh --push <shard install> --clients 2 --script rig/scenarios/reconnect-stress.rig --server '"$RIG"/vm/shard-server.sh fork'
+timeout 25m
+
+wait port 120s
+alpha: join nounit
+bravo: join nounit
+wait 10s
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+alpha: rejoin nounit
+bravo: rejoin nounit
+wait 10s
+alpha: expect connected
+bravo: expect connected
+
+all: shot final
+assert clean all

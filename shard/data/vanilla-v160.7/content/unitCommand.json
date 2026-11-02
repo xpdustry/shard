@@ -1,0 +1,422 @@
+{
+  "type": "unitCommand",
+  "ordinal": 16,
+  "count": 10,
+  "entries": [ {
+    "id": 0,
+    "name": "move",
+    "class": "mindustry.ai.UnitCommand$1",
+    "fields": {
+      "id": 0,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "move",
+      "icon": "right",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": true,
+      "drawTarget": true,
+      "resetTarget": false,
+      "snapToBuilding": false,
+      "exactArrival": false,
+      "refreshOnSelect": false,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_move",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ ]
+    }
+  }, {
+    "id": 1,
+    "name": "repair",
+    "class": "mindustry.ai.UnitCommand",
+    "fields": {
+      "id": 1,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "repair",
+      "icon": "modeSurvival",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": true,
+      "drawTarget": false,
+      "resetTarget": true,
+      "snapToBuilding": false,
+      "exactArrival": false,
+      "refreshOnSelect": false,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_repair",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ {
+        "$ref": "unitStance:holdposition"
+      } ]
+    }
+  }, {
+    "id": 2,
+    "name": "rebuild",
+    "class": "mindustry.ai.UnitCommand",
+    "fields": {
+      "id": 2,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "rebuild",
+      "icon": "hammer",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": true,
+      "drawTarget": false,
+      "resetTarget": true,
+      "snapToBuilding": false,
+      "exactArrival": false,
+      "refreshOnSelect": false,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_rebuild",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ {
+        "$ref": "unitStance:holdposition"
+      } ]
+    }
+  }, {
+    "id": 3,
+    "name": "assist",
+    "class": "mindustry.ai.UnitCommand",
+    "fields": {
+      "id": 3,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "assist",
+      "icon": "players",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": true,
+      "drawTarget": false,
+      "resetTarget": true,
+      "snapToBuilding": false,
+      "exactArrival": false,
+      "refreshOnSelect": false,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_assist",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ {
+        "$ref": "unitStance:holdposition"
+      } ]
+    }
+  }, {
+    "id": 4,
+    "name": "mine",
+    "class": "mindustry.ai.UnitCommand$2",
+    "fields": {
+      "id": 4,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "mine",
+      "icon": "production",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": true,
+      "drawTarget": false,
+      "resetTarget": true,
+      "snapToBuilding": false,
+      "exactArrival": false,
+      "refreshOnSelect": true,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_mine",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ ]
+    }
+  }, {
+    "id": 5,
+    "name": "enterPayload",
+    "class": "mindustry.ai.UnitCommand$3",
+    "fields": {
+      "id": 5,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "enterPayload",
+      "icon": "downOpen",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": false,
+      "drawTarget": true,
+      "resetTarget": false,
+      "snapToBuilding": true,
+      "exactArrival": false,
+      "refreshOnSelect": false,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_enter_payload",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ ]
+    }
+  }, {
+    "id": 6,
+    "name": "loadUnits",
+    "class": "mindustry.ai.UnitCommand$4",
+    "fields": {
+      "id": 6,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "loadUnits",
+      "icon": "upload",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": false,
+      "drawTarget": true,
+      "resetTarget": false,
+      "snapToBuilding": false,
+      "exactArrival": false,
+      "refreshOnSelect": false,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_load_units",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ ]
+    }
+  }, {
+    "id": 7,
+    "name": "loadBlocks",
+    "class": "mindustry.ai.UnitCommand$5",
+    "fields": {
+      "id": 7,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "loadBlocks",
+      "icon": "up",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": false,
+      "drawTarget": true,
+      "resetTarget": false,
+      "snapToBuilding": false,
+      "exactArrival": true,
+      "refreshOnSelect": false,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_load_blocks",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ ]
+    }
+  }, {
+    "id": 8,
+    "name": "unloadPayload",
+    "class": "mindustry.ai.UnitCommand$6",
+    "fields": {
+      "id": 8,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "unloadPayload",
+      "icon": "download",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": false,
+      "drawTarget": true,
+      "resetTarget": false,
+      "snapToBuilding": false,
+      "exactArrival": false,
+      "refreshOnSelect": false,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_unload_payload",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ ]
+    }
+  }, {
+    "id": 9,
+    "name": "loopPayload",
+    "class": "mindustry.ai.UnitCommand$7",
+    "fields": {
+      "id": 9,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "loopPayload",
+      "icon": "resize",
+      "controller": {
+        "$lambda": "mindustry.ai.UnitCommand",
+        "$type": "arc.func.Func"
+      },
+      "switchToMove": false,
+      "drawTarget": true,
+      "resetTarget": false,
+      "snapToBuilding": false,
+      "exactArrival": false,
+      "refreshOnSelect": false,
+      "keybind": {
+        "$class": "arc.input.KeyBind",
+        "name": "unit_command_loop_payload",
+        "defaultValue": "unset",
+        "category": null,
+        "value": {
+          "$class": "arc.input.KeyBind$Axis",
+          "min": null,
+          "max": null,
+          "key": "unset"
+        }
+      },
+      "extraStances": [ ]
+    }
+  } ]
+}

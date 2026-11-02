@@ -1,0 +1,16 @@
+RUN mine-r1    ticks=18110 dropped=0 tick p50=0.415 p99=2.303 ms total=4.174 tick=3.713 MiB/s tick=12.60 KiB/wtick gc=1 pause=26 ms
+     71.85 MiB  29.2%  TileSolidity.grid:27  TileSolidity$$Lambda
+      9.85 MiB   4.0%  BulletUpdate.collide:249  ArrayList
+      9.52 MiB   3.9%  UnitProjection.<init>:54  Codecs$Mount
+      9.31 MiB   3.8%  Frame.packet:63  [B
+      9.02 MiB   3.7%  EntityProjector.unit:89  UnitProjection
+      7.03 MiB   2.9%  BulletUpdate.lambda$run$0:48  Bullet
+      7.02 MiB   2.9%  Writes.toByteArray:119  [B
+      6.78 MiB   2.8%  BulletUpdate.lambda$run$1:49  Bullet
+      5.89 MiB   2.4%  WirePlans$ContentIds.of:47  WirePlans$ContentIds$1
+      4.61 MiB   1.9%  UnitProjection.<init>:60  Collections$UnmodifiableRandomAccessList
+      3.86 MiB   1.6%  Frame.packet:73  [B
+      3.70 MiB   1.5%  UnitProjection.<init>:56  Object;
+      3.54 MiB   1.4%  UnitProjection.<init>:56  ImmutableCollections$List12
+      3.35 MiB   1.4%  Angles.trnsy:81  Vec2
+      3.29 MiB   1.3%  UnitProjection.<init>:57  ArrayList

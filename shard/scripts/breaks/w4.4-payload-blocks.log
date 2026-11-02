@@ -1,0 +1,45 @@
+OK       clean: fails nothing
+CAUGHT   constructor: buildSpeed ignored: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 15: |   vanilla constructor (5, 10) id 1 team 1 rot 0 at 40.0,80.0 health 860.0 enabled true added true payload false efficiency 1.0 items [tungsten=24] power 1.0 links [] graph 2/16666.666/0.0/0.0 payVector 0.0
+CAUGHT   constructor: one more of each requirement taken: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 15: |   vanilla constructor (5, 10) id 1 team 1 rot 0 at 40.0,80.0 health 860.0 enabled true added true payload false efficiency 1.0 items [tungsten=24] power 1.0 links [] graph 2/16666.666/0.0/0.0 payVector 0.0
+CAUGHT   constructor: a new recipe keeps the progress: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 503: |   vanilla constructor (5, 10) id 1 team 1 rot 0 at 40.0,80.0 health 860.0 enabled true added true payload false efficiency 1.0 items [tungsten=48] power 1.0 links [] graph 2/16666.666/2.5/0.0 payVector 12
+CAUGHT   deconstructor: half again as fast: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 462: |   vanilla small-deconstructor (14, 10) id 7 team 1 rot 0 at 112.0,80.0 health 755.0 enabled true added true payload false efficiency 1.0 items [] power 1.0 links [] graph 2/16666.666/1.0/0.0 payVector 0.0
+CAUGHT   deconstructor: dumps only past 30 items: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 465: |   vanilla small-deconstructor (14, 10) id 7 team 1 rot 0 at 112.0,80.0 health 755.0 enabled true added true payload false efficiency 1.0 items [] power 1.0 links [] graph 2/16666.666/1.0/0.0 payVector 0.0
+CAUGHT   deconstructor: finishes a little late: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 522: |   vanilla small-deconstructor (14, 10) id 7 team 1 rot 0 at 112.0,80.0 health 755.0 enabled true added true payload false efficiency 1.0 items [] power 1.0 links [] graph 2/16666.666/1.0/0.0 payVector 0.0
+CAUGHT   deconstructor codec: accum written off by one: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: small-deconstructor at (14, 10): save chunk ==> expected: <00443cc000800103010b000000003f800000ffff000000000000000042b40000003f26666700013f1999b7010100ee00453400008001030108ffff> but was: <00443cc000800103010b000000003f8000
+CAUGHT   mass driver: fires a tick early: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 149: |   vanilla time 149.0 random -8108722261328812909,-3316441345133366397 next id 26 |   shard   time 149.0 random -3316441345133366397,6257313302038212342 next id 26 |   vanilla payload-mass-driver (6, 10) i
+CAUGHT   mass driver: arrival sound draws nothing: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 160: |   vanilla time 160.0 random 6257313302038212342,-7902756111965646037 next id 27 |   shard   time 160.0 random -3316441345133366397,6257313302038212342 next id 27
+CAUGHT   mass driver: shooters linked anywhere stay queued: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 400: |   vanilla payload-mass-driver (26, 10) id 5 team 1 rot 0 at 208.0,80.0 health 645.0 enabled true added true payload false efficiency 1.0 items none power 1.0 links [] graph 2/16666.666/0.5/0.0 payVector -
+CAUGHT   mass driver codec: charging saved as false: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: payload-mass-driver at (6, 10): save chunk ==> expected: <0144214000800103010a00003f800000ffff000000000000000038c7ded50101015900435c000080010301090000ffff001a000a38c7ded5020000000041a000000101> but was: <0144214000800103010
+CAUGHT   loader: one item per load: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 349: |   vanilla payload-loader (49, 10) id 13 team 1 rot 0 at 392.0,80.0 health 645.0 enabled true added true payload false efficiency 1.0 items [copper=94] power 1.0 links [] graph 4/33333.332/2.0/0.0 payVecto
+CAUGHT   loader: a full stack exports one item late: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 470: |   vanilla payload-loader (49, 10) id 13 team 1 rot 0 at 392.0,80.0 health 645.0 enabled true added true payload false efficiency 1.0 items [copper=4] power 1.0 links [] graph 4/33333.332/2.0/0.0 payVector
+CAUGHT   loader: no base power use: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 2 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 2: |   vanilla payload-loader (13, 10) id 2 team 1 rot 0 at 104.0,80.0 health 645.0 enabled true added true payload false efficiency 0.0 items [] power 0.0 links [] graph 1/0.0/2.0/0.0 payVector 0.0,0.0 payRotat
+CAUGHT   unloader: offloads once a tick: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 504: |   vanilla payload-unloader (52, 10) id 18 team 1 rot 0 at 416.0,80.0 health 645.0 enabled true added true payload false efficiency 1.0 items [copper=4] power 1.0 links [] graph 4/33333.332/2.0/0.0 payVect
+CAUGHT   unloader: exports with items left: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 577: |   vanilla payload-unloader (52, 10) id 18 team 1 rot 0 at 416.0,80.0 health 645.0 enabled true added true payload false efficiency 1.0 items [] power 1.0 links [] graph 4/33333.332/2.0/0.0 payVector 0.0,0
+CAUGHT   source: a new payload starts off centre: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 1: |   vanilla payload-source (2, 10) id 0 team 1 rot 0 at 16.0,80.0 health 1000.0 enabled true added true payload false efficiency 1.0 items none payVector 0.7,0.0 payRotation 0.0 carried false timers [0.0] liq
+CAUGHT   source codec: no rally point saved as zeros: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: payload-source at (2, 10): save chunk ==> expected: <01447a00008001030108ffff416b333000000000000000000101015900435c000080010301090000ffffffff01597fc000007fc00000> but was: <01447a00008001030108ffff416b3330000000000000000001
+CAUGHT   void: turns what it takes: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: after frame 596: |   vanilla payload-void (56, 10) id 23 team 1 rot 0 at 448.0,80.0 health 1000.0 enabled true added true payload false efficiency 1.0 items none payVector -18.8,0.0 payRotation 0.0 carried false timers [0.0
+CAUGHT   costs: a unit build time from zero: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: dagger build time ==> expected: <14.0> but was: <15.0>
+CAUGHT   nested load: a carried building keeps a stale id: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: loaded: |   vanilla unit oct id 4 team 1 at 104.0,80.0 rot 0.0 vel 0.0,0.0 health 24000.0 added true carries [build payload-mass-driver id 5 team 1 rot 0 at 0.0,0.0 health 645.0 enabled true added false payload true efficie
+CAUGHT   nested load: nested payloads not measured: fails PayloadBlocksOracleTest
+           PayloadBlocksOracleTest: 1 of 4 failed; first: java.lang.UnsupportedOperationException: a payload inside a carried payload block (type 0)

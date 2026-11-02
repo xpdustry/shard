@@ -1,0 +1,64 @@
+RUN base-r1    ticks=18091 dropped=0 tick p50=0.383 p99=2.559 ms total=4.291 tick=3.842 MiB/s tick=13.05 KiB/wtick gc=1 pause=17 ms
+     67.35 MiB  26.4%  TileSolidity.grid:27  TileSolidity$$Lambda
+     11.52 MiB   4.5%  BulletUpdate.lambda$run$0:48  Bullet
+     10.39 MiB   4.1%  UnitProjection.<init>:54  Codecs$Mount
+      9.28 MiB   3.6%  Frame.udp:131  HeapByteBufferR
+      7.26 MiB   2.8%  Frame.packet:65  [B
+      6.69 MiB   2.6%  EntityProjector.unit:89  UnitProjection
+      6.60 MiB   2.6%  BulletUpdate.collide:251  ArrayList$Itr
+      6.37 MiB   2.5%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      5.61 MiB   2.2%  UnitProjection.<init>:56  Object;
+      5.32 MiB   2.1%  Frame.packet:75  [B
+      5.14 MiB   2.0%  BulletUpdate.collide:249  ArrayList
+      4.71 MiB   1.8%  Predict.intercept:28  Vec2
+      4.32 MiB   1.7%  Predict.quad:72  [F
+      4.09 MiB   1.6%  Writes.toByteArray:119  [B
+      3.87 MiB   1.5%  UnitProjection.<init>:52  Object;
+RUN base-r2    ticks=18123 dropped=0 tick p50=0.287 p99=0.959 ms total=4.268 tick=3.794 MiB/s tick=12.86 KiB/wtick gc=1 pause=11 ms
+     73.71 MiB  29.2%  TileSolidity.grid:27  TileSolidity$$Lambda
+     13.11 MiB   5.2%  Frame.udp:131  HeapByteBufferR
+      9.98 MiB   4.0%  BulletUpdate.lambda$run$0:48  Bullet
+      9.34 MiB   3.7%  BulletUpdate.lambda$run$1:49  Bullet
+      9.04 MiB   3.6%  UnitProjection.<init>:54  Codecs$Mount
+      8.65 MiB   3.4%  BulletUpdate.collide:249  ArrayList
+      5.53 MiB   2.2%  BulletUpdate.collide:251  ArrayList$Itr
+      5.03 MiB   2.0%  EntityProjector.unit:89  UnitProjection
+      5.00 MiB   2.0%  UnitProjection.<init>:56  Object;
+      4.91 MiB   1.9%  Writes.toByteArray:119  [B
+      4.35 MiB   1.7%  Frame.packet:65  [B
+      4.32 MiB   1.7%  Frame.packet:75  [B
+      3.84 MiB   1.5%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      3.51 MiB   1.4%  UnitProjection.<init>:52  Object;
+      3.43 MiB   1.4%  MechUnitLayout.writeSync:91  ImmutableCollections$ListItr
+RUN mine-r1    ticks=18127 dropped=9 tick p50=0.287 p99=2.047 ms total=1.832 tick=1.366 MiB/s tick=4.63 KiB/wtick gc=0 pause=0 ms
+     12.51 MiB  11.1%  Frame.udp:131  HeapByteBufferR
+     11.02 MiB   9.8%  UnitView.mounts:112  Codecs$Mount
+      4.74 MiB   4.2%  Frame.packet:65  [B
+      4.40 MiB   3.9%  MechUnitLayout.writeSync:91  ArrayList$Itr
+      4.35 MiB   3.9%  (no Shard frame)  AbstractQueuedSynchronizer$ConditionNode
+      4.03 MiB   3.6%  Frame.packet:75  Frame
+      3.28 MiB   2.9%  Predict.intercept:44  Vec2
+      3.05 MiB   2.7%  Lz4.decompress:87  [B
+      2.77 MiB   2.5%  Writes.toByteArray:119  [B
+      2.43 MiB   2.2%  Frame.packet:75  [B
+      2.29 MiB   2.0%  Targets$$Lambda.accept:-1  Object;
+      2.26 MiB   2.0%  KindKey.<init>:14  IntHashSet;
+      2.26 MiB   2.0%  Conn.writeLoop:421  [I
+      1.92 MiB   1.7%  Frame.udp:130  HeapByteBufferR
+      1.82 MiB   1.6%  NanoClock$1.awaitNanos:19  AbstractQueuedSynchronizer$ConditionNode
+RUN mine-r2    ticks=18090 dropped=0 tick p50=0.287 p99=1.151 ms total=1.821 tick=1.356 MiB/s tick=4.61 KiB/wtick gc=0 pause=0 ms
+     11.72 MiB  10.7%  Frame.udp:131  HeapByteBufferR
+     10.40 MiB   9.5%  UnitView.mounts:112  Codecs$Mount
+      4.99 MiB   4.5%  Frame.packet:65  [B
+      3.94 MiB   3.6%  MechUnitLayout.writeSync:91  ArrayList$Itr
+      3.65 MiB   3.3%  (no Shard frame)  AbstractQueuedSynchronizer$ConditionNode
+      3.35 MiB   3.1%  Writes.toByteArray:119  [B
+      2.92 MiB   2.7%  SpatialIndex.closestEnemy:217  SpatialIndex$ClosestEnemy
+      2.70 MiB   2.5%  Targets$$Lambda.accept:-1  Object;
+      2.52 MiB   2.3%  Frame.packet:75  [B
+      2.43 MiB   2.2%  Predict.intercept:44  Vec2
+      2.41 MiB   2.2%  Intents.snapshot:268  Snapshot
+      1.88 MiB   1.7%  Frame.udp:130  HeapByteBufferR
+      1.81 MiB   1.6%  Lz4.decompress:87  [B
+      1.80 MiB   1.6%  IntSeq.resize:273  [I
+      1.75 MiB   1.6%  NanoClock$1.awaitNanos:19  AbstractQueuedSynchronizer$ConditionNode

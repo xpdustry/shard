@@ -1,0 +1,43 @@
+# W2.13's L5 for sync (WP25), the same against vanilla and Shard, on sync-routers.msav (SyncRoutersMap.java: a
+# 20x10 router field fed by item sources with no sink, 47 storage blocks, and two world processors from the first
+# tick: one feeds the field; one builds a 50x5 grid of routers, 4 a second, with setblock: routers, as Shard can't
+# stream a live-placed block it doesn't port, such as a wall). Both servers run the world from when they host it.
+# Capture beside the server for sync-cadence.py, then run sync-divergence.py on the run:
+#
+#   rig/run.sh --push <dir with routers.msav> --server 'mkdir -p config/maps && cp "$PUSH"/routers.msav config/maps/ \
+#     && (tcpdump -Z root -i lo -U -s 0 -w lo.pcap port $PORT >/dev/null 2>&1 &) \
+#     && exec "$RIG"/vm/vanilla-server.sh -- host routers sandbox' --clients 2 --script rig/scenarios/sync-routers.rig
+#   rig/run.sh --push <shard install with routers.msav> --server 'mkdir -p maps && cp "$PUSH"/routers.msav maps/ \
+#     && (tcpdump ... &) && exec "$RIG"/vm/shard-server.sh "routers sandbox"' --clients 2 --script ...
+#
+# 1. Cadence: alpha's first 60 s in the capture (state and entity snapshots every 200 ms, block snapshots every 6 s,
+#    batches closed past 800 bytes).
+# 2. Per-join buffering: bravo loads while the grid goes up; the setTile Calls made meanwhile reach it after its
+#    confirm, so both clients end with all 250 grid routers.
+# 3. Divergence: the field as alpha simulated it against the server's, which bravo gets in a fresh world stream,
+#    about 1 and 5 minutes after alpha joined (field-1.tsv, field-5.tsv in each client's directory).
+timeout 14m
+
+wait port 120s
+alpha: join nounit
+alpha: wait 60t
+wait 8s
+bravo: join nounit
+wait 70s
+alpha: expect js "(function(){var c=0;for(var y=50;y<55;y++)for(var x=4;x<54;x++)if(Vars.world.tile(x,y).block()==Blocks.router)c++;return c})()" /^250(\.0)?$/ 10s
+bravo: expect js "(function(){var c=0;for(var y=50;y<55;y++)for(var x=4;x<54;x++)if(Vars.world.tile(x,y).block()==Blocks.router)c++;return c})()" /^250(\.0)?$/ 10s
+all: shot grid
+
+alpha: sample js "(function(){var s=[];for(var y=20;y<30;y++)for(var x=20;x<40;x++){var b=Vars.world.build(x,y);s.push(b==null?-2:b.items.total()==0?-1:b.items.first().id)}return s.join()})()" every 500ms for 1s to field-1.tsv
+bravo: rejoin nounit
+bravo: sample js "(function(){var s=[];for(var y=20;y<30;y++)for(var x=20;x<40;x++){var b=Vars.world.build(x,y);s.push(b==null?-2:b.items.total()==0?-1:b.items.first().id)}return s.join()})()" every 500ms for 1s to field-1.tsv
+
+wait 210s
+alpha: sample js "(function(){var s=[];for(var y=20;y<30;y++)for(var x=20;x<40;x++){var b=Vars.world.build(x,y);s.push(b==null?-2:b.items.total()==0?-1:b.items.first().id)}return s.join()})()" every 500ms for 1s to field-5.tsv
+bravo: rejoin nounit
+bravo: sample js "(function(){var s=[];for(var y=20;y<30;y++)for(var x=20;x<40;x++){var b=Vars.world.build(x,y);s.push(b==null?-2:b.items.total()==0?-1:b.items.first().id)}return s.join()})()" every 500ms for 1s to field-5.tsv
+
+alpha: expect connected
+bravo: expect connected
+all: shot final
+assert clean all

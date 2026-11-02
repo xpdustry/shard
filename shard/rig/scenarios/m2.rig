@@ -1,0 +1,138 @@
+# M2 (ARCHITECTURE.md §10) on a stock client pair (L5): build, mine, convey, power and defend on a Serpulo map, the
+# base M2OracleTest builds, the same against Shard and vanilla, on m2.msav (M2Map.java): fortress (core-shard at 116,73)
+# with the ores the oracle's hosting generated, frozen, since every host of fortress itself scatters them anew:
+#  1. alpha builds two mechanical drills on the copper ore north of the core and drags a conveyor line from them down
+#     into the core; bravo builds two drills on the coal ore east of it, a row of four combustion generators on their
+#     top edges, a battery and a lancer. Each client sees the other's blocks.
+#  2. bravo places a power node last, which links the generators, the battery and the lancer into one graph; the coal
+#     burns and charges the battery, and the drills' copper rides the line into the core (both clients read it).
+#  3. bravo leaves and rejoins: its world stream has the base, its graph and the battery's charge.
+#  4. `runwave` sends wave 1; the lancer, on the generators' power, fires until the wave is dead, and the core stands.
+#  5. the console saves the game to a slot (`save m2slot`), stops, and loads the slot (`load m2slot`): both clients
+#     join the loaded game, which has the base, the graph, the battery's charge, the core's copper and wave 2 (W6.4).
+# The core gets `fillitems` first (the lancer needs silicon); building spends copper, so the drills' copper shows.
+# The end-of-run checks fail on errors and desync lines in either client's log, and on any server WARN line but the two
+# known load ones (m0.rig's last assert).
+#
+#   scripts/vm-gradle.sh :server:installDist
+#   rig/run.sh --vm "$(cat .vm-id)" --clients 2 --script rig/scenarios/m2.rig --server 'mkdir -p maps && cp "$RIG"/scenarios/m2.msav maps/m2.msav \
+#     && PUSH=/home/user/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh m2'
+#   rig/run.sh --vm "$(cat .vm-id)" --clients 2 --script rig/scenarios/m2.rig --server 'mkdir -p config/maps && cp "$RIG"/scenarios/m2.msav config/maps/m2.msav \
+#     && exec "$RIG"/vm/vanilla-server.sh -- host m2'
+timeout 18m
+
+wait port 120s
+alpha: join
+bravo: join
+console fillitems
+# 16 px a tile: the core and the whole base on screen
+alpha: zoom 2
+bravo: zoom 2
+all: expect js "Vars.player.team().core().tile.x + ',' + Vars.player.team().core().tile.y" /^116,73$/ 10s
+all: expect js "Vars.player.team().core().items.get(Items.silicon) >= 45" /^true$/ 20s
+all: expect js "Vars.world.tile(118,79).drop() == Items.copper && Vars.world.tile(119,75).drop() == Items.coal" /^true$/ 10s
+all: shot joined
+
+# A 2x2 block stands on the tile under the pointer less half a tile, rounded (InputHandler.tileX), so a click at a tile's
+# centre sits on the rounding edge and can land a tile off: 2x2 blocks are placed at world (8x+3, 8y+3) for tile (x, y),
+# which puts the block's origin at (x, y) and the pointer on that tile.
+# 1. alpha: mining and conveying; bravo: drills on coal, generators, battery, lancer
+alpha: place mechanical-drill world 947 635
+alpha: place mechanical-drill world 947 651
+alpha: click right tile 110 73
+alpha: expect selected none
+alpha: select conveyor
+alpha: drag left tile 117 82 tile 117 75
+alpha: click right tile 110 73
+alpha: expect selected none
+bravo: place mechanical-drill world 955 603
+bravo: place mechanical-drill world 971 603
+bravo: click right tile 110 73
+bravo: expect selected none
+bravo: select combustion-generator
+bravo: drag left tile 119 77 tile 122 77
+bravo: click right tile 110 73
+bravo: expect selected none
+bravo: place battery tile 124 74
+bravo: place lancer world 955 563
+bravo: click right tile 110 73
+bravo: expect selected none
+all: expect tile 118 79 mechanical-drill 60s
+all: expect tile 118 81 mechanical-drill 30s
+all: expect tile 117 82 conveyor 30s
+all: expect tile 117 78 conveyor 30s
+all: expect tile 117 75 conveyor 30s
+all: expect js "Vars.world.build(117,75).rotation" /^3(\.0)?$/ 10s
+all: expect tile 119 75 mechanical-drill 30s
+all: expect tile 121 75 mechanical-drill 30s
+all: expect tile 119 77 combustion-generator 30s
+all: expect tile 122 77 combustion-generator 30s
+all: expect tile 124 74 battery 30s
+all: expect tile 119 70 lancer 60s
+all: expect js "[[118,79],[118,81],[119,75],[121,75],[119,70]].every(function(p){ var b = Vars.world.build(p[0],p[1]); return b != null && b.tile.x == p[0] && b.tile.y == p[1]; })" /^true$/ 10s
+all: shot built
+
+# 2. the node joins one graph; coal burns into the battery, copper rides into the core
+bravo: place power-node tile 122 73
+bravo: click right tile 110 73
+all: expect tile 122 73 power-node 30s
+all: expect js "var g = Vars.world.build(122,73).power.graph; [[119,77],[120,77],[121,77],[122,77],[124,74],[119,70]].every(function(p){ return Vars.world.build(p[0],p[1]).power.graph == g; })" /^true$/ 10s
+all: expect js "Vars.world.build(119,77).productionEfficiency > 0 || Vars.world.build(120,77).productionEfficiency > 0" /^true$/ 60s
+all: expect js "Vars.world.build(124,74).power.status > 0.02" /^true$/ 90s
+alpha: expect js "copper0 = Vars.player.team().core().items.get(Items.copper); copper0 > 0" /^true$/ 10s
+bravo: expect js "copper0 = Vars.player.team().core().items.get(Items.copper); copper0 > 0" /^true$/ 10s
+all: expect js "Vars.world.build(117,75).len > 0 || Vars.world.build(117,76).len > 0" /^true$/ 60s
+all: expect js "Vars.player.team().core().items.get(Items.copper) > copper0" /^true$/ 90s
+all: shot powered
+
+# 3. bravo rejoins: the world stream has the base, the graph and the charge
+bravo: rejoin
+bravo: zoom 2
+bravo: expect tile 118 79 mechanical-drill 30s
+bravo: expect tile 117 75 conveyor 10s
+bravo: expect tile 122 77 combustion-generator 10s
+bravo: expect tile 119 70 lancer 10s
+bravo: expect js "var g = Vars.world.build(122,73).power.graph; [[119,77],[124,74],[119,70]].every(function(p){ return Vars.world.build(p[0],p[1]).power.graph == g; })" /^true$/ 10s
+bravo: expect js "Vars.world.build(124,74).power.status > 0" /^true$/ 10s
+bravo: shot rejoined
+
+# 4. wave 1: the lancer kills it on the generators' power
+all: expect js "probe = function(){ var n = 0; Groups.unit.each(function(u){ if(u.team == Vars.state.rules.waveTeam) n++; }); return n; }; typeof probe" /^function$/ 10s
+console runwave
+alpha: expect js "Vars.state.wave" /^2(\.0)?$/ 30s
+alpha: expect js "probe() > 0" /^true$/ 30s
+all: shot wave
+all: expect js "Vars.world.build(119,70).totalShots > 0" /^true$/ 4m
+all: shot lancer
+all: expect js "probe()" /^0(\.0)?$/ 2m
+all: expect js "Vars.state.rules.defaultTeam.core() != null" /^true$/ 5s
+all: shot wave-dead
+
+# 5. save, stop, load: vanilla's console prints "Saved to <file>." and "Save loaded.", Shard's "Saved m2 to <file>." and
+# "Save loaded: <world>"; vanilla's stop closes the port and load opens it again, Shard's keeps listening
+console save m2slot
+wait log server /Saved .*m2slot/ 30s
+all: drop
+console stop
+all: expect disconnected 30s
+all: dismiss
+console load m2slot
+wait log server /Save loaded/ 60s
+wait port 60s
+all: join
+all: zoom 2
+all: expect tile 118 79 mechanical-drill 30s
+all: expect tile 117 75 conveyor 10s
+all: expect tile 122 77 combustion-generator 10s
+all: expect tile 119 70 lancer 10s
+all: expect js "var g = Vars.world.build(122,73).power.graph; [[119,77],[120,77],[121,77],[122,77],[124,74],[119,70]].every(function(p){ return Vars.world.build(p[0],p[1]).power.graph == g; })" /^true$/ 10s
+all: expect js "Vars.world.build(124,74).power.status > 0" /^true$/ 10s
+all: expect js "Vars.state.wave" /^2(\.0)?$/ 10s
+all: expect js "Vars.player.team().core().items.get(Items.copper) > 0" /^true$/ 10s
+all: expect js "Vars.player.team().core().tile.x + ',' + Vars.player.team().core().tile.y" /^116,73$/ 10s
+all: shot loaded
+
+assert clean all
+assert clean server
+# No server WARN line, except the two a busy VM makes (m0.rig's last assert). Vanilla's server log has none.
+assert log server !/^\S+ WARN ++(?!\[tick-watchdog\] \S+ - world \S+ stalled for \d+ ms|\[tick-\d+\] \S+ - world \S+ is \d+ ticks behind; dropping them until it keeps up)/

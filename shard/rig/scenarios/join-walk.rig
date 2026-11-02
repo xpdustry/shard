@@ -1,0 +1,29 @@
+# Any server: every client joins, walks, and sees the others where they really are. Nothing here is specific to
+# vanilla; it needs player units and entity sync, so Shard passes it once WP23 and WP25 land (until then,
+# shard-two-clients.rig). The server must host on its own; for vanilla, pass a startup host:
+#
+#   rig/run.sh --server 'vanilla serpulo/groundZero -- host Ground_Zero' --clients 2 --script rig/scenarios/join-walk.rig
+#   rig/run.sh --push <shard install> --server '"$RIG"/vm/shard-server.sh maze' --clients 2 --script rig/scenarios/join-walk.rig
+timeout 4m
+
+wait port 90s
+alpha: join
+bravo: join
+all: shot joined
+
+alpha: mark
+alpha: hold D 400ms
+alpha: expect moved 2
+bravo: expect player alpha within 2 5s
+bravo: mark
+bravo: hold W 300ms
+bravo: expect moved 2
+alpha: expect player bravo within 2 5s
+all: shot walked
+
+bravo: rejoin
+alpha: expect player bravo 10s
+bravo: expect player alpha within 2 10s
+all: shot after-rejoin
+
+assert clean all

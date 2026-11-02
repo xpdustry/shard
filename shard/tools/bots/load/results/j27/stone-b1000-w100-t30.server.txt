@@ -1,0 +1,114 @@
+2026-10-29T15:16:53.578Z INFO  [main] com.xpdustry.shard.server.Server - 1 maps: stone 
+2026-10-29T15:16:53.637Z INFO  [main] com.xpdustry.shard.server.Server - listening on /127.0.0.1:6567 (tcp+udp), java 27.0.1.0.2+1, 3 tick threads 
+2026-10-29T15:16:53.752Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w00: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.775Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w01: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.796Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w02: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.816Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w03: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.843Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w04: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.879Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w05: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.898Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w06: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.915Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w07: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.931Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w08: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.949Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w09: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.966Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w10: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.983Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w11: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:53.999Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w12: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.017Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w13: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.033Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w14: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.047Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w15: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.062Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w16: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.077Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w17: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.094Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w18: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.107Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w19: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.127Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w20: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.145Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w21: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.163Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w22: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.178Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w23: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.193Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w24: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.207Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w25: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.220Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w26: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.233Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w27: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.246Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w28: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.262Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w29: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.275Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w30: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.292Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w31: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.312Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w32: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.328Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w33: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.340Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w34: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.354Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w35: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.366Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w36: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.379Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w37: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.391Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w38: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.405Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w39: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.418Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w40: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.428Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w41: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.440Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w42: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.451Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w43: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.462Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w44: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.473Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w45: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.485Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w46: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.497Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w47: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.509Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w48: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.521Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w49: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.532Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w50: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.542Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w51: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.552Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w52: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.563Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w53: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.574Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w54: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.585Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w55: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.596Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w56: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.607Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w57: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.617Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w58: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.627Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w59: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.636Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w60: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.649Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w61: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.666Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w62: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.676Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w63: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.684Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w64: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.693Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w65: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.706Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w66: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.717Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w67: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.726Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w68: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.737Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w69: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.749Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w70: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.760Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w71: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.769Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w72: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.778Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w73: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.787Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w74: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.795Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w75: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.804Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w76: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.813Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w77: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.824Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w78: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.833Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w79: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.844Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w80: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.852Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w81: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.864Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w82: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.873Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w83: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.883Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w84: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.894Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w85: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.904Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w86: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.917Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w87: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.927Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w88: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.937Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w89: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.952Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w90: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.975Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w91: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:54.996Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w92: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:55.019Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w93: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:55.036Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w94: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:55.057Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w95: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:55.077Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w96: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:55.095Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w97: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:55.111Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w98: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:55.127Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w99: Stone (survival), running parked, tick 0, 0 players 
+2026-10-29T15:16:55.127Z INFO  [main] com.xpdustry.shard.server.Server - ready: 100 worlds hosted, 179 MB of heap in use 
+perf mark at t=22s
+perf t=32s worlds=100 players=1000 sessions=1000 conns=1000 cpu=42.5% late[n=59996 p50=55us p99=71us p999=127us max=518us] tick[n=59996 p50=9us p99=159us p999=639us max=1354us] dropped=0 udpOut/s=4994 tcpOut/s=1668 outKB/s=222 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=660MB
+perf t=42s worlds=100 players=1000 sessions=1000 conns=1000 cpu=43.7% late[n=60015 p50=55us p99=71us p999=111us max=757us] tick[n=60015 p50=10us p99=159us p999=639us max=999us] dropped=0 udpOut/s=4996 tcpOut/s=1845 outKB/s=270 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=222MB
+perf t=52s worlds=100 players=1000 sessions=1000 conns=1000 cpu=43.7% late[n=60006 p50=55us p99=71us p999=191us max=3008us] tick[n=60006 p50=9us p99=159us p999=639us max=3279us] dropped=0 udpOut/s=4995 tcpOut/s=1808 outKB/s=254 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=538MB
+perf t=62s worlds=100 players=1000 sessions=1000 conns=1000 cpu=43.4% late[n=60003 p50=55us p99=71us p999=119us max=1098us] tick[n=60003 p50=9us p99=119us p999=575us max=1111us] dropped=0 udpOut/s=4996 tcpOut/s=1784 outKB/s=254 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=131MB
+perf t=72s worlds=100 players=1000 sessions=1000 conns=1000 cpu=38.5% late[n=60007 p50=55us p99=71us p999=111us max=2290us] tick[n=60007 p50=8us p99=143us p999=575us max=1470us] dropped=0 udpOut/s=4994 tcpOut/s=1863 outKB/s=268 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=456MB
+perf t=82s worlds=100 players=1000 sessions=1000 conns=1000 cpu=39.6% late[n=60009 p50=55us p99=71us p999=95us max=642us] tick[n=60009 p50=10us p99=127us p999=575us max=811us] dropped=0 udpOut/s=4998 tcpOut/s=1829 outKB/s=258 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=774MB
+perf t=92s worlds=100 players=1000 sessions=1000 conns=1000 cpu=31.4% late[n=60011 p50=55us p99=71us p999=71us max=171us] tick[n=60011 p50=7us p99=95us p999=447us max=756us] dropped=0 udpOut/s=4993 tcpOut/s=1805 outKB/s=256 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=315MB
+SUMMARY seconds=70 worlds=100 players=1000 cpu=40.4% cpuPer100p=4.04% late[n=420054 p50=55us p99=71us p999=111us max=3008us] tick[n=420054 p50=9us p99=143us p999=575us max=3279us] dropped=0 slow=0 spam=0 deadlines=0
+2026-10-29T15:18:35.220Z INFO  [console] com.xpdustry.shard.server.Server - shutting down 
+2026-10-29T15:18:35.259Z INFO  [console] com.xpdustry.shard.server.Server - stopped 

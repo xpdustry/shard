@@ -1,0 +1,232 @@
+{
+  "$schema" : "https://json-schema.org/draft/2020-12/schema",
+  "title" : "Shard world overrides (worlds/<id>.yml)",
+  "type" : "object",
+  "additionalProperties" : false,
+  "properties" : {
+    "schema-version" : {
+      "const" : 1
+    },
+    "server" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "motd" : {
+          "description" : "The message sent to a player when they join; empty for none (vanilla wrote \"off\").",
+          "type" : "string",
+          "maxLength" : 1024,
+          "default" : "",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__SERVER__MOTD"
+        }
+      }
+    },
+    "net" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "snapshot-interval" : {
+          "description" : "How often entity snapshots go to clients.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "200ms",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__NET__SNAPSHOT_INTERVAL"
+        }
+      }
+    },
+    "host" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "world-player-limit" : {
+          "description" : "The most players in one world at once, counting transfers on their way in; 0 for no limit. New in Shard.",
+          "type" : "integer",
+          "minimum" : 0,
+          "default" : 0,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__HOST__WORLD_PLAYER_LIMIT"
+        }
+      }
+    },
+    "chat" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "show-connect-messages" : {
+          "description" : "Whether joins and leaves are announced in chat.",
+          "type" : "boolean",
+          "default" : true,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__CHAT__SHOW_CONNECT_MESSAGES"
+        }
+      }
+    },
+    "game" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "strict" : {
+          "description" : "Whether player positions are corrected and duplicate names or ids are refused.",
+          "type" : "boolean",
+          "default" : true,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__STRICT"
+        },
+        "votekick" : {
+          "description" : "Whether players may vote to kick.",
+          "type" : "boolean",
+          "default" : true,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__VOTEKICK"
+        },
+        "interact-rate-window" : {
+          "description" : "The window of the block interaction rate limit.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "6s",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__INTERACT_RATE_WINDOW"
+        },
+        "interact-rate-limit" : {
+          "description" : "Block interactions allowed per window.",
+          "type" : "integer",
+          "minimum" : 1,
+          "default" : 25,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__INTERACT_RATE_LIMIT"
+        },
+        "interact-rate-kick" : {
+          "description" : "Block interactions inside one window that get the player kicked.",
+          "type" : "integer",
+          "minimum" : 1,
+          "default" : 60,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__INTERACT_RATE_KICK"
+        },
+        "round-extra-time" : {
+          "description" : "The wait between game over and the next map.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "12s",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__ROUND_EXTRA_TIME"
+        },
+        "shuffle" : {
+          "description" : "How a world picks its next map after a game over (vanilla's shufflemode): none ends the game by kicking its players and stopping the world; all, custom and builtin pick at random among game.maps of that kind (custom falls back to the default maps when there is no custom one), never the map just played unless it is the only one.",
+          "type" : "string",
+          "enum" : [ "none", "all", "custom", "builtin" ],
+          "default" : "custom",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__SHUFFLE"
+        },
+        "maps" : {
+          "description" : "A world's map registry: the maps its rotation picks from, by name as in host.worlds. Empty: every map the server can host (vanilla's Maps.all()). New in Shard.",
+          "type" : "array",
+          "maxItems" : 1024,
+          "items" : {
+            "type" : "string",
+            "maxLength" : 200
+          },
+          "default" : [ ],
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__MAPS"
+        },
+        "simulate-when-empty" : {
+          "description" : "Whether an empty world keeps simulating at 60 Hz. By default its time freezes (ARCHITECTURE.md §7); vanilla's autoPause=false is true here.",
+          "type" : "boolean",
+          "default" : false,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__SIMULATE_WHEN_EMPTY"
+        },
+        "auto-pause" : {
+          "description" : "Whether a world pauses its game while nobody is in it, as vanilla's autoPause: players see it paused, and the first one in resumes it, unless an admin paused it by hand.",
+          "type" : "boolean",
+          "default" : false,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__GAME__AUTO_PAUSE"
+        }
+      }
+    },
+    "persistence" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "autosave-interval" : {
+          "description" : "How often a running world writes a checkpoint. Always on (vanilla: autosave=false, every 300 s).",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "1m",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__PERSISTENCE__AUTOSAVE_INTERVAL"
+        },
+        "keep-recent" : {
+          "description" : "Checkpoint generations kept per world.",
+          "type" : "integer",
+          "minimum" : 1,
+          "maximum" : 1000,
+          "default" : 3,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__PERSISTENCE__KEEP_RECENT"
+        },
+        "hibernate-after" : {
+          "description" : "How long a world stays empty before it hibernates; 0 never hibernates. New in Shard.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "10m",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__PERSISTENCE__HIBERNATE_AFTER"
+        },
+        "match-checkpoints" : {
+          "description" : "How often a world also writes a checkpoint it keeps for the whole match, for replays; 0 writes none. Rounded up to a multiple of 10 s (600 ticks, the replay keyframe). New in Shard.",
+          "type" : "string",
+          "pattern" : "^(0|\\d{1,12}(ms|s|m|h|d))$",
+          "default" : "0s",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__PERSISTENCE__MATCH_CHECKPOINTS"
+        }
+      }
+    },
+    "replay" : {
+      "type" : "object",
+      "additionalProperties" : false,
+      "properties" : {
+        "record" : {
+          "description" : "Whether a world records its matches: a view stream to watch in a browser and a replay bundle (match checkpoints every 10 s, the inputs, the hashes). Turns persistence.match-checkpoints on at 10 s if it is off. Reloads live: a world starts recording at its next match checkpoint, in the match under way, and stops (closing the replay) when turned off. New in Shard.",
+          "type" : "boolean",
+          "default" : false,
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__REPLAY__RECORD"
+        },
+        "pvp-views" : {
+          "description" : "When a PvP match's view stream is published for viewing. after-match: only once the match ends, so nobody watches the other team live. live: segment by segment, like other matches.",
+          "type" : "string",
+          "enum" : [ "after-match", "live" ],
+          "default" : "after-match",
+          "x-scope" : "world",
+          "x-reload" : "live",
+          "x-env" : "SHARD__WORLDS__<WORLD_ID>__REPLAY__PVP_VIEWS"
+        }
+      }
+    }
+  }
+}

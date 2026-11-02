@@ -1,0 +1,47 @@
+OK       clean: fails nothing
+OK       clean, again: fails nothing
+OK       clean, a third time: fails nothing
+CAUGHT   loader: builds its unit twice as fast: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 2: |   vanilla unit-cargo-loader (10, 24) id 0 team 1 rot 0 health 630.0(441d8000) enabled true efficiency 1.0(3f800000) items [] liquids nitrogen=100.0(42c80000) power 1.0(3f800000) progress 0.0020833334(3b0888
+CAUGHT   loader: consumes with a unit too: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 482: |   vanilla liquid-source (10, 22) id 4 team 1 rot 0 health 40.0(42200000) enabled true efficiency 1.0(3f800000) items none liquids nitrogen=10000.0(461c4000) |   shard   liquid-source (10, 22) id 4 team 1 
+CAUGHT   loader: its unit faces 0: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 481: |   vanilla unit #19 manifold t1 at 80.0(42a00000),192.0(43400000) rot 90.0(42b40000) v 0.0(0),0.0(0) hp 200.0(43480000) el 1.0(3f800000) added true stack copperx0 mine - 0.0(0) flag 0.0 tether 10,24 ai Car
+CAUGHT   loader: takes items past its capacity: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 410: |   vanilla unit-cargo-loader (10, 24) id 0 team 1 rot 0 health 630.0(441d8000) enabled true efficiency 1.0(3f800000) items [graphite=100,beryllium=100] liquids nitrogen=100.0(42c80000) power 1.0(3f800000) 
+CAUGHT   loader codec: saves no unit: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: unit-cargo-loader at (10, 24): save chunk ==> expected: <00441d8000800103010f000100100000006900003f8000000001000942c80000000000000013> but was: <00441d8000800103010f000100100000006900003f8000000001000942c800000000ffffffff>
+CAUGHT   loader Call: the unit id off by one: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 481, Call 0 ==> expected: <all tcp UnitTetherBlockSpawned 000a001800000013> but was: <all tcp UnitTetherBlockSpawned 000a001800000014>
+CAUGHT   point: stale a tick late: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 1036: |   vanilla unit-cargo-unload-point (30, 32) id 14 team 1 rot 0 health 285.0(438e8000) enabled true efficiency 1.0(3f800000) items [beryllium=100] item beryllium staleTimer 360.0(43b40000) stale true |   s
+CAUGHT   point: takes a whole stack whatever it holds: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 926: [] vs [all udp TransferItemTo 020000001300100000006143624674437bedc6001e0020] ==> expected: <0> but was: <1>
+CAUGHT   point: never dumps: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 552: |   vanilla unit-cargo-unload-point (38, 24) id 17 team 1 rot 0 health 285.0(438e8000) enabled true efficiency 1.0(3f800000) items [graphite=99] item graphite staleTimer 0.0(0) stale false |   shard   unit-
+CAUGHT   point codec: stale saved negated: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: unit-cargo-unload-point at (30, 14): save chunk ==> expected: <00438e800080010301090000ffff001000> but was: <00438e800080010301090000ffff001001>
+CAUGHT   cargo: drops every second: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 926: |   vanilla unit #19 manifold t1 at 226.2752(43624674),251.9288(437bedc6) rot 24.369648(41c2f50a) v 2.3337321(40155bde),1.0598737(3f87a9f1) hp 200.0(43480000) el 1.0(3f800000) added true stack berylliumx97 
+CAUGHT   cargo: next drop target from the same index: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 677: |   vanilla unit #19 manifold t1 at 226.72836(4362ba76),253.31047(437d4f7b) rot 21.36339(41aae839) v 2.2412424(400f7084),0.87270504(3f5f6999) hp 200.0(43480000) el 1.0(3f800000) added true stack berylliumx0
+MISSED   cargo: stale points taken first: fails nothing
+CAUGHT   cargo: least-held item first: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 622, Call 0 ==> expected: <all udp TakeItems 000a00180010000000640200000013> but was: <all udp TakeItems 000a00180003000000230200000013>
+CAUGHT   cargo: a reconfigured point kept: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 1601: |   vanilla unit #19 manifold t1 at 116.946434(42e9e493),174.80562(432ece3d) rot 6.9639893(40ded900) v 2.9618526(403d8efe),-1.370333(bfaf6712) hp 200.0(43480000) el 1.0(3f800000) added true stack beryllium
+CAUGHT   cargo: waits by the loader further off: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 482: |   vanilla unit #19 manifold t1 at 79.950035(429fe66b),192.0019(4340007d) rot 90.0(42b40000) v 0.0(0),0.0(0) hp 200.0(43480000) el 1.0(3f800000) added true stack copperx0 mine - 0.0(0) flag 0.0 tether 10,2
+CAUGHT   prebuild: production weighs like distribution: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 2: |   vanilla unit #1 alpha t2 at 160.0514(43200d29),160.08575(432015f4) rot 0.0(0) v 0.0(0),0.0(0) hp 150.0(43160000) el 1.0(3f800000) added true stack copperx0 mine - 0.0(0) flag 1310740.0 updating true plans
+CAUGHT   prebuild: stops nearer its plan: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 10: |   vanilla unit #1 alpha t2 at 167.0845(432715a2),161.63353(4321a22f) rot 1.2446201(3f9f4fb6) v 1.9047039(3ff3cd56),0.098569244(3dc9deac) hp 150.0(43160000) el 1.0(3f800000) added true stack copperx0 mine -
+CAUGHT   prebuild: circles the core wider: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 3: |   vanilla unit #1 alpha t2 at 160.07964(43201463),160.12701(43202084) rot 1.9135652(3ff4efb4) v 0.16086984(3e24bb10),0.25322104(3e81a630) hp 150.0(43160000) el 1.0(3f800000) added true stack copperx0 mine -
+CAUGHT   prebuild: no collecting for a plan it cannot pay: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 2: |   vanilla unit #1 alpha t2 at 160.0514(43200d29),160.08575(432015f4) rot 0.0(0) v 0.0(0),0.0(0) hp 150.0(43160000) el 1.0(3f800000) added true stack copperx0 mine - 0.0(0) flag 1310740.0 updating true plans
+CAUGHT   prebuild: stops nearer its ore: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 77: |   vanilla unit #1 alpha t2 at 211.69731(4353b283),161.08339(43211559) rot 1.1447804(3f92882a) v 0.33090034(3ea96bc5),-0.0042524775(bb8b585e) hp 150.0(43160000) el 1.0(3f800000) added true stack copperx0 mi
+CAUGHT   spawns: the core unit faces up: fails CargoOracleTest
+           CargoOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 1: |   vanilla unit #1 alpha t2 at 160.02484(4320065c),160.0434(43200b1c) rot 0.0(0) v 0.0(0),0.0(0) hp 150.0(43160000) el 1.0(3f800000) added true stack copperx0 mine - 0.0(0) flag 1310740.0 updating true plans
+21 of 22 breaks fail

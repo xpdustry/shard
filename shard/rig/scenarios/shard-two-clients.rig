@@ -1,0 +1,71 @@
+# W2.4's L5 for two clients on Shard: both join maze and see their core hold the rules' loadout and wave 1 count down
+# as vanilla starts it; alpha /syncs into its core's unit; both chat; alpha moves to fortress and back over the same
+# connection; bravo leaves and rejoins; then both idle a minute. Shard syncs no entities until W2.13 (hence `join
+# nounit`, which doesn't wait for a unit, and no `expect player`).
+#
+#   rig/run.sh --push server/build/install/shard --server '"$RIG"/vm/shard-server.sh maze fortress' --clients 2 \
+#     --script rig/scenarios/shard-two-clients.rig
+timeout 8m
+
+# the server trains its AOT cache first (shard-l5.sh), about a minute
+wait port 240s
+alpha: join nounit
+wait log server /\(alpha\) has connected to maze/ 15s
+bravo: join nounit
+wait log server /\(bravo\) has connected to maze/ 15s
+all: shot joined
+alpha: expect chat /bravo.*has connected/ 10s
+console players
+wait log server /Players: 2/ 10s
+console tile maze 25 25
+wait log server /^tile 25,25 floor=/ 30s
+
+# W2.12's game: the map started with logic.play(), so the cores hold the rules' loadout (vanilla: 200 copper on maze),
+# and a confirmed player spawned at its core in the core's unit. Entity snapshots are W2.13's, so the client sees its
+# unit after a /sync: the stream carries the live player and its unit, whose controller is the player.
+alpha: expect js "var l = Vars.state.rules.loadout, n = 0; for(var i = 0; i < l.size; i++) n += l.get(i).amount; Vars.player.team().core().items.total() + ' of ' + n" /^([1-9]\d*) of \1$/
+bravo: expect js "var l = Vars.state.rules.loadout, n = 0; for(var i = 0; i < l.size; i++) n += l.get(i).amount; Vars.player.team().core().items.total() + ' of ' + n" /^([1-9]\d*) of \1$/
+# vanilla's logic.play() starts wave 1 counting down from the map's initial spacing, or twice its spacing
+# (Logic.play); an empty world's time stands still, so at most the minute since the join has passed
+alpha: expect js "var r = Vars.state.rules, start = r.initialWaveSpacing <= 0 ? r.waveSpacing * 2 : r.initialWaveSpacing; Vars.state.wave == 1 && Vars.state.wavetime <= start && Vars.state.wavetime > start - 3600" /^true$/
+alpha: expect js "'wave ' + Vars.state.wave + ', ' + Math.round(Vars.state.wavetime) + ' ticks left of ' + (Vars.state.rules.initialWaveSpacing <= 0 ? Vars.state.rules.waveSpacing * 2 : Vars.state.rules.initialWaveSpacing)" /^wave 1, \d+ ticks left of \d+$/
+alpha: chat "/sync"
+alpha: expect js "Vars.player.unit().type == Vars.player.team().core().block.unitType" /^true$/ 30s
+alpha: expect js "Vars.player.unit().type.name + ' ' + Vars.player.team().core().items.total()" /^\w+ \d+$/
+alpha: shot synced-in-unit
+
+alpha: chat "hello from alpha"
+bravo: expect chat /hello from alpha/ 10s
+bravo: chat "/help"
+bravo: expect chat /Commands Page/ 10s
+
+# a transfer: worldDataBegin, then fortress's stream, over the same connection
+alpha: chat "/world fortress"
+wait log server /\(alpha\) moves from maze to fortress/ 15s
+wait log server /\(alpha\) receives fortress/ 30s
+wait 5s
+alpha: expect connected
+alpha: shot in-fortress
+alpha: chat "/world maze"
+wait log server /\(alpha\) moves from fortress to maze/ 15s
+wait log server /\(alpha\) receives maze/ 30s
+wait 5s
+alpha: expect connected
+alpha: shot back-in-maze
+
+bravo: disconnect
+alpha: expect chat /bravo.*has disconnected/ 10s
+bravo: reconnect nounit
+wait log server /\(bravo\) has connected to maze/ 15s
+all: shot after-rejoin
+
+# idle: the heartbeat keeps both clients from timing out (vanilla's 20 s)
+wait 60s
+alpha: expect connected
+bravo: expect connected
+all: shot idle
+console status
+wait log server /Status: 2 worlds, 2 players/ 10s
+# from ready on: nobody is in a world before it (ListenAfterHostingTest), and a world's first ticks may run behind
+assert log server !/Exception|ERROR|WARN/ after /ready: /
+assert clean all

@@ -1,0 +1,118 @@
+# W2.4's L5 over the 18 default maps: Shard hosts all of them and deals joins round-robin, so alpha gets maps 1, 3,
+# ... and bravo maps 2, 4, ...: each client joins its map, receives the world and idles 60 s, nine times. Shard spawns
+# no player units until WP23, hence `join nounit`.
+#
+#   rig/run.sh --push server/build/install/shard --clients 2 --script rig/scenarios/shard-maps.rig \
+#     --server '"$RIG"/vm/shard-server.sh --join round-robin maze fortress labyrinth islands tendrils caldera wasteland shattered fork triad mudFlats moltenLake archipelago debrisField domain veins glacier passage'
+timeout 20m
+
+# the server trains its AOT cache first (shard-l5.sh), a minute or two with 18 worlds
+wait port 360s
+# the server listens before it has hosted every world; join once it has
+wait log server /ready: 18 worlds hosted/ 120s
+
+alpha: join nounit
+wait log server /\(alpha\) has connected to maze / 30s
+bravo: join nounit
+wait log server /\(bravo\) has connected to fortress / 30s
+all: shot 01-joined
+wait 60s
+alpha: expect connected
+bravo: expect connected
+alpha: shot 01-maze
+bravo: shot 01-fortress
+
+alpha: rejoin nounit
+wait log server /\(alpha\) has connected to labyrinth / 30s
+bravo: rejoin nounit
+wait log server /\(bravo\) has connected to islands / 30s
+all: shot 02-joined
+wait 60s
+alpha: expect connected
+bravo: expect connected
+alpha: shot 02-labyrinth
+bravo: shot 02-islands
+
+alpha: rejoin nounit
+wait log server /\(alpha\) has connected to tendrils / 30s
+bravo: rejoin nounit
+wait log server /\(bravo\) has connected to caldera / 30s
+all: shot 03-joined
+wait 60s
+alpha: expect connected
+bravo: expect connected
+alpha: shot 03-tendrils
+bravo: shot 03-caldera
+
+alpha: rejoin nounit
+wait log server /\(alpha\) has connected to wasteland / 30s
+bravo: rejoin nounit
+wait log server /\(bravo\) has connected to shattered / 30s
+all: shot 04-joined
+wait 60s
+alpha: expect connected
+bravo: expect connected
+alpha: shot 04-wasteland
+bravo: shot 04-shattered
+
+alpha: rejoin nounit
+wait log server /\(alpha\) has connected to fork / 30s
+bravo: rejoin nounit
+wait log server /\(bravo\) has connected to triad / 30s
+all: shot 05-joined
+wait 60s
+alpha: expect connected
+bravo: expect connected
+alpha: shot 05-fork
+bravo: shot 05-triad
+
+alpha: rejoin nounit
+wait log server /\(alpha\) has connected to mud-flats / 30s
+bravo: rejoin nounit
+wait log server /\(bravo\) has connected to molten-lake / 30s
+all: shot 06-joined
+wait 60s
+alpha: expect connected
+bravo: expect connected
+alpha: shot 06-mud-flats
+bravo: shot 06-molten-lake
+
+alpha: rejoin nounit
+wait log server /\(alpha\) has connected to archipelago / 30s
+bravo: rejoin nounit
+wait log server /\(bravo\) has connected to debris-field / 30s
+all: shot 07-joined
+wait 60s
+alpha: expect connected
+bravo: expect connected
+alpha: shot 07-archipelago
+bravo: shot 07-debris-field
+
+alpha: rejoin nounit
+wait log server /\(alpha\) has connected to domain / 30s
+bravo: rejoin nounit
+wait log server /\(bravo\) has connected to veins / 30s
+all: shot 08-joined
+wait 60s
+alpha: expect connected
+bravo: expect connected
+alpha: shot 08-domain
+bravo: shot 08-veins
+
+alpha: rejoin nounit
+wait log server /\(alpha\) has connected to glacier / 30s
+bravo: rejoin nounit
+wait log server /\(bravo\) has connected to passage / 30s
+all: shot 09-joined
+wait 60s
+alpha: expect connected
+bravo: expect connected
+alpha: shot 09-glacier
+bravo: shot 09-passage
+
+console status
+wait log server /Status: 18 worlds, 2 players/ 10s
+# from ready: on, while the clients play: a world hosted at startup runs its first tick cold (class loading, no JIT
+# yet), which can put that empty world a few ticks behind before the server is ready (the AOT cache's job)
+assert log server !/Exception|ERROR|WARN/ after /ready: 18 worlds hosted/
+assert clean all

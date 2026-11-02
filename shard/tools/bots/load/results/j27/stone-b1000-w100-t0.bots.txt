@@ -1,0 +1,18 @@
+bots t=10s connected=980 joined=978 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=20 B/s tcp=564 B/s tx/bot=527 B/s entities/bot/s=0 rtt[n=5320 p50=79us p99=223us p999=1151us max=1633us] gap>20ms[n=23131 p50=209011us p99=209011us p999=209011us max=209011us]
+bots t=20s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=40 B/s tcp=63 B/s tx/bot=1046 B/s entities/bot/s=0 rtt[n=10003 p50=71us p99=127us p999=175us max=628us] gap>20ms[n=49970 p50=200353us p99=200353us p999=200353us max=200353us]
+bots t=30s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=40 B/s tcp=46 B/s tx/bot=1046 B/s entities/bot/s=0 rtt[n=10001 p50=71us p99=175us p999=703us max=4045us] gap>20ms[n=50000 p50=200468us p99=200468us p999=200468us max=200468us]
+bots t=40s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=40 B/s tcp=48 B/s tx/bot=1046 B/s entities/bot/s=0 rtt[n=10000 p50=79us p99=191us p999=703us max=2911us] gap>20ms[n=50020 p50=212991us p99=212991us p999=212991us max=213428us]
+bots t=50s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=40 B/s tcp=50 B/s tx/bot=1046 B/s entities/bot/s=0 rtt[n=10003 p50=63us p99=143us p999=191us max=335us] gap>20ms[n=50000 p50=200490us p99=200490us p999=200490us max=200490us]
+bots t=60s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=40 B/s tcp=45 B/s tx/bot=1046 B/s entities/bot/s=0 rtt[n=10004 p50=79us p99=175us p999=415us max=1084us] gap>20ms[n=50020 p50=200186us p99=200186us p999=200186us max=200186us]
+bots t=70s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=40 B/s tcp=48 B/s tx/bot=1046 B/s entities/bot/s=0 rtt[n=10003 p50=71us p99=143us p999=207us max=364us] gap>20ms[n=50000 p50=200239us p99=200239us p999=200239us max=200239us]
+bots t=80s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=40 B/s tcp=50 B/s tx/bot=1046 B/s entities/bot/s=0 rtt[n=10001 p50=71us p99=143us p999=287us max=1921us] gap>20ms[n=50010 p50=200924us p99=200924us p999=200924us max=200924us]
+bots t=90s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=40 B/s tcp=45 B/s tx/bot=1046 B/s entities/bot/s=0 rtt[n=9978 p50=87us p99=223us p999=415us max=914us] gap>20ms[n=49900 p50=200524us p99=200524us p999=200524us max=200524us]
+BOT SUMMARY bots=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 join[n=1000 p50=131071us p99=143490us p999=143490us max=143490us] worldKB/bot=5.0
+per packet id (all bots, whole run):
+  id=0 count=1000 wire=15000 raw=9000 ratio=1.67 perBotPerSec=0B
+  id=1 count=2000 wire=5192143 raw=5180143 ratio=1.00 perBotPerSec=58B
+  id=49 count=424053 wire=3392424 raw=1696212 ratio=2.00 perBotPerSec=38B
+  id=86 count=85314 wire=1194396 raw=682512 ratio=1.75 perBotPerSec=13B
+  id=88 count=11 wire=110 raw=44 ratio=2.50 perBotPerSec=0B
+  id=106 count=5513 wire=242477 raw=220425 ratio=1.10 perBotPerSec=3B
+  id=107 count=27694 wire=2818464 raw=3618428 ratio=0.78 perBotPerSec=31B

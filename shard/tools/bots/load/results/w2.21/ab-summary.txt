@@ -1,0 +1,72 @@
+# final A/B: head 6ce1982f against main 8dffca92, one kept 8-vCPU boat VM, ab.sh ROUNDS=2 CASES="stone default", then each case profiled on main, then on the head (prof-*)
+run                          steal s   cpu %  tick p50  tick p99  late p99  dropped
+base-default-t0-r1                 2    84.7      51us     575us     159us        0
+mine-default-t0-r1                 1    63.7      35us     383us      79us        0
+base-default-t0-r2                15    89.2      55us     639us     287us        0
+mine-default-t0-r2                28    94.2      51us     511us     287us        0
+base-default-t30-r1               13   107.8      55us     895us     447us        0
+mine-default-t30-r1                3    76.0      29us     511us      87us        0
+base-default-t30-r2               15   128.2      71us    1151us     639us        0
+mine-default-t30-r2                4    98.8      43us     639us     175us       20
+prof-default-t0                    2    79.0      47us     447us      87us        0
+prof-default-t0                   22    74.8      39us     703us    2047us     1208
+prof-default-t30                  18   126.8      71us    1023us     639us        0
+prof-default-t30                   3    85.2      35us     575us     103us        0
+prof-stone-t0                      6    60.0      17us     511us     511us     2316
+prof-stone-t0                      1    46.9      10us     319us      71us        0
+prof-stone-t30                     2    66.6      19us     575us      87us        0
+prof-stone-t30                     2    61.3      14us     447us      79us        0
+base-stone-t0-r1                   7    62.0      19us     383us      87us        0
+mine-stone-t0-r1                   0    49.3      11us     351us      71us        0
+base-stone-t0-r2                   1    52.7      15us     319us      71us        0
+mine-stone-t0-r2                   2    50.8      10us     479us     639us     3316
+base-stone-t30-r1                  0    59.4      17us     511us      71us        0
+mine-stone-t30-r1                  1    55.9      13us     415us      71us        0
+base-stone-t30-r2                  2    66.2      21us     511us      79us        0
+mine-stone-t30-r2                  2    58.2      14us     415us      79us        0
+
+# the VM's 1 Hz clock: gaps over 1.15 s (a VM freeze; the loop's own period is 1.004 s)
+gap 20:05:24.420 -> 20:05:25.656 1.24s
+gap 20:09:26.930 -> 20:09:28.197 1.27s
+gap 20:17:13.420 -> 20:17:14.649 1.23s
+gap 20:17:40.896 -> 20:17:42.428 1.53s
+gap 20:23:27.329 -> 20:23:28.509 1.18s
+gap 20:24:10.700 -> 20:24:12.014 1.31s
+
+# earlier: head 166cdcfe against main 644c6239 (c6622a4d's code), same VM, two rounds
+run                          steal s   cpu %  tick p50  tick p99  late p99  dropped
+base-default-t0-r1               107   147.3      79us    1663us    4095us        0
+mine-default-t0-r1                38    96.9      51us     639us     447us        0
+base-default-t0-r2                39   115.2      71us     767us     575us        0
+mine-default-t0-r2                35   101.0      55us     639us     383us        0
+base-default-t30-r1               40   141.0      79us    1279us     959us        0
+mine-default-t30-r1               90   132.2      51us    1535us    3839us     1845
+base-default-t30-r2                7   118.6      63us     959us     319us        0
+mine-default-t30-r2               25   113.7      51us     831us     639us      700
+base-stone-t0-r1                   6    68.6      21us     415us     103us        0
+mine-stone-t0-r1                  12    65.0      15us     383us      95us        0
+base-stone-t0-r2                  38    83.9      23us     479us     575us        0
+mine-stone-t0-r2                  11    57.6      13us     575us     703us     1238
+base-stone-t30-r1                 18    83.1      25us     703us     191us        0
+mine-stone-t30-r1                  5    71.1      19us     511us     103us        0
+base-stone-t30-r2                 21    86.4      25us     703us     255us        0
+mine-stone-t30-r2                 21    75.5      17us     511us     191us        0
+
+# earlier still: head 1392c17c against 98ea5276 on a VM with 50-330 CPU-seconds of steal per run
+run                          steal s   cpu %  tick p50  tick p99  late p99  dropped
+base-default-t0-r1                86   167.9     103us    1407us    3327us     1414
+mine-default-t0-r1               300   228.8      79us    4607us   40959us    12918
+base-default-t0-r2               101   170.7      95us    1663us    4607us        0
+mine-default-t0-r2               101   137.2      55us    1279us    2559us        0
+base-default-t30-r1              231   243.3     119us    3839us   16383us      680
+mine-default-t30-r1              184   166.8      63us    2559us   18431us        9
+base-default-t30-r2              162   217.9      95us    3583us   22527us     2500
+mine-default-t30-r2              216   230.2      71us    4607us   36863us    24675
+base-stone-t0-r1                  93   106.4      27us     767us    1919us        0
+mine-stone-t0-r1                  63    83.7      19us     511us     703us        0
+base-stone-t0-r2                  56    94.9      27us     575us     703us        0
+mine-stone-t0-r2                  16    71.1      19us     479us     239us        0
+base-stone-t30-r1                186   145.0      29us    1407us    2815us        0
+mine-stone-t30-r1                139   118.7      25us     895us    1279us        0
+base-stone-t30-r2                193   147.7      27us    3327us   13311us        0
+mine-stone-t30-r2                 92   103.1      21us    1023us    3071us        0

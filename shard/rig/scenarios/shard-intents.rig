@@ -1,0 +1,55 @@
+# WP26 on Shard, 2 clients on maze: they walk, and admission's own account (`console input`) has every snapshot
+# within a tile of the client and no corrections; then an admin's rule denies placeBlock, and alpha's placed
+# conveyor comes back off its queue with the rule's message (vanilla's removeQueueBlock rollback), and stays queued
+# once the rule is gone. Needs player units (WP23) and entity sync (WP25). intent-walk.rig is the walk alone, for
+# the comparison with vanilla.
+#
+#   rig/run.sh --push <shard install> --server '"$RIG"/vm/shard-server.sh maze' --clients 2 --script rig/scenarios/shard-intents.rig
+timeout 6m
+
+wait port 90s
+alpha: join
+bravo: join
+all: shot joined
+
+alpha: mark
+alpha: hold D 400ms
+alpha: expect moved 2
+bravo: expect player alpha within 1 5s
+alpha: hold W 300ms
+alpha: hold A 400ms
+alpha: hold S 300ms
+bravo: expect player alpha within 1 5s
+bravo: mark
+bravo: hold W+D 400ms
+bravo: expect moved 2
+alpha: expect player bravo within 1 5s
+all: shot walked
+
+# admission's account: snapshots came, none was over a tile off once applied, none needed a setPosition
+wait 2s
+console input maze
+wait log server /^player alpha snapshots=[1-9][0-9]* lag=[0-9.]+ deviation=0\.[0-9]+ clamped=[0-9]+ corrections=0$/ 10s
+wait log server /^player bravo snapshots=[1-9][0-9]* lag=[0-9.]+ deviation=0\.[0-9]+ clamped=[0-9]+ corrections=0$/ 10s
+
+# a deny rule, as an admin (or a plugin's filter) sets it: alpha's plan leaves its queue at once, with the message.
+# A click, not `place`: the rig's place waits for the plan to stay queued.
+console actions maze deny no-build placeBlock [scarlet]No building here.
+wait log server /rule no-build denies placeBlock/ 10s
+console actions maze list
+wait log server /^rule no-build denies placeBlock message="\[scarlet\]No building here\."$/ 10s
+# three tiles right of alpha: the camera follows it, at vanilla's starting scale of 4 (32 px a tile)
+alpha: zoom 4
+alpha: select conveyor
+alpha: rotate 0
+alpha: click left screen 736 360
+alpha: expect chat /No building here/ 10s
+all: shot denied
+# without the rule the same plan stays queued (Shard builds nothing yet, so it waits there)
+console actions maze allow no-build
+wait log server /rule no-build removed/ 10s
+alpha: place conveyor screen 736 360 rot 0
+all: shot allowed
+
+assert clean all
+assert clean server

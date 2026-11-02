@@ -1,0 +1,14 @@
+Logged runs (SERVER_ARGS= MAPS=stone DUR=40) at 28450b9, before the sort fix: the server's own words for each lost bot.
+
+== diag1
+BOT SUMMARY bots=1000 joined=999 failed=0 dropped=0 kicked=0 transfers=0/0 
+  close: 1x server closed TCP before the world, 0 s after the connect packet
+2026-10-29T12:38:12.041Z INFO  [tcp-r-680447640] c.x.shard.server.connect.ConnectFlow - session#413(bot413) disconnected: protocol: Comparison method violates its general contract! 
+
+== diag2
+BOT SUMMARY bots=1000 joined=999 failed=0 dropped=0 kicked=0 transfers=0/0 
+  close: 1x server closed TCP before the world, 0 s after the connect packet
+2026-10-29T12:39:03.865Z INFO  [tcp-r--2132653949] c.x.shard.server.connect.ConnectFlow - session#212(bot210) disconnected: protocol: Comparison method violates its general contract! 
+
+== diag3
+BOT SUMMARY bots=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 

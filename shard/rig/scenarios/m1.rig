@@ -1,0 +1,319 @@
+# M1 (ARCHITECTURE.md §10) on a stock client (L5): a vanilla client joins each of the 18 default maps, walks, sees its
+# cores, and logs no desync line. Shard hosts all 18 and deals joins round-robin, so alpha's 18 joins land on the maps
+# in vanilla's order (Maps.defaultMapNames). On each map alpha:
+#  - joins (the server log names the map), and its world has the map's size;
+#  - sees its team's cores (as many as the map file has: passage has two), on screen at the spawn (the shot);
+#  - walks right then up (at least 2 tiles from where it spawned);
+#  - then `exec` records the map in m1-maps.tsv: "clean", or "FAIL" with the first new desync or error lines of the
+#    client's log, the rig's startup noise aside (GL probing, the offline server-list fetch) (Missing entity, ID mismatch, Error reading entity snapshot, desync, exceptions) and new server
+#    ERROR/WARN lines (the two load lines m0.rig excuses aside) since the map before. It never fails the step, so
+#    every map is recorded; the end-of-run checks then fail the run on any of them.
+# The end-of-run checks fail on errors and desync lines in alpha's log, and on any server WARN line but the two known
+# load ones (m0.rig's last assert).
+#
+#   scripts/vm-gradle.sh :server:installDist
+#   rig/run.sh --vm "$(cat .vm-id)" --type large --clients 1 --script rig/scenarios/m1.rig --server \
+#     'PUSH=/home/user/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh --join round-robin maze fortress labyrinth islands tendrils caldera wasteland shattered fork triad mudFlats moltenLake archipelago debrisField domain veins glacier passage'
+timeout 40m
+
+# the server listens before it has hosted every world; join once it has
+wait port 360s
+wait log server /ready: 18 worlds hosted/ 180s
+
+
+# 01. maze
+alpha: join
+wait log server /\(alpha\) has connected to maze / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^256x256$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 01-maze
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 01-maze-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'maze\tclean\n' >> m1-maps.tsv; else printf 'maze\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 02. fortress
+alpha: rejoin
+wait log server /\(alpha\) has connected to fortress / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^256x256$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 02-fortress
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 02-fortress-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'fortress\tclean\n' >> m1-maps.tsv; else printf 'fortress\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 03. labyrinth
+alpha: rejoin
+wait log server /\(alpha\) has connected to labyrinth / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^200x200$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 03-labyrinth
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 03-labyrinth-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'labyrinth\tclean\n' >> m1-maps.tsv; else printf 'labyrinth\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 04. islands
+alpha: rejoin
+wait log server /\(alpha\) has connected to islands / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^256x256$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 04-islands
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 04-islands-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'islands\tclean\n' >> m1-maps.tsv; else printf 'islands\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 05. tendrils
+alpha: rejoin
+wait log server /\(alpha\) has connected to tendrils / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^300x300$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 05-tendrils
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 05-tendrils-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'tendrils\tclean\n' >> m1-maps.tsv; else printf 'tendrils\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 06. caldera
+alpha: rejoin
+wait log server /\(alpha\) has connected to caldera / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^256x256$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 06-caldera
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 06-caldera-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'caldera\tclean\n' >> m1-maps.tsv; else printf 'caldera\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 07. wasteland
+alpha: rejoin
+wait log server /\(alpha\) has connected to wasteland / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^300x300$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 07-wasteland
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 07-wasteland-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'wasteland\tclean\n' >> m1-maps.tsv; else printf 'wasteland\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 08. shattered
+alpha: rejoin
+wait log server /\(alpha\) has connected to shattered / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^350x350$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 08-shattered
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 08-shattered-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'shattered\tclean\n' >> m1-maps.tsv; else printf 'shattered\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 09. fork
+alpha: rejoin
+wait log server /\(alpha\) has connected to fork / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^250x300$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 09-fork
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 09-fork-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'fork\tclean\n' >> m1-maps.tsv; else printf 'fork\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 10. triad
+alpha: rejoin
+wait log server /\(alpha\) has connected to triad / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^200x200$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 10-triad
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 10-triad-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'triad\tclean\n' >> m1-maps.tsv; else printf 'triad\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 11. mudFlats
+alpha: rejoin
+wait log server /\(alpha\) has connected to mud-flats / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^400x400$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 11-mud-flats
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 11-mud-flats-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'mudFlats\tclean\n' >> m1-maps.tsv; else printf 'mudFlats\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 12. moltenLake
+alpha: rejoin
+wait log server /\(alpha\) has connected to molten-lake / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^400x400$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 12-molten-lake
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 12-molten-lake-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'moltenLake\tclean\n' >> m1-maps.tsv; else printf 'moltenLake\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 13. archipelago
+alpha: rejoin
+wait log server /\(alpha\) has connected to archipelago / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^500x500$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 13-archipelago
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 13-archipelago-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'archipelago\tclean\n' >> m1-maps.tsv; else printf 'archipelago\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 14. debrisField
+alpha: rejoin
+wait log server /\(alpha\) has connected to debris-field / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^400x400$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 14-debris-field
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 14-debris-field-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'debrisField\tclean\n' >> m1-maps.tsv; else printf 'debrisField\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 15. domain
+alpha: rejoin
+wait log server /\(alpha\) has connected to domain / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^494x494$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 15-domain
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 15-domain-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'domain\tclean\n' >> m1-maps.tsv; else printf 'domain\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 16. veins
+alpha: rejoin
+wait log server /\(alpha\) has connected to veins / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^350x200$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 16-veins
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 16-veins-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'veins\tclean\n' >> m1-maps.tsv; else printf 'veins\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 17. glacier
+alpha: rejoin
+wait log server /\(alpha\) has connected to glacier / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^150x250$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^1(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^1(\.0)?$/ 10s
+alpha: shot 17-glacier
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 17-glacier-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'glacier\tclean\n' >> m1-maps.tsv; else printf 'glacier\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+# 18. passage
+alpha: rejoin
+wait log server /\(alpha\) has connected to passage / 30s
+alpha: expect js "Vars.world.width() + 'x' + Vars.world.height()" /^500x120$/ 10s
+alpha: expect js "Vars.player.team().cores().size" /^2(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().cores().select(function(c){ return Vars.world.build(c.tileX(), c.tileY()) == c && c.block instanceof Packages.mindustry.world.blocks.storage.CoreBlock; }).size" /^2(\.0)?$/ 10s
+alpha: shot 18-passage
+alpha: mark
+alpha: hold D 700ms
+alpha: hold W 700ms
+alpha: expect moved 2
+alpha: wait 120t
+alpha: expect connected
+alpha: shot 18-passage-walked
+exec f=alpha/data/Mindustry/last_log.txt; s=server/server.log; read c0 s0 < m1.lines 2>/dev/null || { c0=0; s0=0; }; bad=$(tail -n +$((c0+1)) $f | grep -E 'Missing entity|ID mismatch|[Mm]ismatch|Error reading entity snapshot|[Dd]esync|Exception|\[E\]' | grep -vE 'OpenGL|GL context|GLXBadFBConfig|community servers|cdn.jsdelivr.net' | head -3; tail -n +$((s0+1)) $s | grep -E 'ERROR|Exception|WARN' | grep -vE 'stalled for [0-9]+ ms|ticks behind; dropping them' | head -3); echo "$(wc -l < $f) $(wc -l < $s)" > m1.lines; if [ -z "$bad" ]; then printf 'passage\tclean\n' >> m1-maps.tsv; else printf 'passage\tFAIL\t%s\n' "$(echo $bad)" >> m1-maps.tsv; fi
+
+exec cat m1-maps.tsv; [ "$(grep -c 'clean$' m1-maps.tsv)" = 18 ] || echo "not every map is clean"
+console status
+wait log server /Status: 18 worlds, 1 players?/ 10s
+assert log server !/Exception|ERROR/ after /ready: 18 worlds hosted/
+assert clean all
+# No server WARN line, except the two a busy VM makes: the watchdog's "stalled for N ms" and the scheduler's "N ticks
+# behind; dropping them" (m0.rig's last assert). Tick lag has its own gates.
+assert log server !/^\S+ WARN ++(?!\[tick-watchdog\] \S+ - world \S+ stalled for \d+ ms|\[tick-\d+\] \S+ - world \S+ is \d+ ticks behind; dropping them until it keeps up)/

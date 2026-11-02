@@ -1,0 +1,136 @@
+######## default-t0: 98ea5276 (A) against head 1392c17c (B)
+system                                                            A %    A us    B %    B us
+afterTick/WorldSync.endTick/snapshots                            15.6   30.18   20.0   28.67
+sim.path.AvoidanceProcess$Begin                                  12.7   24.52    1.4    1.99
+afterTick/WorldSync.endTick/plans                                 7.7   14.85   11.9   17.09
+sim.unit.TeamStats                                                8.1   15.66    4.3    6.22
+sim.spatial.PhysicsBegin                                          5.9   11.49    9.6   13.70
+sim.spatial.EntityPhysics                                         5.7   10.98    1.5    2.20
+admit/server.intent.Guarded                                       4.3    8.22    7.1   10.22
+sim.unit.UnitUpdate/sim.unit.UnitCoreComponent                    3.9    7.51    4.0    5.80
+World.hash                                                        3.7    7.20    1.3    1.90
+sim.unit.UnitUpdate/sim.combat.Weapons                            2.6    5.04    3.7    5.32
+sim.team.TeamCoreStats                                            2.6    5.06    0.7    0.97
+ManagedWorld.tick                                                 2.4    4.67    1.8    2.64
+sim.unit.UnitUpdate/sim.unit.StatusComponent                      2.2    4.27    2.5    3.54
+beforeTick                                                        0.9    1.71    2.5    3.52
+afterTick/WorldSync.beginTick                                     1.8    3.40    1.7    2.39
+admit/sim.world.Members                                           1.6    3.16    0.3    0.38
+sim.bullet.BulletUpdate                                           1.5    2.91    1.6    2.30
+sim.unit.PlayerUpdate                                             1.0    1.86    1.9    2.77
+sim.unit.UnitUpdate/sim.unit.SyncComponent                        1.2    2.39    1.9    2.76
+scheduler                                                         1.4    2.65    1.8    2.51
+sim.waves.EnemyCount                                              1.2    2.36    1.4    2.00
+sim.unit.UnitUpdate/sim.unit.VelComponent                         1.0    1.87    1.5    2.09
+sim.path.PathFlush                                                1.1    2.07    1.1    1.51
+sim.unit.UnitUpdate/sim.unit.UnitCoreComponent/sim.ai.GroundAi    1.0    1.94    1.4    2.03
+admit                                                             0.8    1.62    0.9    1.35
+sim.building.BuildingUpdate/sim.building.Building                 0.5    0.96    1.0    1.37
+sim.team.CoreFill                                                 0.7    1.28    0.8    1.19
+sim.unit.UnitUpdate/sim.build.BuilderComponent/sim.build.Build    0.6    1.24    0.9    1.23
+sim.ai.WaveFields$Preload                                         0.4    0.68    0.8    1.16
+sim.logic.LogicPart$LogicClock                                    0.1    0.24    0.6    0.89
+total                                                                  191.53         142.61
+
+######## default-t30: 98ea5276 (A) against head 1392c17c (B)
+system                                                            A %    A us    B %    B us
+afterTick/WorldSync.endTick/snapshots                            12.9   29.72   20.5   28.68
+sim.path.AvoidanceProcess$Begin                                  12.5   28.71    1.4    2.00
+sim.unit.TeamStats                                                8.4   19.40    3.5    4.91
+afterTick/WorldSync.endTick/plans                                 7.6   17.39   12.5   17.54
+sim.spatial.PhysicsBegin                                          5.9   13.58    8.5   11.89
+sim.spatial.EntityPhysics                                         4.9   11.27    1.4    1.94
+afterTick/HostedWorld.sendWorlds                                  4.2    9.63    4.3    6.08
+admit/server.intent.Guarded                                       4.0    9.17    5.7    8.03
+sim.unit.UnitUpdate/sim.unit.UnitCoreComponent                    3.9    8.92    3.9    5.52
+World.hash                                                        3.1    7.05    1.3    1.87
+ManagedWorld.tick                                                 2.6    5.89    2.9    4.07
+sim.team.TeamCoreStats                                            2.5    5.83    0.5    0.68
+sim.unit.UnitUpdate/sim.combat.Weapons                            2.3    5.30    3.3    4.62
+afterTick/WorldSync.beginTick                                     2.2    5.10    1.9    2.63
+admit/sim.world.Members                                           2.2    5.08    0.3    0.38
+sim.unit.UnitUpdate/sim.unit.StatusComponent                      2.0    4.65    2.5    3.51
+sim.unit.UnitUpdate/sim.unit.SyncComponent                        1.8    4.06    2.7    3.80
+sim.bullet.BulletUpdate                                           1.4    3.33    1.6    2.18
+sim.waves.EnemyCount                                              1.3    3.10    1.1    1.59
+sim.unit.PlayerUpdate                                             1.1    2.57    1.8    2.45
+scheduler                                                         1.1    2.46    1.7    2.33
+sim.path.PathFlush                                                1.0    2.19    0.8    1.11
+beforeTick                                                        0.9    2.13    0.9    1.30
+sim.unit.UnitUpdate/sim.unit.UnitCoreComponent/sim.ai.GroundAi    0.9    2.11    1.3    1.83
+sim.unit.UnitUpdate/sim.unit.VelComponent                         0.9    2.05    1.5    2.05
+sim.unit.UnitUpdate/sim.build.BuilderComponent/sim.build.Build    0.5    1.16    0.9    1.24
+afterTick/WorldSync.drain                                         0.5    1.22    0.6    0.81
+sim.building.BuildingUpdate/sim.building.Building                 0.5    1.20    0.7    1.00
+sim.team.CoreFill                                                 0.5    1.16    0.6    0.79
+admit                                                             0.4    0.96    0.8    1.12
+total                                                                  227.03         138.83
+
+######## stone-t0: 98ea5276 (A) against head 1392c17c (B)
+system                                                            A %    A us    B %    B us
+afterTick/WorldSync.endTick/snapshots                            21.9   13.61   37.2   39.63
+afterTick/WorldSync.endTick/plans                                21.9   13.64   26.8   28.54
+ManagedWorld.tick                                                 6.4    3.96    5.1    5.44
+admit/server.intent.Guarded                                       6.9    4.29    4.9    5.17
+sim.team.TeamCoreStats                                            6.1    3.79    0.2    0.25
+sim.unit.PlayerUpdate                                             3.3    2.03    3.4    3.62
+admit/sim.world.Members                                           5.3    3.28    0.6    0.66
+scheduler                                                         2.9    1.78    2.8    3.02
+beforeTick                                                        1.3    0.82    2.0    2.17
+sim.path.PathFlush                                                3.2    1.98    1.0    1.09
+admit                                                             0.4    0.28    1.7    1.80
+sim.spatial.EntityPhysics                                         2.2    1.38    1.3    1.40
+afterTick/WorldSync.beginTick                                     2.1    1.30    1.2    1.27
+afterTick/HostedWorld.said                                        0.7    0.45    1.1    1.16
+sim.ai.WaveFields$Preload                                         0.8    0.48    1.0    1.09
+World.hash                                                        1.3    0.79    0.9    1.01
+sim.spatial.PhysicsBegin                                          1.5    0.91    0.8    0.89
+sim.unit.TeamStats                                                1.4    0.88    0.8    0.85
+sim.waves.EnemyCount                                              1.3    0.82    0.4    0.41
+sim.bullet.BulletUpdate                                           0.5    0.34    0.7    0.77
+afterTick                                                         0.3    0.18    0.7    0.76
+sim.weather.WeatherUpdate                                         1.2    0.73    0.3    0.30
+afterTick/WorldSync.drain                                         0.6    0.34    0.6    0.61
+server.sched.TickStats                                            0.3    0.18    0.5    0.56
+sim.unit.PostedDestroys                                           0.7    0.43    0.3    0.31
+sim.weather.EnvUpdate                                             0.6    0.40    0.3    0.27
+sim.waves.WaveCountdown                                           0.6    0.40    0.2    0.18
+sim.logic.LogicPart$LogicClock                                    0.3    0.18    0.4    0.39
+sim.fire.HazardPool$Update                                        0.3    0.17    0.3    0.36
+sim.game.CheckGameState                                           0.6    0.36    0.1    0.11
+total                                                                   61.84         105.85
+
+######## stone-t30: 98ea5276 (A) against head 1392c17c (B)
+system                                                            A %    A us    B %    B us
+afterTick/WorldSync.endTick/snapshots                            24.6   26.26   29.6   33.90
+afterTick/WorldSync.endTick/plans                                19.5   20.80   25.7   29.49
+afterTick/HostedWorld.sendWorlds                                  7.2    7.66    3.8    4.30
+admit/server.intent.Guarded                                       4.0    4.22    6.2    7.11
+ManagedWorld.tick                                                 5.3    5.68    3.4    3.85
+sim.team.TeamCoreStats                                            5.1    5.41    0.3    0.29
+sim.unit.PlayerUpdate                                             3.9    4.21    4.4    5.09
+admit/sim.world.Members                                           4.6    4.88    0.6    0.64
+beforeTick                                                        2.0    2.11    4.0    4.57
+afterTick/WorldSync.beginTick                                     3.8    4.05    2.1    2.44
+scheduler                                                         2.8    3.03    3.0    3.45
+admit                                                             0.4    0.38    1.8    2.05
+sim.spatial.EntityPhysics                                         1.8    1.89    1.1    1.23
+sim.path.PathFlush                                                1.7    1.82    1.3    1.48
+afterTick                                                         0.6    0.60    1.2    1.41
+World.hash                                                        1.2    1.31    0.7    0.84
+sim.ai.WaveFields$Preload                                         0.5    0.57    1.1    1.22
+sim.unit.TeamStats                                                0.7    0.78    0.8    0.97
+afterTick/HostedWorld.said                                        0.8    0.88    0.8    0.94
+sim.spatial.PhysicsBegin                                          0.8    0.86    0.7    0.83
+afterTick/HostedWorld.left                                        0.8    0.80    0.7    0.76
+server.sched.TickStats                                            0.4    0.46    0.7    0.76
+afterTick/WorldSync.endTick                                       0.6    0.64    0.2    0.24
+sim.waves.EnemyCount                                              0.6    0.63    0.3    0.38
+sim.bullet.BulletUpdate                                           0.6    0.60    0.4    0.47
+afterTick/WorldSync.drain                                         0.6    0.59    0.5    0.54
+sim.weather.WeatherUpdate                                         0.5    0.55    0.3    0.31
+sim.logic.LogicPart$LogicClock                                    0.2    0.20    0.4    0.49
+sim.game.CheckGameState                                           0.4    0.42    0.1    0.17
+sim.unit.PostedDestroys                                           0.3    0.29    0.4    0.41
+total                                                                  105.97         114.04
+

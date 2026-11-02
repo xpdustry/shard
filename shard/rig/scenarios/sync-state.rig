@@ -1,0 +1,16 @@
+# W2.13's L5 for the state snapshot (WP25 with WP23 and WP47), the same against vanilla and Shard on maze: a stock
+# client spawns at the core and reads the wave, the countdown and the core's items from the state snapshots, 5 a
+# second. state.tsv in alpha's directory: wave, wavetime (ticks), the core's item total and its copper, every second.
+#
+#   rig/run.sh --server '"$RIG"/vm/vanilla-server.sh -- host maze' --clients 1 --script rig/scenarios/sync-state.rig
+#   rig/run.sh --push server/build/install/shard --server '"$RIG"/vm/shard-server.sh maze' --clients 1 --script ...
+timeout 5m
+
+wait port 120s
+alpha: join
+alpha: wait 60t
+alpha: expect js "Vars.state.rules.defaultTeam.core() != null && Vars.state.rules.defaultTeam.core().items.total() > 0" /^true$/ 10s
+alpha: sample js "[Vars.state.wave,Math.round(Vars.state.wavetime),Vars.state.rules.defaultTeam.core().items.total(),Vars.state.rules.defaultTeam.core().items.get(Items.copper)].join()" every 1s for 20s to state.tsv
+alpha: expect js "Vars.state.wavetime > 0 && Vars.state.wave >= 1" /^true$/ 10s
+alpha: shot state
+assert clean all

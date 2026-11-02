@@ -1,0 +1,219 @@
+[0.001s][info][gc] Min heap equals to max heap, disabling ShenandoahUncommit
+[0.003s][info][gc] Heuristics ergonomically sets -XX:GCTimeRatio=70
+[0.003s][info][gc] Heuristics ergonomically sets -XX:+ExplicitGCInvokesConcurrent
+[0.003s][info][gc] Heuristics ergonomically sets -XX:+ShenandoahImplicitGCInvokesConcurrent
+[0.003s][info][gc] Heuristics ergonomically sets -XX:+UseCondCardMark
+[0.003s][info][gc] Using Shenandoah
+[1.507s][info][gc] Trigger (Young): Learning 1 of 5. Free (716M) is below initial threshold (716M)
+[1.508s][info][gc] GC(0) Concurrent reset (Young) 0.593ms
+[1.508s][info][gc] GC(0) Pause Init Mark (Young) 0.032ms
+[1.508s][info][gc] GC(0) Concurrent remembered set scanning 0.049ms
+[1.517s][info][gc] GC(0) Concurrent marking roots 9.227ms
+[1.568s][info][gc] GC(0) Concurrent marking (Young) 50.935ms
+[1.568s][info][gc] GC(0) Pause Final Mark (Young) 0.115ms
+[1.569s][info][gc] GC(0) Concurrent thread roots 0.149ms
+[1.569s][info][gc] GC(0) Concurrent weak references (Young) 0.413ms
+[1.570s][info][gc] GC(0) Concurrent weak roots (Young) 1.289ms
+[1.570s][info][gc] GC(0) Concurrent cleanup (Young) 235M->235M(1024M) 0.024ms
+[1.573s][info][gc] GC(0) Concurrent strong roots 2.571ms
+[1.584s][info][gc] GC(0) Concurrent evacuation 11.150ms
+[1.584s][info][gc] GC(0) Concurrent Init Update Refs (Young) 0.075ms
+[1.584s][info][gc] GC(0) Concurrent update cards 0.079ms
+[1.604s][info][gc] GC(0) Concurrent update references 19.389ms
+[1.604s][info][gc] GC(0) Concurrent update thread roots 0.141ms
+[1.604s][info][gc] GC(0) Pause Final Update Refs 0.070ms
+[1.604s][info][gc] GC(0) Concurrent cleanup (Young) 41M->41M(1024M) 0.030ms
+[1.605s][info][gc] GC(0) Concurrent reset after collect (Young) 1.147ms
+[2.299s][info][gc] Trigger (Young): Learning 2 of 5. Free (716M) is below initial threshold (716M)
+[2.300s][info][gc] GC(1) Concurrent reset (Young) 0.455ms
+[2.300s][info][gc] GC(1) Pause Init Mark (Young) 0.044ms
+[2.300s][info][gc] GC(1) Concurrent remembered set scanning 0.034ms
+[2.304s][info][gc] GC(1) Concurrent marking roots 4.000ms
+[2.336s][info][gc] GC(1) Concurrent marking (Young) 32.534ms
+[2.337s][info][gc] GC(1) Pause Final Mark (Young) 0.116ms
+[2.337s][info][gc] GC(1) Concurrent thread roots 0.177ms
+[2.337s][info][gc] GC(1) Concurrent weak references (Young) 0.086ms
+[2.337s][info][gc] GC(1) Concurrent weak roots (Young) 0.308ms
+[2.337s][info][gc] GC(1) Concurrent cleanup (Young) 187M->187M(1024M) 0.019ms
+[2.339s][info][gc] GC(1) Concurrent strong roots 1.796ms
+[2.348s][info][gc] GC(1) Concurrent evacuation 9.020ms
+[2.348s][info][gc] GC(1) Concurrent Init Update Refs (Young) 0.072ms
+[2.348s][info][gc] GC(1) Concurrent update cards 0.045ms
+[2.362s][info][gc] GC(1) Concurrent update references 14.175ms
+[2.363s][info][gc] GC(1) Concurrent update thread roots 0.190ms
+[2.363s][info][gc] GC(1) Pause Final Update Refs 0.059ms
+[2.363s][info][gc] GC(1) Concurrent cleanup (Young) 67M->67M(1024M) 0.023ms
+[2.364s][info][gc] GC(1) Concurrent reset after collect (Young) 0.799ms
+[5.355s][info][gc] Trigger (Young): Learning 3 of 5. Free (716M) is below initial threshold (716M)
+[5.355s][info][gc] GC(2) Concurrent reset (Young) 0.142ms
+[5.355s][info][gc] GC(2) Pause Init Mark (Young) 0.033ms
+[5.355s][info][gc] GC(2) Concurrent remembered set scanning 0.084ms
+[5.361s][info][gc] GC(2) Concurrent marking roots 5.510ms
+[5.409s][info][gc] GC(2) Concurrent marking (Young) 48.065ms
+[5.409s][info][gc] GC(2) Pause Final Mark (Young) 0.137ms
+[5.409s][info][gc] GC(2) Concurrent thread roots 0.142ms
+[5.409s][info][gc] GC(2) Concurrent weak references (Young) 0.089ms
+[5.412s][info][gc] GC(2) Concurrent weak roots (Young) 2.581ms
+[5.412s][info][gc] GC(2) Concurrent cleanup (Young) 231M->231M(1024M) 0.043ms
+[5.415s][info][gc] GC(2) Concurrent strong roots 2.827ms
+[5.422s][info][gc] GC(2) Concurrent evacuation 6.345ms
+[5.422s][info][gc] GC(2) Concurrent Init Update Refs (Young) 0.246ms
+[5.422s][info][gc] GC(2) Concurrent update cards 0.046ms
+[5.441s][info][gc] GC(2) Concurrent update references 19.223ms
+[5.442s][info][gc] GC(2) Concurrent update thread roots 0.790ms
+[5.442s][info][gc] GC(2) Pause Final Update Refs 0.090ms
+[5.442s][info][gc] GC(2) Concurrent cleanup (Young) 78M->78M(1024M) 0.036ms
+[5.443s][info][gc] GC(2) Concurrent reset after collect (Young) 0.484ms
+[7.570s][info][gc] Trigger (Young): Learning 4 of 5. Free (716M) is below initial threshold (716M)
+[7.570s][info][gc] GC(3) Concurrent reset (Young) 0.125ms
+[7.570s][info][gc] GC(3) Pause Init Mark (Young) 0.047ms
+[7.571s][info][gc] GC(3) Concurrent remembered set scanning 0.427ms
+[7.576s][info][gc] GC(3) Concurrent marking roots 5.187ms
+[7.621s][info][gc] GC(3) Concurrent marking (Young) 44.677ms
+[7.621s][info][gc] GC(3) Pause Final Mark (Young) 0.154ms
+[7.621s][info][gc] GC(3) Concurrent thread roots 0.221ms
+[7.621s][info][gc] GC(3) Concurrent weak references (Young) 0.029ms
+[7.622s][info][gc] GC(3) Concurrent weak roots (Young) 0.419ms
+[7.622s][info][gc] GC(3) Concurrent cleanup (Young) 218M->218M(1024M) 0.021ms
+[7.625s][info][gc] GC(3) Concurrent strong roots 2.703ms
+[7.634s][info][gc] GC(3) Concurrent evacuation 9.376ms
+[7.634s][info][gc] GC(3) Concurrent Init Update Refs (Young) 0.099ms
+[7.634s][info][gc] GC(3) Concurrent update cards 0.050ms
+[7.656s][info][gc] GC(3) Concurrent update references 22.244ms
+[7.657s][info][gc] GC(3) Concurrent update thread roots 0.140ms
+[7.657s][info][gc] GC(3) Pause Final Update Refs 0.085ms
+[7.657s][info][gc] GC(3) Concurrent cleanup (Young) 89M->89M(1024M) 0.030ms
+[7.657s][info][gc] GC(3) Concurrent reset after collect (Young) 0.374ms
+[9.701s][info][gc] Trigger (Young): Learning 5 of 5. Free (716M) is below initial threshold (716M)
+[9.701s][info][gc] GC(4) Concurrent reset (Young) 0.139ms
+[9.702s][info][gc] GC(4) Pause Init Mark (Young) 0.035ms
+[9.709s][info][gc] GC(4) Concurrent remembered set scanning 7.018ms
+[9.713s][info][gc] GC(4) Concurrent marking roots 4.793ms
+[9.752s][info][gc] GC(4) Concurrent marking (Young) 38.168ms
+[9.752s][info][gc] GC(4) Pause Final Mark (Young) 0.190ms
+[9.754s][info][gc] GC(4) Concurrent thread roots 1.322ms
+[9.754s][info][gc] GC(4) Concurrent weak references (Young) 0.061ms
+[9.754s][info][gc] GC(4) Concurrent weak roots (Young) 0.432ms
+[9.754s][info][gc] GC(4) Concurrent cleanup (Young) 241M->241M(1024M) 0.020ms
+[9.757s][info][gc] GC(4) Concurrent strong roots 3.247ms
+[9.769s][info][gc] GC(4) Concurrent evacuation 11.406ms
+[9.769s][info][gc] GC(4) Concurrent Init Update Refs (Young) 0.099ms
+[9.769s][info][gc] GC(4) Concurrent update cards 0.049ms
+[9.788s][info][gc] GC(4) Concurrent update references 19.427ms
+[9.789s][info][gc] GC(4) Concurrent update thread roots 0.189ms
+[9.789s][info][gc] GC(4) Pause Final Update Refs 0.087ms
+[9.789s][info][gc] GC(4) Concurrent cleanup (Young) 102M->102M(1024M) 0.060ms
+[9.789s][info][gc] GC(4) Concurrent reset after collect (Young) 0.357ms
+[26.794s][info][gc] Trigger (Young): Free (Soft) (102M) is below minimum threshold (102M)
+[26.795s][info][gc] GC(5) Concurrent reset (Young) 0.167ms
+[26.795s][info][gc] GC(5) Pause Init Mark (Young) 0.039ms
+[26.805s][info][gc] GC(5) Concurrent remembered set scanning 10.003ms
+[26.810s][info][gc] GC(5) Concurrent marking roots 5.268ms
+[26.998s][info][gc] GC(5) Concurrent marking (Young) 187.534ms
+[26.998s][info][gc] GC(5) Pause Final Mark (Young) 0.285ms
+[26.998s][info][gc] GC(5) Concurrent thread roots 0.185ms
+[26.999s][info][gc] GC(5) Concurrent weak references (Young) 0.069ms
+[26.999s][info][gc] GC(5) Concurrent weak roots (Young) 0.556ms
+[26.999s][info][gc] GC(5) Concurrent cleanup (Young) 847M->847M(1024M) 0.025ms
+[27.003s][info][gc] GC(5) Concurrent strong roots 3.854ms
+[27.022s][info][gc] GC(5) Concurrent evacuation 19.338ms
+[27.023s][info][gc] GC(5) Concurrent Init Update Refs (Young) 0.103ms
+[27.023s][info][gc] GC(5) Concurrent update cards 0.053ms
+[27.065s][info][gc] GC(5) Concurrent update references 42.383ms
+[27.065s][info][gc] GC(5) Concurrent update thread roots 0.196ms
+[27.066s][info][gc] GC(5) Pause Final Update Refs 0.110ms
+[27.066s][info][gc] GC(5) Concurrent cleanup (Young) 220M->220M(1024M) 0.180ms
+[27.068s][info][gc] GC(5) Concurrent reset after collect (Young) 1.999ms
+[41.066s][info][gc] Trigger (Young): Free (Soft) (102M) is below minimum threshold (102M)
+[41.066s][info][gc] GC(6) Concurrent reset (Young) 0.251ms
+[41.067s][info][gc] GC(6) Pause Init Mark (Young) 0.062ms
+[41.072s][info][gc] GC(6) Concurrent remembered set scanning 4.631ms
+[41.077s][info][gc] GC(6) Concurrent marking roots 5.924ms
+[41.347s][info][gc] GC(6) Concurrent marking (Young) 269.403ms
+[41.347s][info][gc] GC(6) Pause Final Mark (Young) 0.255ms
+[41.348s][info][gc] GC(6) Concurrent thread roots 0.194ms
+[41.348s][info][gc] GC(6) Concurrent weak references (Young) 0.029ms
+[41.348s][info][gc] GC(6) Concurrent weak roots (Young) 0.451ms
+[41.348s][info][gc] GC(6) Concurrent cleanup (Young) 862M->862M(1024M) 0.018ms
+[41.351s][info][gc] GC(6) Concurrent strong roots 2.697ms
+[41.369s][info][gc] GC(6) Concurrent evacuation 18.185ms
+[41.369s][info][gc] GC(6) Concurrent Init Update Refs (Young) 0.108ms
+[41.369s][info][gc] GC(6) Concurrent update cards 0.037ms
+[41.425s][info][gc] GC(6) Concurrent update references 55.339ms
+[41.425s][info][gc] GC(6) Concurrent update thread roots 0.204ms
+[41.425s][info][gc] GC(6) Pause Final Update Refs 0.098ms
+[41.425s][info][gc] GC(6) Concurrent cleanup (Young) 247M->247M(1024M) 0.092ms
+[41.427s][info][gc] GC(6) Concurrent reset after collect (Young) 1.557ms
+[53.800s][info][gc] Trigger (Young): Free (Soft) (102M) is below minimum threshold (102M)
+[53.800s][info][gc] GC(7) Concurrent reset (Young) 0.134ms
+[53.800s][info][gc] GC(7) Pause Init Mark (Young) 0.046ms
+[53.805s][info][gc] GC(7) Concurrent remembered set scanning 4.086ms
+[53.810s][info][gc] GC(7) Concurrent marking roots 5.142ms
+[54.165s][info][gc] GC(7) Concurrent marking (Young) 355.399ms
+[54.166s][info][gc] GC(7) Pause Final Mark (Young) 0.216ms
+[54.166s][info][gc] GC(7) Concurrent thread roots 0.155ms
+[54.166s][info][gc] GC(7) Concurrent weak references (Young) 0.045ms
+[54.166s][info][gc] GC(7) Concurrent weak roots (Young) 0.388ms
+[54.166s][info][gc] GC(7) Concurrent cleanup (Young) 806M->806M(1024M) 0.017ms
+[54.170s][info][gc] GC(7) Concurrent strong roots 3.124ms
+[54.193s][info][gc] GC(7) Concurrent evacuation 23.410ms
+[54.193s][info][gc] GC(7) Concurrent Init Update Refs (Young) 0.096ms
+[54.194s][info][gc] GC(7) Concurrent update cards 0.652ms
+[54.260s][info][gc] GC(7) Concurrent update references 66.189ms
+[54.260s][info][gc] GC(7) Concurrent update thread roots 0.179ms
+[54.260s][info][gc] GC(7) Pause Final Update Refs 0.076ms
+[54.261s][info][gc] GC(7) Concurrent cleanup (Young) 240M->240M(1024M) 0.174ms
+[54.262s][info][gc] GC(7) Concurrent reset after collect (Young) 1.456ms
+[65.835s][info][gc] Trigger (Young): Free (Soft) (101M) is below minimum threshold (102M)
+[65.836s][info][gc] GC(8) Concurrent reset (Young) 0.207ms
+[65.836s][info][gc] GC(8) Pause Init Mark (Young) 0.059ms
+[65.848s][info][gc] GC(8) Concurrent remembered set scanning 11.520ms
+[65.853s][info][gc] GC(8) Concurrent marking roots 5.660ms
+[65.966s][info][gc] GC(8) Concurrent marking (Young) 112.803ms
+[65.966s][info][gc] GC(8) Pause Final Mark (Young) 0.207ms
+[65.967s][info][gc] GC(8) Concurrent thread roots 0.224ms
+[65.967s][info][gc] GC(8) Concurrent weak references (Young) 0.049ms
+[65.967s][info][gc] GC(8) Concurrent weak roots (Young) 0.394ms
+[65.967s][info][gc] GC(8) Concurrent cleanup (Young) 817M->817M(1024M) 0.018ms
+[65.971s][info][gc] GC(8) Concurrent strong roots 3.231ms
+[65.990s][info][gc] GC(8) Concurrent evacuation 19.840ms
+[65.991s][info][gc] GC(8) Concurrent Init Update Refs (Young) 0.129ms
+[65.991s][info][gc] GC(8) Concurrent update cards 0.099ms
+[66.031s][info][gc] GC(8) Concurrent update references 40.577ms
+[66.032s][info][gc] GC(8) Concurrent update thread roots 0.180ms
+[66.032s][info][gc] GC(8) Pause Final Update Refs 0.113ms
+[66.032s][info][gc] GC(8) Concurrent cleanup (Young) 166M->166M(1024M) 0.184ms
+[66.033s][info][gc] GC(8) Concurrent reset after collect (Young) 1.316ms
+[81.909s][info][gc] Trigger (Young): Free (Soft) (102M) is below minimum threshold (102M)
+[81.909s][info][gc] GC(9) Concurrent reset (Young) 0.126ms
+[81.910s][info][gc] GC(9) Pause Init Mark (Young) 0.040ms
+[81.915s][info][gc] GC(9) Concurrent remembered set scanning 5.699ms
+[81.920s][info][gc] GC(9) Concurrent marking roots 5.121ms
+[82.098s][info][gc] GC(9) Concurrent marking (Young) 177.012ms
+[82.098s][info][gc] GC(9) Pause Final Mark (Young) 0.195ms
+[82.098s][info][gc] GC(9) Concurrent thread roots 0.096ms
+[82.098s][info][gc] GC(9) Concurrent weak references (Young) 0.020ms
+[82.098s][info][gc] GC(9) Concurrent weak roots (Young) 0.317ms
+[82.099s][info][gc] GC(9) Concurrent cleanup (Young) 865M->865M(1024M) 0.018ms
+[82.101s][info][gc] GC(9) Concurrent strong roots 2.728ms
+[82.118s][info][gc] GC(9) Concurrent evacuation 16.973ms
+[82.118s][info][gc] GC(9) Concurrent Init Update Refs (Young) 0.077ms
+[82.118s][info][gc] GC(9) Concurrent update cards 0.067ms
+[82.164s][info][gc] GC(9) Concurrent update references 45.371ms
+[82.164s][info][gc] GC(9) Concurrent update thread roots 0.187ms
+[82.164s][info][gc] GC(9) Pause Final Update Refs 0.095ms
+[82.164s][info][gc] GC(9) Concurrent cleanup (Young) 225M->225M(1024M) 0.073ms
+[82.166s][info][gc] GC(9) Concurrent reset after collect (Young) 1.206ms
+[102.485s][info][gc] Trigger (Young): Accelerated consumption (164M) exceeds free headroom (160M) at current rate (220.2 M/s) with acceleration (177.4 M/s/s) for anticipated GC duration (601.22 ms)
+[102.485s][info][gc] GC(10) Concurrent reset (Young) 0.154ms
+[102.486s][info][gc] GC(10) Pause Init Mark (Young) 0.035ms
+[102.507s][info][gc] GC(10) Concurrent remembered set scanning 20.114ms
+[102.513s][info][gc] GC(10) Concurrent marking roots 5.988ms
+[102.778s][info][gc] GC(10) Concurrent marking (Young) 265.845ms
+[102.780s][info][gc] GC(10) Pause Final Mark (Young) 0.217ms
+[102.781s][info][gc] GC(10) Concurrent thread roots 0.928ms
+[102.781s][info][gc] GC(10) Concurrent weak references (Young) 0.051ms
+[102.781s][info][gc] GC(10) Concurrent weak roots (Young) 0.559ms
+[102.781s][info][gc] GC(10) Concurrent cleanup (Young) 740M->740M(1024M) 0.029ms
+[102.786s][info][gc] GC(10) Concurrent strong roots 4.679ms
+[102.800s][info][gc] GC(10) Concurrent evacuation 13.743ms

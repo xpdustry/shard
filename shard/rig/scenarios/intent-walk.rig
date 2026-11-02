@@ -1,0 +1,43 @@
+# WP26's walk, on any server that hosts on its own: two clients walk a square each and see each other where their
+# own clients are. It sends only clientSnapshot, so a server's setPosition corrections in a capture are its
+# rubber-bands; vanilla sends none on this script. Shard needs player units (WP23) and entity sync (WP25).
+#
+#   rig/run.sh --server 'tcpdump -Z root -i lo -U -s 0 -w lo.pcap tcp port 6567 & exec "$RIG"/vm/vanilla-server.sh serpulo/groundZero -- host Ground_Zero' \
+#     --clients 2 --script rig/scenarios/intent-walk.rig
+#   rig/run.sh --push <shard install> --server 'tcpdump -Z root -i lo -U -s 0 -w lo.pcap tcp port 6567 & exec "$RIG"/vm/shard-server.sh maze' \
+#     --clients 2 --script rig/scenarios/intent-walk.rig
+#   then: python3 rig/arcnet-pcap.py <run>/server/lo.pcap --show 100000 | grep -ci setposition    (the corrections)
+#
+# On Shard, `console input maze` after it prints what admission saw; shard-intent-walk.rig checks that.
+timeout 5m
+
+wait port 90s
+alpha: join
+bravo: join
+all: shot joined
+
+alpha: mark
+alpha: hold D 400ms
+alpha: expect moved 2
+bravo: expect player alpha within 1 5s
+alpha: hold W 300ms
+bravo: expect player alpha within 1 5s
+alpha: hold A 400ms
+bravo: expect player alpha within 1 5s
+alpha: hold S 300ms
+bravo: expect player alpha within 1 5s
+
+bravo: mark
+bravo: hold W+D 400ms
+bravo: expect moved 2
+alpha: expect player bravo within 1 5s
+bravo: hold S+A 400ms
+alpha: expect player bravo within 1 5s
+all: shot walked
+
+# standing still: the server's position stays the client's
+wait 3s
+alpha: expect player bravo within 1 2s
+bravo: expect player alpha within 1 2s
+
+assert clean all

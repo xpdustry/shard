@@ -1,0 +1,28 @@
+2026-10-29T16:52:12.958Z INFO  [main] com.xpdustry.shard.server.Server - ready: 100 worlds hosted, 74 MB of heap in use 
+== stone-b1000-w100-t0 on 8 vCPUs, 1g heap (hypervisor steal during run: 25 cpu-seconds)
+SUMMARY seconds=70 worlds=100 players=1000 cpu=63.4% cpuPer100p=6.34% late[n=420055 p50=55us p99=87us p999=479us max=2578us] tick[n=420055 p50=19us p99=351us p999=767us max=4635us] dropped=0 slow=0 spam=0 deadlines=0
+GC Shenandoah, 27-97s: 12 pauses, longest 0.3 ms, total 1.7 ms, 0 full or degenerated; heap after 4 cycles: min 213 MB, median 253 MB, max 345 MB of 1024 MB
+  longest: [34.570s][info][gc] GC(5) Pause Final Mark (Young) 0.284ms
+BOT SUMMARY bots=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 join[n=1000 p50=147455us p99=262143us p999=327679us max=335992us] worldKB/bot=5.1
+bots t=90s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=2059 B/s tcp=48 B/s tx/bot=1046 B/s entities/bot/s=50 rtt[n=9947 p50=87us p99=207us p999=575us max=2420us] gap>20ms[n=49760 p50=210707us p99=210707us p999=210707us max=210707us]
+2026-10-29T16:53:57.041Z INFO  [main] com.xpdustry.shard.server.Server - ready: 100 worlds hosted, 69 MB of heap in use 
+== stone-b1000-w100-t30 on 8 vCPUs, 1g heap (hypervisor steal during run: 1 cpu-seconds)
+SUMMARY seconds=70 worlds=100 players=1000 cpu=53.8% cpuPer100p=5.38% late[n=420035 p50=55us p99=71us p999=207us max=3218us] tick[n=420035 p50=17us p99=447us p999=831us max=4096us] dropped=0 slow=0 spam=0 deadlines=0
+GC Shenandoah, 22-92s: 15 pauses, longest 0.3 ms, total 1.9 ms, 0 full or degenerated; heap after 5 cycles: min 166 MB, median 225 MB, max 247 MB of 1024 MB
+  longest: [26.998s][info][gc] GC(5) Pause Final Mark (Young) 0.285ms
+BOT SUMMARY bots=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=2318/2343 join[n=1000 p50=131071us p99=146795us p999=146795us max=146795us] worldKB/bot=5.1
+bots t=90s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=2318/2343 rx/bot: udp=2272 B/s tcp=244 B/s tx/bot=1047 B/s entities/bot/s=55 rtt[n=9979 p50=71us p99=383us p999=2559us max=5416us] gap>20ms[n=49897 p50=212991us p99=212991us p999=327679us max=414840us]
+2026-10-29T16:55:56.794Z INFO  [main] com.xpdustry.shard.server.Server - ready: 100 worlds hosted, 1220 MB of heap in use 
+== default-b1000-w100-t0 on 8 vCPUs, 6g heap (hypervisor steal during run: 28 cpu-seconds)
+SUMMARY seconds=70 worlds=100 players=1000 cpu=89.5% cpuPer100p=8.95% late[n=420051 p50=55us p99=767us p999=4607us max=18938us] tick[n=420051 p50=51us p99=639us p999=2815us max=20908us] dropped=0 slow=0 spam=0 deadlines=0
+GC Shenandoah, 39-109s: 3 pauses, longest 0.3 ms, total 0.5 ms, 0 full or degenerated; heap after 1 cycles: min 571 MB, median 571 MB, max 571 MB of 6144 MB
+  longest: [82.325s][info][gc] GC(5) Pause Final Mark (Young) 0.297ms
+BOT SUMMARY bots=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 join[n=1000 p50=147455us p99=163416us p999=163416us max=163416us] worldKB/bot=22.0
+bots t=90s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=0/0 rx/bot: udp=4465 B/s tcp=46 B/s tx/bot=1046 B/s entities/bot/s=100 rtt[n=9964 p50=71us p99=239us p999=2047us max=5099us] gap>20ms[n=49900 p50=212991us p99=212991us p999=212991us max=217912us]
+2026-10-29T16:57:49.737Z INFO  [main] com.xpdustry.shard.server.Server - ready: 100 worlds hosted, 1213 MB of heap in use 
+== default-b1000-w100-t30 on 8 vCPUs, 6g heap (hypervisor steal during run: 5 cpu-seconds)
+SUMMARY seconds=70 worlds=100 players=1000 cpu=110.6% cpuPer100p=11.06% late[n=420061 p50=55us p99=383us p999=1407us max=4320us] tick[n=420061 p50=55us p99=895us p999=2303us max=8079us] dropped=0 slow=0 spam=0 deadlines=0
+GC Shenandoah, 32-102s: 6 pauses, longest 0.5 ms, total 1.3 ms, 0 full or degenerated; heap after 2 cycles: min 672 MB, median 672 MB, max 732 MB of 6144 MB
+  longest: [99.248s][info][gc] GC(6) Pause Final Mark (Young) 0.459ms
+BOT SUMMARY bots=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=2316/2333 join[n=1000 p50=147455us p99=163839us p999=180045us max=180045us] worldKB/bot=22.3
+bots t=90s connected=1000 joined=1000 failed=0 dropped=0 kicked=0 transfers=2316/2333 rx/bot: udp=5319 B/s tcp=869 B/s tx/bot=1047 B/s entities/bot/s=110 rtt[n=9972 p50=79us p99=415us p999=2815us max=3752us] gap>20ms[n=49849 p50=212991us p99=212991us p999=327679us max=414270us]

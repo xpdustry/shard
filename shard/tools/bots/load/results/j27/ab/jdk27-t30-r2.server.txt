@@ -1,0 +1,114 @@
+2026-10-29T15:03:08.607Z INFO  [main] com.xpdustry.shard.server.Server - 18 maps: maze, fortress, labyrinth, islands, tendrils, caldera, wasteland, shattered, fork, triad, mudFlats, moltenLake, archipelago, debrisField, domain, veins, glacier, passage 
+2026-10-29T15:03:08.677Z INFO  [main] com.xpdustry.shard.server.Server - listening on /127.0.0.1:6567 (tcp+udp), java 27.0.1.0.2+1, 3 tick threads 
+2026-10-29T15:03:08.999Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w00: Maze (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:09.110Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w01: Fortress (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:09.183Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w02: Labyrinth (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:09.281Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w03: Islands (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:09.420Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w04: Tendrils (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:09.517Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w05: Ancient Caldera (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:09.643Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w06: Wasteland (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:09.789Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w07: Shattered (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:09.886Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w08: Fork (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:09.952Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w09: Triad (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:10.095Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w10: Mud Flats (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:10.297Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w11: Molten Lake (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:10.489Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w12: Archipelago (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:10.648Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w13: Debris Field (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:10.727Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w14: Domain (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:10.806Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w15: Veins (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:10.845Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w16: Glacier (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:10.907Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w17: Passage (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:10.994Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w18: Maze (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:11.079Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w19: Fortress (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:11.146Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w20: Labyrinth (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:11.237Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w21: Islands (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:11.360Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w22: Tendrils (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:11.446Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w23: Ancient Caldera (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:11.560Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w24: Wasteland (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:11.707Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w25: Shattered (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:11.800Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w26: Fork (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:11.860Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w27: Triad (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.010Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w28: Mud Flats (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.197Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w29: Molten Lake (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.382Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w30: Archipelago (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.506Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w31: Debris Field (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.584Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w32: Domain (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.646Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w33: Veins (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.684Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w34: Glacier (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.743Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w35: Passage (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.824Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w36: Maze (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.908Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w37: Fortress (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:12.962Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w38: Labyrinth (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:13.046Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w39: Islands (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:13.156Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w40: Tendrils (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:13.240Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w41: Ancient Caldera (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:13.354Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w42: Wasteland (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:13.497Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w43: Shattered (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:13.590Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w44: Fork (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:13.644Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w45: Triad (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:13.777Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w46: Mud Flats (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:13.964Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w47: Molten Lake (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.144Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w48: Archipelago (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.267Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w49: Debris Field (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.339Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w50: Domain (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.402Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w51: Veins (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.438Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w52: Glacier (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.495Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w53: Passage (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.576Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w54: Maze (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.659Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w55: Fortress (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.717Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w56: Labyrinth (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.804Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w57: Islands (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.912Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w58: Tendrils (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:14.996Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w59: Ancient Caldera (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:15.112Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w60: Wasteland (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:15.261Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w61: Shattered (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:15.360Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w62: Fork (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:15.416Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w63: Triad (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:15.548Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w64: Mud Flats (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:15.739Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w65: Molten Lake (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:15.925Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w66: Archipelago (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.049Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w67: Debris Field (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.121Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w68: Domain (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.182Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w69: Veins (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.217Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w70: Glacier (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.277Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w71: Passage (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.356Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w72: Maze (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.438Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w73: Fortress (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.496Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w74: Labyrinth (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.580Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w75: Islands (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.690Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w76: Tendrils (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.776Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w77: Ancient Caldera (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:16.887Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w78: Wasteland (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.031Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w79: Shattered (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.124Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w80: Fork (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.178Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w81: Triad (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.310Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w82: Mud Flats (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.494Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w83: Molten Lake (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.675Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w84: Archipelago (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.802Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w85: Debris Field (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.881Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w86: Domain (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.943Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w87: Veins (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:17.978Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w88: Glacier (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.035Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w89: Passage (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.123Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w90: Maze (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.204Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w91: Fortress (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.259Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w92: Labyrinth (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.343Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w93: Islands (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.453Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w94: Tendrils (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.542Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w95: Ancient Caldera (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.653Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w96: Wasteland (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.797Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w97: Shattered (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.895Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w98: Fork (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.947Z INFO  [server] com.xpdustry.shard.server.host.Host - hosting w99: Triad (survival), running parked, tick 0, 0 players 
+2026-10-29T15:03:18.947Z INFO  [main] com.xpdustry.shard.server.Server - ready: 100 worlds hosted, 1306 MB of heap in use 
+perf mark at t=32s
+perf t=42s worlds=100 players=1000 sessions=1000 conns=1000 cpu=53.9% late[n=59998 p50=55us p99=71us p999=103us max=1063us] tick[n=59998 p50=17us p99=191us p999=1663us max=4259us] dropped=0 udpOut/s=4996 tcpOut/s=1789 outKB/s=676 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=2983MB
+perf t=52s worlds=100 players=1000 sessions=1000 conns=1000 cpu=57.1% late[n=60004 p50=55us p99=71us p999=103us max=736us] tick[n=60004 p50=17us p99=207us p999=1663us max=3243us] dropped=0 udpOut/s=4994 tcpOut/s=1976 outKB/s=854 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=3718MB
+perf t=62s worlds=100 players=1000 sessions=1000 conns=1000 cpu=57.7% late[n=60003 p50=55us p99=71us p999=103us max=1019us] tick[n=60004 p50=17us p99=175us p999=1663us max=3213us] dropped=0 udpOut/s=4994 tcpOut/s=1951 outKB/s=789 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=4428MB
+perf t=72s worlds=100 players=1000 sessions=1000 conns=1000 cpu=67.6% late[n=60011 p50=55us p99=71us p999=159us max=1197us] tick[n=60010 p50=15us p99=175us p999=1535us max=3811us] dropped=0 udpOut/s=4995 tcpOut/s=1949 outKB/s=795 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=1416MB
+perf t=82s worlds=100 players=1000 sessions=1000 conns=1000 cpu=53.0% late[n=60009 p50=55us p99=71us p999=87us max=1998us] tick[n=60009 p50=14us p99=207us p999=1663us max=3213us] dropped=0 udpOut/s=4995 tcpOut/s=2004 outKB/s=887 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=2191MB
+perf t=92s worlds=100 players=1000 sessions=1000 conns=1000 cpu=52.3% late[n=60008 p50=55us p99=71us p999=87us max=508us] tick[n=60008 p50=15us p99=159us p999=1535us max=3443us] dropped=0 udpOut/s=4998 tcpOut/s=1930 outKB/s=747 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=2843MB
+perf t=102s worlds=100 players=1000 sessions=1000 conns=1000 cpu=52.7% late[n=60007 p50=55us p99=71us p999=87us max=1937us] tick[n=60007 p50=15us p99=159us p999=1535us max=3316us] dropped=0 udpOut/s=4994 tcpOut/s=1937 outKB/s=835 slow=0 spam=0 deadlines=0 rateDropped=0 malformed=0 coalesced=0 mailboxDropped=0 heap=3553MB
+SUMMARY seconds=70 worlds=100 players=1000 cpu=56.3% cpuPer100p=5.63% late[n=420052 p50=55us p99=71us p999=103us max=1998us] tick[n=420052 p50=15us p99=191us p999=1663us max=4259us] dropped=0 slow=0 spam=0 deadlines=0
+2026-10-29T15:04:59.297Z INFO  [console] com.xpdustry.shard.server.Server - shutting down 
+2026-10-29T15:04:59.572Z INFO  [console] com.xpdustry.shard.server.Server - stopped 

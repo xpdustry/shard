@@ -1,0 +1,25 @@
+# W2.17's L5 for the wave AI (WP54), the same against vanilla and Shard on fortress: a stock client spawns at the core
+# and watches the first wave's daggers walk the flowfield from the two spawns and attack it. Every second, in alpha's
+# directory: the wave, the wave team's units the client sees, the closest one's distance to the core in tiles, and
+# the core's health; approach.tsv from the first sighting, attack.tsv once one is within 14 tiles (where the shot
+# "attack" is taken). The last step passes when the closest came 30 tiles nearer than at the first sighting and the
+# core lost health. In the oracle, fortress's wave 1 first hits the core 3,700 ticks after spawning.
+#
+#   rig/run.sh --server '"$RIG"/vm/vanilla-server.sh -- host fortress' --clients 1 --script rig/scenarios/wave-ai.rig
+#   rig/run.sh --push <shard install> --server '"$RIG"/vm/shard-server.sh fortress' --clients 1 --script rig/scenarios/wave-ai.rig
+timeout 14m
+
+wait port 120s
+alpha: join
+alpha: wait 60t
+alpha: expect js "Vars.state.rules.waves && Vars.state.rules.defaultTeam.core() != null" /^true$/ 10s
+# the probe, kept in the console's scope: wave, units seen, closest distance (tiles), core health
+alpha: expect js "probe = function(){ var c = Vars.state.rules.defaultTeam.core(), n = 0, d = -1; Groups.unit.each(function(u){ if(u.team == Vars.state.rules.waveTeam && c != null){ n++; var e = Math.round(u.dst(c) / 8); if(d < 0 || e < d) d = e; } }); return [Vars.state.wave, n, d, c == null ? -1 : Math.round(c.health)]; }; typeof probe" /^function$/ 10s
+alpha: expect js "probe()[1] > 0" /^true$/ 6m
+alpha: shot wave
+alpha: sample js "probe().join()" every 1s for 10s to approach.tsv
+alpha: expect js "probe()[2] >= 0 && probe()[2] <= 14" /^true$/ 4m
+alpha: shot attack
+alpha: sample js "probe().join()" every 1s for 20s to attack.tsv
+exec awk -F'[\t,]' '$3 > 0 && $4 >= 0 { if(!s){ s = 1; d0 = $4; h0 = $5; dm = $4; hm = $5 } if($4 < dm) dm = $4; if($5 < hm) hm = $5 } END { printf "first seen %d tiles away, closest %d, core %d -> %d\n", d0, dm, h0, hm; exit !(s && d0 - dm >= 30 && hm < h0) }' alpha/approach.tsv alpha/attack.tsv
+assert clean all

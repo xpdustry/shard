@@ -1,0 +1,9 @@
+== JDK 25: openjdk version "25.0.5" 2026-10-20 LTS; 8 vCPUs, heap 2g
+trained under shenandoah: 36M (151 joins, 111 transfers, 1 kicks)
+trained under g1: 36M (150 joins, 110 transfers, 1 kicks)
+JDK 25, shenandoah, cache none: ready ms [9267 5259 4605] first join max tick ms [4.8 10.0 9.1] first leave [3.6 4.0 4.0] classes 4771: cache 1410, jrt 1037, jar 1189
+JDK 25, shenandoah, cache shenandoah: ready ms [4009 3403 4574] first join max tick ms [4.1 6.2 2.9] first leave [4.0 3.9 4.5] classes 4840: cache 4263, jrt 364, jar 0
+JDK 25, shenandoah, cache g1: ready ms [3898 4036 4211] first join max tick ms [3.2 3.7 4.8] first leave [3.5 3.7 3.6] classes 4839: cache 4264, jrt 364, jar 0
+JDK 25, g1, cache none: ready ms [3947 3369 3128] first join max tick ms [9.8 8.7 8.8] first leave [3.8 3.5 3.7] classes 4769: cache 1410, jrt 1037, jar 1189
+JDK 25, g1, cache g1: ready ms [3107 3831 3262] first join max tick ms [2.9 3.1 2.8] first leave [3.5 3.9 3.7] classes 4839: cache 4264, jrt 364, jar 0
+JDK 25, g1, cache shenandoah: ready ms [3343 4376 2844] first join max tick ms [3.4 4.0 3.4] first leave [3.9 3.6 5.4] classes 4837: cache 4263, jrt 364, jar 0

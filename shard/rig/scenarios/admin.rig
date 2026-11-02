@@ -1,0 +1,75 @@
+# W3.13's L5, two clients, one script for Shard and vanilla: the console makes alpha an admin, and alpha's stock
+# client sends the player list's admin requests (Call.adminRequest, as its buttons do): a trace of bravo, a wave skip,
+# a kick (bravo is turned away for 30 s, then joins again and the trace counts the kick), a ban (the console lists it
+# and unbans the address), and once alpha is no admin any more, a kick that does nothing. A dialog's label text comes
+# back with its color tags stripped. Both clients are 127.0.0.1, so the address ban reaches alpha's address too: alpha
+# stays connected, as in vanilla, where the in-game ban kicks only its target.
+#
+#   rig/run.sh --push <shard install> --server '"$RIG"/vm/shard-server.sh --aot fortress' --clients 2 \
+#     --script rig/scenarios/admin.rig --type large --server-cpus 0-1 --client-cpus 2-7
+#   rig/run.sh --server 'vanilla -- host Fortress' --clients 2 --script rig/scenarios/admin.rig --type large ...
+timeout 12m
+allow client-log /(?i)\bkicked\b/
+
+wait port 240s
+alpha: join
+bravo: join
+all: shot joined
+
+# the console's admin add: the flag reaches alpha's client
+console admin add alpha
+wait log server /Changed admin status of player: alpha/ 10s
+alpha: expect js "Vars.player.admin" /^true$/ 10s
+bravo: expect js "Vars.player.admin" /^false$/ 10s
+alpha: expect js "function find(n){ for(var i = 0; i < Groups.player.size(); i++){ var p = Groups.player.index(i); if(p.plainName() == n) return p; } return null; } find('bravo') != null" /^true$/ 10s
+
+# trace: the dialog shows bravo's history
+alpha: expect js "Call.adminRequest(find('bravo'), Packets.AdminAction.trace, null); 'sent'" /^sent$/
+alpha: expect dialog /Player name: bravo.*IP: 127\.0\.0\.1.*Custom Client: false.*Mobile Client: false.*Times Joined: 1.*Times Kicked: 0.*IPs:.*127\.0\.0\.1.*Names:.*bravo/ 10s
+alpha: shot trace
+alpha: dismiss
+
+# wave: the next wave, at once
+alpha: expect js "var w0 = Vars.state.wave; Call.adminRequest(Vars.player, Packets.AdminAction.wave, null); w0" /^\d+(\.0)?$/
+alpha: expect js "Vars.state.wave == w0 + 1" /^true$/ 10s
+alpha: shot wave
+
+# kick: bravo is out, refused while the cooldown runs, then back; the trace counts the kick
+bravo: drop
+alpha: expect js "Call.adminRequest(find('bravo'), Packets.AdminAction.kick, null); 'sent'" /^sent$/
+bravo: expect disconnected 10s
+bravo: expect dialog /You have been kicked from the server/ 10s
+bravo: shot kicked
+bravo: refused /You have been kicked recently/ 20s
+wait 31s
+bravo: join
+alpha: expect js "Call.adminRequest(find('bravo'), Packets.AdminAction.trace, null); 'sent'" /^sent$/
+alpha: expect dialog /Times Joined: 2.*Times Kicked: 1/ 10s
+alpha: dismiss
+
+# ban: bravo is out; the console lists the UUID and the address bans, then lifts both by the address
+bravo: drop
+alpha: expect js "Call.adminRequest(find('bravo'), Packets.AdminAction.ban, null); 'sent'" /^sent$/
+bravo: expect disconnected 10s
+bravo: expect dialog /You are banned on this server/ 10s
+bravo: shot banned
+console bans
+wait log server /Banned players \[ID\]:/ 10s
+wait log server /'127\.0\.0\.1' \/ Last known name: '(alpha|bravo)'/ 10s
+alpha: expect connected 5s
+console unban 127.0.0.1
+wait log server /Unbanned player: 127\.0\.0\.1/ 10s
+wait 31s
+bravo: join
+alpha: expect js "Call.adminRequest(find('bravo'), Packets.AdminAction.trace, null); 'sent'" /^sent$/
+alpha: expect dialog /Times Joined: 3.*Times Kicked: 2/ 10s
+alpha: dismiss
+
+# no admin any more: the server ignores alpha's kick
+console admin remove alpha
+wait log server /Changed admin status of player: alpha/ 10s
+alpha: expect js "Vars.player.admin" /^false$/ 10s
+alpha: expect js "Call.adminRequest(find('bravo'), Packets.AdminAction.kick, null); 'sent'" /^sent$/
+wait 3s
+bravo: expect connected 5s
+all: shot final

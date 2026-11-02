@@ -1,0 +1,47 @@
+JFR jdk.ExecutionSample of load.sh MAPS=stone TAG=prof (1,000 bots, 100 stone worlds, no transfers), 12:29:05-12:30:15 UTC
+samples in the window: 2634; tick threads: 1856 (70%)
+
+tick threads, inclusive:
+  1465  78.9%  sim.world.World.tick
+   152   8.2%  HostedWorld.afterTick
+    25   1.3%  ManagedWorld.boundary
+    18   1.0%  HostedWorld.beforeTick
+   323  17.4%  TickStats
+    66   3.6%  Hasher
+
+tick threads, the system under World.tick:
+   797  42.9%  com.xpdustry.shard.sim.unit.TeamStats.run
+   442  23.8%  com.xpdustry.shard.sim.unit.PlayerUpdate.run
+    75   4.0%  com.xpdustry.shard.server.sched.TickStats.enter
+    42   2.3%  com.xpdustry.shard.sim.world.World.admit
+    34   1.8%  com.xpdustry.shard.sim.spatial.PhysicsBegin.run
+    27   1.5%  com.xpdustry.shard.sim.spatial.EntityPhysics.run
+    23   1.2%  com.xpdustry.shard.sim.path.PathFlush.run
+    14   0.8%  ?
+
+tick threads, self:
+   622  33.5%  java.util.Arrays.fill
+   356  19.2%  com.xpdustry.shard.sim.entity.ActiveList.each
+   111   6.0%  sun.management.ThreadImpl.getCurrentThreadCpuTime
+    91   4.9%  com.xpdustry.shard.sim.unit.TeamUnits.recount
+    85   4.6%  com.xpdustry.shard.sim.unit.TeamUnits.of
+    48   2.6%  com.xpdustry.shard.sim.unit.PlayerSpawns.of
+    36   1.9%  com.xpdustry.shard.sim.unit.Player.update
+    22   1.2%  com.xpdustry.shard.sim.spatial.CellGrid.build
+    19   1.0%  com.xpdustry.shard.sim.world.Hasher.bytes
+    16   0.9%  com.xpdustry.shard.sim.spatial.UnitPhysics.begin
+
+other threads:
+   140 tcp-r-N
+   133 tcp-rN
+   128 ForkJoinPool-1-workerN
+    65 tcp-wN
+    59 udp-recv
+    58 io-cpuN
+    56 tcp-w-N
+    38 net-sweeper
+    33 SubPollerN
+    23 ioN
+
+Arrays.fill comes from sim.unit.UnitSeq.clear <- TeamUnits.recount <- TeamStats.run (622 of 622 tick samples);
+ActiveList.each from sim.unit.PlayerUpdate.run (356 of 356).

@@ -1,0 +1,117 @@
+# M0 (ARCHITECTURE.md §10) on a stock client pair (L5), the same against Shard and vanilla, on m0.msav (M0Map.java):
+# a core with copper and lead, an unloader east of it set to copper, a micro processor linked by name to the tile where
+# alpha's third conveyor will stand, a lancer, and solar panels charging a battery that no node joins to the lancer yet,
+# and crux's spawn 75 tiles east;
+# two daggers a wave, the first 120 s after hosting, then every 90 s.
+#  1. Alpha drags a conveyor line from the unloader and places a router with a duo on three sides; bravo sees each
+#     block, and the line feeds the duos.
+#  2. The processor's link follows the conveyor alpha built ("conveyor1"), and it switches the conveyor off and on.
+#  3. Bravo leaves and rejoins mid-scenario: the world stream has the same blocks, links and configs.
+#  4. Wave 1 walks in; the duos shoot and kill both daggers while the lancer, unpowered, never fires.
+#  5. Alpha places a power node, which links the panels and the lancer; the lancer draws power, and fires on wave 2.
+# The end-of-run checks fail on errors, "Missing entity" and every other desync line in either client's log, and on any
+# server WARN line but the two known load ones (the last assert).
+#
+#   scripts/vm-gradle.sh :server:installDist
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp "$RIG"/scenarios/m0.msav maps/m0.msav \
+#     && PUSH=/home/user/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh m0' --clients 2 --script rig/scenarios/m0.rig
+#   rig/run.sh --server 'mkdir -p config/maps && cp "$RIG"/scenarios/m0.msav config/maps/m0.msav \
+#     && exec "$RIG"/vm/vanilla-server.sh -- host m0' --clients 2 --script rig/scenarios/m0.rig
+timeout 12m
+
+wait port 90s
+alpha: join
+bravo: join
+# 16 px a tile: the core, the line, the lancer and the panels on screen
+alpha: zoom 2
+bravo: zoom 2
+all: shot joined
+all: expect js "Vars.player.team().core().items.get(Items.copper)" /^[1-9][0-9]*(\.0)?$/ 10s
+all: expect js "Vars.world.build(17,28).links.size" /^1(\.0)?$/ 10s
+
+# 1. the line
+alpha: select conveyor
+alpha: rotate 0
+alpha: drag left tile 15 25 tile 19 25
+alpha: place router tile 20 25
+# a right click drops the router: a selected block would make the turret tab pick its remembered duo, and the click
+# on the duo would drop it again
+alpha: click right tile 16 20
+alpha: expect selected none
+alpha: place duo tile 20 26
+alpha: place duo tile 20 24
+alpha: place duo tile 21 25
+alpha: click right tile 16 20
+alpha: expect selected none
+alpha: expect tile 15 25 conveyor 30s
+alpha: expect tile 19 25 conveyor 30s
+alpha: expect tile 20 25 router 30s
+alpha: expect tile 21 25 duo 30s
+bravo: expect tile 15 25 conveyor 30s
+bravo: expect tile 16 25 conveyor 10s
+bravo: expect tile 17 25 conveyor 10s
+bravo: expect tile 18 25 conveyor 10s
+bravo: expect tile 19 25 conveyor 10s
+bravo: expect tile 20 25 router 10s
+bravo: expect tile 20 26 duo 10s
+bravo: expect tile 20 24 duo 10s
+bravo: expect tile 21 25 duo 10s
+all: expect js "Vars.world.build(20,26).totalAmmo > 0 && Vars.world.build(20,24).totalAmmo > 0 && Vars.world.build(21,25).totalAmmo > 0" /^true$/ 45s
+all: shot built
+
+# 2. the processor switches the conveyor it was linked to by name
+all: expect js "Vars.world.build(17,28).links.contains(function(l){ return l.valid && l.name == 'conveyor1' && l.x == 17 && l.y == 25; })" /^true$/ 10s
+alpha: expect js "Vars.world.build(17,25).enabled" /^false$/ 10s
+all: shot processor-off
+alpha: expect js "Vars.world.build(17,25).enabled" /^true$/ 10s
+all: shot processor-on
+alpha: sample js "Vars.world.build(17,25).enabled" every 200ms for 6s to switch.tsv
+bravo: sample js "Vars.world.build(17,25).enabled" every 200ms for 6s to switch.tsv
+exec for c in alpha bravo; do grep -q 'false' $c/switch.tsv && grep -q 'true' $c/switch.tsv || { echo "$c never saw the switch"; exit 1; }; done
+
+# 3. bravo rejoins: the world stream has the line, the processor's valid link and the unloader's item
+bravo: rejoin
+bravo: expect tile 15 25 conveyor 30s
+bravo: expect tile 19 25 conveyor 10s
+bravo: expect tile 20 25 router 10s
+bravo: expect tile 20 26 duo 10s
+bravo: expect tile 20 24 duo 10s
+bravo: expect tile 21 25 duo 10s
+bravo: expect js "Vars.world.build(17,28).links.contains(function(l){ return l.valid && l.name == 'conveyor1'; })" /^true$/ 10s
+bravo: expect js "Vars.world.build(14,25).config() == Items.copper" /^true$/ 10s
+bravo: expect js "Vars.world.build(22,29).power.graph == Vars.world.build(25,33).power.graph" /^false$/ 10s
+bravo: zoom 2
+all: shot rejoined
+
+# 4. wave 1: the duos kill both daggers; the unpowered lancer never fires
+all: expect js "probe = function(){ var n = 0; Groups.unit.each(function(u){ if(u.team == Vars.state.rules.waveTeam) n++; }); return n; }; typeof probe" /^function$/ 10s
+alpha: expect js "Vars.state.wave" /^2(\.0)?$/ 3m
+alpha: expect js "probe() > 0" /^true$/ 20s
+all: shot wave
+alpha: expect js "Vars.world.build(20,26).totalShots + Vars.world.build(20,24).totalShots + Vars.world.build(21,25).totalShots > 0" /^true$/ 60s
+all: shot shot
+all: expect js "probe()" /^0(\.0)?$/ 60s
+all: shot kill
+all: expect js "Vars.world.build(22,29).totalShots" /^0(\.0)?$/ 5s
+all: expect js "Vars.state.rules.defaultTeam.core() != null" /^true$/ 5s
+
+# 5. power: the node links the panels and the lancer, which draws power and fires on wave 2
+alpha: place power-node tile 24 31
+alpha: click right tile 16 20
+alpha: expect tile 24 31 power-node 30s
+bravo: expect tile 24 31 power-node 30s
+all: expect js "Vars.world.build(22,29).power.graph == Vars.world.build(25,33).power.graph" /^true$/ 10s
+all: expect js "Vars.world.build(22,29).power.status > 0" /^true$/ 10s
+all: shot powered
+alpha: expect js "Vars.state.wave" /^3(\.0)?$/ 3m
+all: expect js "Vars.world.build(22,29).totalShots > 0" /^true$/ 60s
+all: shot lancer
+all: expect js "probe()" /^0(\.0)?$/ 60s
+all: shot wave2-dead
+
+assert clean all
+assert clean server
+# No server WARN line, except the two a busy VM makes (two software-rendered clients share its CPUs): the watchdog's "stalled
+# for N ms" and the scheduler's "N ticks behind; dropping them". Tick lag has its own gates; this run is about the game.
+# Shard's log lines look like "<time> WARN  [thread] logger - text"; vanilla's server log has none, so this passes there.
+assert log server !/^\S+ WARN ++(?!\[tick-watchdog\] \S+ - world \S+ stalled for \d+ ms|\[tick-\d+\] \S+ - world \S+ is \d+ ticks behind; dropping them until it keeps up)/

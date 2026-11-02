@@ -1,0 +1,16 @@
+RUN base-r1    ticks=18091 dropped=0 tick p50=0.383 p99=2.559 ms total=4.291 tick=3.842 MiB/s tick=13.05 KiB/wtick gc=1 pause=17 ms
+     67.35 MiB  26.4%  TileSolidity.grid:27  TileSolidity$$Lambda
+     11.52 MiB   4.5%  BulletUpdate.lambda$run$0:48  Bullet
+     10.39 MiB   4.1%  UnitProjection.<init>:54  Codecs$Mount
+      9.28 MiB   3.6%  Frame.udp:131  HeapByteBufferR
+      7.26 MiB   2.8%  Frame.packet:65  [B
+      6.69 MiB   2.6%  EntityProjector.unit:89  UnitProjection
+      6.60 MiB   2.6%  BulletUpdate.collide:251  ArrayList$Itr
+      6.37 MiB   2.5%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      5.61 MiB   2.2%  UnitProjection.<init>:56  Object;
+      5.32 MiB   2.1%  Frame.packet:75  [B
+      5.14 MiB   2.0%  BulletUpdate.collide:249  ArrayList
+      4.71 MiB   1.8%  Predict.intercept:28  Vec2
+      4.32 MiB   1.7%  Predict.quad:72  [F
+      4.09 MiB   1.6%  Writes.toByteArray:119  [B
+      3.87 MiB   1.5%  UnitProjection.<init>:52  Object;

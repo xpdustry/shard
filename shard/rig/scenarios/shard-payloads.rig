@@ -1,0 +1,71 @@
+# W3.9 (WP65) on Shard, 2 clients on payloads.msav (PayloadsMap.java: a core, a mega, a dagger above it and a
+# container of 50 copper below). alpha takes the mega over (unitControl, sent as ctrl+click does) and, with vanilla's
+# keys ([ picks up, ] drops), lifts the dagger and sets it down; then lifts the container (requestBuildPayload, as [
+# sends it); a deny rule refuses its drop with the rule's message, and once the rule is gone it goes down two tiles
+# east (requestDropPayload, as ] sends it, at a set place). The server's tiles and both clients' view of the mega
+# follow each change.
+#
+# Vanilla quirk: a client may never place a dropped building, though its copy of the carrier held it. Likely the
+# entity snapshot that empties the carrier's payloads reaches it before the payloadDropped Call, which then has
+# nothing to drop. Its tile stays empty until it reloads, and block snapshots of the building skip it ("Missing
+# entity"). A vanilla server does it too (bravo, against vanilla-server.sh), so the clients' tiles aren't checked
+# after a drop.
+allow client-log /Missing entity at stone:air:air\[18,12\]/
+#
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp ~/shard/rig/scenarios/payloads.msav maps/ \
+#     && PUSH=~/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh "payloads sandbox"' \
+#     --clients 2 --script rig/scenarios/shard-payloads.rig
+timeout 8m
+
+wait port 120s
+alpha: join
+bravo: join
+all: shot joined
+
+# the mega, from alpha's core unit
+alpha: expect js "(function(){Call.unitControl(Vars.player, Groups.unit.find(function(u){return u.type == UnitTypes.mega}));return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().type.name" /^mega$/ 10s
+bravo: expect js "Groups.unit.find(function(u){return u.type == UnitTypes.mega}).isPlayer()" /^true$/ 10s
+
+# [ takes the closest dagger first: requestUnitPayload, then pickedUnitPayload to everyone
+alpha: press OPEN_BRACKET
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+bravo: expect js "Groups.unit.count(function(u){return u.type == UnitTypes.dagger})" /^0(\.0)?$/ 10s
+all: shot dagger-lifted
+# ] sets it down where the mega is: requestDropPayload, then payloadDropped; it comes back as a new unit
+alpha: press CLOSE_BRACKET
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+bravo: expect js "Groups.unit.count(function(u){return u.type == UnitTypes.dagger})" /^1(\.0)?$/ 10s
+
+# the container, three and a half tiles below, within reach: requestBuildPayload, then pickedBuildPayload
+alpha: expect js "(function(){Call.requestBuildPayload(Vars.player, Vars.world.build(14, 8));return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+bravo: expect js "Vars.world.build(14, 8) == null" /^true$/ 10s
+console tile payloads 14 8
+wait log server /^tile 14,8 .* block=air / 10s
+# bravo's mega holds it too: its team and copper, through the Call and the entity snapshots
+bravo: expect js "(function(){var m = Groups.unit.find(function(u){return u.type == UnitTypes.mega});return m.payloads.size + ' ' + (m.payloads.size > 0 ? m.payloads.peek().build.team.id + ' ' + m.payloads.peek().build.items.get(Items.copper) : '-')})()" /^1 1 50$/ 10s
+all: shot container-lifted
+# a deny rule on dropPayload: the drop is refused with the rule's message, and the mega keeps the container. Drops
+# go to (145, 98), tile (18, 12) for a 2x2 block: within the mega's 4-tile margin and clear of the dagger under it, as
+# ] sends requestDropPayload with the player's position (] itself checks the ground under the mega first)
+console actions payloads deny no-drop dropPayload [scarlet]No dropping here.
+wait log server /rule no-drop denies dropPayload/ 10s
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect chat /No dropping here/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+all: shot denied
+# without the rule it goes down there
+console actions payloads allow no-drop
+wait log server /rule no-drop removed/ 10s
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+bravo: expect js "Groups.unit.find(function(u){return u.type == UnitTypes.mega}).payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+all: shot dropped
+
+assert clean all
+assert clean server

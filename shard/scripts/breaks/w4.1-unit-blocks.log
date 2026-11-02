@@ -1,0 +1,51 @@
+# One run (W4.10, review 43): the clean baseline and all 23 breaks on one head (9f5d9338, base eb31de33), SPEED = 27.5,
+# through runner.py with --no-build-cache (every run executed the fixtures). The two earlier runs (21 at SPEED = 30 before
+# later merges, 3 at 27.5) are in git history (3b0c30c2^:shard/scripts/breaks/w4.1-unit-blocks.log).
+OK       clean: fails nothing
+CAUGHT   factory: progress ignores unitBuildSpeed: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 3 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 20: |   vanilla air-factory (10, 10) id 0 team 1 rot 0 at 80.0,80.0 health 360.0 enabled true added true payload false efficiency 1.0 items [silicon=2] liquids none power 1.0 links [] graph 2/16666.666/0.0/0.0 p
+CAUGHT   factory: items not scaled by unitCost: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 3 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 20: |   vanilla air-factory (10, 10) id 0 team 1 rot 0 at 80.0,80.0 health 360.0 enabled true added true payload false efficiency 1.0 items [silicon=2] liquids none power 1.0 links [] graph 2/16666.666/0.0/0.0 p
+CAUGHT   factory: one more item accepted: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 3 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 44: |   vanilla air-factory (10, 10) id 0 team 1 rot 0 at 80.0,80.0 health 360.0 enabled true added true payload false efficiency 1.0 items [silicon=6] liquids none power 1.0 links [] graph 2/16666.666/1.2/0.0 p
+CAUGHT   factory: consumes while holding a unit: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 3 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 53: |   vanilla power-source (9, 8) id 6 team 1 rot 0 at 72.0,64.0 health 40.0 enabled true added false payload false efficiency 0.0 items none liquids none power 0.0 links [] graph 2/16666.666/0.0/0.0 |   shard
+CAUGHT   factory: a new one starts on its last plan: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: as built: |   vanilla air-factory (10, 10) id 0 team 1 rot 0 at 80.0,80.0 health 360.0 enabled true added true payload false efficiency 0.0 items [] liquids none power 0.0 links [] graph 2/0.0/0.0/0.0 progress 0.0 time 0.0 
+CAUGHT   factory: a unit type config picks another plan: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 12: |   vanilla air-factory (10, 10) id 0 team 1 rot 0 at 80.0,80.0 health 360.0 enabled true added true payload false efficiency 0.0 items [] liquids none power 1.0 links [] graph 2/16666.666/0.0/0.0 progress 0
+CAUGHT   factory: null leaves the command: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 26: |   vanilla air-factory (10, 10) id 0 team 1 rot 0 at 80.0,80.0 health 360.0 enabled true added true payload false efficiency 1.0 items [silicon=3] liquids none power 1.0 links [] graph 2/16666.666/1.2/0.0 p
+CAUGHT   factory: speedScl eases faster: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 3 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 20: |   vanilla air-factory (10, 10) id 0 team 1 rot 0 at 80.0,80.0 health 360.0 enabled true added true payload false efficiency 1.0 items [silicon=2] liquids none power 1.0 links [] graph 2/16666.666/0.0/0.0 p
+CAUGHT   reconstructor: progress ignores unitBuildSpeed: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 153: |   vanilla additive-reconstructor (12, 12) id 9 team 1 rot 0 at 96.0,96.0 health 360.0 enabled true added true payload false efficiency 1.0 items [graphite=8,silicon=8] liquids none power 1.0 links [] grap
+CAUGHT   reconstructor: items not scaled by unitCost: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 136: |   vanilla power-source (11, 10) id 15 team 1 rot 0 at 88.0,80.0 health 40.0 enabled true added false payload false efficiency 0.0 items none liquids none power 0.0 links [] graph 2/16666.666/3.0/0.0 |   s
+CAUGHT   reconstructor: constructing read live, not cached: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 135: |   vanilla additive-reconstructor (12, 12) id 9 team 1 rot 0 at 96.0,96.0 health 360.0 enabled true added true payload false efficiency 0.0 items [graphite=8,silicon=8] liquids none power 1.0 links [] grap
+CAUGHT   reconstructor: leftover progress dropped: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 684: |   vanilla exponential-reconstructor (28, 12) id 29 team 1 rot 0 at 224.0,96.0 health 3035.0 enabled true added true payload false efficiency 1.0 items [titanium=60,silicon=50,plastanium=66] liquids [cryof
+CAUGHT   reconstructor: speedScl eases faster: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 153: |   vanilla additive-reconstructor (12, 12) id 9 team 1 rot 0 at 96.0,96.0 health 360.0 enabled true added true payload false efficiency 1.0 items [graphite=8,silicon=8] liquids none power 1.0 links [] grap
+CAUGHT   base: no sound pitch draw: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 3 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 52: |   vanilla time 52.0 random 7012638942279425926,7270495155136044058 next id 9 |   shard   time 52.0 random -7902756111965646037,7012638942279425926 next id 9
+CAUGHT   base: unitBlockSpawn keeps the progress: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 547: |   vanilla prime-refabricator (19, 8) id 19 team 1 rot 0 at 152.0,64.0 health 2500.0 enabled true added true payload false efficiency 0.0 items [thorium=14,silicon=16] liquids [nitrogen=100.0] power 1.0 li
+CAUGHT   base: no unitBlockSpawn Call: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 3 of 3 failed; first: java.lang.AssertionError: Calls in frame 70: [all udp UnitSpawn 000000080300000000000000000009000143300000432000000000003f8000000000000000000000428c000000ffffffff01000000000000000000000000000000000000000000000000000000000000000001000f01bde19ff03ee46cf642b7cccc
+CAUGHT   base: made units ignore the rally point: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 1 of 3 failed; first: java.lang.AssertionError: Calls in frame 70, Call 0 ==> expected: <all udp UnitSpawn 000000080300000000000000000009000143300000432000000000003f8000000000000000000000428c000000ffffffff01000000000000000000000000000000000000000000000000000000000000000001000f01bde
+CAUGHT   codec: no command written as 254: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 3 of 3 failed; first: org.opentest4j.AssertionFailedError: air-factory at (10, 10): save chunk ==> expected: <0343b40000800103010b000100090000000600003f800000000041400000000000000000000001000300090009000143300000432000000000003f8000000000000000000000428c000000ffffffff01000000000000
+CAUGHT   codec: factory plan as a byte: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 3 of 3 failed; first: org.opentest4j.AssertionFailedError: air-factory at (10, 10): save chunk ==> expected: <0343b40000800103010b000100090000000600003f800000000041400000000000000000000001000300090009000143300000432000000000003f8000000000000000000000428c000000ffffffff01000000000000
+CAUGHT   codec: reconstructor progress not read: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: additive-reconstructor at (12, 12): save chunk ==> expected: <0343b40000800103010b000200030000000800090000000800003f800000ffff000000000000000000000000010004000900000000000900000000000000000000000000000000004316000000fffffff
+CAUGHT   Call: unitBlockSpawn tile transposed: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 2 of 3 failed; first: java.lang.AssertionError: Calls in frame 192, Call 1 ==> expected: <all tcp UnitBlockSpawn 000c0020> but was: <all tcp UnitBlockSpawn 0020000c> | units at the frame's start: | dump checks: |  vanilla additive-reconstructor holds mace at 107.899994,96.0 rot 0.0
+CAUGHT   cap: one unit over: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 1 of 3 failed; first: java.lang.AssertionError: Calls in frame 172: [] vs [all tcp UnitCapDeath 020000000a, all udp UnitSpawn 0000000a0300000000000000000009000143300000432000000000003f8000000000000000000000428c000000ffffffff0100000000000000000000000000000000000000000000000000000000
+CAUGHT   payload: a push no longer delays the dump: fails UnitBlockOracleTest
+           UnitBlockOracleTest: 1 of 3 failed; first: java.lang.AssertionError: Calls in frame 772: [] vs [all udp UnitSpawn 0000006c2b000000000000000000090000000000000000000000000000000000459c400000ffffffff010000000000000000000000000000000000000000000000000000000000000000010028013caf2720be3e1010432c000042800000,
+23 of 23 breaks fail

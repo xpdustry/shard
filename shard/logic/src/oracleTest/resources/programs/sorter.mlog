@@ -1,0 +1,31 @@
+# storage monitor + sorter: scan links, sense vaults, set sorters, log to a cell, report on a message
+set i 0
+set total 0
+set best null
+set bestv 0
+scan:
+getlink b i
+sensor t b @type
+jump skip notEqual t @vault
+sensor tot b @totalItems
+sensor cap b @itemCapacity
+sensor cu b @copper
+sensor pb b @lead
+op div fill tot cap
+op add total total tot
+write tot cell1 i
+jump skip lessThanEq cu bestv
+set bestv cu
+set best b
+skip:
+op add i i 1
+jump scan lessThan i @links
+op greaterThan heavy bestv 500
+select item equal heavy true @copper @lead
+control config sorter1 item 0 0 0
+control enabled sorter2 heavy 0 0 0
+print "total: "
+print total
+print "\nbest: "
+print bestv
+printflush message1

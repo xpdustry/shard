@@ -1,0 +1,13 @@
+# W4.10 (review 43), on 3f0bc55f plus the CommandRun net-mode fix, --no-build-cache. 4 of 4 breaks fail, each its own test.
+OK       clean: fails nothing
+CAUGHT   turret: lastRangeChange not hashed: fails TurretRangeHashToggleTest
+           TurretRangeHashToggleTest: 3 of 4 failed; first: org.opentest4j.AssertionFailedError: the rewrite removed exactly one hashed field ==> expected: <1> but was: <0>
+OK       clean: fails nothing
+CAUGHT   fog: the dynamic circle not one wider: fails FogOutcomeOracleTest, FogSaveOracleTest
+           FogOutcomeOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: settled at frame 906: team sharded's visible tiles ==> expected: <{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 36, 37, 38, 39, 40, 41, 42, 43, 44, 96
+           FogSaveOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: frame 1: team sharded's visible tiles ==> expected: <{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115,
+CAUGHT   fog: a loaded chunk sets each run one tile short: fails FogSaveOracleTest
+           FogSaveOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: loaded: the static-fog-data chunk ==> expected: <020060003001039f3fa43ba739a937aa36ac34ad33ae32ae32af31b030b030b12fb12fb2038b20c31dc51bc719c818ca16cb15cc14cc14cd13ce12ce12cf11cf11d010d010d010d10fd10fd10fd10fd10fd10fd10fd10f
+CAUGHT   formation: units kept twice as far apart: fails MoveOutcomeOracleTest
+           MoveOutcomeOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: group 1: arrived at frame 937 in vanilla, 936 in Shard; centroid (70.05766, 26.01967) vs (70.08319, 25.888824) tiles, spread 2.145659 vs 3.3139486 tiles: spreads within 1 tiles ==> expected: <true> but was: <false>
+4 of 4 breaks fail

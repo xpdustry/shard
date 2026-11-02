@@ -1,0 +1,26 @@
+# float-heavy loop: trig, sqrt, integer division, modulo, angle/len
+set i 0
+set acc 0
+loop:
+op mul x i 0.01
+op sin s x
+op cos c x
+op mul s s s
+op mul c c c
+op add t s c
+op sqrt r t
+op idiv q i 7
+op mod m i 13
+op mul m m q
+op angle ang s c
+op len l x i
+op add acc acc r
+op add acc acc m
+op add acc acc ang
+op sub acc acc l
+op floor acc acc
+op add i i 1
+jump loop lessThan i 100000
+set i 0
+set acc 0
+jump loop always

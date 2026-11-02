@@ -1,0 +1,57 @@
+# W3.7's L5 (WP45): a stock client mines and deposits, the same against Shard and vanilla, on mine.msav (MineMap.java):
+# 64x40 stone in survival, no waves, an empty core-shard at (10, 33), copper ore by it at (14..16, 36..38) and in the
+# top-right corner at (58..62, 36..39), 50 tiles away, with a container at (58, 33).
+#  1. Alpha taps the ore by the core: each copper it mines goes straight into the core (transferItemTo).
+#  2. It walks up, then right, to the corner, out of the core's mineTransferRange, and taps the ore there: the copper
+#     lands in its own stack.
+#  3. It drags its stack onto the container (transferInventory).
+#  4. It fills its stack again, walks left along the top row, and drags the stack onto the core.
+# Every count is read on the client (`expect js`): what the server's Calls and snapshots told it. The walks hold their
+# keys long (a software-rendered client runs slower than the wall clock; the map's edges stop the unit), and each drag
+# starts on the unit (`player`): vanilla starts dropping a unit's items only within 11 units of it.
+#
+#   scripts/vm-gradle.sh :server:installDist
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp "$RIG"/scenarios/mine.msav maps/mine.msav \
+#     && PUSH=/home/user/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh mine' --clients 1 --script rig/scenarios/shard-mine.rig
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p config/maps && cp "$RIG"/scenarios/mine.msav config/maps/mine.msav \
+#     && exec "$RIG"/vm/vanilla-server.sh -- host mine' --clients 1 --script rig/scenarios/shard-mine.rig
+timeout 8m
+
+wait port 90s
+alpha: join
+# 16 px a tile: the ore and the container on screen from the corner
+alpha: zoom 2
+alpha: shot joined
+alpha: expect js "Vars.player.team().core().items.get(Items.copper)" /^0(\.0)?$/ 10s
+
+# 1. by the core: mined copper goes into the core
+alpha: click left tile 15 37
+alpha: expect js "Vars.player.unit().mineTile == null ? 'none' : Vars.player.unit().mineTile.x + ',' + Vars.player.unit().mineTile.y" /^15,37$/ 5s
+alpha: expect js "Vars.player.team().core().items.get(Items.copper)" /^([5-9]|[1-9][0-9]+)(\.0)?$/ 60s
+alpha: expect js "Vars.player.unit().stack.amount" /^0(\.0)?$/ 5s
+alpha: shot mining-by-core
+
+# 2. the corner, out of the core's reach: mined copper lands in the stack
+alpha: hold W 5s
+alpha: hold D 15s
+alpha: expect js "Vars.player.unit().x > 440 && Vars.player.unit().y > 280" /^true$/ 20s
+alpha: click left tile 60 38
+alpha: expect js "Vars.player.unit().stack.amount" /^(1[0-9]|2[0-9]|30)(\.0)?$/ 60s
+alpha: shot stack
+
+# 3. the stack onto the container
+alpha: drag left player tile 58 33
+alpha: expect js "Vars.world.build(58,33).items.get(Items.copper)" /^(1[0-9]|2[0-9]|30)(\.0)?$/ 10s
+alpha: shot container
+
+# 4. the stack again, back along the top row, onto the core
+alpha: expect js "Vars.player.unit().stack.amount" /^(1[0-9]|2[0-9]|30)(\.0)?$/ 60s
+alpha: hold A 15s
+alpha: expect js "Vars.player.unit().x < 40 && Vars.player.unit().y > 280" /^true$/ 20s
+alpha: expect js "Vars.player.unit().stack.amount > 0 && Vars.player.unit().mineTile == null" /^true$/ 5s
+alpha: drag left player tile 10 33
+alpha: expect js "Vars.player.unit().stack.amount" /^0(\.0)?$/ 10s
+alpha: expect js "Vars.player.team().core().items.get(Items.copper) > 20" /^true$/ 10s
+alpha: shot core
+wait 3s
+assert clean

@@ -1,0 +1,9 @@
+OK       clean: fails nothing
+CAUGHT   the soft cap closes at once, as before: fails SlowClientTest
+           SlowClientTest: 3 of 3 failed; first: org.opentest4j.AssertionFailedError: frame 65 ==> expected: <true> but was: <false>
+CAUGHT   a backlog over the soft cap is never closed: fails SlowClientTest
+           SlowClientTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: still open over the soft cap past the grace ==> expected: <false> but was: <true>
+CAUGHT   no hard ceiling: fails SlowClientTest
+           SlowClientTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: a queue over the 1048576 B ceiling was kept ==> expected: <true> but was: <false>
+CAUGHT   draining under the soft cap does not end the grace: fails SlowClientTest
+           SlowClientTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: back under the soft cap ==> expected: <0> but was: <1000000001>

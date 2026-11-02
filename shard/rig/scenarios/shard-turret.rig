@@ -1,0 +1,55 @@
+# W5.7 (WP60's block units, and the control selection) on Shard, 2 clients on turret.msav (TurretMap.java: a core, a
+# duo holding 20 rounds and fed nothing, no enemy anywhere). The same script runs against vanilla's server: every
+# check is on a client.
+#
+# alpha ctrl-clicks the duo and controls it through its block unit (unitControl), aims south-west at empty ground and
+# holds the trigger: with no enemy the duo only turns and fires because the player does, so bravo sees it face the
+# aim and spend rounds. Then alpha ctrl-clicks the core, which respawns it there (buildingControlSelect,
+# CoreBuild.onControlSelect), and the duo is nobody's. bravo sees each change.
+#
+# Left out: a player's dagger entering the map's payload conveyor. On vanilla's server too it never entered (the
+# dagger drifts east off the conveyor, and a buildingControlSelect sent while the client saw it on the conveyor
+# changed nothing), so it is covered by UnitLogicOracleTest and BuildingControlSelectTest instead.
+#
+#   scripts/vm-gradle.sh :server:installDist
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp "$RIG"/scenarios/turret.msav maps/turret.msav \
+#     && PUSH=/home/user/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh "turret sandbox"' \
+#     --clients 2 --script rig/scenarios/shard-turret.rig
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p config/maps && cp "$RIG"/scenarios/turret.msav config/maps/turret.msav \
+#     && exec "$RIG"/vm/vanilla-server.sh -- host turret sandbox' --clients 2 --script rig/scenarios/shard-turret.rig
+timeout 8m
+
+wait port 120s
+alpha: join
+bravo: join
+all: shot joined
+
+# the duo holds its 20 rounds and faces up: nothing to shoot
+bravo: expect js "Vars.world.build(14, 8).totalAmmo" /^20$/ 20s
+wait 3s
+bravo: expect js "Vars.world.build(14, 8).totalAmmo + ' ' + Vars.world.build(14, 8).rotation" /^20 90(\.0)?$/ 10s
+
+# a ctrl-click on the duo: unitControl with its block unit
+alpha: move tile 14 8
+alpha: hold CONTROL+MOUSE_LEFT 200ms
+alpha: expect js "Vars.player.unit() instanceof BlockUnitc" /^true$/ 10s
+bravo: expect js "Groups.player.find(function(p){return p.name == 'alpha'}).unit() instanceof BlockUnitc" /^true$/ 10s
+all: shot controlling
+
+# alpha aims at empty ground south-west (225 degrees) and holds the trigger
+alpha: move tile 8 2
+alpha: hold MOUSE_LEFT 3s
+bravo: expect js "(function(){var d = Vars.world.build(14, 8); return d.totalAmmo < 20 && Math.abs(d.rotation - 225) < 10})()" /^true$/ 10s
+alpha: expect js "(function(){var d = Vars.world.build(14, 8); return d.totalAmmo < 20 && Math.abs(d.rotation - 225) < 10})()" /^true$/ 10s
+all: shot fired
+
+# a ctrl-click on the core: the player leaves the duo and respawns at the core
+alpha: move tile 8 8
+alpha: hold CONTROL+MOUSE_LEFT 200ms
+alpha: expect js "Vars.player.unit().type.name" /^alpha$/ 10s
+bravo: expect js "Groups.player.find(function(p){return p.name == 'alpha'}).unit().type.name" /^alpha$/ 10s
+bravo: expect js "Vars.world.build(14, 8).unit.isPlayer()" /^false$/ 10s
+all: shot core-select
+
+assert clean all
+assert clean server

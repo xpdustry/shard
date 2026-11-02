@@ -1,0 +1,45 @@
+OK       clean: fails nothing
+MISSED   clean, again: fails nothing
+CAUGHT   reconstructor: takes from its front: fails ReconstructorRefusalOracleTest
+           ReconstructorRefusalOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 130: |   vanilla ground-factory (6, 8) id 0 team 1 rot 0 at 48.0,64.0 health 360.0 enabled true added true payload false efficiency 0.0 items [lead=4,titanium=4,silicon=6] liquids none power 1.0 links [] graph 2
+CAUGHT   reconstructor: takes a banned upgrade: fails ReconstructorRefusalOracleTest
+           ReconstructorRefusalOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 135: |   vanilla payload-conveyor (9, 20) id 26 team 1 rot 0 at 72.0,160.0 health 360.0 enabled true added true payload false efficiency 1.0 items none liquids none progress 0.0 itemRotation 9.530565E-5 animatio
+CAUGHT   reconstructor: hasUpgrade asks about the upgrade: fails ReconstructorRefusalOracleTest
+           ReconstructorRefusalOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 2: |   vanilla additive-reconstructor (12, 32) id 35 team 1 rot 0 at 96.0,256.0 health 360.0 enabled true added true payload false efficiency 0.0 items [] liquids none power 1.0 links [] graph 2/16666.666/0.0/0.
+CAUGHT   reconstructor: takes an unresearched upgrade: fails ReconstructorRefusalOracleTest
+           ReconstructorRefusalOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 45: |   vanilla payload-conveyor (6, 8) id 0 team 1 rot 0 at 48.0,64.0 health 360.0 enabled true added true payload false efficiency 1.0 items none liquids none progress 0.0 itemRotation 0.0 animation 0.96999997
+CAUGHT   reconstructor: an AI team needs research too: fails ReconstructorRefusalOracleTest
+           ReconstructorRefusalOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 45: |   vanilla additive-reconstructor (9, 32) id 18 team 2 rot 0 at 72.0,256.0 health 360.0 enabled true added true payload false efficiency 0.0 items [graphite=7,silicon=7] liquids none power 1.0 links [] grap
+CAUGHT   unit blocks: everything researched in the campaign: fails ReconstructorRefusalOracleTest
+           ReconstructorRefusalOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 2: |   vanilla additive-reconstructor (9, 20) id 9 team 1 rot 0 at 72.0,160.0 health 360.0 enabled true added true payload false efficiency 0.0 items [] liquids none power 1.0 links [] graph 2/16666.666/0.0/0.0 
+CAUGHT   deconstructor: pours by the payload's size (Q225 undone): fails PayloadGapsOracleTest
+           PayloadGapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 3: |   vanilla time 3.0 random -3362008279201360373,-1365312400830858464 next id 46 |   shard   time 3.0 random 8063980740190914962,-1935332205998389981 next id 25 |   vanilla puddle 12 at 7,9 water amount 44.44
+CAUGHT   loader: charges by its whole input: fails PayloadGapsOracleTest
+           PayloadGapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 46: |   vanilla payload-loader (8, 10) id 1 team 1 rot 0 at 64.0,80.0 health 645.0 enabled true added true payload false efficiency 1.0 items [] power 1.0 links [] graph 4/33333.332/42.0/0.0 payVector 0.0,0.0 pa
+CAUGHT   unloader: drains half as fast: fails PayloadGapsOracleTest
+           PayloadGapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 181: |   vanilla payload-unloader (11, 10) id 5 team 1 rot 0 at 88.0,80.0 health 645.0 enabled true added true payload false efficiency 1.0 items [] power 1.0 links [] graph 4/33333.332/44.0/0.0 payVector 0.0,0.
+CAUGHT   large constructor: refuses its smallest size: fails PayloadGapsOracleTest
+           PayloadGapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: as built: |   vanilla large-constructor (5, 10) id 3 team 1 rot 0 at 40.0,80.0 health 2500.0 enabled true added true payload false efficiency 0.0 items [] power 0.0 links [] graph 2/0.0/0.0/0.0 payVector 0.0,0.0 payRotation
+CAUGHT   large driver: charges a tick longer: fails PayloadGapsOracleTest
+           PayloadGapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 190: |   vanilla time 190.0 random -3316441345133366397,6257313302038212342 next id 26 |   shard   time 190.0 random -8108722261328812909,-3316441345133366397 next id 26 |   vanilla large-payload-mass-driver (9,
+CAUGHT   cargo: stale points taken first: fails CargoGapsOracleTest
+           CargoGapsOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 703: |   vanilla unit #13 manifold t1 at 96.47122(42c0f144),183.75972(4337c27d) rot 153.56334(43199037) v -2.1421812(c009197f),1.0680705(3f88b689) hp 200.0(43480000) el 1.0(3f800000) added true stack berylliumx2
+CAUGHT   cargo: gives up a destroyed point: fails CargoGapsOracleTest
+           CargoGapsOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 1301: |   vanilla unit #13 manifold t1 at 173.67506(432dacd1),147.99454(4313fe9a) rot 335.502(43a7c042) v 3.1857934(404be40a),-1.4493861(bfb9857c) hp 200.0(43480000) el 1.0(3f800000) added true stack berylliumx2
+CAUGHT   prebuild: ore searched from the core: fails CargoGapsOracleTest
+           CargoGapsOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 122: |   vanilla unit #1 alpha t2 at 237.06601(436d10e6),207.2402(434f3d7e) rot 195.26727(4343446c) v -2.4817636(c01ed537),-0.86385727(bf5d25c0) hp 150.0(43160000) el 1.0(3f800000) added true stack copperx0 mine
+CAUGHT   fog: every unit seen by its centre: fails FogGapsOracleTest
+           FogGapsOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: frame 542: the scepter in fog to sharded ==> expected: <false> but was: <true>
+CAUGHT   fog: a removed source redraws nothing: fails FogGapsOracleTest
+           FogGapsOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: frame 901: team sharded's visible tiles ==> expected: <{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 11
+CAUGHT   fog: a player doesn't make an AI team more than AI: fails FogAiTeamOracleTest
+           FogAiTeamOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: frame 301: team crux has fog ==> expected: <true> but was: <false>
+CAUGHT   fog: an AI-only team's source discovers: fails FogAiTeamOracleTest
+           FogAiTeamOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: frame 51: team malis's discovered tiles ==> expected: <{58, 59, 60, 61, 62, 153, 154, 155, 156, 157, 158, 159, 249, 250, 251, 252, 253, 254, 255, 345, 346, 347, 348, 349, 350, 351, 442, 443, 444, 445, 446, 539, 540, 541}> b
+CAUGHT   build: undiscovered tiles placeable: fails FogGapsOracleTest
+           FogGapsOracleTest: 1 of 1 failed; first: org.opentest4j.AssertionFailedError: frame 1: tiles where vanilla's validPlace differs (vanilla's answer) ==> expected: <> but was: <20,1=false 21,1=false 22,1=false 23,1=false 24,1=false 25,1=false 26,1=false 27,1=false 28,1=false 29,1=false 30,1=false 31,1=f
+OK       clean: fails nothing
+CAUGHT   server: the transport ignores the clock it was given: fails ServerTest
+           ServerTest: 1 of 25 failed; first: org.opentest4j.AssertionFailedError: the server closed the quiet client ==> expected: <false> but was: <true>
+CAUGHT   transport: the read timeout counts from the accept: fails ServerTest
+           ServerTest: 1 of 25 failed; first: org.opentest4j.AssertionFailedError: the server closed the quiet client ==> expected: <false> but was: <true>

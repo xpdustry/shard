@@ -1,0 +1,976 @@
+{
+  "type": "liquid",
+  "ordinal": 4,
+  "count": 11,
+  "entries": [ {
+    "id": 0,
+    "name": "water",
+    "class": "mindustry.content.Liquids$1",
+    "fields": {
+      "id": 0,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "water",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "water",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": true,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      }, {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": false,
+      "color": "#596ab8ff",
+      "gasColor": "#e5e5e5ff",
+      "barColor": null,
+      "lightColor": "#00000000",
+      "flammability": 0.0,
+      "temperature": 0.5,
+      "heatCapacity": 0.4,
+      "viscosity": 0.5,
+      "explosiveness": 0.0,
+      "blockReactive": true,
+      "coolant": true,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:wet"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": 0.5,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ ]
+    }
+  }, {
+    "id": 1,
+    "name": "slag",
+    "class": "mindustry.content.Liquids$2",
+    "fields": {
+      "id": 1,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "slag",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "slag",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      }, {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": false,
+      "color": "#ffa166ff",
+      "gasColor": "#bfbfbfff",
+      "barColor": null,
+      "lightColor": "#f0511d66",
+      "flammability": 0.0,
+      "temperature": 1.0,
+      "heatCapacity": 0.5,
+      "viscosity": 0.7,
+      "explosiveness": 0.0,
+      "blockReactive": true,
+      "coolant": true,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:melting"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": 2.0,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ ]
+    }
+  }, {
+    "id": 2,
+    "name": "oil",
+    "class": "mindustry.content.Liquids$3",
+    "fields": {
+      "id": 2,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "oil",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "oil",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": false,
+      "color": "#313131ff",
+      "gasColor": "#666666ff",
+      "barColor": "#6b675fff",
+      "lightColor": "#00000000",
+      "flammability": 1.2,
+      "temperature": 0.5,
+      "heatCapacity": 0.7,
+      "viscosity": 0.75,
+      "explosiveness": 1.2,
+      "blockReactive": true,
+      "coolant": true,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:tarred"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": 0.65,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ {
+        "$ref": "liquid:water"
+      } ]
+    }
+  }, {
+    "id": 3,
+    "name": "cryofluid",
+    "class": "mindustry.content.Liquids$4",
+    "fields": {
+      "id": 3,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "cryofluid",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "cryofluid",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": false,
+      "color": "#6ecdecff",
+      "gasColor": "#c1e8f5ff",
+      "barColor": null,
+      "lightColor": "#0097f533",
+      "flammability": 0.0,
+      "temperature": 0.25,
+      "heatCapacity": 0.9,
+      "viscosity": 0.5,
+      "explosiveness": 0.0,
+      "blockReactive": true,
+      "coolant": true,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:freezing"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": 0.55,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ ]
+    }
+  }, {
+    "id": 4,
+    "name": "neoplasm",
+    "class": "mindustry.content.Liquids$5",
+    "fields": {
+      "id": 4,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "neoplasm",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "neoplasm",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": false,
+      "color": "#c33e2bff",
+      "gasColor": "#bfbfbfff",
+      "barColor": null,
+      "lightColor": "#00000000",
+      "flammability": 0.0,
+      "temperature": 0.54,
+      "heatCapacity": 0.4,
+      "viscosity": 0.85,
+      "explosiveness": 0.0,
+      "blockReactive": false,
+      "coolant": true,
+      "moveThroughBlocks": true,
+      "incinerable": false,
+      "effect": {
+        "$ref": "status:none"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": 2.0,
+      "capPuddles": false,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ {
+        "$ref": "liquid:arkycite"
+      }, {
+        "$ref": "liquid:cryofluid"
+      }, {
+        "$ref": "liquid:oil"
+      }, {
+        "$ref": "liquid:water"
+      } ],
+      "colorFrom": "#e8803fff",
+      "colorTo": "#8c1225ff",
+      "cells": 6,
+      "spreadTarget": {
+        "$ref": "liquid:water"
+      },
+      "maxSpread": 0.75,
+      "spreadConversion": 1.2,
+      "spreadDamage": 0.11,
+      "removeScaling": 0.25
+    }
+  }, {
+    "id": 5,
+    "name": "arkycite",
+    "class": "mindustry.content.Liquids$6",
+    "fields": {
+      "id": 5,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "arkycite",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "arkycite",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": false,
+      "color": "#84a94bff",
+      "gasColor": "#bfbfbfff",
+      "barColor": null,
+      "lightColor": "#00000000",
+      "flammability": 0.4,
+      "temperature": 0.5,
+      "heatCapacity": 0.5,
+      "viscosity": 0.7,
+      "explosiveness": 0.0,
+      "blockReactive": true,
+      "coolant": true,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:none"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": 2.0,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ ]
+    }
+  }, {
+    "id": 6,
+    "name": "gallium",
+    "class": "mindustry.content.Liquids$7",
+    "fields": {
+      "id": 6,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "gallium",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "gallium",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "gas": false,
+      "color": "#9a9dbfff",
+      "gasColor": "#bfbfbfff",
+      "barColor": null,
+      "lightColor": "#00000000",
+      "flammability": 0.0,
+      "temperature": 0.5,
+      "heatCapacity": 0.5,
+      "viscosity": 0.5,
+      "explosiveness": 0.0,
+      "blockReactive": true,
+      "coolant": false,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:none"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": 2.0,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": true,
+      "canStayOn": [ ]
+    }
+  }, {
+    "id": 7,
+    "name": "ozone",
+    "class": "mindustry.content.Liquids$8",
+    "fields": {
+      "id": 7,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "ozone",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "ozone",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": true,
+      "color": "#fc81dd99",
+      "gasColor": "#fc81dd99",
+      "barColor": "#d699f0ff",
+      "lightColor": "#00000000",
+      "flammability": 1.0,
+      "temperature": 0.5,
+      "heatCapacity": 0.5,
+      "viscosity": 0.5,
+      "explosiveness": 1.0,
+      "blockReactive": true,
+      "coolant": true,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:none"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": -1.0,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ ]
+    }
+  }, {
+    "id": 8,
+    "name": "hydrogen",
+    "class": "mindustry.content.Liquids$9",
+    "fields": {
+      "id": 8,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "hydrogen",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "hydrogen",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": true,
+      "color": "#9eabf799",
+      "gasColor": "#9eabf799",
+      "barColor": "#9eabf7ff",
+      "lightColor": "#00000000",
+      "flammability": 1.0,
+      "temperature": 0.5,
+      "heatCapacity": 0.5,
+      "viscosity": 0.5,
+      "explosiveness": 0.0,
+      "blockReactive": true,
+      "coolant": true,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:none"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": -1.0,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ ]
+    }
+  }, {
+    "id": 9,
+    "name": "nitrogen",
+    "class": "mindustry.content.Liquids$10",
+    "fields": {
+      "id": 9,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "nitrogen",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "nitrogen",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": true,
+      "color": "#efe3ff99",
+      "gasColor": "#efe3ff99",
+      "barColor": "#efe3ffff",
+      "lightColor": "#00000000",
+      "flammability": 0.0,
+      "temperature": 0.5,
+      "heatCapacity": 0.5,
+      "viscosity": 0.5,
+      "explosiveness": 0.0,
+      "blockReactive": true,
+      "coolant": true,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:none"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": -1.0,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ ]
+    }
+  }, {
+    "id": 10,
+    "name": "cyanogen",
+    "class": "mindustry.content.Liquids$11",
+    "fields": {
+      "id": 10,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "cyanogen",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "cyanogen",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "liquid",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "gas": true,
+      "color": "#89e8b699",
+      "gasColor": "#89e8b699",
+      "barColor": "#89e8b6ff",
+      "lightColor": "#00000000",
+      "flammability": 2.0,
+      "temperature": 0.5,
+      "heatCapacity": 0.5,
+      "viscosity": 0.5,
+      "explosiveness": 0.0,
+      "blockReactive": true,
+      "coolant": true,
+      "moveThroughBlocks": false,
+      "incinerable": true,
+      "effect": {
+        "$ref": "status:none"
+      },
+      "particleEffect": {
+        "$static": "Fx.none"
+      },
+      "particleSpacing": 60.0,
+      "boilPoint": -1.0,
+      "capPuddles": true,
+      "vaporEffect": {
+        "$static": "Fx.vapor"
+      },
+      "hidden": false,
+      "canStayOn": [ ]
+    }
+  } ]
+}

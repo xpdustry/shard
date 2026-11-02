@@ -1,0 +1,12 @@
+build/
+.gradle/
+.kotlin/
+.idea/
+*.iml
+out/
+*.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+.vm-id
+.vm-id-*
+# Gradle output only; source packages named build stay tracked
+!**/src/**/build/

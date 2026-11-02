@@ -1,0 +1,16 @@
+RUN mine-r1    ticks=18125 dropped=0 tick p50=0.415 p99=1.919 ms total=3.128 tick=2.654 MiB/s tick=9.00 KiB/wtick gc=0 pause=0 ms
+     12.21 MiB   6.6%  Frame.udp:131  HeapByteBufferR
+     11.55 MiB   6.2%  UnitProjection.<init>:54  Codecs$Mount
+      9.80 MiB   5.3%  BulletUpdate.lambda$run$0:48  Bullet
+      7.67 MiB   4.1%  EntityProjector.unit:89  UnitProjection
+      6.64 MiB   3.6%  BulletUpdate.collide:249  ArrayList
+      6.32 MiB   3.4%  BulletUpdate.lambda$run$1:49  Bullet
+      5.94 MiB   3.2%  UnitProjection.<init>:56  Object;
+      5.02 MiB   2.7%  BulletUpdate.collide:251  ArrayList$Itr
+      4.71 MiB   2.5%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      4.14 MiB   2.2%  UnitProjection.<init>:52  Object;
+      4.02 MiB   2.2%  Frame.packet:65  [B
+      3.87 MiB   2.1%  Predict.quad:72  [F
+      3.70 MiB   2.0%  (no Shard frame)  AbstractQueuedSynchronizer$ConditionNode
+      3.08 MiB   1.7%  UnitProjection.<init>:65  ArrayList
+      3.00 MiB   1.6%  Predict.intercept:28  Vec2

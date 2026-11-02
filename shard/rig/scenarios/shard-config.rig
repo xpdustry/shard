@@ -1,0 +1,78 @@
+# Review 39's blocker on Shard (L5), 2 stock clients on sync-routers.msav (SyncRoutersMap.java) in sandbox: alpha
+# builds two power nodes and a processor with a switch on the open stone between the core (8,8) and the router field,
+# then links and unlinks them by tapping, as a player does (PowerNode/LogicBlock onConfigureBuildTapped -> configure).
+# Alpha's client runs each config itself (tileConfig is called = Loc.both); the server must forward it to bravo once:
+# a second copy toggles the link back on bravo's client. Both clients must show the same links and power graphs after
+# every toggle, and so must a fresh world stream from the server (bravo's rejoin).
+#
+#   scripts/vm-gradle.sh :server:installDist
+#   rig/run.sh --push <install>/shard --server 'mkdir -p maps && cp "$RIG"/scenarios/sync-routers.msav maps/routers.msav \
+#     && exec "$RIG"/vm/shard-server.sh "routers sandbox"' --clients 2 --script rig/scenarios/shard-config.rig
+timeout 8m
+
+wait port 90s
+alpha: join
+bravo: join
+alpha: zoom 2
+all: shot joined
+
+# the second node autolinks to the first on the server (PowerNode.placed), which tells both clients
+alpha: place power-node tile 12 14
+alpha: expect tile 12 14 power-node 30s
+alpha: place power-node tile 15 14
+alpha: expect tile 15 14 power-node 30s
+bravo: expect tile 15 14 power-node 30s
+all: expect js "Vars.world.build(12,14).power.links.size" /^1(\.0)?$/ 10s
+all: expect js "Vars.world.build(12,14).power.graph == Vars.world.build(15,14).power.graph" /^true$/ 10s
+
+# a processor and a switch in its range, unlinked
+alpha: place micro-processor tile 12 17
+alpha: expect tile 12 17 micro-processor 30s
+alpha: place switch tile 14 17
+alpha: expect tile 14 17 switch 30s
+bravo: expect tile 14 17 switch 30s
+alpha: click right tile 16 11
+alpha: expect selected none
+all: expect js "Vars.world.build(12,17).links.size" /^0(\.0)?$/ 10s
+all: shot built
+
+# alpha taps the first node, then the second: the link goes, on both clients
+alpha: click left tile 12 14
+alpha: click left tile 15 14
+alpha: expect js "Vars.world.build(12,14).power.links.size" /^0(\.0)?$/ 10s
+wait 2s
+all: expect js "Vars.world.build(12,14).power.links.size" /^0(\.0)?$/ 5s
+all: expect js "Vars.world.build(15,14).power.links.size" /^0(\.0)?$/ 5s
+all: expect js "Vars.world.build(12,14).power.graph == Vars.world.build(15,14).power.graph" /^false$/ 5s
+# a tap on empty floor closes the config, so the next tap starts afresh
+alpha: click left tile 16 11
+all: shot unlinked
+
+# alpha taps the processor, then the switch: a link, on both clients
+alpha: click left tile 12 17
+alpha: click left tile 14 17
+alpha: expect js "Vars.world.build(12,17).links.size" /^1(\.0)?$/ 10s
+wait 2s
+all: expect js "Vars.world.build(12,17).links.size" /^1(\.0)?$/ 5s
+alpha: click left tile 16 11
+
+# and links the nodes again
+alpha: click left tile 12 14
+alpha: click left tile 15 14
+alpha: expect js "Vars.world.build(12,14).power.links.size" /^1(\.0)?$/ 10s
+wait 2s
+all: expect js "Vars.world.build(12,14).power.links.size" /^1(\.0)?$/ 5s
+all: expect js "Vars.world.build(12,14).power.graph == Vars.world.build(15,14).power.graph" /^true$/ 5s
+alpha: click left tile 16 11
+all: shot relinked
+
+# the server's own state, in a fresh world stream: the nodes linked, the processor linked to the switch
+bravo: rejoin
+bravo: expect tile 15 14 power-node 30s
+bravo: expect js "Vars.world.build(12,14).power.links.size" /^1(\.0)?$/ 10s
+bravo: expect js "Vars.world.build(12,14).power.graph == Vars.world.build(15,14).power.graph" /^true$/ 5s
+bravo: expect js "Vars.world.build(12,17).links.size" /^1(\.0)?$/ 5s
+all: shot rejoined
+
+assert clean all
+assert clean server

@@ -1,0 +1,51 @@
+# W3.12's L5 (WP74), two stock clients, one script for Shard and vanilla, on objectives.msav (ObjectivesMap.java):
+# each client sees the map's three objectives with the first one's text, and the three markers a world processor made
+# (the shape-and-text one with its printed text); alpha builds a conveyor, the build-count objective completes on the
+# server (completeObjective), its flag lets the world processor set "done", the flag objective completes too, and both
+# clients show the long timer's text; after a rejoin, bravo's world stream carries the progress and the markers.
+#
+#   scripts/vm-gradle.sh :server:installDist
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp "$RIG"/scenarios/objectives.msav maps/objectives.msav \
+#     && PUSH=/home/user/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh objectives' --clients 2 \
+#     --script rig/scenarios/objectives.rig
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p config/maps && cp "$RIG"/scenarios/objectives.msav config/maps/ \
+#     && exec "$RIG"/vm/vanilla-server.sh -- host objectives' --clients 2 --script rig/scenarios/objectives.rig
+timeout 9m
+
+wait port 120s
+alpha: join
+bravo: join
+all: shot joined
+alpha: expect js "Vars.state.map.name()" /^objectives$/
+
+# the objectives, and the first one's text as the HUD shows it
+all: expect js "Vars.state.rules.objectives.all.size" /^3(\.0)?$/
+all: expect js "Vars.state.rules.objectives.all.get(0).text()" /Conveyor|conveyor/
+all: expect js "Vars.state.rules.objectives.all.get(0).isCompleted()" /^false$/
+# the world processor's markers, made by each client's own copy of it and by the stream
+all: expect js "Vars.state.markers.size()" /^3(\.0)?$/ 20s
+all: expect js "Vars.state.markers.get(1).text" /W3\.12 marker/ 20s
+all: expect js "Vars.state.markers.get(3).endPos.x" /^128(\.0)?$/
+all: expect js "Vars.state.markers.mapMarkers.size" /^1(\.0)?$/
+alpha: zoom 2
+all: shot markers
+
+# alpha builds the conveyor the first objective asks for
+alpha: place conveyor tile 12 9 rot 0
+alpha: expect tile 12 9 conveyor 30s
+all: expect js "Vars.state.rules.objectives.all.get(0).isCompleted()" /^true$/ 20s
+all: expect js "Vars.state.rules.objectiveFlags.contains('built')" /^true$/
+all: expect js "Vars.state.rules.objectives.all.get(1).isCompleted()" /^true$/ 20s
+all: expect js "Vars.state.rules.objectiveFlags.contains('done')" /^true$/
+# a timer objective's text field shadows text() in Rhino
+all: expect js "Vars.state.rules.objectives.all.get(2).text" /Long timer/
+all: shot completed
+
+# a fresh world stream: the progress and the markers
+bravo: rejoin
+bravo: expect js "Vars.state.rules.objectives.all.get(0).isCompleted() && Vars.state.rules.objectives.all.get(1).isCompleted()" /^true$/
+bravo: expect js "Vars.state.rules.objectives.all.get(2).isCompleted()" /^false$/
+bravo: expect js "Vars.state.markers.size()" /^3(\.0)?$/ 20s
+bravo: expect js "Vars.state.markers.get(1).text" /W3\.12 marker/
+bravo: shot rejoined
+wait 5s

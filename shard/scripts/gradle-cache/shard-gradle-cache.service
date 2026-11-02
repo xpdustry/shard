@@ -1,0 +1,13 @@
+[Unit]
+Description=Shard Gradle build cache (sloppa preview shard-gradle-cache)
+After=network-online.target
+
+[Service]
+# sloppa stops the preview after its 24 h TTL; Restart=always starts a new one (same name, same URL).
+Restart=always
+RestartSec=5s
+Environment="PATH=%h/.local/bin:%h/.ascii/bin:%h/.local/share/mise/shims:/usr/local/bin:/usr/bin:/bin"
+ExecStart=%h/.cache/shard/gradle-cache/bin/run.sh
+
+[Install]
+WantedBy=default.target

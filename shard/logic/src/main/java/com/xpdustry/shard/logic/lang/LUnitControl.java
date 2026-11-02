@@ -1,0 +1,7 @@
+package com.xpdustry.shard.logic.lang;
+
+/** Vanilla's {@code LUnitControl}: the {@code ucontrol} commands, in vanilla's order. */
+public enum LUnitControl{
+    idle, stop, move, approach, pathfind, autoPathfind, boost, target, targetp, itemDrop, itemTake, payDrop, payTake,
+    payEnter, mine, flag, build, deconstruct, getBlock, within, unbind
+}

@@ -1,0 +1,134 @@
+OK       clean: fails nothing
+breaks: 1 to run, 1 at a time
+CAUGHT   hitSize: a dead building keeps its size: fails HitSizeTest
+           HitSizeTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: dead, its tile is air ==> expected: <8.0> but was: <16.0>
+breaks:    24 s  hitSize: a dead building keeps its size
+breaks: 2 in 117 s
+OK       clean: fails nothing
+breaks: 44 to run, 2 at a time
+breaks:    21 s  squad: mobilized and idle units mix
+breaks:    19 s  squad: attacking units lead squads
+breaks:    15 s  squad: rounds every second
+breaks:    28 s  squad: no start offset
+CAUGHT   squad: a smaller radius: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 388 (1 failure) | 	org.opentest4j.AssertionFailedError: units #6 ==> expected: <#62 dagger t2 at 223.84898(435fd957),235.10971(436b1c16) rot 59.442867(426dc57f) v 0.0(0),0.0(0) hp 150.0(43160000) el 0.0(0) [0.0
+CAUGHT   squad: mobilized and idle units mix: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 388 (3 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-6136546101301609080> but was: <4558274432962182331> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <8623
+CAUGHT   squad: attacking units lead squads: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 148 (1 failure) | 	org.opentest4j.AssertionFailedError: units #7 ==> expected: <#63 dagger t2 at 169.1602(43292903),259.64984(4381d32e) rot 21.82889(41aea191) v 0.0(0),0.0(0) hp 150.0(43160000) el 0.0(0) [18.0(
+CAUGHT   squad: rounds every second: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 1 (4 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-3459412466157639052> but was: <7671661050662966720> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <621203
+CAUGHT   squad: no start offset: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 1 (3 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-3459412466157639052> but was: <-8503297334515792453> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <62120
+breaks:   103 s  squad: a smaller radius
+MISSED   defend: cores not first: fails nothing
+breaks:    47 s  defend: cores not first
+MISSED   defend: the first of equals: fails nothing
+breaks:    47 s  defend: the first of equals
+MISSED   defend: a shorter aggressor search: fails nothing
+breaks:    37 s  defend: a shorter aggressor search
+CAUGHT   defend: at the aggressor itself: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 148 (1 failure) | 	org.opentest4j.AssertionFailedError: units #6 ==> expected: <#62 dagger t2 at 167.7363(4327bc7e),146.82367(4312d2dc) rot 5.0(40a00000) v 0.12758449(3e02a582),0.21499349(3e5c2741) hp 150.0(431
+breaks:    24 s  defend: at the aggressor itself
+CAUGHT   defend: defenders not mobilized: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 388 (3 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-6136546101301609080> but was: <4558274432962182331> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <8623
+breaks:    23 s  defend: defenders not mobilized
+CAUGHT   defend: no damage heard: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 37 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 37 #0 ==> expected: <rts timers [28.0(41e00000) 0.0(0) ] damaged build@55,25> but was: <rts timers [28.0(41e00000) 0.0(0) ] dam
+breaks:    22 s  defend: no damage heard
+CAUGHT   target: no minimum squad: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 268 (2 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <1724486025736595201> but was: <3306234881964870333> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <47332
+breaks:    19 s  target: no minimum squad
+CAUGHT   target: cores first: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 388 (1 failure) | 	org.opentest4j.AssertionFailedError: units #7 ==> expected: <#188 dagger t2 at 167.77795(4327c728),140.09178(430c177f) rot 0.0(0) v 0.0(0),0.0(0) hp 150.0(43160000) el 0.0(0) [0.0(0) 0.0(0) 0
+breaks:    22 s  target: cores first
+CAUGHT   target: no shuffle: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 28 (2 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <7678999288396166409> but was: <-2489685532610105741> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <48812
+breaks:    20 s  target: no shuffle
+CAUGHT   target: fewer checked: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 388 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#51 dagger t2 at 173.71875(432db800),246.48851(43767d0f) rot 39.52483(421e196d) v 0.0(0),0.0(0) hp 150.0(43160000) el 0.0(0) [0.0(
+breaks:    25 s  target: fewer checked
+MISSED   target: distance weighs more: fails nothing
+breaks:    22 s  target: distance weighs more
+CAUGHT   target: one squad per target ignored: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 388 (3 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-6136546101301609080> but was: <3763232985136262720> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <8623
+breaks:    19 s  target: one squad per target ignored
+MISSED   target: no weight threshold: fails nothing
+breaks:    20 s  target: no weight threshold
+MISSED   estimate: no extra radius: fails nothing
+breaks:    20 s  estimate: no extra radius
+MISSED   estimate: turrets do no damage: fails nothing
+breaks:    19 s  estimate: turrets do no damage
+MISSED   estimate: units do no damage: fails nothing
+breaks:    20 s  estimate: units do no damage
+CAUGHT   estimate: a turret fires twice as often: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 28 (1 failure) | 	org.opentest4j.AssertionFailedError: units #0 ==> expected: <#51 dagger t2 at 192.0(43400000),192.0(43400000) rot 0.0(0) v 0.0(0),0.0(0) hp 150.0(43160000) el 0.0(0) [0.0(0) 0.0(0) 0 false -] 
+breaks:    16 s  estimate: a turret fires twice as often
+CAUGHT   core units: every 6 s: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 388 (5 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-6136546101301609080> but was: <3763232985136262720> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <8623
+breaks:    22 s  core units: every 6 s
+CAUGHT   build: cores not filled: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 1 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 1 #4 ==> expected: <core@30,35 1073741823 1073741823 1073741823 1073741823 1073741823 1073741823 1073741823 1073741823 107374182
+breaks:    24 s  build: cores not filled
+CAUGHT   build: one core unit per core: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 600 (5 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-8503297334515792453> but was: <7772721467740593238> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-345
+breaks:    31 s  build: one core unit per core
+CAUGHT   build: shorter walk steps: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 2 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 2 #0 ==> expected: <build timers [0.0(0) 0.0(0) 0.0(0) ] found false calculating true started true count 50 total 0 at 84,35> bu
+breaks:    29 s  build: shorter walk steps
+CAUGHT   build: path without neighbours: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 2 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 2 #2 ==> expected: <calcPath [2228258, 2228259, 2228260, 2293794, 2293795, 2293796, 2359330, 2359331, 2359332, 2424866, 2424867,
+breaks:    19 s  build: path without neighbours
+MISSED   build: parts on the path: fails nothing
+breaks:    19 s  build: parts on the path
+CAUGHT   build: placement interval reversed: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 3 (3 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <7305897376198627525> but was: <-8108722261328812909> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-65103
+breaks:    14 s  build: placement interval reversed
+CAUGHT   build: fewer attempts: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 3 (2 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <7305897376198627525> but was: <-6705173092691076320> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-65103
+breaks:    17 s  build: fewer attempts
+CAUGHT   build: empty parts more often: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 3 (2 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <7305897376198627525> but was: <-5004197728451506375> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-65103
+CAUGHT   build: parts near spawns: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 5 (2 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <4290864402576712656> but was: <5181904288962551403> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <4914165
+breaks:    19 s  build: empty parts more often
+breaks:    14 s  build: parts near spawns
+breaks:    12 s  build: fewer turns
+MISSED   build: drills on other ores: fails nothing
+CAUGHT   build: fewer turns: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 5 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 5 #3 ==> expected: <plans> but was: <plans [46,58 r3 copper-wall-large -] [44,57 r3 copper-wall-large -] [46,57 r0 duo -] [47,57
+breaks:    13 s  build: drills on other ores
+CAUGHT   build: centre not turned: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 7 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 7 #3 ==> expected: <plans [49,32 r1 duo -] [49,31 r1 conveyor -] [49,30 r1 conveyor -] [49,29 r1 conveyor -] [49,28 r1 conveyor 
+breaks:    12 s  build: centre not turned
+CAUGHT   build: plans first: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 7 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 7 #3 ==> expected: <plans [49,32 r1 duo -] [49,31 r1 conveyor -] [49,30 r1 conveyor -] [49,29 r1 conveyor -] [49,28 r1 conveyor 
+breaks:    12 s  build: plans first
+CAUGHT   registry: tier power: fails BaseRegistryOracleTest
+           BaseRegistryOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: cores #0 (core-low2.msch) tier ==> expected: <1186275224> but was: <1193956810>
+breaks:    13 s  registry: tier power
+CAUGHT   registry: sandbox tiles kept: fails TeamAiOracleTest, BaseRegistryOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 7 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 7 #3 ==> expected: <plans [49,32 r1 duo -] [49,31 r1 conveyor -] [49,30 r1 conveyor -] [49,29 r1 conveyor -] [49,28 r1 conveyor 
+           BaseRegistryOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: parts for item/coal #0 (1591380739339.msch) tiles: [surge-tower@0,0 r0 [], combustion-generator@0,2 r3 -, mechanical-drill@0,3 r0 -, combustion-generator@1,2 r3 -] vs [surge-tower@0,0 r0 [], combustion-generator@0,2 r3 -, m
+breaks:    13 s  registry: sandbox tiles kept
+breaks:    13 s  registry: no fallback names
+CAUGHT   registry: no drill centre: fails TeamAiOracleTest, BaseRegistryOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 5 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 5 #3 ==> expected: <plans> but was: <plans [49,52 r1 copper-wall-large -] [51,53 r1 copper-wall-large -] [50,54 r2 duo -] [49,54
+           BaseRegistryOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: cores #1 (core-low1.msch) centerX ==> expected: <0> but was: <7>
+CAUGHT   registry: no fallback names: fails BaseRegistryOracleTest
+           BaseRegistryOracleTest: 2 of 3 failed; first: org.opentest4j.AssertionFailedError: parts for item/coal #12 (752937230456193185.msch) tiles #0 ==> expected: <hail@0,2 r2 -> but was: <water-extractor@0,2 r1 ->
+breaks:    15 s  registry: no drill centre
+CAUGHT   rotation: the other way: fails TeamAiOracleTest, BaseRegistryOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 5 (1 failure) | 	org.opentest4j.AssertionFailedError: team 2 AI state after frame 5 #3 ==> expected: <plans> but was: <plans [50,60 r3 copper-wall-large -] [48,59 r3 copper-wall-large -] [50,59 r0 duo -] [51,59
+           BaseRegistryOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: a single large power node.msch turned -1 #0 ==> expected: <power-node-large@0,1 r3 []> but was: <power-node-large@1,0 r1 []>
+breaks:    12 s  rotation: the other way
+CAUGHT   rotation: points not turned: fails BaseRegistryOracleTest
+           BaseRegistryOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: shardAtrax.msch turned -2 #62 ==> expected: <bridge-conduit@19,8 r2 (-2,0)> but was: <bridge-conduit@19,8 r2 (2,0)>
+breaks:    13 s  rotation: points not turned
+breaks:    11 s  hitSize: a dead building keeps its size
+CAUGHT   rotation: processor links not turned: fails BaseRegistryOracleTest
+           BaseRegistryOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: 772642700713000960.msch turned -2 #7 ==> expected: <micro-processor@5,6 r0 bytes224033248/176> but was: <micro-processor@5,6 r0 bytes-608397312/175>
+CAUGHT   hitSize: a dead building keeps its size: fails TeamAiOracleTest
+           TeamAiOracleTest: 1 of 2 failed; first: org.opentest4j.MultipleFailuresError: after frame 1136 (1 failure) | 	org.opentest4j.AssertionFailedError: units #8 ==> expected: <#90 dagger t2 at 468.85583(43ea6d8c),199.84361(4347d7f7) rot 329.73413(43a4ddf8) v 0.30229345(3e9ac635),-0.1764048(be34a376) hp 1
+breaks:    15 s  rotation: processor links not turned
+breaks: 45 in 539 s

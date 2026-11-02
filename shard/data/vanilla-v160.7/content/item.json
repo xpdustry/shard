@@ -1,0 +1,1614 @@
+{
+  "type": "item",
+  "ordinal": 0,
+  "count": 22,
+  "entries": [ {
+    "id": 0,
+    "name": "copper",
+    "class": "mindustry.content.Items$1",
+    "fields": {
+      "id": 0,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "copper",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "copper",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": true,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#d99d73ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 1,
+      "cost": 0.5,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 1,
+    "name": "lead",
+    "class": "mindustry.content.Items$2",
+    "fields": {
+      "id": 1,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "lead",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "lead",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#8c7fa9ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 1,
+      "cost": 0.7,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 2,
+    "name": "metaglass",
+    "class": "mindustry.content.Items$3",
+    "fields": {
+      "id": 2,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "metaglass",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "metaglass",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#ebeef5ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.5,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 3,
+    "name": "graphite",
+    "class": "mindustry.content.Items$4",
+    "fields": {
+      "id": 3,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "graphite",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "graphite",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      }, {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#b2c6d2ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.0,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 4,
+    "name": "sand",
+    "class": "mindustry.content.Items$5",
+    "fields": {
+      "id": 4,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "sand",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "sand",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": true,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      }, {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#f7cba4ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.0,
+      "healthScaling": 0.0,
+      "lowPriority": true,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": false,
+      "hidden": false
+    }
+  }, {
+    "id": 5,
+    "name": "coal",
+    "class": "mindustry.content.Items$6",
+    "fields": {
+      "id": 5,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "coal",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "coal",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#272727ff",
+      "explosiveness": 0.2,
+      "flammability": 1.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 2,
+      "cost": 1.0,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": false,
+      "hidden": false
+    }
+  }, {
+    "id": 6,
+    "name": "titanium",
+    "class": "mindustry.content.Items$7",
+    "fields": {
+      "id": 6,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "titanium",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "titanium",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#8da1e3ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 3,
+      "cost": 1.0,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 7,
+    "name": "thorium",
+    "class": "mindustry.content.Items$8",
+    "fields": {
+      "id": 7,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "thorium",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "thorium",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      }, {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#f9a3c7ff",
+      "explosiveness": 0.2,
+      "flammability": 0.0,
+      "radioactivity": 1.0,
+      "charge": 0.0,
+      "hardness": 4,
+      "cost": 1.1,
+      "healthScaling": 0.2,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 8,
+    "name": "scrap",
+    "class": "mindustry.content.Items$9",
+    "fields": {
+      "id": 8,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "scrap",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "scrap",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#777777ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 0.5,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 9,
+    "name": "silicon",
+    "class": "mindustry.content.Items$10",
+    "fields": {
+      "id": 9,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "silicon",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "silicon",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      }, {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#53565cff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 0.8,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 10,
+    "name": "plastanium",
+    "class": "mindustry.content.Items$11",
+    "fields": {
+      "id": 10,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "plastanium",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "plastanium",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#cbd97fff",
+      "explosiveness": 0.2,
+      "flammability": 0.1,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.3,
+      "healthScaling": 0.1,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 11,
+    "name": "phase-fabric",
+    "class": "mindustry.content.Items$12",
+    "fields": {
+      "id": 11,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "phase-fabric",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "phase-fabric",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      }, {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#f4ba6eff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.6,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.3,
+      "healthScaling": 0.25,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 12,
+    "name": "surge-alloy",
+    "class": "mindustry.content.Items$13",
+    "fields": {
+      "id": 12,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "surge-alloy",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "surge-alloy",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      }, {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      }, {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#f3e979ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.75,
+      "hardness": 0,
+      "cost": 1.2,
+      "healthScaling": 0.25,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 13,
+    "name": "spore-pod",
+    "class": "mindustry.content.Items$14",
+    "fields": {
+      "id": 13,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "spore-pod",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "spore-pod",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#7457ceff",
+      "explosiveness": 0.0,
+      "flammability": 1.15,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.0,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": false,
+      "hidden": false
+    }
+  }, {
+    "id": 14,
+    "name": "blast-compound",
+    "class": "mindustry.content.Items$15",
+    "fields": {
+      "id": 14,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "blast-compound",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "blast-compound",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#ff795eff",
+      "explosiveness": 1.2,
+      "flammability": 0.4,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.0,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": false,
+      "hidden": false
+    }
+  }, {
+    "id": 15,
+    "name": "pyratite",
+    "class": "mindustry.content.Items$16",
+    "fields": {
+      "id": 15,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "pyratite",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "pyratite",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:serpulo"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#ffaa5fff",
+      "explosiveness": 0.4,
+      "flammability": 1.4,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.0,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": false,
+      "hidden": false
+    }
+  }, {
+    "id": 16,
+    "name": "beryllium",
+    "class": "mindustry.content.Items$17",
+    "fields": {
+      "id": 16,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "beryllium",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "beryllium",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#3a8f64ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 3,
+      "cost": 1.2,
+      "healthScaling": 0.6,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 17,
+    "name": "tungsten",
+    "class": "mindustry.content.Items$18",
+    "fields": {
+      "id": 17,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "tungsten",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "tungsten",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#768a9aff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 5,
+      "cost": 1.5,
+      "healthScaling": 0.8,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 18,
+    "name": "oxide",
+    "class": "mindustry.content.Items$19",
+    "fields": {
+      "id": 18,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "oxide",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "oxide",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#e4ffd6ff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.2,
+      "healthScaling": 0.5,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 19,
+    "name": "carbide",
+    "class": "mindustry.content.Items$20",
+    "fields": {
+      "id": 19,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "carbide",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "carbide",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseTabs": [ {
+        "$ref": "planet:erekir"
+      } ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": {
+        "$techNode": {
+          "$same": "$"
+        }
+      },
+      "techNodes": [ {
+        "$techNode": {
+          "$same": "$"
+        }
+      } ],
+      "unlocked": false,
+      "color": "#89769aff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.4,
+      "healthScaling": 1.1,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": false
+    }
+  }, {
+    "id": 20,
+    "name": "fissile-matter",
+    "class": "mindustry.content.Items$21",
+    "fields": {
+      "id": 20,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "fissile-matter",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "fissile-matter",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "color": "#5e988dff",
+      "explosiveness": 0.0,
+      "flammability": 0.0,
+      "radioactivity": 1.5,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.0,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": true
+    }
+  }, {
+    "id": 21,
+    "name": "dormant-cyst",
+    "class": "mindustry.content.Items$22",
+    "fields": {
+      "id": 21,
+      "minfo": {
+        "$class": "mindustry.ctype.Content$ModContentInfo",
+        "mod": null,
+        "sourceFile": null,
+        "error": null,
+        "baseError": null,
+        "asset": null
+      },
+      "removed": false,
+      "name": "dormant-cyst",
+      "stats": {
+        "$class": "mindustry.world.meta.Stats",
+        "useCategories": false,
+        "intialized": false,
+        "timePeriod": -1.0,
+        "map": null,
+        "dirty": false
+      },
+      "localizedName": "dormant-cyst",
+      "description": null,
+      "details": null,
+      "credit": null,
+      "alwaysUnlocked": false,
+      "inlineDescription": true,
+      "hideDetails": true,
+      "hideDatabase": false,
+      "generateIcons": true,
+      "selectionSize": 24.0,
+      "uiIcon": null,
+      "fullIcon": null,
+      "fullOverride": "",
+      "allDatabaseTabs": false,
+      "shownPlanets": [ ],
+      "databaseTabs": [ ],
+      "databaseCategory": "item",
+      "databaseTag": "default",
+      "techNode": null,
+      "techNodes": [ ],
+      "unlocked": false,
+      "color": "#df824dff",
+      "explosiveness": 0.0,
+      "flammability": 0.1,
+      "radioactivity": 0.0,
+      "charge": 0.0,
+      "hardness": 0,
+      "cost": 1.0,
+      "healthScaling": 0.0,
+      "lowPriority": false,
+      "frames": 0,
+      "transitionFrames": 0,
+      "frameTime": 5.0,
+      "buildable": true,
+      "hidden": true
+    }
+  } ]
+}

@@ -1,0 +1,8 @@
+# Rig self-test, a deliberate failure: a screenshot taken before the client has opened its window is a black
+# display, and `shot` must fail the run on it.
+#
+#   rig/run.sh --server 'vanilla serpulo/groundZero -- host Ground_Zero' --clients 1 --script rig/scenarios/blank-shot.rig --expect fail
+timeout 2m
+
+alpha: shot before-window
+alpha: join

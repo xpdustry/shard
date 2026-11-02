@@ -1,0 +1,18 @@
+# cheap arithmetic: LCG, bit ops, compares (shows dispatch overhead, not libm)
+set i 0
+set x 1
+loop:
+op mul x x 1103515245
+op add x x 12345
+op and x x 2147483647
+op shr y x 16
+op and y y 255
+op add sum sum y
+op greaterThan big y 128
+op add cnt cnt big
+op add i i 1
+jump loop lessThan i 1000000
+set i 0
+set sum 0
+set cnt 0
+jump loop always

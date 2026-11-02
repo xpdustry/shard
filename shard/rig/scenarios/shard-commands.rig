@@ -1,0 +1,49 @@
+# W4.2 (WP72) on Shard, 2 clients on commands.msav (CommandsMap.java: a core, four daggers and two flares beside it,
+# a wall of stone at x = 28 with a gap at y 18-22). alpha, with vanilla's own input: SHIFT toggles command mode (with
+# "hold for command mode" off), a left drag box-selects the units, a right click orders them east of the wall
+# (commandUnits); the daggers walk through the gap in formation and the flares fly over. Then the units are
+# selected again and set to hold fire (setUnitStance). bravo sees the units arrive and the stance, through the
+# entity snapshots (TypeIO.writeController), and the server's console shows both orders admitted.
+#
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp "$RIG"/scenarios/commands.msav maps/ \
+#     && PUSH=~/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh "commands sandbox"' \
+#     --clients 2 --script rig/scenarios/shard-commands.rig
+timeout 8m
+
+wait port 120s
+alpha: join
+bravo: join
+all: shot joined
+
+# command mode as a toggle (the setting "hold for command mode" off)
+alpha: expect js "(function(){Core.settings.put('commandmodehold', false);return 'ok'})()" /^ok$/ 10s
+alpha: zoom 1.4
+alpha: press SHIFT
+alpha: expect js "Vars.control.input.commandMode" /^true$/ 10s
+
+# box-select the six units around (16, 20)
+alpha: drag left tile 12 15 tile 21 25
+alpha: expect js "Vars.control.input.selectedUnits.size" /^6(\.0)?$/ 10s
+alpha: shot selected
+
+# a right click east of the wall: commandUnits for all six, one final batch
+alpha: click right tile 38 20
+alpha: expect js "Vars.control.input.selectedUnits.first().command().targetPos != null" /^true$/ 10s
+# the server formed groups and the units go there: bravo sees them east of the wall
+bravo: expect js "Groups.unit.count(function(u){return u.type == UnitTypes.dagger && u.x > 29 * 8})" /^4(\.0)?$/ 60s
+bravo: expect js "Groups.unit.count(function(u){return u.type == UnitTypes.flare && u.x > 29 * 8})" /^2(\.0)?$/ 30s
+all: shot arrived
+
+# the client drops its selection once the order is done (against vanilla's server too): select the arrived units
+# again, then hold fire on the selection, as the command panel's stance button sends it (setUnitStanceChunked:
+# setUnitStance). A key rebound from a script never fired, on vanilla's server as on Shard, so the panel's own call
+# is made here; it is synced back in the controllers.
+alpha: drag left tile 30 13 tile 47 27
+alpha: expect js "Vars.control.input.selectedUnits.size" /^6(\.0)?$/ 10s
+alpha: expect js "(function(){var ids = new Packages.arc.struct.IntSeq();Vars.control.input.selectedUnits.each(function(u){ids.add(u.id)});Packages.mindustry.input.InputHandler.setUnitStanceChunked(ids, UnitStance.holdFire, true);return 'sent ' + ids.size})()" /^sent 6/ 10s
+bravo: expect js "Groups.unit.count(function(u){return u.type == UnitTypes.dagger && u.command().hasStance(UnitStance.holdFire)})" /^4(\.0)?$/ 10s
+alpha: expect js "Groups.unit.count(function(u){return u.type == UnitTypes.flare && u.command().hasStance(UnitStance.holdFire)})" /^2(\.0)?$/ 10s
+all: shot hold-fire
+
+assert clean all
+assert clean server

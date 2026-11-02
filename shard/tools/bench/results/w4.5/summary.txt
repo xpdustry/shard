@@ -1,0 +1,64 @@
+RUN base-r1    ticks=18289 dropped=0 tick p50=0.511 p99=5.119 ms total=4.233 tick=3.778 MiB/s tick=12.90 KiB/wtick gc=1 pause=19 ms
+     69.02 MiB  27.3%  TileSolidity.grid:27  TileSolidity$$Lambda
+     12.15 MiB   4.8%  EntityProjector.unit:89  UnitProjection
+     10.67 MiB   4.2%  Frame.udp:131  HeapByteBufferR
+      9.84 MiB   3.9%  UnitProjection.<init>:54  Codecs$Mount
+      9.21 MiB   3.6%  BulletUpdate.lambda$run$0:48  Bullet
+      7.20 MiB   2.8%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      6.83 MiB   2.7%  BulletUpdate.collide:249  ArrayList
+      6.18 MiB   2.4%  BulletUpdate.lambda$run$1:49  Bullet
+      5.49 MiB   2.2%  UnitProjection.<init>:56  Object;
+      5.02 MiB   2.0%  BulletUpdate.collide:251  ArrayList$Itr
+      3.94 MiB   1.6%  UnitProjection.<init>:60  Collections$UnmodifiableRandomAccessList
+      3.91 MiB   1.5%  UnitProjection.<init>:42  [F
+      3.76 MiB   1.5%  UnitProjection.<init>:57  ArrayList
+      3.74 MiB   1.5%  UnitProjection.<init>:65  ArrayList
+      3.45 MiB   1.4%  Frame.packet:65  [B
+RUN base-r2    ticks=18104 dropped=0 tick p50=0.383 p99=1.279 ms total=4.259 tick=3.804 MiB/s tick=12.91 KiB/wtick gc=1 pause=16 ms
+     69.34 MiB  27.1%  TileSolidity.grid:27  TileSolidity$$Lambda
+      9.65 MiB   3.8%  BulletUpdate.lambda$run$0:48  Bullet
+      9.40 MiB   3.7%  BulletUpdate.collide:251  ArrayList$Itr
+      9.38 MiB   3.7%  EntityProjector.unit:89  UnitProjection
+      8.32 MiB   3.3%  Frame.udp:131  HeapByteBufferR
+      7.57 MiB   3.0%  Frame.packet:65  [B
+      7.32 MiB   2.9%  BulletUpdate.collide:249  ArrayList
+      6.71 MiB   2.6%  Targets$$Lambda.accept:-1  Object;
+      5.17 MiB   2.0%  UnitProjection.<init>:54  Codecs$Mount
+      4.85 MiB   1.9%  UnitProjection.<init>:56  Object;
+      4.45 MiB   1.7%  Predict.quad:72  [F
+      4.42 MiB   1.7%  EntityProjector.unit:85  ArrayList
+      4.32 MiB   1.7%  BulletUpdate.lambda$run$1:49  Bullet
+      4.14 MiB   1.6%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      4.12 MiB   1.6%  Writes.toByteArray:119  [B
+RUN mine-r1    ticks=18110 dropped=0 tick p50=0.415 p99=2.303 ms total=4.174 tick=3.713 MiB/s tick=12.60 KiB/wtick gc=1 pause=26 ms
+     71.85 MiB  29.2%  TileSolidity.grid:27  TileSolidity$$Lambda
+      9.85 MiB   4.0%  BulletUpdate.collide:249  ArrayList
+      9.52 MiB   3.9%  UnitProjection.<init>:54  Codecs$Mount
+      9.31 MiB   3.8%  Frame.packet:63  [B
+      9.02 MiB   3.7%  EntityProjector.unit:89  UnitProjection
+      7.03 MiB   2.9%  BulletUpdate.lambda$run$0:48  Bullet
+      7.02 MiB   2.9%  Writes.toByteArray:119  [B
+      6.78 MiB   2.8%  BulletUpdate.lambda$run$1:49  Bullet
+      5.89 MiB   2.4%  WirePlans$ContentIds.of:47  WirePlans$ContentIds$1
+      4.61 MiB   1.9%  UnitProjection.<init>:60  Collections$UnmodifiableRandomAccessList
+      3.86 MiB   1.6%  Frame.packet:73  [B
+      3.70 MiB   1.5%  UnitProjection.<init>:56  Object;
+      3.54 MiB   1.4%  UnitProjection.<init>:56  ImmutableCollections$List12
+      3.35 MiB   1.4%  Angles.trnsy:81  Vec2
+      3.29 MiB   1.3%  UnitProjection.<init>:57  ArrayList
+RUN mine-r2    ticks=18171 dropped=0 tick p50=0.447 p99=2.815 ms total=4.228 tick=3.760 MiB/s tick=12.92 KiB/wtick gc=1 pause=29 ms
+     66.11 MiB  25.9%  TileSolidity.grid:27  TileSolidity$$Lambda
+     10.14 MiB   4.0%  BulletUpdate.lambda$run$0:48  Bullet
+     10.09 MiB   4.0%  Frame.packet:63  [B
+      8.38 MiB   3.3%  BulletUpdate.lambda$run$1:49  Bullet
+      8.11 MiB   3.2%  UnitProjection.<init>:54  Codecs$Mount
+      7.53 MiB   3.0%  BulletUpdate.collide:249  ArrayList
+      7.40 MiB   2.9%  EntityProjector.unit:89  UnitProjection
+      5.85 MiB   2.3%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      5.63 MiB   2.2%  Writes.toByteArray:119  [B
+      5.27 MiB   2.1%  UnitProjection.<init>:65  ArrayList
+      4.62 MiB   1.8%  EntityProjector.unit:85  ArrayList
+      4.46 MiB   1.7%  UnitProjection.<init>:56  Object;
+      4.22 MiB   1.7%  BulletUpdate.collide:251  ArrayList$Itr
+      3.87 MiB   1.5%  WorldSync.drain:193  ImmutableCollections$ListItr
+      3.86 MiB   1.5%  (no Shard frame)  AbstractQueuedSynchronizer$ConditionNode

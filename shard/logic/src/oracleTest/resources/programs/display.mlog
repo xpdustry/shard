@@ -1,0 +1,18 @@
+# bar graph of a memory cell, redrawn every frame
+draw clear 0 0 0 0 0 0
+set i 0
+loop:
+read v cell1 i
+op add v v 1
+op mod v v 64
+write v cell1 i
+op mul h v 1.2
+op mul x i 4
+op mul g i 12
+draw color 255 g 64 255 0 0
+draw rect x 2 3 h 0 0
+op add i i 1
+jump loop lessThan i 20
+draw color 255 255 255 255 0 0
+draw line 0 0 80 80 0 0
+drawflush display1

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Gradle checks one artifact: vanilla's release jar, which comes from a GitHub release rather than a Maven repository.
+     Every other dependency is trusted as Maven Central serves it. -->
+<verification-metadata xmlns="https://schema.gradle.org/dependency-verification"
+                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                       xsi:schemaLocation="https://schema.gradle.org/dependency-verification https://schema.gradle.org/dependency-verification/dependency-verification-1.3.xsd">
+   <configuration>
+      <verify-metadata>false</verify-metadata>
+      <verify-signatures>false</verify-signatures>
+      <trusted-artifacts>
+         <trust group="^(?!Anuken$).*$" regex="true"/>
+      </trusted-artifacts>
+   </configuration>
+   <components>
+      <component group="Anuken" name="server-release" version="v160.7">
+         <artifact name="server-release-v160.7.jar">
+            <sha256 value="f7b899a4038b95b14a824d5f8993984f79d73baa3254c385b6538327f9c0befd" origin="Mindustry v160.7 GitHub release"/>
+         </artifact>
+      </component>
+   </components>
+</verification-metadata>

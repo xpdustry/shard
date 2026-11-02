@@ -1,0 +1,51 @@
+OK       clean: fails nothing
+CAUGHT   research/produce: alwaysUnlocked negated: fails ObjectiveOracleTest, ObjectiveMapsOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 1 ==> expected: <[all tcp CompleteObjective 00000000, all tcp CompleteObjective 0000000b]> but was: <[all tcp CompleteObjective 00000001, all tcp CompleteObjective 0000000b]>
+           ObjectiveMapsOracleTest: 3 of 11 failed; first: org.opentest4j.AssertionFailedError: erekir/marsh Calls in frame 1: [] vs [all tcp CompleteObjective 00000000, all tcp CompleteObjective 00000002] ==> expected: <0> but was: <2>
+CAUGHT   item/core item: core items need one more: fails ObjectiveOracleTest, ObjectiveMapsOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 82 ==> expected: <[all tcp CompleteObjective 00000003]> but was: <[]>
+           ObjectiveMapsOracleTest: 4 of 11 failed; first: org.opentest4j.AssertionFailedError: erekir/aegis Calls in frame 1: [all tcp CompleteObjective 00000000] vs [] ==> expected: <1> but was: <0>
+CAUGHT   build/unit count: one more block placed: fails ObjectiveOracleTest, ObjectiveMapsOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 101 ==> expected: <[all tcp CompleteObjective 00000004]> but was: <[]>
+           ObjectiveMapsOracleTest: 3 of 11 failed; first: org.opentest4j.AssertionFailedError: erekir/lake Calls in frame 1: [all tcp CompleteObjective 00000000] vs [] ==> expected: <1> but was: <0>
+CAUGHT   destroy units/blocks/core: one more kill: fails ObjectiveOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 140 ==> expected: <[all tcp UnitDeath 00000005, all tcp CompleteObjective 00000006]> but was: <[all tcp UnitDeath 00000005]>
+CAUGHT   timer: one frame late: fails ObjectiveOracleTest, ObjectiveMapsOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 200 ==> expected: <[all tcp SetFlag 010008736372697074656401, all tcp CompleteObjective 00000007, all tcp CompleteObjective 00000008, all tcp SetFlag 010005776f726c6401]> but was: <[]>
+           ObjectiveMapsOracleTest: 5 of 11 failed; first: org.opentest4j.AssertionFailedError: erekir/basin Calls in frame 216: [all tcp CompleteObjective 00000001] vs [] ==> expected: <1> but was: <0>
+CAUGHT   flag/command mode: any flag will do: fails ObjectiveOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 101 ==> expected: <[all tcp CompleteObjective 00000004]> but was: <[all tcp CompleteObjective 00000004, all tcp CompleteObjective 0000000d]>
+CAUGHT   dependencies: parents ignored: fails ObjectiveMapsOracleTest
+           ObjectiveMapsOracleTest: 7 of 11 failed; first: org.opentest4j.AssertionFailedError: erekir/crossroads after frame 1: objectives ==> expected: <[{class:Timer,flagsAdded:[u2],text:@objective.enemiesapproaching,duration:36000,countup:1,parents:[],editorPos:720906},{class:Timer,flagsAdded:[u1],text:@objective.
+CAUGHT   completion: flagsRemoved ignored: fails ObjectiveOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 201: objective flags ==> expected: <[built, scripted, timer-done, world]> but was: <[built, scripted, spare, timer-done, world]>
+CAUGHT   marker shapeText: radius halved: fails ObjectiveOracleTest, ObjectivesJsonOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 3: markers ==> array contents differ at index [469], expected: <64> but was: <63>
+           ObjectivesJsonOracleTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: shapeText after radius[1.5, 2.25, 0.0] ==> expected: <{class:ShapeText,world:-1,drawLayer:0,radius:1.5,color:ff8040c0}> but was: <{class:ShapeText,world:-1,drawLayer:0,radius:0.75,color:ff8040c0}>
+CAUGHT   marker point: radius halved: fails ObjectivesJsonOracleTest
+           ObjectivesJsonOracleTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: point after radius[1.5, 2.25, 0.0] ==> expected: <{class:Minimap,world:-1,drawLayer:0,radius:1.5,color:ff8040c0}> but was: <{class:Minimap,world:-1,drawLayer:0,radius:0.75,color:ff8040c0}>
+CAUGHT   marker shape: arc end from p1: fails ObjectiveOracleTest, ObjectivesJsonOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 3: markers ==> array contents differ at index [640], expected: <64> but was: <65>
+           ObjectivesJsonOracleTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: shape after arc[1.5, 2.25, 0.0] ==> expected: <{class:Shape,world:-1,drawLayer:0,radius:0,stroke:0,startAngle:1.5,endAngle:2.25,sides:0,color:ff8040c0}> but was: <{class:Shape,world:-1,drawLayer:0,radius:0,stroke:0,startAng
+CAUGHT   marker text: font size floored: fails ObjectiveOracleTest, ObjectivesJsonOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 5: markers ==> array lengths differ, expected: <900> but was: <885>
+           ObjectivesJsonOracleTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: text after fontSize[1.5, 2.25, 0.0] ==> expected: <{class:Text,world:-1,drawLayer:0,fontSize:1.5,flags:1}> but was: <{class:Text,world:-1,drawLayer:0,flags:1}>
+CAUGHT   marker line: endPos x in tiles: fails ObjectiveOracleTest, ObjectivesJsonOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 52: markers ==> array contents differ at index [67], expected: <65> but was: <64>
+           ObjectivesJsonOracleTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: line after endPos[1.5, 2.25, 0.0] ==> expected: <{class:Line,world:-1,endPos:{x:12,y:18}}> but was: <{class:Line,world:-1,endPos:{x:1.5,y:18}}>
+CAUGHT   marker texture: width in tiles: fails ObjectiveOracleTest, ObjectivesJsonOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 4: markers ==> array contents differ at index [583], expected: <65> but was: <64>
+           ObjectivesJsonOracleTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: texture after textureSize[1.5, 2.25, 0.0] ==> expected: <{class:Texture,world:-1,drawLayer:0,width:12,height:18,texture:{string:white},color:ff8040c0}> but was: <{class:Texture,world:-1,drawLayer:0,width:1.5,height:18,textu
+CAUGHT   marker quad: pos x in tiles: fails ObjectiveOracleTest, ObjectivesJsonOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 2: markers ==> array contents differ at index [169], expected: <66> but was: <65>
+           ObjectivesJsonOracleTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: quad after pos[1.5, 2.25, 0.0] ==> expected: <{class:Quad,world:-1,texture:{string:white},vertices:[12,12,-1.7014117E38,0,0,0,0,0,-1.7014117E38,0,0,0,0,0,-1.7014117E38,0,0,0,0,0,-1.7014117E38,0,0,0]}> but was: <{class:Quad,
+CAUGHT   marker light: radius halved: fails ObjectivesJsonOracleTest
+           ObjectivesJsonOracleTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: light after radius[1.5, 2.25, 0.0] ==> expected: <{class:Light,world:-1,drawLayer:0,radius:1.5,color:ff8040c0}> but was: <{class:Light,world:-1,drawLayer:0,radius:0.75,color:ff8040c0}>
+CAUGHT   objectives JSON: completed written first: fails ObjectiveOracleTest, ObjectiveMapsOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 101: objectives ==> expected: <[{class:Research,completed:true,parents:[],editorPos:-65405927},{class:Produce,content:silicon,parents:[],editorPos:-65405927},{class:Item,completed:true,item:lead,amount:40,parent
+           ObjectiveMapsOracleTest: 8 of 11 failed; first: org.opentest4j.AssertionFailedError: erekir/aegis after frame 1: objectives ==> expected: <[{class:CoreItem,flagsAdded:[beginBuild],markers:[{class:ShapeText,pos:{x:960,y:1048},text:@aegis.tungsten}],completed:true,item:tungsten,amount:100,parents:[],editorPos
+CAUGHT   markers UBJSON: an int typed as a long: fails ObjectiveOracleTest, ObjectivesJsonOracleTest
+           ObjectiveOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 200: markers ==> array contents differ at index [27], expected: <108> but was: <76>
+           ObjectivesJsonOracleTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: as made ==> array contents differ at index [31], expected: <108> but was: <76>
+CAUGHT   localeprint: present keys read as missing: fails ObjectiveOracleTest
+           ObjectiveOracleTest: 1 of 2 failed; first: org.opentest4j.AssertionFailedError: after frame 6: markers ==> array lengths differ, expected: <929> but was: <935>

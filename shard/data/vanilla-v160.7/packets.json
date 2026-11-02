@@ -1,0 +1,6492 @@
+{
+  "note": "Ids are positions in Net.packetClasses: 7 framework packets, then Call.registerPackets() (sorted @Remote methods). fields: what write() puts in the body, in order ('if' marks the net.server()/net.client() checks of Loc.both packets). read: what handled() reads, in order. calls: the Call methods that send the packet: 'variant' all (net.send), one (to a NetConnection), forward (server relays a client's call to the others); 'reliable' false means UDP; 'sentBy' is the side check before sending; 'local' is the method also run locally by the sender.",
+  "count": 173,
+  "packets": [ {
+    "id": 0,
+    "class": "mindustry.net.Packets$StreamBegin",
+    "kind": "framework",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "total",
+      "codec": "Writes.i"
+    }, {
+      "field": "type",
+      "codec": "Writes.b"
+    } ]
+  }, {
+    "id": 1,
+    "class": "mindustry.net.Packets$StreamChunk",
+    "kind": "framework",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "data",
+      "codec": "Writes.s"
+    }, {
+      "field": "data",
+      "codec": "Writes.b(byte[])"
+    } ]
+  }, {
+    "id": 2,
+    "class": "mindustry.net.Packets$WorldStream",
+    "kind": "framework",
+    "priority": "high",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ ],
+    "fields": [ ]
+  }, {
+    "id": 3,
+    "class": "mindustry.net.Packets$ConnectPacket",
+    "kind": "framework",
+    "priority": "high",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ ],
+    "fields": [ {
+      "codec": "Writes.i"
+    }, {
+      "field": "versionType",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "name",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "locale",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "usid",
+      "codec": "TypeIO.writeString"
+    }, {
+      "codec": "Writes.b(byte[])"
+    }, {
+      "codec": "Writes.l"
+    }, {
+      "field": "mobile",
+      "codec": "Writes.b"
+    }, {
+      "field": "color",
+      "codec": "Writes.i"
+    }, {
+      "field": "mods",
+      "codec": "Writes.b"
+    }, {
+      "field": "mods",
+      "codec": "TypeIO.writeString",
+      "loop": true
+    } ]
+  }, {
+    "id": 4,
+    "class": "mindustry.net.Packets$AssetRequirementStream",
+    "kind": "framework",
+    "priority": "high",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ ],
+    "fields": [ ]
+  }, {
+    "id": 5,
+    "class": "mindustry.net.Packets$AssetStream",
+    "kind": "framework",
+    "priority": "high",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ ],
+    "fields": [ ]
+  }, {
+    "id": 6,
+    "class": "mindustry.net.Packets$TextureStream",
+    "kind": "framework",
+    "priority": "high",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ ],
+    "fields": [ ]
+  }, {
+    "id": 7,
+    "class": "mindustry.gen.AdminRequestCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "other",
+      "codec": "TypeIO.writeEntity"
+    }, {
+      "field": "action",
+      "codec": "TypeIO.writeAction"
+    }, {
+      "field": "params",
+      "codec": "TypeIO.writeObject"
+    } ],
+    "read": [ {
+      "field": "other",
+      "codec": "TypeIO.readEntity"
+    }, {
+      "field": "action",
+      "codec": "TypeIO.readAction"
+    }, {
+      "field": "params",
+      "codec": "TypeIO.readObjectSafe"
+    } ],
+    "calls": [ {
+      "method": "adminRequest",
+      "params": [ "mindustry.gen.Player", "mindustry.net.Packets$AdminAction", "java.lang.Object" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.core.NetServer.adminRequest"
+    } ]
+  }, {
+    "id": 8,
+    "class": "mindustry.gen.AnnounceCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "announce",
+      "params": [ "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "announce",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 9,
+    "class": "mindustry.gen.AssemblerDroneSpawnedCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "id",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "id",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "assemblerDroneSpawned",
+      "params": [ "mindustry.world.Tile", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.blocks.units.UnitAssembler.assemblerDroneSpawned"
+    } ]
+  }, {
+    "id": 10,
+    "class": "mindustry.gen.AssemblerUnitSpawnedCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    } ],
+    "calls": [ {
+      "method": "assemblerUnitSpawned",
+      "params": [ "mindustry.world.Tile" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.blocks.units.UnitAssembler.assemblerUnitSpawned"
+    } ]
+  }, {
+    "id": 11,
+    "class": "mindustry.gen.AutoDoorToggleCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "open",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "open",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "autoDoorToggle",
+      "params": [ "mindustry.world.Tile", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.blocks.defense.AutoDoor.autoDoorToggle"
+    } ]
+  }, {
+    "id": 12,
+    "class": "mindustry.gen.BeginBreakCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    }, {
+      "field": "x",
+      "codec": "Writes.i"
+    }, {
+      "field": "y",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    }, {
+      "field": "x",
+      "codec": "Reads.i"
+    }, {
+      "field": "y",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "beginBreak",
+      "params": [ "mindustry.gen.Unit", "mindustry.game.Team", "int", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Build.beginBreak"
+    } ]
+  }, {
+    "id": 13,
+    "class": "mindustry.gen.BeginPlaceCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "result",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    }, {
+      "field": "x",
+      "codec": "Writes.i"
+    }, {
+      "field": "y",
+      "codec": "Writes.i"
+    }, {
+      "field": "rotation",
+      "codec": "Writes.i"
+    }, {
+      "field": "placeConfig",
+      "codec": "TypeIO.writeObject"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "result",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    }, {
+      "field": "x",
+      "codec": "Reads.i"
+    }, {
+      "field": "y",
+      "codec": "Reads.i"
+    }, {
+      "field": "rotation",
+      "codec": "Reads.i"
+    }, {
+      "field": "placeConfig",
+      "codec": "TypeIO.readObjectSafe"
+    } ],
+    "calls": [ {
+      "method": "beginPlace",
+      "params": [ "mindustry.gen.Unit", "mindustry.world.Block", "mindustry.game.Team", "int", "int", "int", "java.lang.Object" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Build.beginPlace"
+    } ]
+  }, {
+    "id": 14,
+    "class": "mindustry.gen.BlockSnapshotCallPacket",
+    "kind": "call",
+    "priority": "low",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "amount",
+      "codec": "Writes.s"
+    }, {
+      "field": "data",
+      "codec": "TypeIO.writeBytes"
+    } ],
+    "read": [ {
+      "field": "amount",
+      "codec": "Reads.s"
+    }, {
+      "field": "data",
+      "codec": "TypeIO.readBytes"
+    } ],
+    "calls": [ {
+      "method": "blockSnapshot",
+      "params": [ "short", "byte[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "blockSnapshot",
+      "params": [ "mindustry.net.NetConnection", "short", "byte[]" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 15,
+    "class": "mindustry.gen.BuildDestroyedCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "buildDestroyed",
+      "params": [ "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.buildDestroyed"
+    } ]
+  }, {
+    "id": 16,
+    "class": "mindustry.gen.BuildHealthUpdateCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "buildings",
+      "codec": "TypeIO.writeIntSeq"
+    } ],
+    "read": [ {
+      "field": "buildings",
+      "codec": "TypeIO.readIntSeq"
+    } ],
+    "calls": [ {
+      "method": "buildHealthUpdate",
+      "params": [ "arc.struct.IntSeq" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 17,
+    "class": "mindustry.gen.BuildingControlSelectCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "buildingControlSelect",
+      "params": [ "mindustry.gen.Player", "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.buildingControlSelect"
+    } ]
+  }, {
+    "id": 18,
+    "class": "mindustry.gen.ClearItemsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "clearItems",
+      "params": [ "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.clearItems"
+    } ]
+  }, {
+    "id": 19,
+    "class": "mindustry.gen.ClearLiquidsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "clearLiquids",
+      "params": [ "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.clearLiquids"
+    } ]
+  }, {
+    "id": 20,
+    "class": "mindustry.gen.ClearObjectivesCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ ],
+    "read": [ ],
+    "calls": [ {
+      "method": "clearObjectives",
+      "params": [ ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.core.NetClient.clearObjectives"
+    }, {
+      "method": "clearObjectives",
+      "params": [ "mindustry.net.NetConnection" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": "mindustry.core.NetClient.clearObjectives"
+    } ]
+  }, {
+    "id": 21,
+    "class": "mindustry.gen.ClientBinaryPacketReliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "type",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.writeBytes"
+    } ],
+    "read": [ {
+      "field": "type",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.readBytes"
+    } ],
+    "calls": [ {
+      "method": "clientBinaryPacketReliable",
+      "params": [ "java.lang.String", "byte[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "clientBinaryPacketReliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "byte[]" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 22,
+    "class": "mindustry.gen.ClientBinaryPacketUnreliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "type",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.writeBytes"
+    } ],
+    "read": [ {
+      "field": "type",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.readBytes"
+    } ],
+    "calls": [ {
+      "method": "clientBinaryPacketUnreliable",
+      "params": [ "java.lang.String", "byte[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "clientBinaryPacketUnreliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "byte[]" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 23,
+    "class": "mindustry.gen.ClientLogicDataReliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "channel",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "value",
+      "codec": "TypeIO.writeObject"
+    } ],
+    "read": [ {
+      "field": "channel",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "value",
+      "codec": "TypeIO.readObjectSafe"
+    } ],
+    "calls": [ {
+      "method": "clientLogicDataReliable",
+      "params": [ "java.lang.String", "java.lang.Object" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 24,
+    "class": "mindustry.gen.ClientLogicDataUnreliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "channel",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "value",
+      "codec": "TypeIO.writeObject"
+    } ],
+    "read": [ {
+      "field": "channel",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "value",
+      "codec": "TypeIO.readObjectSafe"
+    } ],
+    "calls": [ {
+      "method": "clientLogicDataUnreliable",
+      "params": [ "java.lang.String", "java.lang.Object" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 25,
+    "class": "mindustry.gen.ClientPacketReliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "type",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "type",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "clientPacketReliable",
+      "params": [ "java.lang.String", "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "clientPacketReliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 26,
+    "class": "mindustry.gen.ClientPacketUnreliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "type",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "type",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "clientPacketUnreliable",
+      "params": [ "java.lang.String", "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "clientPacketUnreliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 27,
+    "class": "mindustry.gen.ClientPlanSnapshotCallPacket",
+    "kind": "call",
+    "priority": "low",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "groupId",
+      "codec": "Writes.i"
+    }, {
+      "field": "plans",
+      "codec": "TypeIO.writeClientPlans"
+    } ],
+    "read": [ {
+      "field": "groupId",
+      "codec": "Reads.i"
+    }, {
+      "field": "plans",
+      "codec": "TypeIO.readClientPlans"
+    } ],
+    "calls": [ {
+      "method": "clientPlanSnapshot",
+      "params": [ "int", "mindustry.io.TypeIO$ClientBuildPlans" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 28,
+    "class": "mindustry.gen.ClientPlanSnapshotReceivedCallPacket",
+    "kind": "call",
+    "priority": "low",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity"
+    }, {
+      "field": "groupId",
+      "codec": "Writes.i"
+    }, {
+      "field": "plans",
+      "codec": "TypeIO.writeClientPlans"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity"
+    }, {
+      "field": "groupId",
+      "codec": "Reads.i"
+    }, {
+      "field": "plans",
+      "codec": "TypeIO.readClientPlans"
+    } ],
+    "calls": [ {
+      "method": "clientPlanSnapshotReceived",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "int", "mindustry.io.TypeIO$ClientBuildPlans" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 29,
+    "class": "mindustry.gen.ClientSnapshotCallPacket",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "snapshotID",
+      "codec": "Writes.i"
+    }, {
+      "field": "unitID",
+      "codec": "Writes.i"
+    }, {
+      "field": "dead",
+      "codec": "Writes.bool"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "pointerX",
+      "codec": "Writes.f"
+    }, {
+      "field": "pointerY",
+      "codec": "Writes.f"
+    }, {
+      "field": "rotation",
+      "codec": "Writes.f"
+    }, {
+      "field": "baseRotation",
+      "codec": "Writes.f"
+    }, {
+      "field": "xVelocity",
+      "codec": "Writes.f"
+    }, {
+      "field": "yVelocity",
+      "codec": "Writes.f"
+    }, {
+      "field": "mining",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "boosting",
+      "codec": "Writes.bool"
+    }, {
+      "field": "shooting",
+      "codec": "Writes.bool"
+    }, {
+      "field": "chatting",
+      "codec": "Writes.bool"
+    }, {
+      "field": "building",
+      "codec": "Writes.bool"
+    }, {
+      "field": "selectedBlock",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "selectedRotation",
+      "codec": "Writes.i"
+    }, {
+      "field": "plans",
+      "codec": "TypeIO.writePlansQueueNet"
+    }, {
+      "field": "viewX",
+      "codec": "Writes.f"
+    }, {
+      "field": "viewY",
+      "codec": "Writes.f"
+    }, {
+      "field": "viewWidth",
+      "codec": "Writes.f"
+    }, {
+      "field": "viewHeight",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "snapshotID",
+      "codec": "Reads.i"
+    }, {
+      "field": "unitID",
+      "codec": "Reads.i"
+    }, {
+      "field": "dead",
+      "codec": "Reads.bool"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "pointerX",
+      "codec": "Reads.f"
+    }, {
+      "field": "pointerY",
+      "codec": "Reads.f"
+    }, {
+      "field": "rotation",
+      "codec": "Reads.f"
+    }, {
+      "field": "baseRotation",
+      "codec": "Reads.f"
+    }, {
+      "field": "xVelocity",
+      "codec": "Reads.f"
+    }, {
+      "field": "yVelocity",
+      "codec": "Reads.f"
+    }, {
+      "field": "mining",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "boosting",
+      "codec": "Reads.bool"
+    }, {
+      "field": "shooting",
+      "codec": "Reads.bool"
+    }, {
+      "field": "chatting",
+      "codec": "Reads.bool"
+    }, {
+      "field": "building",
+      "codec": "Reads.bool"
+    }, {
+      "field": "selectedBlock",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "selectedRotation",
+      "codec": "Reads.i"
+    }, {
+      "field": "plans",
+      "codec": "TypeIO.readPlansQueueNet"
+    }, {
+      "field": "viewX",
+      "codec": "Reads.f"
+    }, {
+      "field": "viewY",
+      "codec": "Reads.f"
+    }, {
+      "field": "viewWidth",
+      "codec": "Reads.f"
+    }, {
+      "field": "viewHeight",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "clientSnapshot",
+      "params": [ "int", "int", "boolean", "float", "float", "float", "float", "float", "float", "float", "float", "mindustry.world.Tile", "boolean", "boolean", "boolean", "boolean", "mindustry.world.Block", "int", "arc.struct.Queue", "float", "float", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 30,
+    "class": "mindustry.gen.CommandBuildingCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "buildings",
+      "codec": "TypeIO.writeInts"
+    }, {
+      "field": "target",
+      "codec": "TypeIO.writeVec2"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "buildings",
+      "codec": "TypeIO.readInts"
+    }, {
+      "field": "target",
+      "codec": "TypeIO.readVec2"
+    } ],
+    "calls": [ {
+      "method": "commandBuilding",
+      "params": [ "mindustry.gen.Player", "int[]", "arc.math.geom.Vec2" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.commandBuilding"
+    }, {
+      "method": "commandBuilding__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "int[]", "arc.math.geom.Vec2" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 31,
+    "class": "mindustry.gen.CommandUnitsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "unitIds",
+      "codec": "TypeIO.writeInts"
+    }, {
+      "field": "buildTarget",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "unitTarget",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "posTarget",
+      "codec": "TypeIO.writeVec2"
+    }, {
+      "field": "queueCommand",
+      "codec": "Writes.bool"
+    }, {
+      "field": "finalBatch",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "unitIds",
+      "codec": "TypeIO.readInts"
+    }, {
+      "field": "buildTarget",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "unitTarget",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "posTarget",
+      "codec": "TypeIO.readVec2"
+    }, {
+      "field": "queueCommand",
+      "codec": "Reads.bool"
+    }, {
+      "field": "finalBatch",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "commandUnits",
+      "params": [ "mindustry.gen.Player", "int[]", "mindustry.gen.Building", "mindustry.gen.Unit", "arc.math.geom.Vec2", "boolean", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.commandUnits"
+    }, {
+      "method": "commandUnits__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "int[]", "mindustry.gen.Building", "mindustry.gen.Unit", "arc.math.geom.Vec2", "boolean", "boolean" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 32,
+    "class": "mindustry.gen.CompleteObjectiveCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "index",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "index",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "completeObjective",
+      "params": [ "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.core.NetClient.completeObjective"
+    }, {
+      "method": "completeObjective",
+      "params": [ "mindustry.net.NetConnection", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": "mindustry.core.NetClient.completeObjective"
+    } ]
+  }, {
+    "id": 33,
+    "class": "mindustry.gen.ConnectCallPacket",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "ip",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "port",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "ip",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "port",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "connect",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": "mindustry.core.NetClient.connect"
+    } ]
+  }, {
+    "id": 34,
+    "class": "mindustry.gen.ConnectConfirmCallPacket",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ ],
+    "read": [ ],
+    "calls": [ {
+      "method": "connectConfirm",
+      "params": [ ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 35,
+    "class": "mindustry.gen.ConstructFinishCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "builder",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "rotation",
+      "codec": "Writes.b"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    }, {
+      "field": "config",
+      "codec": "TypeIO.writeObject"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "builder",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "rotation",
+      "codec": "Reads.b"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    }, {
+      "field": "config",
+      "codec": "TypeIO.readObjectSafe"
+    } ],
+    "calls": [ {
+      "method": "constructFinish",
+      "params": [ "mindustry.world.Tile", "mindustry.world.Block", "mindustry.gen.Unit", "byte", "mindustry.game.Team", "java.lang.Object" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.blocks.ConstructBlock.constructFinish"
+    } ]
+  }, {
+    "id": 36,
+    "class": "mindustry.gen.CopyToClipboardCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "text",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "text",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "copyToClipboard",
+      "params": [ "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "copyToClipboard",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 37,
+    "class": "mindustry.gen.CreateBulletCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "type",
+      "codec": "TypeIO.writeBulletType"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "angle",
+      "codec": "Writes.f"
+    }, {
+      "field": "damage",
+      "codec": "Writes.f"
+    }, {
+      "field": "velocityScl",
+      "codec": "Writes.f"
+    }, {
+      "field": "lifetimeScl",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "type",
+      "codec": "TypeIO.readBulletType"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "angle",
+      "codec": "Reads.f"
+    }, {
+      "field": "damage",
+      "codec": "Reads.f"
+    }, {
+      "field": "velocityScl",
+      "codec": "Reads.f"
+    }, {
+      "field": "lifetimeScl",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "createBullet",
+      "params": [ "mindustry.entities.bullet.BulletType", "mindustry.game.Team", "float", "float", "float", "float", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.entities.bullet.BulletType.createBullet"
+    } ]
+  }, {
+    "id": 38,
+    "class": "mindustry.gen.CreateMarkerCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "marker",
+      "codec": "TypeIO.writeObjectiveMarker"
+    } ],
+    "read": [ {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "marker",
+      "codec": "TypeIO.readObjectiveMarker"
+    } ],
+    "calls": [ {
+      "method": "createMarker",
+      "params": [ "int", "mindustry.game.MapObjectives$ObjectiveMarker" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.createMarker"
+    }, {
+      "method": "createMarker",
+      "params": [ "mindustry.net.NetConnection", "int", "mindustry.game.MapObjectives$ObjectiveMarker" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.createMarker"
+    } ]
+  }, {
+    "id": 39,
+    "class": "mindustry.gen.CreateWeatherCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "weather",
+      "codec": "TypeIO.writeWeather"
+    }, {
+      "field": "intensity",
+      "codec": "Writes.f"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "windX",
+      "codec": "Writes.f"
+    }, {
+      "field": "windY",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "weather",
+      "codec": "TypeIO.readWeather"
+    }, {
+      "field": "intensity",
+      "codec": "Reads.f"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "windX",
+      "codec": "Reads.f"
+    }, {
+      "field": "windY",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "createWeather",
+      "params": [ "mindustry.type.Weather", "float", "float", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.type.Weather.createWeather"
+    } ]
+  }, {
+    "id": 40,
+    "class": "mindustry.gen.DebugStatusClientCallPacket",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "value",
+      "codec": "Writes.i"
+    }, {
+      "field": "lastClientSnapshot",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "value",
+      "codec": "Reads.i"
+    }, {
+      "field": "lastClientSnapshot",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "debugStatusClient",
+      "params": [ "int", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "debugStatusClient",
+      "params": [ "mindustry.net.NetConnection", "int", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 41,
+    "class": "mindustry.gen.DebugStatusClientUnreliableCallPacket",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "value",
+      "codec": "Writes.i"
+    }, {
+      "field": "lastClientSnapshot",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "value",
+      "codec": "Reads.i"
+    }, {
+      "field": "lastClientSnapshot",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "debugStatusClientUnreliable",
+      "params": [ "int", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "debugStatusClientUnreliable",
+      "params": [ "mindustry.net.NetConnection", "int", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 42,
+    "class": "mindustry.gen.DeconstructFinishCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "builder",
+      "codec": "TypeIO.writeUnit"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "builder",
+      "codec": "TypeIO.readUnit"
+    } ],
+    "calls": [ {
+      "method": "deconstructFinish",
+      "params": [ "mindustry.world.Tile", "mindustry.world.Block", "mindustry.gen.Unit" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.blocks.ConstructBlock.deconstructFinish"
+    } ]
+  }, {
+    "id": 43,
+    "class": "mindustry.gen.DeletePlansCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.writeInts"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.readInts"
+    } ],
+    "calls": [ {
+      "method": "deletePlans",
+      "params": [ "mindustry.gen.Player", "int[]" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.deletePlans"
+    }, {
+      "method": "deletePlans__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "int[]" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.sendExcept",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 44,
+    "class": "mindustry.gen.DestroyPayloadCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "destroyPayload",
+      "params": [ "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.game.Teams.destroyPayload"
+    } ]
+  }, {
+    "id": 45,
+    "class": "mindustry.gen.DropItemCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "angle",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "angle",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "dropItem",
+      "params": [ "float" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.dropItem"
+    } ]
+  }, {
+    "id": 46,
+    "class": "mindustry.gen.EffectCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "effect",
+      "codec": "TypeIO.writeEffect"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "rotation",
+      "codec": "Writes.f"
+    }, {
+      "field": "color",
+      "codec": "TypeIO.writeColor"
+    } ],
+    "read": [ {
+      "field": "effect",
+      "codec": "TypeIO.readEffect"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "rotation",
+      "codec": "Reads.f"
+    }, {
+      "field": "color",
+      "codec": "TypeIO.readColor"
+    } ],
+    "calls": [ {
+      "method": "effect",
+      "params": [ "mindustry.entities.Effect", "float", "float", "float", "arc.graphics.Color" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "effect",
+      "params": [ "mindustry.net.NetConnection", "mindustry.entities.Effect", "float", "float", "float", "arc.graphics.Color" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 47,
+    "class": "mindustry.gen.EffectCallPacket2",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "effect",
+      "codec": "TypeIO.writeEffect"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "rotation",
+      "codec": "Writes.f"
+    }, {
+      "field": "color",
+      "codec": "TypeIO.writeColor"
+    }, {
+      "field": "data",
+      "codec": "TypeIO.writeObject"
+    } ],
+    "read": [ {
+      "field": "effect",
+      "codec": "TypeIO.readEffect"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "rotation",
+      "codec": "Reads.f"
+    }, {
+      "field": "color",
+      "codec": "TypeIO.readColor"
+    }, {
+      "field": "data",
+      "codec": "TypeIO.readObjectSafe"
+    } ],
+    "calls": [ {
+      "method": "effect",
+      "params": [ "mindustry.entities.Effect", "float", "float", "float", "arc.graphics.Color", "java.lang.Object" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "effect",
+      "params": [ "mindustry.net.NetConnection", "mindustry.entities.Effect", "float", "float", "float", "arc.graphics.Color", "java.lang.Object" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 48,
+    "class": "mindustry.gen.EffectReliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "effect",
+      "codec": "TypeIO.writeEffect"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "rotation",
+      "codec": "Writes.f"
+    }, {
+      "field": "color",
+      "codec": "TypeIO.writeColor"
+    } ],
+    "read": [ {
+      "field": "effect",
+      "codec": "TypeIO.readEffect"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "rotation",
+      "codec": "Reads.f"
+    }, {
+      "field": "color",
+      "codec": "TypeIO.readColor"
+    } ],
+    "calls": [ {
+      "method": "effectReliable",
+      "params": [ "mindustry.entities.Effect", "float", "float", "float", "arc.graphics.Color" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "effectReliable",
+      "params": [ "mindustry.net.NetConnection", "mindustry.entities.Effect", "float", "float", "float", "arc.graphics.Color" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 49,
+    "class": "mindustry.gen.EntitySnapshotCallPacket",
+    "kind": "call",
+    "priority": "low",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "amount",
+      "codec": "Writes.s"
+    }, {
+      "field": "data",
+      "codec": "TypeIO.writeBytes"
+    } ],
+    "read": [ {
+      "field": "amount",
+      "codec": "Reads.s"
+    }, {
+      "field": "data",
+      "codec": "TypeIO.readBytes"
+    } ],
+    "calls": [ {
+      "method": "entitySnapshot",
+      "params": [ "short", "byte[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "entitySnapshot",
+      "params": [ "mindustry.net.NetConnection", "short", "byte[]" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 50,
+    "class": "mindustry.gen.FillTileBlocksCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "x",
+      "codec": "Writes.i"
+    }, {
+      "field": "y",
+      "codec": "Writes.i"
+    }, {
+      "field": "x2",
+      "codec": "Writes.i"
+    }, {
+      "field": "y2",
+      "codec": "Writes.i"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    } ],
+    "read": [ {
+      "field": "x",
+      "codec": "Reads.i"
+    }, {
+      "field": "y",
+      "codec": "Reads.i"
+    }, {
+      "field": "x2",
+      "codec": "Reads.i"
+    }, {
+      "field": "y2",
+      "codec": "Reads.i"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    } ],
+    "calls": [ {
+      "method": "fillTileBlocks",
+      "params": [ "int", "int", "int", "int", "mindustry.world.Block", "mindustry.game.Team" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.fillTileBlocks"
+    } ]
+  }, {
+    "id": 51,
+    "class": "mindustry.gen.FillTileFloorsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "x",
+      "codec": "Writes.i"
+    }, {
+      "field": "y",
+      "codec": "Writes.i"
+    }, {
+      "field": "x2",
+      "codec": "Writes.i"
+    }, {
+      "field": "y2",
+      "codec": "Writes.i"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.writeBlock"
+    } ],
+    "read": [ {
+      "field": "x",
+      "codec": "Reads.i"
+    }, {
+      "field": "y",
+      "codec": "Reads.i"
+    }, {
+      "field": "x2",
+      "codec": "Reads.i"
+    }, {
+      "field": "y2",
+      "codec": "Reads.i"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.readBlock"
+    } ],
+    "calls": [ {
+      "method": "fillTileFloors",
+      "params": [ "int", "int", "int", "int", "mindustry.world.Block" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.fillTileFloors"
+    } ]
+  }, {
+    "id": 52,
+    "class": "mindustry.gen.FillTileOverlaysCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "x",
+      "codec": "Writes.i"
+    }, {
+      "field": "y",
+      "codec": "Writes.i"
+    }, {
+      "field": "x2",
+      "codec": "Writes.i"
+    }, {
+      "field": "y2",
+      "codec": "Writes.i"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.writeBlock"
+    } ],
+    "read": [ {
+      "field": "x",
+      "codec": "Reads.i"
+    }, {
+      "field": "y",
+      "codec": "Reads.i"
+    }, {
+      "field": "x2",
+      "codec": "Reads.i"
+    }, {
+      "field": "y2",
+      "codec": "Reads.i"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.readBlock"
+    } ],
+    "calls": [ {
+      "method": "fillTileOverlays",
+      "params": [ "int", "int", "int", "int", "mindustry.world.Block" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.fillTileOverlays"
+    } ]
+  }, {
+    "id": 53,
+    "class": "mindustry.gen.FollowUpMenuCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "menuId",
+      "codec": "Writes.i"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "options",
+      "codec": "TypeIO.writeStringArray"
+    } ],
+    "read": [ {
+      "field": "menuId",
+      "codec": "Reads.i"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "options",
+      "codec": "TypeIO.readStringArray"
+    } ],
+    "calls": [ {
+      "method": "followUpMenu",
+      "params": [ "int", "java.lang.String", "java.lang.String", "java.lang.String[][]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "followUpMenu",
+      "params": [ "mindustry.net.NetConnection", "int", "java.lang.String", "java.lang.String", "java.lang.String[][]" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 54,
+    "class": "mindustry.gen.GameOverCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "winner",
+      "codec": "TypeIO.writeTeam"
+    } ],
+    "read": [ {
+      "field": "winner",
+      "codec": "TypeIO.readTeam"
+    } ],
+    "calls": [ {
+      "method": "gameOver",
+      "params": [ "mindustry.game.Team" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.core.Logic.gameOver"
+    } ]
+  }, {
+    "id": 55,
+    "class": "mindustry.gen.HiddenSnapshotCallPacket",
+    "kind": "call",
+    "priority": "low",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "ids",
+      "codec": "TypeIO.writeIntSeq"
+    } ],
+    "read": [ {
+      "field": "ids",
+      "codec": "TypeIO.readIntSeq"
+    } ],
+    "calls": [ {
+      "method": "hiddenSnapshot",
+      "params": [ "mindustry.net.NetConnection", "arc.struct.IntSeq" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 56,
+    "class": "mindustry.gen.HideFollowUpMenuCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "menuId",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "menuId",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "hideFollowUpMenu",
+      "params": [ "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "hideFollowUpMenu",
+      "params": [ "mindustry.net.NetConnection", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 57,
+    "class": "mindustry.gen.HideHudTextCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ ],
+    "read": [ ],
+    "calls": [ {
+      "method": "hideHudText",
+      "params": [ ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "hideHudText",
+      "params": [ "mindustry.net.NetConnection" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 58,
+    "class": "mindustry.gen.HideMenuBuilderCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "menuId",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "menuId",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "hideMenuBuilder",
+      "params": [ "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "hideMenuBuilder",
+      "params": [ "mindustry.net.NetConnection", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 59,
+    "class": "mindustry.gen.InfoMessageCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "infoMessage",
+      "params": [ "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "infoMessage",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 60,
+    "class": "mindustry.gen.InfoPopupCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "align",
+      "codec": "Writes.i"
+    }, {
+      "field": "top",
+      "codec": "Writes.i"
+    }, {
+      "field": "left",
+      "codec": "Writes.i"
+    }, {
+      "field": "bottom",
+      "codec": "Writes.i"
+    }, {
+      "field": "right",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "align",
+      "codec": "Reads.i"
+    }, {
+      "field": "top",
+      "codec": "Reads.i"
+    }, {
+      "field": "left",
+      "codec": "Reads.i"
+    }, {
+      "field": "bottom",
+      "codec": "Reads.i"
+    }, {
+      "field": "right",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "infoPopup",
+      "params": [ "java.lang.String", "float", "int", "int", "int", "int", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "infoPopup",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "float", "int", "int", "int", "int", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 61,
+    "class": "mindustry.gen.InfoPopupCallPacket2",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "id",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "align",
+      "codec": "Writes.i"
+    }, {
+      "field": "top",
+      "codec": "Writes.i"
+    }, {
+      "field": "left",
+      "codec": "Writes.i"
+    }, {
+      "field": "bottom",
+      "codec": "Writes.i"
+    }, {
+      "field": "right",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "id",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "align",
+      "codec": "Reads.i"
+    }, {
+      "field": "top",
+      "codec": "Reads.i"
+    }, {
+      "field": "left",
+      "codec": "Reads.i"
+    }, {
+      "field": "bottom",
+      "codec": "Reads.i"
+    }, {
+      "field": "right",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "infoPopup",
+      "params": [ "java.lang.String", "java.lang.String", "float", "int", "int", "int", "int", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "infoPopup",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "java.lang.String", "float", "int", "int", "int", "int", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 62,
+    "class": "mindustry.gen.InfoPopupReliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "align",
+      "codec": "Writes.i"
+    }, {
+      "field": "top",
+      "codec": "Writes.i"
+    }, {
+      "field": "left",
+      "codec": "Writes.i"
+    }, {
+      "field": "bottom",
+      "codec": "Writes.i"
+    }, {
+      "field": "right",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "align",
+      "codec": "Reads.i"
+    }, {
+      "field": "top",
+      "codec": "Reads.i"
+    }, {
+      "field": "left",
+      "codec": "Reads.i"
+    }, {
+      "field": "bottom",
+      "codec": "Reads.i"
+    }, {
+      "field": "right",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "infoPopupReliable",
+      "params": [ "java.lang.String", "float", "int", "int", "int", "int", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "infoPopupReliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "float", "int", "int", "int", "int", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 63,
+    "class": "mindustry.gen.InfoPopupReliableCallPacket2",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "id",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "align",
+      "codec": "Writes.i"
+    }, {
+      "field": "top",
+      "codec": "Writes.i"
+    }, {
+      "field": "left",
+      "codec": "Writes.i"
+    }, {
+      "field": "bottom",
+      "codec": "Writes.i"
+    }, {
+      "field": "right",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "id",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "align",
+      "codec": "Reads.i"
+    }, {
+      "field": "top",
+      "codec": "Reads.i"
+    }, {
+      "field": "left",
+      "codec": "Reads.i"
+    }, {
+      "field": "bottom",
+      "codec": "Reads.i"
+    }, {
+      "field": "right",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "infoPopupReliable",
+      "params": [ "java.lang.String", "java.lang.String", "float", "int", "int", "int", "int", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "infoPopupReliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "java.lang.String", "float", "int", "int", "int", "int", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 64,
+    "class": "mindustry.gen.InfoToastCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "infoToast",
+      "params": [ "java.lang.String", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "infoToast",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "float" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 65,
+    "class": "mindustry.gen.KickCallPacket",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "reason",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "reason",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "kick",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 66,
+    "class": "mindustry.gen.KickCallPacket2",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "reason",
+      "codec": "TypeIO.writeKick"
+    } ],
+    "read": [ {
+      "field": "reason",
+      "codec": "TypeIO.readKick"
+    } ],
+    "calls": [ {
+      "method": "kick",
+      "params": [ "mindustry.net.NetConnection", "mindustry.net.Packets$KickReason" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 67,
+    "class": "mindustry.gen.LabelCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldx",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldy",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldx",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldy",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "label",
+      "params": [ "java.lang.String", "float", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "label",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "float", "float", "float" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 68,
+    "class": "mindustry.gen.LabelCallPacket2",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldx",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldy",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldx",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldy",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "label",
+      "params": [ "java.lang.String", "int", "float", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "label",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "int", "float", "float", "float" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 69,
+    "class": "mindustry.gen.LabelCallPacket3",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldx",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldy",
+      "codec": "Writes.f"
+    }, {
+      "field": "flags",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldx",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldy",
+      "codec": "Reads.f"
+    }, {
+      "field": "flags",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "label",
+      "params": [ "java.lang.String", "int", "float", "float", "float", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "label",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "int", "float", "float", "float", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 70,
+    "class": "mindustry.gen.LabelReliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldx",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldy",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldx",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldy",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "labelReliable",
+      "params": [ "java.lang.String", "float", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "labelReliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "float", "float", "float" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 71,
+    "class": "mindustry.gen.LabelReliableCallPacket2",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldx",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldy",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldx",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldy",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "labelReliable",
+      "params": [ "java.lang.String", "int", "float", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "labelReliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "int", "float", "float", "float" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 72,
+    "class": "mindustry.gen.LabelReliableCallPacket3",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "duration",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldx",
+      "codec": "Writes.f"
+    }, {
+      "field": "worldy",
+      "codec": "Writes.f"
+    }, {
+      "field": "flags",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "duration",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldx",
+      "codec": "Reads.f"
+    }, {
+      "field": "worldy",
+      "codec": "Reads.f"
+    }, {
+      "field": "flags",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "labelReliable",
+      "params": [ "java.lang.String", "int", "float", "float", "float", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "labelReliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "int", "float", "float", "float", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 73,
+    "class": "mindustry.gen.LandingPadLandedCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    } ],
+    "calls": [ {
+      "method": "landingPadLanded",
+      "params": [ "mindustry.world.Tile" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.blocks.campaign.LandingPad.landingPadLanded"
+    } ]
+  }, {
+    "id": 74,
+    "class": "mindustry.gen.LogicExplosionCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "radius",
+      "codec": "Writes.f"
+    }, {
+      "field": "damage",
+      "codec": "Writes.f"
+    }, {
+      "field": "air",
+      "codec": "Writes.bool"
+    }, {
+      "field": "ground",
+      "codec": "Writes.bool"
+    }, {
+      "field": "pierce",
+      "codec": "Writes.bool"
+    }, {
+      "field": "effect",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "radius",
+      "codec": "Reads.f"
+    }, {
+      "field": "damage",
+      "codec": "Reads.f"
+    }, {
+      "field": "air",
+      "codec": "Reads.bool"
+    }, {
+      "field": "ground",
+      "codec": "Reads.bool"
+    }, {
+      "field": "pierce",
+      "codec": "Reads.bool"
+    }, {
+      "field": "effect",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "logicExplosion",
+      "params": [ "mindustry.game.Team", "float", "float", "float", "float", "boolean", "boolean", "boolean", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.logicExplosion"
+    } ]
+  }, {
+    "id": 75,
+    "class": "mindustry.gen.MenuCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "menuId",
+      "codec": "Writes.i"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "options",
+      "codec": "TypeIO.writeStringArray"
+    } ],
+    "read": [ {
+      "field": "menuId",
+      "codec": "Reads.i"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "options",
+      "codec": "TypeIO.readStringArray"
+    } ],
+    "calls": [ {
+      "method": "menu",
+      "params": [ "int", "java.lang.String", "java.lang.String", "java.lang.String[][]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "menu",
+      "params": [ "mindustry.net.NetConnection", "int", "java.lang.String", "java.lang.String", "java.lang.String[][]" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 76,
+    "class": "mindustry.gen.MenuBuilderCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "token",
+      "codec": "Writes.l"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "hideOnClick",
+      "codec": "Writes.bool"
+    }, {
+      "field": "hidePrevious",
+      "codec": "Writes.bool"
+    }, {
+      "field": "fillScreen",
+      "codec": "Writes.bool"
+    }, {
+      "field": "builder",
+      "codec": "TypeIO.writeUiBuilder"
+    } ],
+    "read": [ {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "token",
+      "codec": "Reads.l"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "hideOnClick",
+      "codec": "Reads.bool"
+    }, {
+      "field": "hidePrevious",
+      "codec": "Reads.bool"
+    }, {
+      "field": "fillScreen",
+      "codec": "Reads.bool"
+    }, {
+      "field": "builder",
+      "codec": "TypeIO.readUiBuilder"
+    } ],
+    "calls": [ {
+      "method": "menuBuilder",
+      "params": [ "int", "long", "java.lang.String", "boolean", "boolean", "boolean", "mindustry.ui.builder.UiBuilder$NodeBuilder" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "menuBuilder",
+      "params": [ "mindustry.net.NetConnection", "int", "long", "java.lang.String", "boolean", "boolean", "boolean", "mindustry.ui.builder.UiBuilder$NodeBuilder" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 77,
+    "class": "mindustry.gen.MenuBuilderChooseCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "menuId",
+      "codec": "Writes.i"
+    }, {
+      "field": "results",
+      "codec": "TypeIO.writeMenuResult"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "menuId",
+      "codec": "Reads.i"
+    }, {
+      "field": "results",
+      "codec": "TypeIO.readMenuResult"
+    } ],
+    "calls": [ {
+      "method": "menuBuilderChoose",
+      "params": [ "mindustry.gen.Player", "int", "mindustry.ui.builder.MenuResult" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.ui.Menus.menuBuilderChoose"
+    } ]
+  }, {
+    "id": 78,
+    "class": "mindustry.gen.MenuBuilderUpdateCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "tableId",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "builder",
+      "codec": "TypeIO.writeUiBuilder"
+    } ],
+    "read": [ {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "tableId",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "builder",
+      "codec": "TypeIO.readUiBuilder"
+    } ],
+    "calls": [ {
+      "method": "menuBuilderUpdate",
+      "params": [ "int", "java.lang.String", "mindustry.ui.builder.UiBuilder$NodeBuilder" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "menuBuilderUpdate",
+      "params": [ "mindustry.net.NetConnection", "int", "java.lang.String", "mindustry.ui.builder.UiBuilder$NodeBuilder" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 79,
+    "class": "mindustry.gen.MenuChooseCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "menuId",
+      "codec": "Writes.i"
+    }, {
+      "field": "option",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "menuId",
+      "codec": "Reads.i"
+    }, {
+      "field": "option",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "menuChoose",
+      "params": [ "mindustry.gen.Player", "int", "int" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.ui.Menus.menuChoose"
+    } ]
+  }, {
+    "id": 80,
+    "class": "mindustry.gen.OpenURICallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "uri",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "uri",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "openURI",
+      "params": [ "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "openURI",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 81,
+    "class": "mindustry.gen.PayloadDroppedCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "payloadDropped",
+      "params": [ "mindustry.gen.Unit", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.payloadDropped"
+    } ]
+  }, {
+    "id": 82,
+    "class": "mindustry.gen.PickedBuildPayloadCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "onGround",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "onGround",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "pickedBuildPayload",
+      "params": [ "mindustry.gen.Unit", "mindustry.gen.Building", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.pickedBuildPayload"
+    } ]
+  }, {
+    "id": 83,
+    "class": "mindustry.gen.PickedUnitPayloadCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "target",
+      "codec": "TypeIO.writeUnit"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "target",
+      "codec": "TypeIO.readUnit"
+    } ],
+    "calls": [ {
+      "method": "pickedUnitPayload",
+      "params": [ "mindustry.gen.Unit", "mindustry.gen.Unit" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.pickedUnitPayload"
+    } ]
+  }, {
+    "id": 84,
+    "class": "mindustry.gen.PingCallPacket",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "time",
+      "codec": "Writes.l"
+    } ],
+    "read": [ {
+      "field": "time",
+      "codec": "Reads.l"
+    } ],
+    "calls": [ {
+      "method": "ping",
+      "params": [ "long" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 85,
+    "class": "mindustry.gen.PingLocationCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "text",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "text",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "pingLocation",
+      "params": [ "mindustry.gen.Player", "float", "float", "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.pingLocation"
+    }, {
+      "method": "pingLocation__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "float", "float", "java.lang.String" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 86,
+    "class": "mindustry.gen.PingResponseCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "time",
+      "codec": "Writes.l"
+    } ],
+    "read": [ {
+      "field": "time",
+      "codec": "Reads.l"
+    } ],
+    "calls": [ {
+      "method": "pingResponse",
+      "params": [ "mindustry.net.NetConnection", "long" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 87,
+    "class": "mindustry.gen.PlayMusicCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "musicName",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "interrupt",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "musicName",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "interrupt",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "playMusic",
+      "params": [ "java.lang.String", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "playMusic",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "boolean" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 88,
+    "class": "mindustry.gen.PlayerDisconnectCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "playerid",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "playerid",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "playerDisconnect",
+      "params": [ "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 89,
+    "class": "mindustry.gen.PlayerSpawnCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "player",
+      "codec": "TypeIO.writeEntity"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "player",
+      "codec": "TypeIO.readEntity"
+    } ],
+    "calls": [ {
+      "method": "playerSpawn",
+      "params": [ "mindustry.world.Tile", "mindustry.gen.Player" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.blocks.storage.CoreBlock.playerSpawn"
+    } ]
+  }, {
+    "id": 90,
+    "class": "mindustry.gen.RemoveMarkerCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "id",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "removeMarker",
+      "params": [ "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.removeMarker"
+    }, {
+      "method": "removeMarker",
+      "params": [ "mindustry.net.NetConnection", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.removeMarker"
+    } ]
+  }, {
+    "id": 91,
+    "class": "mindustry.gen.RemoveQueueBlockCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "x",
+      "codec": "Writes.i"
+    }, {
+      "field": "y",
+      "codec": "Writes.i"
+    }, {
+      "field": "breaking",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "x",
+      "codec": "Reads.i"
+    }, {
+      "field": "y",
+      "codec": "Reads.i"
+    }, {
+      "field": "breaking",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "removeQueueBlock",
+      "params": [ "mindustry.net.NetConnection", "int", "int", "boolean" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 92,
+    "class": "mindustry.gen.RemoveTileCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    } ],
+    "calls": [ {
+      "method": "removeTile",
+      "params": [ "mindustry.world.Tile" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.removeTile"
+    } ]
+  }, {
+    "id": 93,
+    "class": "mindustry.gen.RemoveWorldLabelCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "id",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "removeWorldLabel",
+      "params": [ "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "removeWorldLabel",
+      "params": [ "mindustry.net.NetConnection", "int" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 94,
+    "class": "mindustry.gen.RequestAssetsCallPacket",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "ids",
+      "codec": "TypeIO.writeShorts"
+    } ],
+    "read": [ {
+      "field": "ids",
+      "codec": "TypeIO.readShorts"
+    } ],
+    "calls": [ {
+      "method": "requestAssets",
+      "params": [ "short[]" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 95,
+    "class": "mindustry.gen.RequestBlockSnapshotCallPacket",
+    "kind": "call",
+    "priority": "low",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "pos",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "pos",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "requestBlockSnapshot",
+      "params": [ "int" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 96,
+    "class": "mindustry.gen.RequestBuildPayloadCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "requestBuildPayload",
+      "params": [ "mindustry.gen.Player", "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.requestBuildPayload"
+    } ]
+  }, {
+    "id": 97,
+    "class": "mindustry.gen.RequestDebugStatusCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ ],
+    "read": [ ],
+    "calls": [ {
+      "method": "requestDebugStatus",
+      "params": [ ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 98,
+    "class": "mindustry.gen.RequestDropPayloadCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "requestDropPayload",
+      "params": [ "mindustry.gen.Player", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.requestDropPayload"
+    } ]
+  }, {
+    "id": 99,
+    "class": "mindustry.gen.RequestItemCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "item",
+      "codec": "TypeIO.writeItem"
+    }, {
+      "field": "amount",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "item",
+      "codec": "TypeIO.readItem"
+    }, {
+      "field": "amount",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "requestItem",
+      "params": [ "mindustry.gen.Player", "mindustry.gen.Building", "mindustry.type.Item", "int" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.requestItem"
+    }, {
+      "method": "requestItem__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "mindustry.gen.Building", "mindustry.type.Item", "int" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 100,
+    "class": "mindustry.gen.RequestUnitPayloadCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "target",
+      "codec": "TypeIO.writeUnit"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "target",
+      "codec": "TypeIO.readUnit"
+    } ],
+    "calls": [ {
+      "method": "requestUnitPayload",
+      "params": [ "mindustry.gen.Player", "mindustry.gen.Unit" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.requestUnitPayload"
+    } ]
+  }, {
+    "id": 101,
+    "class": "mindustry.gen.RequestWorldCallPacket",
+    "kind": "call",
+    "priority": "high",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ ],
+    "read": [ ],
+    "calls": [ {
+      "method": "requestWorld",
+      "params": [ ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 102,
+    "class": "mindustry.gen.ResearchedCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "content",
+      "codec": "TypeIO.writeContent"
+    } ],
+    "read": [ {
+      "field": "content",
+      "codec": "TypeIO.readContent"
+    } ],
+    "calls": [ {
+      "method": "researched",
+      "params": [ "mindustry.ctype.Content" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 103,
+    "class": "mindustry.gen.RotateBlockCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "direction",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "direction",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "rotateBlock",
+      "params": [ "mindustry.gen.Player", "mindustry.gen.Building", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.rotateBlock"
+    }, {
+      "method": "rotateBlock__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "mindustry.gen.Building", "boolean" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 104,
+    "class": "mindustry.gen.SectorCaptureCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ ],
+    "read": [ ],
+    "calls": [ {
+      "method": "sectorCapture",
+      "params": [ ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.core.Logic.sectorCapture"
+    } ]
+  }, {
+    "id": 105,
+    "class": "mindustry.gen.SendChatMessageCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "sendChatMessage",
+      "params": [ "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.core.NetClient.sendChatMessage"
+    } ]
+  }, {
+    "id": 106,
+    "class": "mindustry.gen.SendMessageCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "sendMessage",
+      "params": [ "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.core.NetClient.sendMessage"
+    } ]
+  }, {
+    "id": 107,
+    "class": "mindustry.gen.SendMessageCallPacket2",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "unformatted",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "playersender",
+      "codec": "TypeIO.writeEntity"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "unformatted",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "playersender",
+      "codec": "TypeIO.readEntity"
+    } ],
+    "calls": [ {
+      "method": "sendMessage",
+      "params": [ "java.lang.String", "java.lang.String", "mindustry.gen.Player" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "sendMessage",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "java.lang.String", "mindustry.gen.Player" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 108,
+    "class": "mindustry.gen.ServerBinaryPacketReliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "type",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.writeBytes"
+    } ],
+    "read": [ {
+      "field": "type",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.readBytes"
+    } ],
+    "calls": [ {
+      "method": "serverBinaryPacketReliable",
+      "params": [ "java.lang.String", "byte[]" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 109,
+    "class": "mindustry.gen.ServerBinaryPacketUnreliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "type",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.writeBytes"
+    } ],
+    "read": [ {
+      "field": "type",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.readBytes"
+    } ],
+    "calls": [ {
+      "method": "serverBinaryPacketUnreliable",
+      "params": [ "java.lang.String", "byte[]" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 110,
+    "class": "mindustry.gen.ServerPacketReliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "type",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "type",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "serverPacketReliable",
+      "params": [ "java.lang.String", "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 111,
+    "class": "mindustry.gen.ServerPacketUnreliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server" ],
+    "handledBy": [ "server" ],
+    "fields": [ {
+      "field": "type",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "type",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "contents",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "serverPacketUnreliable",
+      "params": [ "java.lang.String", "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 112,
+    "class": "mindustry.gen.SetCameraPositionCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "setCameraPosition",
+      "params": [ "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "setCameraPosition",
+      "params": [ "mindustry.net.NetConnection", "float", "float" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 113,
+    "class": "mindustry.gen.SetFlagCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "flag",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "add",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "flag",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "add",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "setFlag",
+      "params": [ "java.lang.String", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.logic.LExecutor.setFlag"
+    } ]
+  }, {
+    "id": 114,
+    "class": "mindustry.gen.SetFloorCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "floor",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "overlay",
+      "codec": "TypeIO.writeBlock"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "floor",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "overlay",
+      "codec": "TypeIO.readBlock"
+    } ],
+    "calls": [ {
+      "method": "setFloor",
+      "params": [ "mindustry.world.Tile", "mindustry.world.Block", "mindustry.world.Block" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.setFloor"
+    } ]
+  }, {
+    "id": 115,
+    "class": "mindustry.gen.SetHudTextCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "setHudText",
+      "params": [ "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    }, {
+      "method": "setHudText",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 116,
+    "class": "mindustry.gen.SetHudTextReliableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "setHudTextReliable",
+      "params": [ "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "setHudTextReliable",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 117,
+    "class": "mindustry.gen.SetItemCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "item",
+      "codec": "TypeIO.writeItem"
+    }, {
+      "field": "amount",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "item",
+      "codec": "TypeIO.readItem"
+    }, {
+      "field": "amount",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "setItem",
+      "params": [ "mindustry.gen.Building", "mindustry.type.Item", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.setItem"
+    } ]
+  }, {
+    "id": 118,
+    "class": "mindustry.gen.SetItemsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "items",
+      "codec": "TypeIO.writeItemStacks"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "items",
+      "codec": "TypeIO.readItemStacks"
+    } ],
+    "calls": [ {
+      "method": "setItems",
+      "params": [ "mindustry.gen.Building", "mindustry.type.ItemStack[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.setItems"
+    } ]
+  }, {
+    "id": 119,
+    "class": "mindustry.gen.SetLiquidCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "liquid",
+      "codec": "TypeIO.writeLiquid"
+    }, {
+      "field": "amount",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "liquid",
+      "codec": "TypeIO.readLiquid"
+    }, {
+      "field": "amount",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "setLiquid",
+      "params": [ "mindustry.gen.Building", "mindustry.type.Liquid", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.setLiquid"
+    } ]
+  }, {
+    "id": 120,
+    "class": "mindustry.gen.SetLiquidsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "liquids",
+      "codec": "TypeIO.writeLiquidStacks"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "liquids",
+      "codec": "TypeIO.readLiquidStacks"
+    } ],
+    "calls": [ {
+      "method": "setLiquids",
+      "params": [ "mindustry.gen.Building", "mindustry.type.LiquidStack[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.setLiquids"
+    } ]
+  }, {
+    "id": 121,
+    "class": "mindustry.gen.SetMapAreaCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "x",
+      "codec": "Writes.i"
+    }, {
+      "field": "y",
+      "codec": "Writes.i"
+    }, {
+      "field": "w",
+      "codec": "Writes.i"
+    }, {
+      "field": "h",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "x",
+      "codec": "Reads.i"
+    }, {
+      "field": "y",
+      "codec": "Reads.i"
+    }, {
+      "field": "w",
+      "codec": "Reads.i"
+    }, {
+      "field": "h",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "setMapArea",
+      "params": [ "int", "int", "int", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.logic.LExecutor.setMapArea"
+    } ]
+  }, {
+    "id": 122,
+    "class": "mindustry.gen.SetObjectivesCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "executor",
+      "codec": "TypeIO.writeObjectives"
+    } ],
+    "read": [ {
+      "field": "executor",
+      "codec": "TypeIO.readObjectives"
+    } ],
+    "calls": [ {
+      "method": "setObjectives",
+      "params": [ "mindustry.game.MapObjectives" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "setObjectives",
+      "params": [ "mindustry.net.NetConnection", "mindustry.game.MapObjectives" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 123,
+    "class": "mindustry.gen.SetOverlayCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "overlay",
+      "codec": "TypeIO.writeBlock"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "overlay",
+      "codec": "TypeIO.readBlock"
+    } ],
+    "calls": [ {
+      "method": "setOverlay",
+      "params": [ "mindustry.world.Tile", "mindustry.world.Block" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.setOverlay"
+    } ]
+  }, {
+    "id": 124,
+    "class": "mindustry.gen.SetPlayerTeamEditorCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    } ],
+    "calls": [ {
+      "method": "setPlayerTeamEditor",
+      "params": [ "mindustry.gen.Player", "mindustry.game.Team" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.ui.fragments.HudFragment.setPlayerTeamEditor"
+    }, {
+      "method": "setPlayerTeamEditor__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "mindustry.game.Team" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.sendExcept",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 125,
+    "class": "mindustry.gen.SetPositionCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "setPosition",
+      "params": [ "mindustry.net.NetConnection", "float", "float" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 126,
+    "class": "mindustry.gen.SetRuleCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "rule",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "jsonData",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "rule",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "jsonData",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "setRule",
+      "params": [ "java.lang.String", "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "setRule",
+      "params": [ "mindustry.net.NetConnection", "java.lang.String", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 127,
+    "class": "mindustry.gen.SetRulesCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "rules",
+      "codec": "TypeIO.writeRules"
+    } ],
+    "read": [ {
+      "field": "rules",
+      "codec": "TypeIO.readRules"
+    } ],
+    "calls": [ {
+      "method": "setRules",
+      "params": [ "mindustry.game.Rules" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "setRules",
+      "params": [ "mindustry.net.NetConnection", "mindustry.game.Rules" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 128,
+    "class": "mindustry.gen.SetTeamCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    } ],
+    "calls": [ {
+      "method": "setTeam",
+      "params": [ "mindustry.gen.Building", "mindustry.game.Team" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.setTeam"
+    } ]
+  }, {
+    "id": 129,
+    "class": "mindustry.gen.SetTeamsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "positions",
+      "codec": "TypeIO.writeInts"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    } ],
+    "read": [ {
+      "field": "positions",
+      "codec": "TypeIO.readInts"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    } ],
+    "calls": [ {
+      "method": "setTeams",
+      "params": [ "int[]", "mindustry.game.Team" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.setTeams"
+    } ]
+  }, {
+    "id": 130,
+    "class": "mindustry.gen.SetTileCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    }, {
+      "field": "rotation",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "block",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    }, {
+      "field": "rotation",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "setTile",
+      "params": [ "mindustry.world.Tile", "mindustry.world.Block", "mindustry.game.Team", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.setTile"
+    } ]
+  }, {
+    "id": 131,
+    "class": "mindustry.gen.SetTileBlocksCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "block",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.writeTeam"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.writeInts"
+    } ],
+    "read": [ {
+      "field": "block",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "team",
+      "codec": "TypeIO.readTeam"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.readInts"
+    } ],
+    "calls": [ {
+      "method": "setTileBlocks",
+      "params": [ "mindustry.world.Block", "mindustry.game.Team", "int[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.setTileBlocks"
+    } ]
+  }, {
+    "id": 132,
+    "class": "mindustry.gen.SetTileFloorsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "block",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.writeInts"
+    } ],
+    "read": [ {
+      "field": "block",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.readInts"
+    } ],
+    "calls": [ {
+      "method": "setTileFloors",
+      "params": [ "mindustry.world.Block", "int[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.setTileFloors"
+    } ]
+  }, {
+    "id": 133,
+    "class": "mindustry.gen.SetTileItemsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "item",
+      "codec": "TypeIO.writeItem"
+    }, {
+      "field": "amount",
+      "codec": "Writes.i"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.writeInts"
+    } ],
+    "read": [ {
+      "field": "item",
+      "codec": "TypeIO.readItem"
+    }, {
+      "field": "amount",
+      "codec": "Reads.i"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.readInts"
+    } ],
+    "calls": [ {
+      "method": "setTileItems",
+      "params": [ "mindustry.type.Item", "int", "int[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.setTileItems"
+    } ]
+  }, {
+    "id": 134,
+    "class": "mindustry.gen.SetTileLiquidsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "liquid",
+      "codec": "TypeIO.writeLiquid"
+    }, {
+      "field": "amount",
+      "codec": "Writes.f"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.writeInts"
+    } ],
+    "read": [ {
+      "field": "liquid",
+      "codec": "TypeIO.readLiquid"
+    }, {
+      "field": "amount",
+      "codec": "Reads.f"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.readInts"
+    } ],
+    "calls": [ {
+      "method": "setTileLiquids",
+      "params": [ "mindustry.type.Liquid", "float", "int[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.setTileLiquids"
+    } ]
+  }, {
+    "id": 135,
+    "class": "mindustry.gen.SetTileOverlaysCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "block",
+      "codec": "TypeIO.writeBlock"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.writeInts"
+    } ],
+    "read": [ {
+      "field": "block",
+      "codec": "TypeIO.readBlock"
+    }, {
+      "field": "positions",
+      "codec": "TypeIO.readInts"
+    } ],
+    "calls": [ {
+      "method": "setTileOverlays",
+      "params": [ "mindustry.world.Block", "int[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.Tile.setTileOverlays"
+    } ]
+  }, {
+    "id": 136,
+    "class": "mindustry.gen.SetUnitCommandCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "unitIds",
+      "codec": "TypeIO.writeInts"
+    }, {
+      "field": "command",
+      "codec": "TypeIO.writeCommand"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "unitIds",
+      "codec": "TypeIO.readInts"
+    }, {
+      "field": "command",
+      "codec": "TypeIO.readCommand"
+    } ],
+    "calls": [ {
+      "method": "setUnitCommand",
+      "params": [ "mindustry.gen.Player", "int[]", "mindustry.ai.UnitCommand" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.setUnitCommand"
+    }, {
+      "method": "setUnitCommand__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "int[]", "mindustry.ai.UnitCommand" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 137,
+    "class": "mindustry.gen.SetUnitStanceCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "unitIds",
+      "codec": "TypeIO.writeInts"
+    }, {
+      "field": "stance",
+      "codec": "TypeIO.writeStance"
+    }, {
+      "field": "enable",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "unitIds",
+      "codec": "TypeIO.readInts"
+    }, {
+      "field": "stance",
+      "codec": "TypeIO.readStance"
+    }, {
+      "field": "enable",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "setUnitStance",
+      "params": [ "mindustry.gen.Player", "int[]", "mindustry.ai.UnitStance", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.setUnitStance"
+    }, {
+      "method": "setUnitStance__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "int[]", "mindustry.ai.UnitStance", "boolean" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 138,
+    "class": "mindustry.gen.SoundCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "sound",
+      "codec": "TypeIO.writeSound"
+    }, {
+      "field": "volume",
+      "codec": "Writes.f"
+    }, {
+      "field": "pitch",
+      "codec": "Writes.f"
+    }, {
+      "field": "pan",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "sound",
+      "codec": "TypeIO.readSound"
+    }, {
+      "field": "volume",
+      "codec": "Reads.f"
+    }, {
+      "field": "pitch",
+      "codec": "Reads.f"
+    }, {
+      "field": "pan",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "sound",
+      "params": [ "arc.audio.Sound", "float", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.core.NetClient.sound"
+    }, {
+      "method": "sound",
+      "params": [ "mindustry.net.NetConnection", "arc.audio.Sound", "float", "float", "float" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": "mindustry.core.NetClient.sound"
+    } ]
+  }, {
+    "id": 139,
+    "class": "mindustry.gen.SoundAtCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "sound",
+      "codec": "TypeIO.writeSound"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "volume",
+      "codec": "Writes.f"
+    }, {
+      "field": "pitch",
+      "codec": "Writes.f"
+    } ],
+    "read": [ {
+      "field": "sound",
+      "codec": "TypeIO.readSound"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "volume",
+      "codec": "Reads.f"
+    }, {
+      "field": "pitch",
+      "codec": "Reads.f"
+    } ],
+    "calls": [ {
+      "method": "soundAt",
+      "params": [ "arc.audio.Sound", "float", "float", "float", "float" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.core.NetClient.soundAt"
+    }, {
+      "method": "soundAt",
+      "params": [ "mindustry.net.NetConnection", "arc.audio.Sound", "float", "float", "float", "float" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": "mindustry.core.NetClient.soundAt"
+    } ]
+  }, {
+    "id": 140,
+    "class": "mindustry.gen.SpawnEffectCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "rotation",
+      "codec": "Writes.f"
+    }, {
+      "field": "u",
+      "codec": "TypeIO.writeUnitType"
+    } ],
+    "read": [ {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "rotation",
+      "codec": "Reads.f"
+    }, {
+      "field": "u",
+      "codec": "TypeIO.readUnitType"
+    } ],
+    "calls": [ {
+      "method": "spawnEffect",
+      "params": [ "float", "float", "float", "mindustry.type.UnitType" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.ai.WaveSpawner.spawnEffect"
+    } ]
+  }, {
+    "id": 141,
+    "class": "mindustry.gen.StateSnapshotCallPacket",
+    "kind": "call",
+    "priority": "low",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "waveTime",
+      "codec": "Writes.f"
+    }, {
+      "field": "wave",
+      "codec": "Writes.i"
+    }, {
+      "field": "enemies",
+      "codec": "Writes.i"
+    }, {
+      "field": "paused",
+      "codec": "Writes.bool"
+    }, {
+      "field": "gameOver",
+      "codec": "Writes.bool"
+    }, {
+      "field": "timeData",
+      "codec": "Writes.i"
+    }, {
+      "field": "tps",
+      "codec": "Writes.b"
+    }, {
+      "field": "rand0",
+      "codec": "Writes.l"
+    }, {
+      "field": "rand1",
+      "codec": "Writes.l"
+    }, {
+      "field": "coreData",
+      "codec": "TypeIO.writeBytes"
+    } ],
+    "read": [ {
+      "field": "waveTime",
+      "codec": "Reads.f"
+    }, {
+      "field": "wave",
+      "codec": "Reads.i"
+    }, {
+      "field": "enemies",
+      "codec": "Reads.i"
+    }, {
+      "field": "paused",
+      "codec": "Reads.bool"
+    }, {
+      "field": "gameOver",
+      "codec": "Reads.bool"
+    }, {
+      "field": "timeData",
+      "codec": "Reads.i"
+    }, {
+      "field": "tps",
+      "codec": "Reads.b"
+    }, {
+      "field": "rand0",
+      "codec": "Reads.l"
+    }, {
+      "field": "rand1",
+      "codec": "Reads.l"
+    }, {
+      "field": "coreData",
+      "codec": "TypeIO.readBytes"
+    } ],
+    "calls": [ {
+      "method": "stateSnapshot",
+      "params": [ "float", "int", "int", "boolean", "boolean", "int", "byte", "long", "long", "byte[]" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 142,
+    "class": "mindustry.gen.SyncVariableCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "building",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "variable",
+      "codec": "Writes.i"
+    }, {
+      "field": "value",
+      "codec": "TypeIO.writeObject"
+    } ],
+    "read": [ {
+      "field": "building",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "variable",
+      "codec": "Reads.i"
+    }, {
+      "field": "value",
+      "codec": "TypeIO.readObjectSafe"
+    } ],
+    "calls": [ {
+      "method": "syncVariable",
+      "params": [ "mindustry.gen.Building", "int", "java.lang.Object" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 143,
+    "class": "mindustry.gen.TakeItemsCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "item",
+      "codec": "TypeIO.writeItem"
+    }, {
+      "field": "amount",
+      "codec": "Writes.i"
+    }, {
+      "field": "to",
+      "codec": "TypeIO.writeUnit"
+    } ],
+    "read": [ {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "item",
+      "codec": "TypeIO.readItem"
+    }, {
+      "field": "amount",
+      "codec": "Reads.i"
+    }, {
+      "field": "to",
+      "codec": "TypeIO.readUnit"
+    } ],
+    "calls": [ {
+      "method": "takeItems",
+      "params": [ "mindustry.gen.Building", "mindustry.type.Item", "int", "mindustry.gen.Unit" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.takeItems"
+    } ]
+  }, {
+    "id": 144,
+    "class": "mindustry.gen.TextInputCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "textInputId",
+      "codec": "Writes.i"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "textLength",
+      "codec": "Writes.i"
+    }, {
+      "field": "def",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "numeric",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "textInputId",
+      "codec": "Reads.i"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "textLength",
+      "codec": "Reads.i"
+    }, {
+      "field": "def",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "numeric",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "textInput",
+      "params": [ "int", "java.lang.String", "java.lang.String", "int", "java.lang.String", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "textInput",
+      "params": [ "mindustry.net.NetConnection", "int", "java.lang.String", "java.lang.String", "int", "java.lang.String", "boolean" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 145,
+    "class": "mindustry.gen.TextInputCallPacket2",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "textInputId",
+      "codec": "Writes.i"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "message",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "textLength",
+      "codec": "Writes.i"
+    }, {
+      "field": "def",
+      "codec": "TypeIO.writeString"
+    }, {
+      "field": "numeric",
+      "codec": "Writes.bool"
+    }, {
+      "field": "allowEmpty",
+      "codec": "Writes.bool"
+    } ],
+    "read": [ {
+      "field": "textInputId",
+      "codec": "Reads.i"
+    }, {
+      "field": "title",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "message",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "textLength",
+      "codec": "Reads.i"
+    }, {
+      "field": "def",
+      "codec": "TypeIO.readString"
+    }, {
+      "field": "numeric",
+      "codec": "Reads.bool"
+    }, {
+      "field": "allowEmpty",
+      "codec": "Reads.bool"
+    } ],
+    "calls": [ {
+      "method": "textInput",
+      "params": [ "int", "java.lang.String", "java.lang.String", "int", "java.lang.String", "boolean", "boolean" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "textInput",
+      "params": [ "mindustry.net.NetConnection", "int", "java.lang.String", "java.lang.String", "int", "java.lang.String", "boolean", "boolean" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 146,
+    "class": "mindustry.gen.TextInputResultCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "textInputId",
+      "codec": "Writes.i"
+    }, {
+      "field": "text",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "textInputId",
+      "codec": "Reads.i"
+    }, {
+      "field": "text",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "textInputResult",
+      "params": [ "mindustry.gen.Player", "int", "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.ui.Menus.textInputResult"
+    } ]
+  }, {
+    "id": 147,
+    "class": "mindustry.gen.TileConfigCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    }, {
+      "field": "value",
+      "codec": "TypeIO.writeObject"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    }, {
+      "field": "value",
+      "codec": "TypeIO.readObjectSafe"
+    } ],
+    "calls": [ {
+      "method": "tileConfig",
+      "params": [ "mindustry.gen.Player", "mindustry.gen.Building", "java.lang.Object" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.tileConfig"
+    }, {
+      "method": "tileConfig__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "mindustry.gen.Building", "java.lang.Object" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.sendExcept",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 148,
+    "class": "mindustry.gen.TileTapCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    } ],
+    "calls": [ {
+      "method": "tileTap",
+      "params": [ "mindustry.gen.Player", "mindustry.world.Tile" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.tileTap"
+    } ]
+  }, {
+    "id": 149,
+    "class": "mindustry.gen.TraceInfoCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity"
+    }, {
+      "field": "info",
+      "codec": "TypeIO.writeTraceInfo"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity"
+    }, {
+      "field": "info",
+      "codec": "TypeIO.readTraceInfo"
+    } ],
+    "calls": [ {
+      "method": "traceInfo",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "mindustry.net.Administration$TraceInfo" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 150,
+    "class": "mindustry.gen.TransferInventoryCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "transferInventory",
+      "params": [ "mindustry.gen.Player", "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.transferInventory"
+    }, {
+      "method": "transferInventory__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "mindustry.gen.Building" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 151,
+    "class": "mindustry.gen.TransferItemEffectCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "item",
+      "codec": "TypeIO.writeItem"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "to",
+      "codec": "TypeIO.writeEntity"
+    } ],
+    "read": [ {
+      "field": "item",
+      "codec": "TypeIO.readItem"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "to",
+      "codec": "TypeIO.readEntity"
+    } ],
+    "calls": [ {
+      "method": "transferItemEffect",
+      "params": [ "mindustry.type.Item", "float", "float", "mindustry.gen.Itemsc" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.transferItemEffect"
+    } ]
+  }, {
+    "id": 152,
+    "class": "mindustry.gen.TransferItemToCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "item",
+      "codec": "TypeIO.writeItem"
+    }, {
+      "field": "amount",
+      "codec": "Writes.i"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "item",
+      "codec": "TypeIO.readItem"
+    }, {
+      "field": "amount",
+      "codec": "Reads.i"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "transferItemTo",
+      "params": [ "mindustry.gen.Unit", "mindustry.type.Item", "int", "float", "float", "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.transferItemTo"
+    } ]
+  }, {
+    "id": 153,
+    "class": "mindustry.gen.TransferItemToUnitCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "item",
+      "codec": "TypeIO.writeItem"
+    }, {
+      "field": "x",
+      "codec": "Writes.f"
+    }, {
+      "field": "y",
+      "codec": "Writes.f"
+    }, {
+      "field": "to",
+      "codec": "TypeIO.writeEntity"
+    } ],
+    "read": [ {
+      "field": "item",
+      "codec": "TypeIO.readItem"
+    }, {
+      "field": "x",
+      "codec": "Reads.f"
+    }, {
+      "field": "y",
+      "codec": "Reads.f"
+    }, {
+      "field": "to",
+      "codec": "TypeIO.readEntity"
+    } ],
+    "calls": [ {
+      "method": "transferItemToUnit",
+      "params": [ "mindustry.type.Item", "float", "float", "mindustry.gen.Itemsc" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.input.InputHandler.transferItemToUnit"
+    } ]
+  }, {
+    "id": 154,
+    "class": "mindustry.gen.UnitBlockSpawnCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    } ],
+    "calls": [ {
+      "method": "unitBlockSpawn",
+      "params": [ "mindustry.world.Tile" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.blocks.units.UnitBlock.unitBlockSpawn"
+    } ]
+  }, {
+    "id": 155,
+    "class": "mindustry.gen.UnitBuildingControlSelectCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "unitBuildingControlSelect",
+      "params": [ "mindustry.gen.Unit", "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.unitBuildingControlSelect"
+    } ]
+  }, {
+    "id": 156,
+    "class": "mindustry.gen.UnitCapDeathCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    } ],
+    "calls": [ {
+      "method": "unitCapDeath",
+      "params": [ "mindustry.gen.Unit" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.entities.Units.unitCapDeath"
+    } ]
+  }, {
+    "id": 157,
+    "class": "mindustry.gen.UnitClearCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    } ],
+    "calls": [ {
+      "method": "unitClear",
+      "params": [ "mindustry.gen.Player" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.unitClear"
+    }, {
+      "method": "unitClear__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 158,
+    "class": "mindustry.gen.UnitControlCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "server", "client" ],
+    "handledBy": [ "server", "client" ],
+    "fields": [ {
+      "field": "player",
+      "codec": "TypeIO.writeEntity",
+      "if": "net.server()"
+    }, {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    } ],
+    "read": [ {
+      "field": "player",
+      "codec": "TypeIO.readEntity",
+      "if": "net.client()"
+    }, {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    } ],
+    "calls": [ {
+      "method": "unitControl",
+      "params": [ "mindustry.gen.Player", "mindustry.gen.Unit" ],
+      "variant": "all",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.unitControl"
+    }, {
+      "method": "unitControl__forward",
+      "params": [ "mindustry.net.NetConnection", "mindustry.gen.Player", "mindustry.gen.Unit" ],
+      "variant": "forward",
+      "sentBy": [ "server", "client" ],
+      "send": "Net.sendExcept",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 159,
+    "class": "mindustry.gen.UnitDeathCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "uid",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "uid",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "unitDeath",
+      "params": [ "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.entities.Units.unitDeath"
+    } ]
+  }, {
+    "id": 160,
+    "class": "mindustry.gen.UnitDespawnCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    } ],
+    "calls": [ {
+      "method": "unitDespawn",
+      "params": [ "mindustry.gen.Unit" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.entities.Units.unitDespawn"
+    } ]
+  }, {
+    "id": 161,
+    "class": "mindustry.gen.UnitDestroyCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "uid",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "uid",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "unitDestroy",
+      "params": [ "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.entities.Units.unitDestroy"
+    } ]
+  }, {
+    "id": 162,
+    "class": "mindustry.gen.UnitEnteredPayloadCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.writeBuilding"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    }, {
+      "field": "build",
+      "codec": "TypeIO.readBuilding"
+    } ],
+    "calls": [ {
+      "method": "unitEnteredPayload",
+      "params": [ "mindustry.gen.Unit", "mindustry.gen.Building" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.input.InputHandler.unitEnteredPayload"
+    } ]
+  }, {
+    "id": 163,
+    "class": "mindustry.gen.UnitEnvDeathCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    } ],
+    "calls": [ {
+      "method": "unitEnvDeath",
+      "params": [ "mindustry.gen.Unit" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.entities.Units.unitEnvDeath"
+    } ]
+  }, {
+    "id": 164,
+    "class": "mindustry.gen.UnitSafeDeathCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unit",
+      "codec": "TypeIO.writeUnit"
+    } ],
+    "read": [ {
+      "field": "unit",
+      "codec": "TypeIO.readUnit"
+    } ],
+    "calls": [ {
+      "method": "unitSafeDeath",
+      "params": [ "mindustry.gen.Unit" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.entities.Units.unitSafeDeath"
+    } ]
+  }, {
+    "id": 165,
+    "class": "mindustry.gen.UnitSpawnCallPacket",
+    "kind": "call",
+    "priority": "low",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "container",
+      "codec": "TypeIO.writeUnitContainer"
+    } ],
+    "read": [ {
+      "field": "container",
+      "codec": "TypeIO.readUnitContainer"
+    } ],
+    "calls": [ {
+      "method": "unitSpawn",
+      "params": [ "mindustry.entities.Units$UnitSyncContainer" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": null
+    } ]
+  }, {
+    "id": 166,
+    "class": "mindustry.gen.UnitTetherBlockSpawnedCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "tile",
+      "codec": "TypeIO.writeTile"
+    }, {
+      "field": "id",
+      "codec": "Writes.i"
+    } ],
+    "read": [ {
+      "field": "tile",
+      "codec": "TypeIO.readTile"
+    }, {
+      "field": "id",
+      "codec": "Reads.i"
+    } ],
+    "calls": [ {
+      "method": "unitTetherBlockSpawned",
+      "params": [ "mindustry.world.Tile", "int" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.world.blocks.units.UnitCargoLoader.unitTetherBlockSpawned"
+    } ]
+  }, {
+    "id": 167,
+    "class": "mindustry.gen.UpdateGameOverCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "winner",
+      "codec": "TypeIO.writeTeam"
+    } ],
+    "read": [ {
+      "field": "winner",
+      "codec": "TypeIO.readTeam"
+    } ],
+    "calls": [ {
+      "method": "updateGameOver",
+      "params": [ "mindustry.game.Team" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": "mindustry.core.Logic.updateGameOver"
+    } ]
+  }, {
+    "id": 168,
+    "class": "mindustry.gen.UpdateMarkerCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "control",
+      "codec": "TypeIO.writeMarkerControl"
+    }, {
+      "field": "p1",
+      "codec": "Writes.d"
+    }, {
+      "field": "p2",
+      "codec": "Writes.d"
+    }, {
+      "field": "p3",
+      "codec": "Writes.d"
+    } ],
+    "read": [ {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "control",
+      "codec": "TypeIO.readMarkerControl"
+    }, {
+      "field": "p1",
+      "codec": "Reads.d"
+    }, {
+      "field": "p2",
+      "codec": "Reads.d"
+    }, {
+      "field": "p3",
+      "codec": "Reads.d"
+    } ],
+    "calls": [ {
+      "method": "updateMarker",
+      "params": [ "int", "mindustry.logic.LMarkerControl", "double", "double", "double" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.updateMarker"
+    }, {
+      "method": "updateMarker",
+      "params": [ "mindustry.net.NetConnection", "int", "mindustry.logic.LMarkerControl", "double", "double", "double" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.updateMarker"
+    } ]
+  }, {
+    "id": 169,
+    "class": "mindustry.gen.UpdateMarkerTextCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "type",
+      "codec": "TypeIO.writeMarkerControl"
+    }, {
+      "field": "fetch",
+      "codec": "Writes.bool"
+    }, {
+      "field": "text",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "type",
+      "codec": "TypeIO.readMarkerControl"
+    }, {
+      "field": "fetch",
+      "codec": "Reads.bool"
+    }, {
+      "field": "text",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "updateMarkerText",
+      "params": [ "int", "mindustry.logic.LMarkerControl", "boolean", "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.updateMarkerText"
+    }, {
+      "method": "updateMarkerText",
+      "params": [ "mindustry.net.NetConnection", "int", "mindustry.logic.LMarkerControl", "boolean", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.updateMarkerText"
+    } ]
+  }, {
+    "id": 170,
+    "class": "mindustry.gen.UpdateMarkerTextureCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "id",
+      "codec": "Writes.i"
+    }, {
+      "field": "texture",
+      "codec": "TypeIO.writeObject"
+    } ],
+    "read": [ {
+      "field": "id",
+      "codec": "Reads.i"
+    }, {
+      "field": "texture",
+      "codec": "TypeIO.readObjectSafe"
+    } ],
+    "calls": [ {
+      "method": "updateMarkerTexture",
+      "params": [ "int", "java.lang.Object" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.updateMarkerTexture"
+    }, {
+      "method": "updateMarkerTexture",
+      "params": [ "mindustry.net.NetConnection", "int", "java.lang.Object" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": false,
+      "local": "mindustry.logic.LExecutor.updateMarkerTexture"
+    } ]
+  }, {
+    "id": 171,
+    "class": "mindustry.gen.WarningToastCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ {
+      "field": "unicode",
+      "codec": "Writes.i"
+    }, {
+      "field": "text",
+      "codec": "TypeIO.writeString"
+    } ],
+    "read": [ {
+      "field": "unicode",
+      "codec": "Reads.i"
+    }, {
+      "field": "text",
+      "codec": "TypeIO.readString"
+    } ],
+    "calls": [ {
+      "method": "warningToast",
+      "params": [ "int", "java.lang.String" ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "warningToast",
+      "params": [ "mindustry.net.NetConnection", "int", "java.lang.String" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  }, {
+    "id": 172,
+    "class": "mindustry.gen.WorldDataBeginCallPacket",
+    "kind": "call",
+    "priority": "normal",
+    "acceptedBy": [ "client" ],
+    "handledBy": [ "client" ],
+    "fields": [ ],
+    "read": [ ],
+    "calls": [ {
+      "method": "worldDataBegin",
+      "params": [ ],
+      "variant": "all",
+      "sentBy": [ "server" ],
+      "send": "Net.send",
+      "reliable": true,
+      "local": null
+    }, {
+      "method": "worldDataBegin",
+      "params": [ "mindustry.net.NetConnection" ],
+      "variant": "one",
+      "sentBy": [ "server" ],
+      "send": "NetConnection.send",
+      "reliable": true,
+      "local": null
+    } ]
+  } ]
+}

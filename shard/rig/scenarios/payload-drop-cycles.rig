@@ -1,0 +1,161 @@
+# W4.5 (Q215), amplified: payload-drop-order.rig's setup, then ten lifts and drops of the container at tile (18, 12),
+# with both clients counting the payloadDropped Calls whose drop left the tile empty. Both log, in arrival order, each
+# Call (the mega's payload count when it came, and whether the building appeared) and each entity snapshot that changed
+# the mega's payload count: "snapshot:1>0" before a Call with held=0 means the snapshot emptied the carrier first (Q215).
+# Twenty client views per run; the run fails if either client missed one.
+#
+#   rig/run.sh --vm "$(cat .vm-id)" --server-cpus 0-3 --client-cpus 4-7 --server 'mkdir -p maps && cp \
+#     ~/shard/rig/scenarios/payloads.msav maps/ && PUSH=~/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh \
+#     "payloads sandbox"' --clients 2 --script rig/scenarios/payload-drop-cycles.rig
+timeout 8m
+
+wait port 120s
+alpha: join
+bravo: join
+
+alpha: expect js "(function(){Call.unitControl(Vars.player, Groups.unit.find(function(u){return u.type == UnitTypes.mega}));return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().type.name" /^mega$/ 10s
+bravo: expect js "Groups.unit.find(function(u){return u.type == UnitTypes.mega}).isPlayer()" /^true$/ 10s
+alpha: press OPEN_BRACKET
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+alpha: press CLOSE_BRACKET
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+bravo: expect js "Groups.unit.count(function(u){return u.type == UnitTypes.dagger})" /^1(\.0)?$/ 10s
+
+# the first lift is from the map's own place, (14, 8); later ones from where it was dropped, (18, 12)
+alpha: expect js "(function(){Call.requestBuildPayload(Vars.player, Vars.world.build(14, 8));return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+bravo: expect js "Groups.unit.find(function(u){return u.type == UnitTypes.mega}).payloads.size" /^1(\.0)?$/ 10s
+all: expect js "(function(){var t0 = Time.millis(); this.rigOrder = []; this.rigCalls = 0; this.rigMissed = 0; var mega = function(){var m = Groups.unit.find(function(u){return u.type == UnitTypes.mega}); return m == null ? -1 : m.payloads.size}; Vars.net.handleClient(Packages.mindustry.gen.PayloadDroppedCallPacket, function(p){var held = mega(); p.handleClient(); var placed = Vars.world.build(18, 12) != null; rigCalls++; if(!placed) rigMissed++; rigOrder.push((Time.millis() - t0) + ':call:held=' + held + ':placed=' + placed)}); Vars.net.handleClient(Packages.mindustry.gen.EntitySnapshotCallPacket, function(p){var before = mega(); p.handleClient(); var after = mega(); if(before != after) rigOrder.push((Time.millis() - t0) + ':snapshot:' + before + '>' + after)}); return 'hooked'})()" /^hooked$/ 10s
+
+# cycle 1
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-01.tsv
+alpha: expect js "(function(){var b = Vars.world.build(18, 12); if(b == null) return 'gone'; Call.requestBuildPayload(Vars.player, b);return 'sent'})()" /^(sent|gone)$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+wait 1s
+
+# cycle 2
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-02.tsv
+alpha: expect js "(function(){var b = Vars.world.build(18, 12); if(b == null) return 'gone'; Call.requestBuildPayload(Vars.player, b);return 'sent'})()" /^(sent|gone)$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+wait 1s
+
+# cycle 3
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-03.tsv
+alpha: expect js "(function(){var b = Vars.world.build(18, 12); if(b == null) return 'gone'; Call.requestBuildPayload(Vars.player, b);return 'sent'})()" /^(sent|gone)$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+wait 1s
+
+# cycle 4
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-04.tsv
+alpha: expect js "(function(){var b = Vars.world.build(18, 12); if(b == null) return 'gone'; Call.requestBuildPayload(Vars.player, b);return 'sent'})()" /^(sent|gone)$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+wait 1s
+
+# cycle 5
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-05.tsv
+alpha: expect js "(function(){var b = Vars.world.build(18, 12); if(b == null) return 'gone'; Call.requestBuildPayload(Vars.player, b);return 'sent'})()" /^(sent|gone)$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+wait 1s
+
+# cycle 6
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-06.tsv
+alpha: expect js "(function(){var b = Vars.world.build(18, 12); if(b == null) return 'gone'; Call.requestBuildPayload(Vars.player, b);return 'sent'})()" /^(sent|gone)$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+wait 1s
+
+# cycle 7
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-07.tsv
+alpha: expect js "(function(){var b = Vars.world.build(18, 12); if(b == null) return 'gone'; Call.requestBuildPayload(Vars.player, b);return 'sent'})()" /^(sent|gone)$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+wait 1s
+
+# cycle 8
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-08.tsv
+alpha: expect js "(function(){var b = Vars.world.build(18, 12); if(b == null) return 'gone'; Call.requestBuildPayload(Vars.player, b);return 'sent'})()" /^(sent|gone)$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+wait 1s
+
+# cycle 9
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-09.tsv
+alpha: expect js "(function(){var b = Vars.world.build(18, 12); if(b == null) return 'gone'; Call.requestBuildPayload(Vars.player, b);return 'sent'})()" /^(sent|gone)$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^1(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=air / 10s
+wait 1s
+
+# cycle 10
+alpha: expect js "(function(){Call.requestDropPayload(Vars.player, 145, 98);return 'sent'})()" /^sent$/ 10s
+alpha: expect js "Vars.player.unit().payloads.size" /^0(\.0)?$/ 10s
+console tile payloads 18 12
+wait log server /^tile 18,12 .* block=container / 10s
+wait 1s
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 500ms to cycle-10.tsv
+
+all: sample js "rigCalls + ' calls, ' + rigMissed + ' missed: ' + rigOrder.join(' ')" every 500ms for 1s to cycles.tsv
+all: expect js "rigCalls + ' ' + rigMissed" /^10 0$/ 5s
+all: shot cycles
+
+allow client-log /Missing entity at stone:air:air\[18,12\]/
+assert clean server

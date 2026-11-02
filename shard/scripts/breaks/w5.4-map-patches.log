@@ -1,0 +1,52 @@
+OK       clean: fails nothing
+breaks: 13 to run, 4 at a time
+breaks:   206 s  patcher: a float a little off
+breaks:   249 s  patcher: @NoPatch fields edited
+breaks:   249 s  patcher: requiredPlanets ignored
+CAUGHT   patcher: a unit keeps its path type: fails DataPatcherTest, ContentGatesTest
+           DataPatcherTest: 1 of 14 failed; first: org.opentest4j.AssertionFailedError: expected: <2> but was: <4>
+           ContentGatesTest: 1 of 5 failed; first: org.opentest4j.AssertionFailedError: 3 differences ==> expected: <[]> but was: <[unit mono.flowfieldPathType: vanilla 2 ≠ shard 4, unit mono.pathCost: vanilla cost:costNaval ≠ shard cost:costGround, unit mono.pathCostId: vanilla 3 ≠ shard 0]>
+CAUGHT   patcher: requiredPlanets ignored: fails DataPatcherTest, ContentGatesTest
+           DataPatcherTest: 1 of 14 failed; first: org.opentest4j.AssertionFailedError: expected: <[PatchAsset[path=b.json, text={"requiredPlanets": ["serpulo", "erekir"], "block.conveyor.speed": 0.5}]]> but was: <[PatchAsset[path=e.json, text={"requiredPlanets": "erekir", "block.conveyor.speed": 1}], PatchAss
+           ContentGatesTest: 1 of 5 failed; first: org.opentest4j.AssertionFailedError: requiredPlanets drops the second ==> expected: <[patches/stats.json]> but was: <[patches/stats.json, patches/erekir.json]>
+CAUGHT   patcher: @NoPatch fields edited: fails DataPatcherTest, ContentGatesTest
+           DataPatcherTest: 1 of 14 failed; first: org.opentest4j.AssertionFailedError: [w.json: no key found: 'no-such-block', w.json: failed to resolve no-such-block, w.json: invalid content type: nothing, w.json: failed to resolve nothing] ==> expected: <5> but was: <4>
+           ContentGatesTest: 1 of 5 failed; first: org.opentest4j.AssertionFailedError: the @NoPatch size: [] ==> expected: <1> but was: <0>
+CAUGHT   patcher: a float a little off: fails DataPatcherTest, MapLoaderTest, ContentGatesTest, PatchedMapsOracleTest
+           DataPatcherTest: 3 of 14 failed; first: org.opentest4j.AssertionFailedError: expected: <0.08> but was: <0.080008>
+           MapLoaderTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: expected: <15.0> but was: <15.0015>
+           ContentGatesTest: 1 of 5 failed; first: org.opentest4j.AssertionFailedError: expected: <0.08> but was: <0.080008>
+           PatchedMapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: expected: <0.08> but was: <0.080008>
+breaks:   250 s  patcher: a unit keeps its path type
+CAUGHT   patcher: a crafter always outputs liquid: fails ContentGatesTest
+           ContentGatesTest: 1 of 5 failed; first: org.opentest4j.AssertionFailedError: 1 differences ==> expected: <[]> but was: <[block graphite-press.outputsLiquid: vanilla false ≠ shard true]>
+breaks:   200 s  patcher: a crafter always outputs liquid
+breaks:   205 s  section: assets in file order
+breaks:   205 s  section: external assets always embedded
+CAUGHT   reader: every number a double: fails DataPatcherTest
+           DataPatcherTest: 1 of 14 failed; first: org.opentest4j.AssertionFailedError: expected: <1> but was: <1.0>
+CAUGHT   section: assets in file order: fails DataPatcherTest
+           DataPatcherTest: 1 of 14 failed; first: org.opentest4j.AssertionFailedError: DataManager orders by type ==> Unexpected type, expected: <com.xpdustry.shard.content.patch.DataAsset.PatchAsset> but was: <com.xpdustry.shard.content.patch.DataAsset.ExternalAsset>
+CAUGHT   section: external assets always embedded: fails DataPatcherTest, PatchedMapsOracleTest
+           DataPatcherTest: 1 of 14 failed; first: org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+           PatchedMapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: the data patch section ==> expected: <000000020000000200002f70617463682d64313732616335312d373363392d343435362d383936632d3630363332636437666261312e6a736f6e01000000637b226e616d65223a2022666173746572222c2022626c6f636b2e6d65636
+breaks:   207 s  reader: every number a double
+CAUGHT   loader: the world plays the template content: fails MapLoaderTest, PatchedMapsOracleTest
+           MapLoaderTest: 1 of 6 failed; first: org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+           PatchedMapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: the world plays its own patched content ==> expected: <true> but was: <false>
+breaks:   171 s  loader: the world plays the template content
+breaks:   202 s  assets: a repeated request sent twice
+breaks:   204 s  stream: the epoch patch always
+CAUGHT   loader: the section is not kept: fails MapPatchesOracleTest, PatchedMapsOracleTest
+           MapPatchesOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: maps/serpulo/hidden/242.msav: the world stream's data patch section ==> expected: <000000020000000100002f70617463682d62373763356266652d346633342d343265372d623737622d3433636434333539656365662e6a736f6e01000000117b226e616d6522
+           PatchedMapsOracleTest: 1 of 3 failed; first: java.lang.NullPointerException: Cannot read the array length because "bytes" is null
+CAUGHT   stream: the epoch patch always: fails MapPatchesOracleTest, PatchedMapsOracleTest
+           MapPatchesOracleTest: 2 of 2 failed; first: org.opentest4j.AssertionFailedError: maps/serpulo/hidden/242.msav: the world stream's data patch section ==> expected: <000000020000000100002f70617463682d62373763356266652d346633342d343265372d623737622d3433636434333539656365662e6a736f6e01000000117b226e616d6522
+           PatchedMapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: expected: <000000020000000200002f70617463682d32386538303830612d373632662d346532312d383963382d6334626135656266393432322e6a736f6e01000000637b226e616d65223a2022666173746572222c2022626c6f636b2e6d656368616e6963616c2d6472696c6c2e
+CAUGHT   assets: a repeated request sent twice: fails PatchedMapsOracleTest
+           PatchedMapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: a repeat is skipped ==> expected: <1> but was: <2>
+breaks:   205 s  loader: the section is not kept
+CAUGHT   assets: requirements without hashes: fails PatchedMapsOracleTest
+           PatchedMapsOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: expected: <[XQE4EWINEUBMR75PDI6ATKUJ34RC4A6RQ2UNVIGH7TTDEH5W5EUA]> but was: <[AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]>
+breaks:   127 s  assets: requirements without hashes
+breaks: 14 in 828 s

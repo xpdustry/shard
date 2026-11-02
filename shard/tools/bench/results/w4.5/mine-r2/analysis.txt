@@ -1,0 +1,16 @@
+RUN mine-r2    ticks=18171 dropped=0 tick p50=0.447 p99=2.815 ms total=4.228 tick=3.760 MiB/s tick=12.92 KiB/wtick gc=1 pause=29 ms
+     66.11 MiB  25.9%  TileSolidity.grid:27  TileSolidity$$Lambda
+     10.14 MiB   4.0%  BulletUpdate.lambda$run$0:48  Bullet
+     10.09 MiB   4.0%  Frame.packet:63  [B
+      8.38 MiB   3.3%  BulletUpdate.lambda$run$1:49  Bullet
+      8.11 MiB   3.2%  UnitProjection.<init>:54  Codecs$Mount
+      7.53 MiB   3.0%  BulletUpdate.collide:249  ArrayList
+      7.40 MiB   2.9%  EntityProjector.unit:89  UnitProjection
+      5.85 MiB   2.3%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      5.63 MiB   2.2%  Writes.toByteArray:119  [B
+      5.27 MiB   2.1%  UnitProjection.<init>:65  ArrayList
+      4.62 MiB   1.8%  EntityProjector.unit:85  ArrayList
+      4.46 MiB   1.7%  UnitProjection.<init>:56  Object;
+      4.22 MiB   1.7%  BulletUpdate.collide:251  ArrayList$Itr
+      3.87 MiB   1.5%  WorldSync.drain:193  ImmutableCollections$ListItr
+      3.86 MiB   1.5%  (no Shard frame)  AbstractQueuedSynchronizer$ConditionNode

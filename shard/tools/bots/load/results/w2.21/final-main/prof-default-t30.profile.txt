@@ -1,0 +1,833 @@
+JFR prof-default-t30.jfr, uptime 30-100 s (70 s); CPU from jdk.CPUTimeSample
+
+== CPU by thread group (samples are CPU periods; % of all samples; cores = share x the process CPU)
+   23123  67.5%  tick-N
+    4804  14.0%  io-cpu-N
+    2193   6.4%  udp-recv
+     976   2.9%  tcp-w-N
+     846   2.5%  tcp-w--N
+     589   1.7%  tcp-r-N
+     476   1.4%  tcp-r--N
+     392   1.1%  ForkJoinPool-N-worker-N
+     337   1.0%  SubPoller-N
+     160   0.5%  Master-Poller
+     143   0.4%  server
+     124   0.4%  io-N
+    3466 samples lost (jdk.CPUTimeSamplesLost), by the event's thread: tick-N 1369 udp-recv 522 server 317 tcp-w-N 246 tcp-w--N 235 tcp-r-N 149
+jdk.CPULoad: JVM 16.3%, machine 24.8% of all CPUs (mean of 70)
+jdk.ThreadCPULoad, mean user + system summed per group (a share of the JVM's processors): tick-N 19.0% ForkJoinPool-N-worker-N 6.3% CN CompilerThreadN 3.3% io-cpu-N 3.1% udp-recv 2.9% server 0.6% Master-Poller 0.3%
+
+== Tick threads, CPU, top-down from WorldScheduler.turn (23125 samples, 67.5% of all)
+   22903  99.0% server.sched.WorldScheduler.turn
+   22710  98.2%   server.world.ManagedWorld.tick
+   13287  57.5%     sim.world.World.tick
+    3113  13.5%       sim.world.World.admit
+    3102  13.4%         sim.world.Inbox.drain
+    3050  13.2%           sim.world.World$$Lambda.accept
+    3036  13.1%             sim.world.World.lambda$admit$0
+    1836   7.9%               server.intent.Guarded.apply
+    1823   7.9%                 server.intent.Snapshot.admit
+     778   3.4%                   server.intent.UnitInput.isBuilder > … > java.util.HashMap.get > java.util.HashMap.getNode
+     372   1.6%                   sim.unit.Unit.speed
+     369   1.6%                     sim.unit.Unit.floorSpeedMultiplier > sim.unit.MoveShape.floorSpeedMultiplier > common.math.Mathf.pow > common.math.Libm.pow
+     290   1.3%                   server.intent.UnitInput.aim
+     249   1.1%                     content.UnitDef.aimDst > … > java.util.HashMap.get > java.util.HashMap.getNode
+     164   0.7%                   server.intent.Acting.of > server.intent.Acting.of
+     162   0.7%                     server.host.Roster.player > java.util.TreeMap.get > java.util.TreeMap.getEntry
+     124   0.5%                   server.intent.UnitInput.controlWeapons
+     122   0.5%                     content.WeaponDef.controllable > … > java.util.HashMap.get > java.util.HashMap.getNode
+     822   3.6%               sim.world.Members.check
+     665   2.9%                 java.util.TreeMap.put > java.util.TreeMap.put
+    2128   9.2%       sim.unit.UnitUpdate.run > sim.entity.ActiveList.each > sim.unit.UnitUpdate$$Lambda.accept
+    2121   9.2%         sim.unit.Unit.update
+     773   3.3%           sim.unit.UnitCoreComponent.update
+     238   1.0%             sim.waves.WaveSpawner.push
+     123   0.5%               sim.unit.Unit.within > common.math.Mathf.within
+     142   0.6%             sim.unit.UnitCalls.rules
+     125   0.5%             sim.unit.Unit.canPassOn > sim.unit.Unit.canPass
+      98   0.4%             sim.unit.Unit.hittable
+     451   2.0%           sim.combat.Weapons.update
+     244   1.1%             sim.combat.Weapon.update
+     240   1.0%               sim.unit.Unit.angleTo > common.math.Angles.angle > common.math.Mathf.atan2
+     444   1.9%           sim.unit.StatusComponent.update
+     436   1.9%             sim.unit.Statuses.update
+     321   1.4%               common.struct.Bits.clear > java.util.Arrays.fill
+     115   0.5%               sim.unit.StatusTable.of
+     156   0.7%           sim.unit.VelComponent.update > sim.unit.Unit.move
+      99   0.4%           sim.build.BuilderComponent.update
+      95   0.4%             sim.build.Builder.update
+    2041   8.8%       sim.spatial.PhysicsBegin.run
+    2024   8.8%         sim.spatial.UnitPhysics.begin
+    1583   6.8%           sim.spatial.UnitPhysics$Layer.step
+     721   3.1%             sim.spatial.BodyTree.fill
+     404   1.7%               sim.spatial.BodyTree.fill
+     320   1.4%                 sim.spatial.BodyTree.fill
+     272   1.2%                   sim.spatial.BodyTree.fill
+     210   0.9%                     sim.spatial.BodyTree.fill
+     154   0.7%                       sim.spatial.BodyTree.fill
+      97   0.4%                         sim.spatial.BodyTree.fill
+     234   1.0%               sim.spatial.BodyTree.clear
+     229   1.0%                 sim.spatial.BodyTree.clear
+     170   0.7%                   sim.spatial.BodyTree.clear
+     121   0.5%                     sim.spatial.BodyTree.clear
+     103   0.4%                       sim.spatial.BodyTree.clear
+     477   2.1%             sim.spatial.BodyTree.intersect
+     427   1.8%               sim.spatial.BodyTree.intersect
+     387   1.7%                 sim.spatial.BodyTree.intersect
+     365   1.6%                   sim.spatial.BodyTree.intersect
+     313   1.4%                     sim.spatial.BodyTree.intersect
+     239   1.0%                       sim.spatial.BodyTree.intersect
+     176   0.8%                         sim.spatial.BodyTree.intersect
+     227   1.0%           sim.unit.Unit.move
+    1606   6.9%       sim.unit.TeamStats.run
+    1244   5.4%         sim.spatial.SpatialIndex.fillTeams
+     980   4.2%           sim.spatial.UnitGrid.sort
+     944   4.1%             sim.spatial.CellGrid.build
+     352   1.5%         sim.unit.TeamUnits.recount
+    1094   4.7%       sim.spatial.EntityPhysics.run
+    1080   4.7%         sim.spatial.SpatialIndex.fillUnits
+     971   4.2%           sim.spatial.UnitGrid.sort
+     949   4.1%             sim.spatial.CellGrid.build
+     550   2.4%       sim.team.TeamCoreStats.run
+     544   2.4%         sim.team.Teams.updateStats
+     496   2.1%       sim.waves.EnemyCount.run
+     266   1.2%       sim.unit.PlayerUpdate.run
+     241   1.0%         sim.entity.ActiveList.each
+     197   0.9%           sim.unit.PlayerUpdate$$Lambda.accept > sim.unit.Player.update > sim.unit.PlayerSpawns.of
+     254   1.1%       sim.path.PathFlush.run
+     134   0.6%         sim.world.World.part
+     120   0.5%         sim.path.PathService.flush
+     218   0.9%       sim.building.BuildingUpdate.run > sim.entity.ActiveList.each
+     217   0.9%         sim.building.BuildingUpdate$$Lambda.accept > sim.building.Building.update
+     123   0.5%           sim.building.Building.updateConsumption
+     126   0.5%       sim.ai.WaveFields$Preload.run
+     100   0.4%         sim.world.World.find
+     115   0.5%       sim.team.CoreFill.run
+     101   0.4%       sim.weather.WeatherUpdate.run
+      95   0.4%         sim.weather.Weathers.updateSchedule
+      96   0.4%       sim.waves.WaveCountdown.run
+    7624  33.0%     server.host.HostedWorld.afterTick
+    5593  24.2%       server.sync.WorldSync.endTick
+    3144  13.6%         server.sync.WorldSync.snapshots
+    2633  11.4%           server.sync.Outbox.send
+    2395  10.4%             server.sync.Outbox.route > server.sync.Outbox.transmit
+    2387  10.3%               server.sync.Outbox$Transmit$N.send
+    2382  10.3%                 net.Conn.sendUdp > net.Transport.sendDatagram
+    2236   9.7%                   sun.nio.ch.DatagramChannelImpl.send
+    2192   9.5%                     sun.nio.ch.DatagramChannelImpl.send
+    2185   9.4%                       sun.nio.ch.DatagramChannelImpl.sendFromNativeBuffer
+    2088   9.0%                         sun.nio.ch.DatagramChannelImpl.send0
+     205   0.9%             server.sync.Calls.frame
+     155   0.7%               net.Frame.packet
+     151   0.7%                 net.Frame.packet
+     145   0.6%                   net.Lz4.compress
+     192   0.8%           compat.v160.sync.EntitySnapshots.all
+     189   0.8%             compat.v160.sync.EntitySnapshots.write
+     101   0.4%           server.intent.PlayerInput.viewer
+     100   0.4%             sim.entity.Entity.attachment > sim.entity.AttachmentKey.cast
+    2379  10.3%         server.sync.WorldSync.plans
+    2275   9.8%           server.sync.Outbox.send
+    2234   9.7%             server.sync.Outbox.route > server.sync.Outbox.transmit
+    2231   9.6%               server.sync.Outbox$Transmit$N.send
+    2228   9.6%                 net.Conn.sendUdp > net.Transport.sendDatagram
+    2182   9.4%                   sun.nio.ch.DatagramChannelImpl.send
+    2104   9.1%                     sun.nio.ch.DatagramChannelImpl.send
+    2092   9.0%                       sun.nio.ch.DatagramChannelImpl.sendFromNativeBuffer
+    2043   8.8%                         sun.nio.ch.DatagramChannelImpl.send0
+    1280   5.5%       server.host.HostedWorld.sendWorlds
+    1257   5.4%         server.host.HostedWorld$$Lambda.capture > server.host.HostedWorld.lambda$new$0 > server.host.WorldSends.capture
+    1249   5.4%           compat.v160.world.WorldProjection.capture
+     323   1.4%             compat.v160.world.WorldProjection.map
+     280   1.2%               sim.tile.TileGrid.shouldSaveData > sim.tile.BlockTable.saveData > sim.tile.BlockTable.is
+     273   1.2%             compat.v160.rules.RulesJson.write
+     268   1.2%               compat.v160.rules.RulesJson.writeObject
+     126   0.5%                 compat.v160.rules.RulesJson$Field.isDefault
+     126   0.5%                 compat.v160.rules.RulesJson$Field.write
+     121   0.5%                   compat.v160.rules.RulesJson$N.write
+     116   0.5%                     compat.v160.rules.RulesJson$N.write
+     260   1.1%             compat.v160.world.WorldProjection.entities
+     168   0.7%               compat.v160.world.StreamEntities.<init>
+     158   0.7%                 compat.v160.entity.EntityProjector.<init>
+     252   1.1%             compat.v160.world.WorldProjection.header > compat.v160.world.ContentHeader.extend
+     106   0.5%               compat.v160.world.ContentHeader.resolve
+     429   1.9%       server.sync.WorldSync.beginTick
+     293   1.3%         java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$N.hasNext
+    1260   5.4%     sim.world.World.hash
+    1234   5.3%       sim.world.World.section
+    1233   5.3%         sim.world.World$$Lambda.accept
+    1012   4.4%           sim.tile.TileGrid.hash
+     477   2.1%             sim.world.Hasher.bytes
+     294   1.3%             sim.world.Hasher.shorts
+     228   1.0%             sim.world.Hasher.ints > sim.world.Hasher.ints
+     116   0.5%           sim.path.PathService.hash
+     109   0.5%             sim.path.PathGrid.hash
+     479   2.1%     server.host.HostedWorld.beforeTick > server.session.WorldMailbox.pump
+     236   1.0%       server.session.Mailbox.drain
+     222   1.0% java.lang.Thread.run > java.lang.Thread.runWith > server.sched.WorldScheduler$$Lambda.run
+     220   1.0%   server.sched.WorldScheduler.work
+
+== Tick threads by system (us per world tick: samples x 2.0 ms, scaled up for 1406 lost samples, over 420051 world ticks)
+    3144  13.6%   15.88 us  afterTick/WorldSync.endTick/snapshots
+    2379  10.3%   12.02 us  afterTick/WorldSync.endTick/plans
+    2041   8.8%   10.31 us  sim.spatial.PhysicsBegin
+    1836   7.9%    9.27 us  admit/server.intent.Guarded
+    1606   6.9%    8.11 us  sim.unit.TeamStats
+    1280   5.5%    6.47 us  afterTick/HostedWorld.sendWorlds
+    1260   5.4%    6.36 us  World.hash
+    1094   4.7%    5.53 us  sim.spatial.EntityPhysics
+     822   3.6%    4.15 us  admit/sim.world.Members
+     773   3.3%    3.90 us  sim.unit.UnitUpdate/sim.unit.UnitCoreComponent
+     550   2.4%    2.78 us  sim.team.TeamCoreStats
+     534   2.3%    2.70 us  ManagedWorld.tick
+     496   2.1%    2.51 us  sim.waves.EnemyCount
+     479   2.1%    2.42 us  beforeTick
+     451   2.0%    2.28 us  sim.unit.UnitUpdate/sim.combat.Weapons
+     444   1.9%    2.24 us  sim.unit.UnitUpdate/sim.unit.StatusComponent
+     429   1.9%    2.17 us  afterTick/WorldSync.beginTick
+     350   1.5%    1.77 us  scheduler
+     304   1.3%    1.54 us  admit
+     266   1.2%    1.34 us  sim.unit.PlayerUpdate
+     254   1.1%    1.28 us  sim.path.PathFlush
+     156   0.7%    0.79 us  sim.unit.UnitUpdate/sim.unit.VelComponent
+     126   0.5%    0.64 us  sim.ai.WaveFields$Preload
+     123   0.5%    0.62 us  sim.building.BuildingUpdate/sim.building.Building
+     115   0.5%    0.58 us  sim.team.CoreFill
+     101   0.4%    0.51 us  sim.weather.WeatherUpdate
+     100   0.4%    0.51 us  sim.unit.UnitUpdate
+      96   0.4%    0.48 us  sim.waves.WaveCountdown
+      95   0.4%    0.48 us  sim.unit.UnitUpdate/sim.build.BuilderComponent/sim.build.Builder
+      89   0.4%    0.45 us  sim.unit.UnitUpdate/sim.unit.SyncComponent
+      89   0.4%    0.45 us  sim.game.CheckGameState
+      84   0.4%    0.42 us  afterTick/WorldSync.drain
+      82   0.4%    0.41 us  afterTick/HostedWorld.said
+      76   0.3%    0.38 us  afterTick/HostedWorld.left
+      74   0.3%    0.37 us  sim.unit.PostedDestroys
+      73   0.3%    0.37 us  sim.weather.EnvUpdate
+      73   0.3%    0.37 us  sim.blocks.power.PowerUpdate
+      69   0.3%    0.35 us  sim.bullet.BulletUpdate
+      64   0.3%    0.32 us  admit/server.host.HostInputs$Confirm
+      63   0.3%    0.32 us  sim.building.BuildingUpdate
+      52   0.2%    0.26 us  admit/server.host.HostInputs$Leave
+      46   0.2%    0.23 us  sim.world.World
+      45   0.2%    0.23 us  afterTick/WorldSync.endTick
+      44   0.2%    0.22 us  boundary/mode
+      35   0.2%    0.18 us  afterTick
+      31   0.1%    0.16 us  sim.entity.MiscUpdate
+      29   0.1%    0.15 us  server.sched.TickStats
+      26   0.1%    0.13 us  sim.fire.HazardPool$Update
+      26   0.1%    0.13 us  admit/server.host.HostInputs$Join
+
+== Tick threads, CPU, self
+    4135  17.9%  sun.nio.ch.DatagramChannelImpl.send0
+                      < sun.nio.ch.DatagramChannelImpl.sendFromNativeBuffer < sun.nio.ch.DatagramChannelImpl.send (100.0%)
+    1856   8.0%  sim.spatial.CellGrid.build
+                      < sim.spatial.UnitGrid.sort < sim.spatial.SpatialIndex.fillUnits (50.4%)
+                      < sim.spatial.UnitGrid.sort < sim.spatial.SpatialIndex.fillTeams (49.6%)
+    1286   5.6%  java.util.HashMap.getNode
+                      < java.util.HashMap.get < content.schema.KindSchema.field (93.5%)
+     675   2.9%  java.util.TreeMap.put
+                      < java.util.TreeMap.put < sim.world.Members.check (98.4%)
+     584   2.5%  java.util.Arrays.fill
+                      < common.struct.Bits.clear < sim.unit.Statuses.update (55.0%)
+                      < sim.spatial.UnitGrid.clear < sim.spatial.SpatialIndex.fillUnits (12.3%)
+                      < sim.unit.UnitSeq.clear < sim.unit.TeamUnits.recount (11.6%)
+     537   2.3%  sim.team.Teams.updateStats
+                      < sim.team.TeamCoreStats.run < sim.world.World.tick (100.0%)
+     478   2.1%  sim.world.Hasher.bytes
+                      < sim.tile.TileGrid.hash < sim.world.World$$Lambda.accept (99.8%)
+     474   2.0%  sim.world.World.tick
+                      < server.world.ManagedWorld.tick < server.sched.WorldScheduler.turn (100.0%)
+     458   2.0%  sim.spatial.BodyTree.intersect
+                      < sim.spatial.BodyTree.intersect < sim.spatial.BodyTree.intersect (81.4%)
+                      < sim.spatial.UnitPhysics$Layer.step < sim.spatial.UnitPhysics.begin (10.5%)
+     456   2.0%  java.util.TreeMap.getEntry
+                      < java.util.TreeMap.get < server.host.Roster.player (36.2%)
+                      < java.util.TreeMap.get < sim.world.Members.check (16.0%)
+                      < java.util.TreeMap.get < java.util.Map.getOrDefault (14.9%)
+     383   1.7%  sim.unit.Unit.move
+                      < sim.spatial.UnitPhysics.begin < sim.spatial.PhysicsBegin.run (59.3%)
+                      < sim.unit.VelComponent.update < sim.unit.Unit.update (40.7%)
+     377   1.6%  sim.waves.EnemyCount.run
+                      < sim.world.World.tick < server.world.ManagedWorld.tick (100.0%)
+     367   1.6%  common.math.Libm.pow
+                      < common.math.Mathf.pow < sim.unit.MoveShape.floorSpeedMultiplier (100.0%)
+     350   1.5%  sim.spatial.UnitPhysics$Layer.step
+                      < sim.spatial.UnitPhysics.begin < sim.spatial.PhysicsBegin.run (100.0%)
+     307   1.3%  sim.spatial.BodyTree.fill
+                      < sim.spatial.BodyTree.fill < sim.spatial.BodyTree.fill (67.8%)
+                      < sim.spatial.UnitPhysics$Layer.step < sim.spatial.UnitPhysics.begin (17.3%)
+                      < sim.spatial.BodyTree.fill < sim.spatial.UnitPhysics$Layer.step (15.0%)
+     294   1.3%  sim.world.Hasher.shorts
+                      < sim.tile.TileGrid.hash < sim.world.World$$Lambda.accept (100.0%)
+     293   1.3%  java.util.Collections$UnmodifiableMap$UnmodifiableEntrySet$N.hasNext
+                      < server.sync.WorldSync.beginTick < server.host.HostedWorld.afterTick (100.0%)
+     280   1.2%  sim.tile.BlockTable.is
+                      < sim.tile.BlockTable.saveData < sim.tile.TileGrid.shouldSaveData (100.0%)
+     248   1.1%  common.math.Mathf.atan2
+                      < common.math.Angles.angle < sim.unit.Unit.angleTo (97.2%)
+     243   1.1%  server.session.WorldMailbox.pump
+                      < server.host.HostedWorld.beforeTick < server.world.ManagedWorld.tick (100.0%)
+     236   1.0%  sim.world.Hasher.ints
+                      < sim.world.Hasher.ints < sim.tile.TileGrid.hash (96.6%)
+     234   1.0%  sim.spatial.BodyTree.clear
+                      < sim.spatial.BodyTree.clear < sim.spatial.BodyTree.clear (72.6%)
+                      < sim.spatial.BodyTree.clear < sim.spatial.BodyTree.fill (25.2%)
+     229   1.0%  sim.unit.UnitCalls.rules
+                      < sim.unit.UnitCoreComponent.update < sim.unit.Unit.update (62.0%)
+                      < sim.game.CheckGameState.run < sim.world.World.tick (24.9%)
+     227   1.0%  sim.world.World.lambda$admit$0
+                      < sim.world.World$$Lambda.accept < sim.world.Inbox.drain (100.0%)
+     197   0.9%  sim.unit.PlayerSpawns.of
+                      < sim.unit.Player.update < sim.unit.PlayerUpdate$$Lambda.accept (100.0%)
+     196   0.8%  sim.combat.Weapons.update
+                      < sim.unit.Unit.update < sim.unit.UnitUpdate$$Lambda.accept (100.0%)
+     193   0.8%  sim.unit.TeamUnits.recount
+                      < sim.unit.TeamStats.run < sim.world.World.tick (100.0%)
+     191   0.8%  java.lang.VirtualThread.submitRunContinuation
+                      < java.lang.VirtualThread.unpark < java.lang.VirtualThread.unpark (100.0%)
+     189   0.8%  sim.entity.AttachmentKey.cast
+                      < sim.entity.Entity.attachment < server.intent.PlayerInput.viewer (52.9%)
+                      < sim.entity.Entity.attachment < sim.unit.SyncComponent.update (47.1%)
+     180   0.8%  sim.spatial.BodyTree.ensure
+                      < sim.spatial.BodyTree.fill < sim.spatial.BodyTree.fill (83.3%)
+                      < sim.spatial.BodyTree.fill < sim.spatial.UnitPhysics$Layer.step (16.7%)
+     175   0.8%  sim.spatial.SpatialIndex.fillTeams
+                      < sim.unit.TeamStats.run < sim.world.World.tick (100.0%)
+     172   0.7%  net.Transport.sendDatagram
+                      < net.Conn.sendUdp < server.sync.Outbox$Transmit$N.send (100.0%)
+     169   0.7%  server.session.Mailbox.drain
+                      < server.session.WorldMailbox.pump < server.host.HostedWorld.beforeTick (100.0%)
+     150   0.6%  sim.world.World.find
+                      < sim.ai.WaveFields$Preload.run < sim.world.World.tick (66.7%)
+                      < sim.unit.TeamUnits.of < sim.unit.PostedDestroys.run (18.7%)
+     147   0.6%  sim.world.World.part
+                      < sim.path.PathFlush.run < sim.world.World.tick (91.2%)
+     147   0.6%  sim.spatial.UnitPhysics.begin
+                      < sim.spatial.PhysicsBegin.run < sim.world.World.tick (100.0%)
+     146   0.6%  net.Lz4.compress
+                      < net.Frame.packet < net.Frame.packet (100.0%)
+     146   0.6%  sun.nio.ch.DatagramChannelImpl.sendFromNativeBuffer
+                      < sun.nio.ch.DatagramChannelImpl.send < sun.nio.ch.DatagramChannelImpl.send (100.0%)
+     133   0.6%  sim.unit.UnitCoreComponent.update
+                      < sim.unit.Unit.update < sim.unit.UnitUpdate$$Lambda.accept (100.0%)
+     125   0.5%  sim.unit.Unit.canPass
+                      < sim.unit.Unit.canPassOn < sim.unit.UnitCoreComponent.update (100.0%)
+
+== Allocation by thread group (jdk.ThreadAllocationStatistics over the window)
+  4.08 GB  59.2%  tick-N  (59.6 MB/s)
+  1.29 GB  18.8%  ForkJoinPool-N-worker-N  (18.9 MB/s)
+  1.05 GB  15.2%  io-cpu-N  (15.3 MB/s)
+ 457.8 MB   6.5%  udp-recv  (6.5 MB/s)
+
+== Tick threads, allocation (sampled weight 4.08 GB), top-down
+  4.06 GB  99.5% server.sched.WorldScheduler.turn
+  3.62 GB  88.6%   server.world.ManagedWorld.tick
+  3.38 GB  82.8%     server.host.HostedWorld.afterTick
+  2.72 GB  66.5%       server.host.HostedWorld.sendWorlds
+  2.71 GB  66.4%         server.host.HostedWorld$$Lambda.capture > server.host.HostedWorld.lambda$new$0 > server.host.WorldSends.capture > compat.v160.world.WorldProjection.capture
+  1.97 GB  48.4%           compat.v160.world.WorldProjection.map
+ 419.0 MB  10.0%           compat.v160.world.WorldProjection.entities
+ 252.8 MB   6.0%             compat.v160.world.StreamEntities.<init>
+ 237.6 MB   5.7%               compat.v160.entity.EntityProjector.<init>
+ 150.2 MB   3.6%                 compat.v160.world.ContentHeader.of
+ 115.8 MB   2.8%                   compat.v160.world.ContentHeader.<init>
+  85.6 MB   2.0%                     compat.v160.world.ContentHeader.write
+  84.3 MB   2.0%                       common.io.Writes.str > common.io.Writes.ensure > java.util.Arrays.copyOf
+  24.3 MB   0.6%                     common.io.Writes.toByteArray > java.util.Arrays.copyOf
+  33.1 MB   0.8%                   java.util.List.copyOf > java.util.ImmutableCollections.listCopy
+  87.4 MB   2.1%                 compat.v160.world.ContentHeader.mapping > compat.v160.world.ContentHeader$IdMapping.<init>
+ 165.2 MB   4.0%             compat.v160.world.StreamEntities.chunk
+  83.5 MB   2.0%               compat.v160.world.StreamEntities.toStream
+  58.2 MB   1.4%                 compat.v160.world.StreamEntities.field
+  51.4 MB   1.2%                   java.lang.Class.getField
+  35.3 MB   0.8%                     java.lang.NoSuchFieldException.<init> > java.lang.ReflectiveOperationException.<init> > java.lang.Exception.<init> > java.lang.Throwable.<init>
+  35.0 MB   0.8%                       java.lang.Throwable.fillInStackTrace > java.lang.Throwable.fillInStackTrace
+  22.5 MB   0.5%                 compat.v160.world.StreamEntities.set
+  21.4 MB   0.5%               wire.v160_7.EntityClasses.writeSave
+  20.4 MB   0.5%                 wire.v160_7.UnitEntityLayout.writeSave
+  20.7 MB   0.5%               compat.v160.entity.EntityProjector.project > compat.v160.entity.EntityProjector.unit
+  19.0 MB   0.5%               wire.v160_7.EntityClasses.readSave
+ 165.2 MB   3.9%           compat.v160.rules.RulesJson.write
+ 158.4 MB   3.8%             compat.v160.rules.RulesJson.writeObject
+ 148.2 MB   3.5%               compat.v160.rules.RulesJson$Field.write > compat.v160.rules.RulesJson$N.write > compat.v160.rules.RulesJson$N.write
+ 131.8 MB   3.2%                 compat.v160.rules.RulesJson$N.write > compat.v160.rules.RulesJson$N.write
+  84.6 MB   2.0%                   compat.v160.rules.ArcJson$Writer.name
+  77.6 MB   1.9%                     compat.v160.rules.ArcJson.quoteName
+  40.1 MB   1.0%                       java.util.regex.Pattern.matcher
+  19.1 MB   0.5%                         java.util.regex.Matcher.<init>
+  19.7 MB   0.5%                       compat.v160.rules.ArcJson.escape
+  17.8 MB   0.4%                       java.lang.StringBuilder.toString
+  39.0 MB   0.9%                   compat.v160.rules.ArcJson$Writer.value
+  27.2 MB   0.7%                     compat.v160.rules.ArcJson.quoteValue
+  17.1 MB   0.4%                       java.util.regex.Pattern.matcher
+ 126.9 MB   3.0%           compat.v160.world.WorldProjection.header > compat.v160.world.ContentHeader.extend
+  40.9 MB   1.0%             compat.v160.world.ContentHeader.<init>
+  32.4 MB   0.8%               compat.v160.world.ContentHeader.write
+  31.6 MB   0.8%                 common.io.Writes.str > common.io.Writes.ensure > java.util.Arrays.copyOf
+  30.9 MB   0.7%             compat.v160.world.ContentHeader.resolve > content.ContentType.values
+  23.0 MB   0.6%             java.util.TreeSet.add > java.util.TreeMap.put > java.util.TreeMap.put
+  21.6 MB   0.5%               java.util.TreeMap.addEntry
+  37.4 MB   0.9%           compat.v160.world.ContentHeader.mapping
+  37.3 MB   0.9%             compat.v160.world.ContentHeader$IdMapping.<init>
+ 631.1 MB  15.1%       server.sync.WorldSync.endTick
+ 543.2 MB  13.0%         server.sync.WorldSync.snapshots
+ 246.5 MB   5.9%           server.sync.Outbox.send
+ 197.5 MB   4.7%             server.sync.Calls.frame
+  82.6 MB   2.0%               net.Frame.packet > net.Frame.packet
+  29.4 MB   0.7%                 java.util.Arrays.copyOf
+  53.6 MB   1.3%               common.io.Writes.toByteArray > java.util.Arrays.copyOf
+  52.4 MB   1.3%               wire.v160_7.Packets$EntitySnapshot.write > … > common.io.Writes.ensure > java.util.Arrays.copyOf
+  48.9 MB   1.2%             server.sync.Outbox.route > … > net.Conn.sendUdp > net.Transport.sendDatagram
+  48.4 MB   1.2%               net.Frame.udp > java.nio.HeapByteBuffer.asReadOnlyBuffer
+ 228.9 MB   5.5%           compat.v160.sync.EntitySnapshots.all > compat.v160.sync.EntitySnapshots.write
+ 131.9 MB   3.2%             compat.v160.entity.EntityProjector.project
+ 108.2 MB   2.6%               compat.v160.entity.EntityProjector.unit
+  64.1 MB   1.5%                 compat.v160.entity.UnitProjection.<init>
+  23.7 MB   0.6%               compat.v160.entity.EntityProjector.player
+  38.0 MB   0.9%             compat.v160.sync.Batch.end > compat.v160.sync.Batch.flush
+  35.8 MB   0.9%               common.io.Writes.toByteArray > java.util.Arrays.copyOf
+  33.1 MB   0.8%             compat.v160.sync.Batch.<init>
+  32.3 MB   0.8%               common.io.Writes.<init>
+  22.5 MB   0.5%           compat.v160.entity.WorldWireContext.capture
+  20.8 MB   0.5%           compat.v160.sync.GameState.of
+  19.2 MB   0.5%             compat.v160.sync.GameState.cores
+  85.6 MB   2.0%         server.sync.WorldSync.plans
+  78.4 MB   1.9%           server.sync.Outbox.send
+  59.1 MB   1.4%             server.sync.Outbox.route > … > net.Conn.sendUdp > net.Transport.sendDatagram
+  58.6 MB   1.4%               net.Frame.udp > java.nio.HeapByteBuffer.asReadOnlyBuffer
+  19.3 MB   0.5%             server.sync.Calls.frame
+ 212.3 MB   5.1%     sim.world.World.tick
+ 124.0 MB   3.0%       sim.world.World.admit
+ 117.8 MB   2.8%         sim.world.Inbox.drain
+ 105.4 MB   2.5%           sim.world.World$$Lambda.accept > sim.world.World.lambda$admit$0
+  41.6 MB   1.0%             sim.world.Members.check
+  28.8 MB   0.7%             server.intent.Guarded.apply > server.intent.Snapshot.admit > server.intent.Acting.of > server.intent.Acting.of
+  36.9 MB   0.9%       sim.team.CoreFill.run > sim.team.Teams.getActive > common.struct.IntSeq.copy
+  35.4 MB   0.8%       sim.world.Phase.values
+  25.6 MB   0.6%     server.host.HostedWorld.beforeTick > server.session.WorldMailbox.pump > server.session.Mailbox.drain > sim.world.Inbox.offer
+ 454.8 MB  10.9%   server.world.ManagedWorld.boundary > server.world.ManagedWorld.autosave > sim.world.World.fork
+ 235.8 MB   5.6%     sim.path.PathService.copy
+ 111.2 MB   2.7%       sim.path.PathGrid.<init> > java.lang.Object.clone
+  45.6 MB   1.1%       sim.path.Flowfield.copy > sim.path.Flowfield.<init> > java.lang.Object.clone
+  37.1 MB   0.9%       sim.path.FieldEngine.<init>
+ 183.4 MB   4.4%     sim.world.World.<init>
+ 174.3 MB   4.2%       sim.tile.TileGrid.copy > sim.tile.TileGrid.<init> > java.lang.Object.clone
+  20.1 MB   0.5% java.lang.Thread.run > java.lang.Thread.runWith > server.sched.WorldScheduler$$Lambda.run
+  20.0 MB   0.5%   server.sched.WorldScheduler.work > server.sched.NanoClock$N.awaitNanos > java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos > java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.newConditionNode
+
+== Tick threads, allocation by system (bytes per world tick)
+  2.72 GB  66.5%     6941 B  afterTick/HostedWorld.sendWorlds
+ 543.2 MB  13.0%     1356 B  afterTick/WorldSync.endTick/snapshots
+ 454.8 MB  10.9%     1135 B  boundary/autosave
+  85.6 MB   2.0%      214 B  afterTick/WorldSync.endTick/plans
+  49.9 MB   1.2%      125 B  admit
+  41.6 MB   1.0%      104 B  admit/sim.world.Members
+  36.9 MB   0.9%       92 B  sim.team.CoreFill
+  35.4 MB   0.8%       88 B  sim.world.Phase
+  28.8 MB   0.7%       72 B  admit/server.intent.Guarded
+  25.6 MB   0.6%       64 B  beforeTick
+
+== Tick threads, allocation by class
+  1.44 GB  35.3%  [I
+  1.05 GB  25.7%  [S
+ 553.7 MB  13.2%  [B
+ 110.9 MB   2.7%  [J
+ 110.0 MB   2.6%  [Ljava.lang.Object;
+ 107.0 MB   2.6%  java.nio.HeapByteBufferR
+  43.4 MB   1.0%  com.xpdustry.shard.compat.v160.entity.UnitProjection
+  35.4 MB   0.8%  [Lcom.xpdustry.shard.sim.world.Phase;
+  34.9 MB   0.8%  java.util.ImmutableCollections$ListItr
+  34.5 MB   0.8%  java.util.regex.Matcher
+  32.8 MB   0.8%  [Lcom.xpdustry.shard.content.ContentType;
+  30.7 MB   0.7%  java.lang.reflect.Field
+  30.1 MB   0.7%  java.util.ArrayList
+  28.8 MB   0.7%  com.xpdustry.shard.server.intent.Acting
+  27.6 MB   0.7%  com.xpdustry.shard.sim.world.CommandLog$Entry
+  26.2 MB   0.6%  com.xpdustry.shard.sim.world.Members$Member
+  25.6 MB   0.6%  com.xpdustry.shard.sim.world.Inbox$Arrival
+  24.1 MB   0.6%  java.util.TreeMap$Entry
+  22.9 MB   0.5%  java.lang.Long
+  20.0 MB   0.5%  java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionNode
+  19.7 MB   0.5%  java.lang.String
+  19.1 MB   0.5%  com.xpdustry.shard.compat.v160.entity.PlayerProjection
+  16.0 MB   0.4%  com.xpdustry.shard.wire.Codecs$Mount
+  13.3 MB   0.3%  java.util.Collections$UnmodifiableRandomAccessList
+  12.7 MB   0.3%  java.lang.ref.WeakReference
+
+== Tick threads, allocation by site
+  1.97 GB  48.2%  compat.v160.world.WorldProjection.map
+                      < compat.v160.world.WorldProjection.capture < server.host.WorldSends.capture (100.0%)
+ 418.5 MB  10.0%  java.util.Arrays.copyOf
+                      < common.io.Writes.ensure < common.io.Writes.str (27.7%)
+                      < common.io.Writes.toByteArray < server.sync.Calls.frame (13.5%)
+                      < common.io.Writes.ensure < common.io.Writes.b (12.7%)
+ 336.3 MB   8.0%  java.lang.Object.clone
+                      < sim.tile.TileGrid.<init> < sim.tile.TileGrid.copy (51.8%)
+                      < sim.path.PathGrid.<init> < sim.path.PathService.copy (33.1%)
+                      < sim.path.Flowfield.<init> < sim.path.Flowfield.copy (13.6%)
+ 124.7 MB   3.0%  compat.v160.world.ContentHeader$IdMapping.<init>
+                      < compat.v160.world.ContentHeader.mapping < compat.v160.entity.EntityProjector.<init> (70.1%)
+                      < compat.v160.world.ContentHeader.mapping < compat.v160.world.WorldProjection.capture (29.9%)
+ 107.0 MB   2.6%  java.nio.HeapByteBuffer.asReadOnlyBuffer
+                      < net.Frame.udp < net.Transport.sendDatagram (100.0%)
+  59.8 MB   1.4%  net.Frame.packet
+                      < net.Frame.packet < server.sync.Calls.frame (100.0%)
+  58.9 MB   1.4%  common.io.Writes.<init>
+                      < compat.v160.sync.Batch.<init> < compat.v160.sync.EntitySnapshots.write (54.8%)
+                      < server.sync.Calls.frame < server.sync.Outbox.send (18.8%)
+                      < common.io.Writes.<init> < compat.v160.world.StreamEntities.chunk (15.4%)
+  52.4 MB   1.3%  compat.v160.entity.EntityProjector.unit
+                      < compat.v160.entity.EntityProjector.project < compat.v160.sync.EntitySnapshots.write (84.2%)
+                      < compat.v160.entity.EntityProjector.project < compat.v160.world.StreamEntities.chunk (15.8%)
+  40.8 MB   1.0%  sim.path.PathService.copy
+                      < sim.world.World.fork < server.world.ManagedWorld.autosave (100.0%)
+  37.1 MB   0.9%  sim.path.FieldEngine.<init>
+                      < sim.path.PathService.copy < sim.world.World.fork (100.0%)
+  35.4 MB   0.8%  sim.world.Phase.values
+                      < sim.world.World.tick < server.world.ManagedWorld.tick (100.0%)
+  35.0 MB   0.8%  java.lang.Throwable.fillInStackTrace
+                      < java.lang.Throwable.fillInStackTrace < java.lang.Throwable.<init> (100.0%)
+  34.9 MB   0.8%  java.util.ImmutableCollections$AbstractImmutableList.iterator
+                      < server.sync.WorldSync.drain < server.host.HostedWorld.afterTick (28.9%)
+                      < wire.Codecs.writeMounts < wire.v160_7.UnitEntityLayout.writeSync (26.8%)
+                      < server.host.HostedWorld.afterTick < server.world.ManagedWorld.tick (25.9%)
+  34.7 MB   0.8%  compat.v160.entity.UnitProjection.<init>
+                      < compat.v160.entity.EntityProjector.unit < compat.v160.entity.EntityProjector.project (100.0%)
+  34.5 MB   0.8%  java.util.regex.Pattern.matcher
+                      < compat.v160.rules.ArcJson.quoteName < compat.v160.rules.ArcJson$Writer.name (74.1%)
+                      < compat.v160.rules.ArcJson.quoteValue < compat.v160.rules.ArcJson$Writer.value (25.1%)
+  33.2 MB   0.8%  common.struct.IntSeq.copy
+                      < sim.team.Teams.getActive < sim.team.CoreFill.run (97.2%)
+  33.0 MB   0.8%  java.util.regex.Matcher.<init>
+                      < java.util.regex.Pattern.matcher < compat.v160.rules.ArcJson.quoteName (72.1%)
+                      < java.util.regex.Pattern.matcher < compat.v160.rules.ArcJson.quoteValue (27.9%)
+  32.8 MB   0.8%  content.ContentType.values
+                      < compat.v160.world.ContentHeader.resolve < compat.v160.world.ContentHeader.extend (94.2%)
+  30.7 MB   0.7%  java.lang.reflect.Field.copy
+                      < java.lang.reflect.ReflectAccess.copyField < jdk.internal.reflect.ReflectionFactory.copyField (100.0%)
+  28.8 MB   0.7%  server.intent.Acting.of
+                      < server.intent.Acting.of < server.intent.Snapshot.admit (100.0%)
+  27.6 MB   0.7%  sim.world.World.lambda$admit$0
+                      < sim.world.World$$Lambda.accept < sim.world.Inbox.drain (100.0%)
+  26.2 MB   0.6%  sim.world.Members.check
+                      < sim.world.World.lambda$admit$0 < sim.world.World$$Lambda.accept (100.0%)
+  25.6 MB   0.6%  sim.world.Inbox.offer
+                      < server.session.Mailbox.drain < server.session.WorldMailbox.pump (100.0%)
+  23.4 MB   0.6%  compat.v160.entity.WorldWireContext.capture
+                      < server.sync.WorldSync.snapshots < server.sync.WorldSync.endTick (58.9%)
+                      < compat.v160.world.StreamEntities.<init> < compat.v160.world.WorldProjection.entities (41.1%)
+  22.9 MB   0.5%  java.lang.Long.valueOf
+                      < sim.world.Members.check < sim.world.World.lambda$admit$0 (67.0%)
+                      < server.sync.WorldSync.snapshots < server.sync.WorldSync.endTick (30.4%)
+  22.5 MB   0.5%  java.util.TreeMap.addEntry
+                      < java.util.TreeMap.put < java.util.TreeMap.put (100.0%)
+  21.1 MB   0.5%  java.util.ImmutableCollections.listFromArray
+                      < java.util.List.of < java.util.ImmutableCollections.listCopy (100.0%)
+  20.0 MB   0.5%  java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.newConditionNode
+                      < java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos < server.sched.NanoClock$N.awaitNanos (100.0%)
+  19.1 MB   0.5%  compat.v160.entity.EntityProjector.player
+                      < compat.v160.entity.EntityProjector.project < compat.v160.sync.EntitySnapshots.write (100.0%)
+  17.3 MB   0.4%  java.lang.AbstractStringBuilder.<init>
+                      < java.lang.StringBuilder.<init> < compat.v160.rules.ArcJson.escape (98.4%)
+
+== Tick threads, lock waits (monitor enters, and parks acquiring a lock, as long as the recording's thresholds): 585 waits, 1189.5 ms in all, 2.832 us per world tick, the longest 15.5 ms
+      377      772.1 ms  max     15.5 ms  java.util.concurrent.locks.ReentrantLock$NonfairSync at server.sched.NanoClock$N.awaitNanos
+      180      353.3 ms  max     11.2 ms  java.util.concurrent.locks.ReentrantLock$NonfairSync at net.Transport.sendDatagram
+       25       58.0 ms  max      6.7 ms  java.util.concurrent.locks.ReentrantLock$NonfairSync at server.sched.WorldScheduler$Slot.mode
+        2        4.3 ms  max      2.4 ms  java.util.concurrent.locks.ReentrantLock$NonfairSync at server.sched.WorldScheduler.work
+        1        1.7 ms  max      1.7 ms  server.world.ManagedWorld at server.world.ManagedWorld.inputArrived
+
+== io-cpu-N, CPU self (4804 samples, 14.0% of all)
+    4171  86.8%  java.util.zip.Deflater.deflateBytesBytes
+                      < java.util.zip.Deflater.deflate < java.util.zip.Deflater.deflate (100.0%)
+     324   6.7%  compat.v160.world.MapImage.write
+                      < compat.v160.world.WorldStreamWriter.write < compat.v160.world.WorldStreamWriter.write (100.0%)
+      38   0.8%  common.io.Writes.ensure
+                      < common.io.Writes.str < compat.v160.world.ContentHeader.write (57.9%)
+                      < common.io.Writes.s < compat.v160.world.MapImage.write (15.8%)
+                      < common.io.Writes.str < compat.v160.world.WorldStreamWriter.lambda$write$0 (10.5%)
+      35   0.7%  sim.path.PathGrid.read
+                      < sim.path.PathService.write < sim.persist.CheckpointWriter.parts (100.0%)
+      21   0.4%  java.util.Arrays.copyOf
+                      < common.io.Writes.ensure < common.io.Writes.s (42.9%)
+                      < java.io.ByteArrayOutputStream.ensureCapacity < java.io.ByteArrayOutputStream.write (23.8%)
+
+== udp-recv, CPU self (2193 samples, 6.4% of all)
+     620  28.3%  sun.nio.ch.DatagramChannelImpl.receive0
+                      < sun.nio.ch.DatagramChannelImpl.receiveIntoNativeBuffer < sun.nio.ch.DatagramChannelImpl.receive (100.0%)
+     460  21.0%  java.util.concurrent.locks.AbstractQueuedSynchronizer.enqueue
+                      < java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.doSignal < java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.signal (100.0%)
+     378  17.2%  java.util.concurrent.ConcurrentHashMap.get
+                      < server.intent.Intents.context < server.intent.Intents.received (94.2%)
+     266  12.1%  net.Transport.udpLoop
+                      < net.Transport$$Lambda.run < java.lang.Thread.runWith (100.0%)
+     139   6.3%  net.Conn.admit
+                      < net.Transport.body < net.Transport.udpLoop (100.0%)
+      69   3.1%  server.intent.Intents.snapshot
+                      < server.intent.Intents.lambda$decoders$0 < server.intent.Intents$$Lambda.decode (100.0%)
+      53   2.4%  java.lang.VirtualThread.submitRunContinuation
+                      < java.lang.VirtualThread.unpark < java.lang.VirtualThread.unpark (100.0%)
+      48   2.2%  server.intent.Intents.context
+                      < server.intent.Intents.received < server.connect.ConnectFlow.received (100.0%)
+      43   2.0%  sun.nio.ch.DatagramChannelImpl.receiveIntoNativeBuffer
+                      < sun.nio.ch.DatagramChannelImpl.receive < sun.nio.ch.DatagramChannelImpl.receive (100.0%)
+      40   1.8%  net.Lz4.decompress
+                      < net.Frame.decodePayload < net.Transport.body (100.0%)
+      16   0.7%  net.Transport.body
+                      < net.Transport.udpLoop < net.Transport$$Lambda.run (100.0%)
+      13   0.6%  server.intent.Intents.decode
+                      < server.intent.Intents.received < server.connect.ConnectFlow.received (100.0%)
+
+== tcp-w-N, CPU self (976 samples, 2.9% of all)
+     740  75.8%  sun.nio.ch.SocketDispatcher.writev0
+                      < sun.nio.ch.SocketDispatcher.writev < sun.nio.ch.IOUtil.write (100.0%)
+      72   7.4%  net.Conn.writeLoop
+                      < net.Transport$$Lambda.run < java.lang.Thread.runWith (70.8%)
+                      < jdk.internal.vm.Continuation.enterSpecial (29.2%)
+      43   4.4%  jdk.internal.vm.Continuation.yield
+                      < java.lang.VirtualThread.yieldContinuation < java.lang.VirtualThread.park (100.0%)
+      16   1.6%  sun.nio.ch.SocketDispatcher.writev
+                      < sun.nio.ch.IOUtil.write < sun.nio.ch.IOUtil.write (100.0%)
+      12   1.2%  sun.nio.ch.Util.unwrapIfAlignedSlice
+                      < sun.nio.ch.Util.offerLastTemporaryDirectBuffer < sun.nio.ch.IOUtil.write (100.0%)
+      11   1.1%  java.util.concurrent.locks.AbstractQueuedSynchronizer.release
+                      < java.util.concurrent.locks.ReentrantLock.unlock < net.Conn.writeLoop (100.0%)
+      10   1.0%  sun.nio.ch.IOUtil.write
+                      < sun.nio.ch.SocketChannelImpl.implWrite < sun.nio.ch.SocketChannelImpl.write (100.0%)
+       7   0.7%  java.util.concurrent.locks.ReentrantLock$Sync.lock
+                      < java.util.concurrent.locks.ReentrantLock.lock < net.Conn.writeLoop (100.0%)
+       6   0.6%  java.nio.HeapByteBuffer.asReadOnlyBuffer
+                      < net.Frame.tcp < net.Conn.writeLoop (100.0%)
+       6   0.6%  java.util.concurrent.locks.ReentrantLock$Sync.tryRelease
+                      < java.util.concurrent.locks.AbstractQueuedSynchronizer.release < java.util.concurrent.locks.ReentrantLock.unlock (100.0%)
+       5   0.5%  java.lang.VirtualThread.getAndClearInterrupt
+                      < java.lang.Thread.interrupted < java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await (100.0%)
+       5   0.5%  jdk.internal.vm.Continuation.doYield
+                      < jdk.internal.vm.Continuation.yield0 < jdk.internal.vm.Continuation.yield (100.0%)
+
+== tcp-w--N, CPU self (846 samples, 2.5% of all)
+     636  75.2%  sun.nio.ch.SocketDispatcher.writev0
+                      < sun.nio.ch.SocketDispatcher.writev < sun.nio.ch.IOUtil.write (100.0%)
+      74   8.7%  net.Conn.writeLoop
+                      < net.Transport$$Lambda.run < java.lang.Thread.runWith (55.4%)
+                      < jdk.internal.vm.Continuation.enterSpecial (44.6%)
+      36   4.3%  jdk.internal.vm.Continuation.yield
+                      < java.lang.VirtualThread.yieldContinuation < java.lang.VirtualThread.park (100.0%)
+      18   2.1%  sun.nio.ch.IOUtil.write
+                      < sun.nio.ch.SocketChannelImpl.implWrite < sun.nio.ch.SocketChannelImpl.write (94.4%)
+      14   1.7%  sun.nio.ch.SocketDispatcher.writev
+                      < sun.nio.ch.IOUtil.write < sun.nio.ch.IOUtil.write (100.0%)
+       5   0.6%  java.util.concurrent.locks.AbstractQueuedSynchronizer.release
+                      < java.util.concurrent.locks.ReentrantLock.unlock < net.Conn.writeLoop (100.0%)
+       5   0.6%  jdk.internal.vm.Continuation.doYield
+                      < jdk.internal.vm.Continuation.yield0 < jdk.internal.vm.Continuation.yield (100.0%)
+       5   0.6%  java.nio.HeapByteBuffer.asReadOnlyBuffer
+                      < net.Frame.tcp < net.Conn.writeLoop (100.0%)
+       5   0.6%  java.lang.VirtualThread.submitRunContinuation
+                      < java.lang.VirtualThread.unpark < java.lang.VirtualThread.unpark (100.0%)
+       5   0.6%  sun.nio.ch.Util.unwrapIfAlignedSlice
+                      < sun.nio.ch.Util.offerLastTemporaryDirectBuffer < sun.nio.ch.IOUtil.write (100.0%)
+       4   0.5%  java.util.concurrent.atomic.LongAdder.add
+                      < java.util.concurrent.atomic.LongAdder.increment < net.Conn.writeLoop (100.0%)
+       4   0.5%  java.util.concurrent.locks.ReentrantLock$Sync.lock
+                      < java.util.concurrent.locks.ReentrantLock.lock < net.Conn.writeLoop (100.0%)
+
+== tcp-r-N, CPU self (589 samples, 1.7% of all)
+     100  17.0%  sun.nio.ch.SocketDispatcher.read0
+                      < sun.nio.ch.SocketDispatcher.read < sun.nio.ch.IOUtil.readIntoNativeBuffer (100.0%)
+      75  12.7%  net.Transport.readLoop
+                      < net.Transport.lambda$acceptLoop$0 < net.Transport$$Lambda.run (73.3%)
+                      < jdk.internal.vm.Continuation.enterSpecial (26.7%)
+      51   8.7%  jdk.internal.vm.Continuation.yield
+                      < java.lang.VirtualThread.yieldContinuation < java.lang.VirtualThread.park (100.0%)
+      49   8.3%  net.Transport.body
+                      < net.Transport.readLoop < net.Transport.lambda$acceptLoop$0 (100.0%)
+      29   4.9%  net.Frame.packet
+                      < net.Frame.packet < server.sync.Calls.frame (100.0%)
+      26   4.4%  sun.nio.ch.EPoll.ctl
+                      < sun.nio.ch.EPollPoller.implStartPoll < sun.nio.ch.Poller.startPoll (100.0%)
+      21   3.6%  net.Conn.admit
+                      < net.Transport.body < net.Transport.readLoop (100.0%)
+      14   2.4%  sun.nio.ch.SocketChannelImpl.implRead
+                      < sun.nio.ch.SocketChannelImpl.read < net.Conn.channelRead (100.0%)
+      13   2.2%  java.util.concurrent.locks.AbstractQueuedSynchronizer.enqueue
+                      < java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.doSignal < java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.signal (100.0%)
+      13   2.2%  java.lang.VirtualThread.submitRunContinuation
+                      < java.lang.VirtualThread.unpark < java.lang.VirtualThread.unpark (100.0%)
+      12   2.0%  java.util.concurrent.ConcurrentHashMap.replaceNode
+                      < java.util.concurrent.ConcurrentHashMap.remove < sun.nio.ch.Poller.stopPoll (91.7%)
+      12   2.0%  sun.nio.ch.SocketDispatcher.read
+                      < sun.nio.ch.IOUtil.readIntoNativeBuffer < sun.nio.ch.IOUtil.read (100.0%)
+
+== tcp-r--N, CPU self (476 samples, 1.4% of all)
+      86  18.1%  sun.nio.ch.SocketDispatcher.read0
+                      < sun.nio.ch.SocketDispatcher.read < sun.nio.ch.IOUtil.readIntoNativeBuffer (100.0%)
+      57  12.0%  net.Transport.readLoop
+                      < net.Transport.lambda$acceptLoop$0 < net.Transport$$Lambda.run (68.4%)
+                      < jdk.internal.vm.Continuation.enterSpecial (31.6%)
+      45   9.5%  net.Transport.body
+                      < net.Transport.readLoop < net.Transport.lambda$acceptLoop$0 (100.0%)
+      44   9.2%  jdk.internal.vm.Continuation.yield
+                      < java.lang.VirtualThread.yieldContinuation < java.lang.VirtualThread.park (100.0%)
+      27   5.7%  sun.nio.ch.EPoll.ctl
+                      < sun.nio.ch.EPollPoller.implStartPoll < sun.nio.ch.Poller.startPoll (100.0%)
+      21   4.4%  net.Frame.packet
+                      < net.Frame.packet < server.sync.Calls.frame (100.0%)
+      14   2.9%  net.Conn.admit
+                      < net.Transport.body < net.Transport.readLoop (100.0%)
+      13   2.7%  java.lang.VirtualThread.submitRunContinuation
+                      < java.lang.VirtualThread.unpark < java.lang.VirtualThread.unpark (100.0%)
+      11   2.3%  sun.nio.ch.SocketChannelImpl.implRead
+                      < sun.nio.ch.SocketChannelImpl.read < net.Conn.channelRead (100.0%)
+       9   1.9%  server.host.Host.world
+                      < server.connect.ConnectFlow.command < server.connect.ConnectFlow.chat (100.0%)
+       7   1.5%  java.util.concurrent.atomic.LongAdder.add
+                      < java.util.concurrent.atomic.LongAdder.increment < net.Transport.readLoop (42.9%)
+                      < java.util.concurrent.atomic.LongAdder.increment < net.Conn.sendTcp (42.9%)
+                      < net.Conn.sendTcp < server.connect.ConnectFlow.received (14.3%)
+       7   1.5%  java.util.concurrent.atomic.LongAdder.increment
+                      < net.Transport.readLoop < net.Transport.lambda$acceptLoop$0 (100.0%)
+
+== ForkJoinPool-N-worker-N, CPU self (392 samples, 1.1% of all)
+     160  40.8%  java.util.concurrent.ForkJoinPool.deactivate
+                      < java.util.concurrent.ForkJoinPool.runWorker < java.util.concurrent.ForkJoinWorkerThread.run (100.0%)
+      64  16.3%  java.util.concurrent.ForkJoinPool.runWorker
+                      < java.util.concurrent.ForkJoinWorkerThread.run (100.0%)
+      41  10.5%  java.lang.VirtualThread.runContinuation
+                      < java.lang.VirtualThread$$Lambda.run < java.util.concurrent.ForkJoinTask$AdaptedRunnableAction.exec (100.0%)
+      23   5.9%  jdk.internal.vm.Continuation.run
+                      < java.lang.VirtualThread.runContinuation < java.lang.VirtualThread$$Lambda.run (100.0%)
+      22   5.6%  java.util.concurrent.ForkJoinPool.awaitWork
+                      < java.util.concurrent.ForkJoinPool.deactivate < java.util.concurrent.ForkJoinPool.runWorker (100.0%)
+      17   4.3%  java.lang.VirtualThread$$Lambda.run
+                      < java.util.concurrent.ForkJoinTask$AdaptedRunnableAction.exec < java.util.concurrent.ForkJoinTask.doExec (100.0%)
+       9   2.3%  java.util.concurrent.ForkJoinPool.signalWork
+                      < java.util.concurrent.ForkJoinPool$WorkQueue.push < java.util.concurrent.ForkJoinPool.poolSubmit (55.6%)
+                      < java.util.concurrent.ForkJoinPool$WorkQueue.push < java.util.concurrent.ForkJoinPool.externalSubmit (33.3%)
+                      < java.util.concurrent.ForkJoinPool.runWorker < java.util.concurrent.ForkJoinWorkerThread.run (11.1%)
+       9   2.3%  java.lang.VirtualThread.mount
+                      < java.lang.VirtualThread.runContinuation < java.lang.VirtualThread$$Lambda.run (100.0%)
+       8   2.0%  java.lang.Thread.interrupted
+                      < java.util.concurrent.ForkJoinPool.awaitWork < java.util.concurrent.ForkJoinPool.deactivate (100.0%)
+       7   1.8%  java.util.concurrent.ForkJoinPool$WorkQueue.nextLocalTask
+                      < java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec < java.util.concurrent.ForkJoinPool.runWorker (100.0%)
+       5   1.3%  java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec
+                      < java.util.concurrent.ForkJoinPool.runWorker < java.util.concurrent.ForkJoinWorkerThread.run (100.0%)
+       5   1.3%  jdk.internal.misc.Unsafe.park
+                      < java.util.concurrent.ForkJoinPool.awaitWork < java.util.concurrent.ForkJoinPool.deactivate (100.0%)
+
+== io-N, allocation by site (sampled 189.8 MB)
+ 177.2 MB  93.3%  sim.persist.Compression.decompress
+                      < sim.persist.Container.decode < sim.persist.Checkpoint.decode (100.0%)
+   5.3 MB   2.8%  java.nio.file.Files.read
+                      < java.nio.file.Files.readAllBytes < server.world.FileOps$N.read (100.0%)
+   1.0 MB   0.5%  sim.persist.Source.str
+                      < sim.persist.Header.read < sim.persist.Container.readHeader (100.0%)
+   0.8 MB   0.4%  java.lang.StringLatin1.newString
+                      < java.lang.String.substring < java.lang.String.subSequence (50.0%)
+                      < java.lang.StringLatin1.strip < java.lang.String.strip (50.0%)
+   0.7 MB   0.4%  sim.persist.Container.readHeader
+                      < sim.persist.Container.header < sim.persist.Checkpoint.header (64.4%)
+                      < sim.persist.Container.decode < sim.persist.Checkpoint.decode (35.6%)
+   0.7 MB   0.3%  java.util.regex.Matcher.<init>
+                      < java.util.regex.Pattern.matcher < server.world.CheckpointStore.lambda$generations$0 (81.1%)
+                      < java.util.regex.Pattern.matcher < server.world.CheckpointStore.currentName (18.9%)
+
+== io-cpu-N, allocation by site (sampled 1.05 GB)
+ 293.9 MB  27.4%  java.util.Arrays.copyOf
+                      < java.io.ByteArrayOutputStream.ensureCapacity < java.io.ByteArrayOutputStream.write (25.4%)
+                      < common.io.Writes.toByteArray < compat.v160.world.WorldStreamWriter.write (23.6%)
+                      < java.io.ByteArrayOutputStream.toByteArray < compat.v160.world.WorldStreamWriter.deflate (18.8%)
+ 271.3 MB  25.3%  net.Frame.packet
+                      < net.Frame.streamChunk < net.Conn.sendStream (99.9%)
+ 237.8 MB  22.2%  java.nio.HeapByteBuffer.<init>
+                      < java.nio.ByteBuffer.allocate < net.Frame.streamChunk (100.0%)
+ 176.4 MB  16.5%  sim.persist.Sink.<init>
+                      < sim.persist.CheckpointWriter.section < sim.persist.CheckpointWriter.capture (98.9%)
+  50.9 MB   4.7%  sim.persist.Compression.compress
+                      < sim.persist.Container.encode < sim.persist.Capture.encode (100.0%)
+  12.2 MB   1.1%  common.io.Writes.<init>
+                      < compat.v160.world.WorldStreamWriter.write < server.host.WorldSends.encode (100.0%)
+   8.2 MB   0.8%  java.io.ByteArrayOutputStream.<init>
+                      < compat.v160.world.WorldStreamWriter.deflate < server.host.WorldSends.encode (100.0%)
+   5.6 MB   0.5%  java.util.zip.DeflaterOutputStream.<init>
+                      < java.util.zip.DeflaterOutputStream.<init> < java.util.zip.DeflaterOutputStream.<init> (88.9%)
+                      < java.util.zip.DeflaterOutputStream.<init> < compat.v160.world.WorldStreamWriter.deflate (11.1%)
+
+== tcp-r--N, allocation by site (sampled 560.7 MB)
+ 506.9 MB  90.4%  net.Lz4.<init>
+                      < net.Lz4.forThread < net.Frame.packet (100.0%)
+   9.3 MB   1.7%  jdk.internal.vm.Continuation.doYield
+                      < jdk.internal.vm.Continuation.yield0 < jdk.internal.vm.Continuation.yield (100.0%)
+   5.1 MB   0.9%  common.io.Writes.<init>
+                      < server.sync.Calls.frame < server.sync.Calls.frame (100.0%)
+   3.1 MB   0.6%  net.Transport.body
+                      < net.Transport.readLoop < net.Transport.lambda$acceptLoop$0 (100.0%)
+   3.0 MB   0.5%  java.net.Inet4Address.numericToTextFormat
+                      < java.net.Inet4Address.getHostAddress < jdk.internal.event.SocketReadEvent.emit (50.5%)
+                      < java.net.Inet4Address.getHostAddress < java.net.InetSocketAddress$InetSocketAddressHolder.getHostString (49.5%)
+   2.9 MB   0.5%  java.util.Arrays.copyOf
+                      < common.io.Writes.toByteArray < server.sync.Calls.frame (100.0%)
+   2.5 MB   0.4%  java.util.concurrent.ConcurrentHashMap.putVal
+                      < java.util.concurrent.ConcurrentHashMap.put < sun.nio.ch.Poller.startPoll (100.0%)
+   2.3 MB   0.4%  java.lang.Integer.valueOf
+                      < sun.nio.ch.Poller.stopPoll < sun.nio.ch.Poller.poll (65.2%)
+                      < sun.nio.ch.Poller.startPoll < sun.nio.ch.Poller.poll (34.8%)
+   2.0 MB   0.4%  server.sync.Calls.pingResponse
+                      < server.connect.ConnectFlow.received < net.Transport.body (100.0%)
+   2.0 MB   0.4%  jdk.internal.misc.Unsafe.allocateUninitializedArray
+                      < java.lang.StringConcatHelper.newArray < java.lang.StringConcatHelper.newArrayWithSuffix (100.0%)
+   1.9 MB   0.3%  net.Lz4.forThread
+                      < net.Frame.packet < server.sync.Calls.frame (100.0%)
+   1.8 MB   0.3%  java.util.ImmutableCollections.listFromArray
+                      < java.util.List.of < java.util.ImmutableCollections.listCopy (100.0%)
+
+== tcp-r-N, allocation by site (sampled 526.5 MB)
+ 485.1 MB  92.1%  net.Lz4.<init>
+                      < net.Lz4.forThread < net.Frame.packet (100.0%)
+   6.0 MB   1.1%  jdk.internal.vm.Continuation.doYield
+                      < jdk.internal.vm.Continuation.yield0 < jdk.internal.vm.Continuation.yield (100.0%)
+   4.1 MB   0.8%  common.io.Writes.<init>
+                      < server.sync.Calls.frame < server.sync.Calls.frame (100.0%)
+   3.3 MB   0.6%  jdk.internal.misc.Unsafe.allocateUninitializedArray
+                      < java.lang.StringConcatHelper.newArray < java.lang.StringConcatHelper.newArrayWithSuffix (100.0%)
+   2.5 MB   0.5%  net.Transport.body
+                      < net.Transport.readLoop < net.Transport.lambda$acceptLoop$0 (100.0%)
+   2.4 MB   0.5%  java.net.Inet4Address.numericToTextFormat
+                      < java.net.Inet4Address.getHostAddress < jdk.internal.event.SocketReadEvent.emit (58.5%)
+                      < java.net.Inet4Address.getHostAddress < java.net.InetSocketAddress$InetSocketAddressHolder.getHostString (41.5%)
+   2.1 MB   0.4%  net.Frame.packet
+                      < net.Frame.packet < server.sync.Calls.frame (100.0%)
+   1.9 MB   0.4%  java.util.Arrays.copyOfRange
+                      < net.Frame.decodePayload < net.Transport.body (79.5%)
+                      < java.lang.StringLatin1.newString < java.lang.String.substring (20.5%)
+   1.8 MB   0.4%  server.sync.Calls.pingResponse
+                      < server.connect.ConnectFlow.received < net.Transport.body (100.0%)
+   1.7 MB   0.3%  java.lang.StringConcatHelper$Concat1.concat
+                      < java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial < java.lang.invoke.LambdaForm$MH.0x000000009c160000.invoke (100.0%)
+
+== udp-recv, allocation by site (sampled 459.3 MB)
+ 112.7 MB  24.5%  server.intent.Intents.snapshot
+                      < server.intent.Intents.lambda$decoders$0 < server.intent.Intents$$Lambda.decode (100.0%)
+  86.5 MB  18.8%  net.Lz4.decompress
+                      < net.Frame.decodePayload < net.Transport.body (100.0%)
+  39.4 MB   8.6%  server.session.Session.envelope
+                      < server.session.Session.offer < server.session.Session.offerSnapshot (100.0%)
+  32.1 MB   7.0%  java.net.InetAddress.<init>
+                      < java.net.Inet4Address.<init> < java.net.InetAddress.getByAddress (100.0%)
+  30.7 MB   6.7%  net.Transport.body
+                      < net.Transport.udpLoop < net.Transport$$Lambda.run (100.0%)
+  29.8 MB   6.5%  jdk.internal.misc.Unsafe.allocateUninitializedArray
+                      < java.lang.StringConcatHelper.newArray < java.lang.StringConcatHelper.newArrayWithSuffix (100.0%)
+  25.8 MB   5.6%  java.lang.invoke.DirectMethodHandle.allocateInstance
+                      < java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial < java.lang.invoke.Invokers$Holder.linkToTargetMethod (100.0%)
+  25.0 MB   5.4%  java.lang.StringConcatHelper$Concat1.concat
+                      < java.lang.invoke.DirectMethodHandle$Holder.invokeSpecial < java.lang.invoke.LambdaForm$MH.0x000000009c160000.invoke (100.0%)
+  23.7 MB   5.2%  java.net.InetSocketAddress.<init>
+                      < sun.nio.ch.NativeSocketAddress.decode < sun.nio.ch.DatagramChannelImpl.sourceSocketAddress (100.0%)
+  16.7 MB   3.6%  sun.nio.ch.NativeSocketAddress.address
+                      < sun.nio.ch.NativeSocketAddress.decode < sun.nio.ch.DatagramChannelImpl.sourceSocketAddress (100.0%)
+  15.5 MB   3.4%  java.net.InetAddress.getByAddress
+                      < java.net.InetAddress.getByAddress < sun.nio.ch.NativeSocketAddress.address (100.0%)
+  15.4 MB   3.4%  sun.nio.ch.NativeSocketAddress.decode
+                      < sun.nio.ch.DatagramChannelImpl.sourceSocketAddress < sun.nio.ch.DatagramChannelImpl.receive (100.0%)

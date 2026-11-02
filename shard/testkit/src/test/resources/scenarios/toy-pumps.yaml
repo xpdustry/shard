@@ -1,0 +1,20 @@
+schema: 1
+name: toy-pumps
+world: {width: 12, height: 8}
+seed: 7
+ticks: 400
+actions:
+- {at: 0, do: place, block: pump, x: 2, y: 2}
+- {at: 0, do: place, block: pump, x: 5, y: 2}
+- {at: 0, do: place, block: counter, x: 3, y: 5, config: {item: copper}}
+- {at: 0, do: configure, x: 3, y: 5, config: {int: 2}}
+- {at: 0, do: place, block: big-wall, x: 8, y: 5}
+- {at: 0, do: rules, set: {unitCap: 16}}
+- {at: 0, do: spawn, unit: flare, x: 40.0, y: 44.0, rotation: 90.0}
+- {at: 50, do: items, x: 3, y: 5, item: lead, amount: 7}
+- {at: 100, do: remove, x: 5, y: 2}
+tolerances:
+  units: id
+  missing-fields: note
+  rules:
+  - {abs: 'building[pump].liquids', by: 1.5}

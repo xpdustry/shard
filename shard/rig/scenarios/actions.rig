@@ -1,0 +1,70 @@
+# Rig self-test: every action at least once, against the vanilla server, so the rig itself stays honest. Not a
+# milestone gate.
+#
+#   rig/run.sh --server 'vanilla serpulo/groundZero -- host Ground_Zero' --clients 1 --script rig/scenarios/actions.rig
+timeout 6m
+allow server-log /^this line never appears$/
+
+wait port 90s
+alpha: join 127.0.0.1:6567
+alpha: expect connected
+alpha: wait 120t
+assert log server /alpha has connected/
+
+# camera: zoom out and back in with the wheel
+alpha: zoom 2
+alpha: shot zoomed-out
+alpha: scroll -2
+alpha: zoom 4
+console fillitems sharded
+wait log server /Core filled/ 5s
+
+# hotbar keys: 3 = distribution, then 1 = its first block
+alpha: hotbar 3 1
+alpha: expect selected conveyor
+alpha: rotate 0
+alpha: drag tile 126 59 tile 131 59
+alpha: expect tile 126 59 conveyor 30s
+alpha: expect tile 131 59 conveyor 30s
+alpha: shot conveyor-line
+# right click drops the selection; a right drag then deconstructs part of the line
+alpha: click right tile 135 61
+alpha: expect selected none
+alpha: drag right tile 126 59 tile 128 59
+alpha: expect tile 127 59 air 30s
+alpha: expect tile 129 59 conveyor 5s
+alpha: shot broken-part
+
+# keys and typing: the pause menu, then chat typed by hand
+alpha: press ESCAPE
+alpha: wait 500ms
+alpha: shot paused
+alpha: press ESCAPE
+alpha: press ENTER
+alpha: type "Typed: 1+1=2? (yes!)"
+alpha: press ENTER
+wait log server /alpha: Typed: 1\+1=2\? \(yes!\)/ 10s
+alpha: move ui block-conveyor
+alpha: move world 1040 472
+alpha: click screen 640 360
+
+# connection: quit through the pause menu path, reconnect
+alpha: disconnect
+alpha: expect disconnected
+alpha: shot menu
+alpha: reconnect
+alpha: expect tile 131 59 conveyor 10s
+
+# the server: a planned stop and start, then the client joins the new game
+server stop
+alpha: expect disconnected 15s
+alpha: shot server-stopped
+server start
+wait port 90s
+alpha: dismiss
+alpha: join
+exec test -f server/config/maps/groundZero.msav
+assert log server !/Exception/
+assert log alpha !/desync/
+assert clean alpha
+assert clean server

@@ -1,0 +1,62 @@
+# W3.8's L5, three clients, one script for Shard and vanilla: chat, team chat and the admin-only command; a votekick
+# that can't pass (every rig client is 127.0.0.1, and vanilla counts a vote by address too) and fails after 30 s; then
+# the survival game is lost with `gameover`, each client gets the game-over dialog naming the next map, and 12 s later
+# every client is moved onto Maze over its connection and plays on. A dialog's label text comes back with its color
+# tags stripped.
+#
+#   rig/run.sh --push <shard install> --server '"$RIG"/vm/shard-server.sh --aot fortress' --clients 3 \
+#     --script rig/scenarios/game-flow.rig --type large --server-cpus 0-1 --client-cpus 2-7
+#   rig/run.sh --server 'vanilla -- host Fortress' --clients 3 --script rig/scenarios/game-flow.rig --type large ...
+timeout 12m
+
+wait port 240s
+alpha: join
+bravo: join
+charlie: join
+all: shot joined
+alpha: expect js "Vars.state.map.name()" /^Fortress$/
+
+# chat: everyone hears it, in vanilla's format
+alpha: chat "hello from alpha"
+bravo: expect chat /alpha.*hello from alpha/ 10s
+charlie: expect chat /alpha.*hello from alpha/ 10s
+bravo: chat "/t to my team"
+alpha: expect chat /<T>.*bravo.*to my team/ 10s
+charlie: expect chat /<T>.*bravo.*to my team/ 10s
+charlie: chat "/a anyone?"
+charlie: expect chat /You must be an admin to use this command/ 10s
+alpha: chat "/hepl"
+alpha: expect chat /Did you mean.*help/ 10s
+
+# a votekick: the starter votes, a second vote from the same address is refused, and it fails after 30 s
+alpha: chat "/votekick charlie rig test"
+bravo: expect chat /alpha.*has voted on kicking.*charlie.*\(1\/2\)/ 10s
+charlie: expect chat /Reason:.*rig test/ 10s
+bravo: chat "/vote y"
+bravo: expect chat /already voted y/ 10s
+charlie: chat "/vote n"
+charlie: expect chat /can't vote on your own trial/ 10s
+alpha: expect chat /Vote failed\. Not enough votes to kick.*charlie/ 45s
+all: shot vote-failed
+
+# the game is lost: the wave team wins, the dialog names the next map, and everyone moves onto it
+console nextmap Maze
+wait log server /Next map .*set to 'Maze'/ 10s
+console gameover
+all: expect js "Vars.state.gameOver" /^true$/ 10s
+all: expect js "var t = ''; var c = Core.scene.root.getChildren(); for(var i = 0; i < c.size; i++){ var e = c.get(i); if(e instanceof Packages.arc.scene.ui.Dialog){ var k = e.cont.getChildren(); for(var j = 0; j < k.size; j++){ if(k.get(j) instanceof Packages.arc.scene.ui.Label) t += k.get(j).getText(); } } } t" /(?s)Game over!.*Next selected map: Maze by Anuke\..*New game begins in 12 seconds\./ 10s
+all: shot game-over
+all: dismiss
+all: expect js "Vars.state.map.name()" /^Maze$/ 60s
+all: expect connected 30s
+all: expect js "Vars.state.gameOver" /^false$/ 10s
+all: expect js "Vars.state.wave" /^1$/ 10s
+alpha: expect js "Vars.player.unit() != null && !Vars.player.unit().dead" /^true$/ 60s
+all: shot on-maze
+
+# the new map plays on: chat still reaches everyone
+bravo: chat "made it to maze"
+alpha: expect chat /bravo.*made it to maze/ 10s
+charlie: expect chat /bravo.*made it to maze/ 10s
+wait 10s
+all: shot final

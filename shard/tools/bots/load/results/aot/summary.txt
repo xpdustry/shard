@@ -1,0 +1,10 @@
+== openjdk version "27.0.1.0.2" 2026-10-21; 8 vCPUs, heap 2g
+trained under shenandoah in 37522 ms, the cache written in 8648 ms after stopping: 38M, 0 kicks, 0 JFR files; shard: trained /home/user/aot-out/shard-shenandoah.aot (38M); the next start uses it. joined=40 players
+trained under g1 in 33924 ms, the cache written in 4378 ms after stopping: 38M, 0 kicks, 0 JFR files; shard: trained /home/user/aot-out/shard-g1.aot (38M); the next start uses it. joined=40 players
+shenandoah, cache none: ready ms [3936 3751 3683 3327 3393] first join max tick ms [15.7 10.4 9.0 8.9 8.4] first leave [3.6 4.0 3.5 3.4 3.5] classes 4890: cache 1429, jrt 1014, jar 1260
+shenandoah, cache shenandoah: ready ms [2969 3086 3161 3345 3561] first join max tick ms [3.5 3.0 3.3 3.4 2.4] first leave [3.8 3.7 3.6 3.5 3.5] classes 4978: cache 4411, jrt 365, jar 0
+shenandoah, cache g1: ready ms [3174 5473 3686 4446 5628] first join max tick ms [2.5 2.8 7.6 4.4 6.8] first leave [3.7 4.0 4.4 4.0 8.4] classes 4976: cache 4411, jrt 365, jar 0
+g1, cache none: ready ms [4614 3750 5271 4068 5343] first join max tick ms [13.2 13.2 13.5 9.3 13.5] first leave [4.3 3.9 4.4 4.1 4.1] classes 4889: cache 1429, jrt 1014, jar 1260
+g1, cache g1: ready ms [3892 4134 3467 5199 3366] first join max tick ms [3.3 4.7 7.9 6.1 3.5] first leave [5.6 4.0 4.8 4.0 3.7] classes 4976: cache 4411, jrt 365, jar 0
+g1, cache shenandoah: ready ms [4201 3214 5173 3906 4524] first join max tick ms [5.2 2.8 15.8 4.6 4.5] first leave [4.2 3.6 4.5 3.9 4.5] classes 4978: cache 4411, jrt 365, jar 0
+default path: shard-0475b108c1d05d7b-1269726178.aot train-bots.txt train.log ; auto: classes 4978: cache 4411, jrt 365, jar 0; shard: training the AOT cache on 127.0.0.1:6599, 40 bots for 20 s; the server's log is /home/user/aot-out/conf/data/aot/train.log shard: trained /home/user/aot-out/conf/data/aot/shard-0475b108c1d05d7b-1269726178.aot (38M); the next start uses it. joined=40 players 

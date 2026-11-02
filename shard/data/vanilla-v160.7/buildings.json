@@ -1,0 +1,3992 @@
+{
+  "note": "A building in a world stream or save: i32 chunk length, u8 version(), writeBase, then write() of the building class chain (each override calls super.write first). Block snapshots use writeSync, which is writeAll unless overridden. 'declares' lists the serialization methods a class itself overrides. write ops are recovered from hand-written bytecode: 'loop' and 'if' mark repeated and conditional writes; Golden.building() gives exact bytes.",
+  "writeBase": [ {
+    "field": "health",
+    "codec": "Writes.f"
+  }, {
+    "field": "rotation",
+    "codec": "Writes.b"
+  }, {
+    "field": "team",
+    "codec": "Writes.b"
+  }, {
+    "codec": "Writes.b",
+    "constant": 3
+  }, {
+    "field": "enabled",
+    "codec": "Writes.b"
+  }, {
+    "codec": "Writes.b"
+  }, {
+    "field": "items",
+    "codec": "ItemModule.write",
+    "if": "?"
+  }, {
+    "field": "power",
+    "codec": "PowerModule.write",
+    "if": "?"
+  }, {
+    "field": "liquids",
+    "codec": "LiquidModule.write",
+    "if": "?"
+  }, {
+    "field": "timeScale",
+    "codec": "Writes.f",
+    "if": "?"
+  }, {
+    "field": "timeScaleDuration",
+    "codec": "Writes.f",
+    "if": "?"
+  }, {
+    "field": "lastDisabler",
+    "codec": "Writes.i",
+    "if": "?"
+  }, {
+    "field": "efficiency",
+    "codec": "Writes.b"
+  }, {
+    "field": "optionalEfficiency",
+    "codec": "Writes.b"
+  }, {
+    "field": "visibleFlags",
+    "codec": "Writes.l",
+    "if": "?"
+  } ],
+  "blocks": [ {
+    "id": 0,
+    "name": "air",
+    "class": "mindustry.world.blocks.environment.AirBlock",
+    "building": null
+  }, {
+    "id": 1,
+    "name": "spawn",
+    "class": "mindustry.world.blocks.environment.SpawnBlock",
+    "building": null
+  }, {
+    "id": 2,
+    "name": "remove-wall",
+    "class": "mindustry.world.blocks.environment.RemoveWall",
+    "building": null
+  }, {
+    "id": 3,
+    "name": "remove-ore",
+    "class": "mindustry.world.blocks.environment.RemoveOre",
+    "building": null
+  }, {
+    "id": 4,
+    "name": "cliff",
+    "class": "mindustry.content.Blocks$1",
+    "building": null
+  }, {
+    "id": 5,
+    "name": "build1",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 6,
+    "name": "build2",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 7,
+    "name": "build3",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 8,
+    "name": "build4",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 9,
+    "name": "build5",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 10,
+    "name": "build6",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 11,
+    "name": "build7",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 12,
+    "name": "build8",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 13,
+    "name": "build9",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 14,
+    "name": "build10",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 15,
+    "name": "build11",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 16,
+    "name": "build12",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 17,
+    "name": "build13",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 18,
+    "name": "build14",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 19,
+    "name": "build15",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 20,
+    "name": "build16",
+    "class": "mindustry.world.blocks.ConstructBlock",
+    "building": "mindustry.world.blocks.ConstructBlock$ConstructBuild",
+    "version": 1
+  }, {
+    "id": 21,
+    "name": "deep-water",
+    "class": "mindustry.content.Blocks$2",
+    "building": null
+  }, {
+    "id": 22,
+    "name": "shallow-water",
+    "class": "mindustry.content.Blocks$3",
+    "building": null
+  }, {
+    "id": 23,
+    "name": "tainted-water",
+    "class": "mindustry.content.Blocks$4",
+    "building": null
+  }, {
+    "id": 24,
+    "name": "deep-tainted-water",
+    "class": "mindustry.content.Blocks$5",
+    "building": null
+  }, {
+    "id": 25,
+    "name": "darksand-tainted-water",
+    "class": "mindustry.content.Blocks$6",
+    "building": null
+  }, {
+    "id": 26,
+    "name": "sand-water",
+    "class": "mindustry.content.Blocks$7",
+    "building": null
+  }, {
+    "id": 27,
+    "name": "darksand-water",
+    "class": "mindustry.content.Blocks$8",
+    "building": null
+  }, {
+    "id": 28,
+    "name": "tar",
+    "class": "mindustry.content.Blocks$9",
+    "building": null
+  }, {
+    "id": 29,
+    "name": "pooled-cryofluid",
+    "class": "mindustry.content.Blocks$10",
+    "building": null
+  }, {
+    "id": 30,
+    "name": "molten-slag",
+    "class": "mindustry.content.Blocks$11",
+    "building": null
+  }, {
+    "id": 31,
+    "name": "space",
+    "class": "mindustry.content.Blocks$12",
+    "building": null
+  }, {
+    "id": 32,
+    "name": "empty",
+    "class": "mindustry.world.blocks.environment.EmptyFloor",
+    "building": null
+  }, {
+    "id": 33,
+    "name": "stone",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 34,
+    "name": "crater-stone",
+    "class": "mindustry.content.Blocks$13",
+    "building": null
+  }, {
+    "id": 35,
+    "name": "char",
+    "class": "mindustry.content.Blocks$14",
+    "building": null
+  }, {
+    "id": 36,
+    "name": "basalt",
+    "class": "mindustry.content.Blocks$15",
+    "building": null
+  }, {
+    "id": 37,
+    "name": "hotrock",
+    "class": "mindustry.content.Blocks$16",
+    "building": null
+  }, {
+    "id": 38,
+    "name": "magmarock",
+    "class": "mindustry.content.Blocks$17",
+    "building": null
+  }, {
+    "id": 39,
+    "name": "sand-floor",
+    "class": "mindustry.content.Blocks$18",
+    "building": null
+  }, {
+    "id": 40,
+    "name": "darksand",
+    "class": "mindustry.content.Blocks$19",
+    "building": null
+  }, {
+    "id": 41,
+    "name": "dirt",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 42,
+    "name": "mud",
+    "class": "mindustry.content.Blocks$20",
+    "building": null
+  }, {
+    "id": 43,
+    "name": "dacite",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 44,
+    "name": "rhyolite",
+    "class": "mindustry.content.Blocks$21",
+    "building": null
+  }, {
+    "id": 45,
+    "name": "rhyolite-crater",
+    "class": "mindustry.content.Blocks$22",
+    "building": null
+  }, {
+    "id": 46,
+    "name": "rough-rhyolite",
+    "class": "mindustry.content.Blocks$23",
+    "building": null
+  }, {
+    "id": 47,
+    "name": "regolith",
+    "class": "mindustry.content.Blocks$24",
+    "building": null
+  }, {
+    "id": 48,
+    "name": "yellow-stone",
+    "class": "mindustry.content.Blocks$25",
+    "building": null
+  }, {
+    "id": 49,
+    "name": "carbon-stone",
+    "class": "mindustry.content.Blocks$26",
+    "building": null
+  }, {
+    "id": 50,
+    "name": "ferric-stone",
+    "class": "mindustry.content.Blocks$27",
+    "building": null
+  }, {
+    "id": 51,
+    "name": "ferric-craters",
+    "class": "mindustry.content.Blocks$28",
+    "building": null
+  }, {
+    "id": 52,
+    "name": "beryllic-stone",
+    "class": "mindustry.content.Blocks$29",
+    "building": null
+  }, {
+    "id": 53,
+    "name": "crystalline-stone",
+    "class": "mindustry.content.Blocks$30",
+    "building": null
+  }, {
+    "id": 54,
+    "name": "crystal-floor",
+    "class": "mindustry.content.Blocks$31",
+    "building": null
+  }, {
+    "id": 55,
+    "name": "yellow-stone-plates",
+    "class": "mindustry.content.Blocks$32",
+    "building": null
+  }, {
+    "id": 56,
+    "name": "red-stone",
+    "class": "mindustry.content.Blocks$33",
+    "building": null
+  }, {
+    "id": 57,
+    "name": "dense-red-stone",
+    "class": "mindustry.content.Blocks$34",
+    "building": null
+  }, {
+    "id": 58,
+    "name": "red-ice",
+    "class": "mindustry.content.Blocks$35",
+    "building": null
+  }, {
+    "id": 59,
+    "name": "arkycite-floor",
+    "class": "mindustry.content.Blocks$36",
+    "building": null
+  }, {
+    "id": 60,
+    "name": "arkyic-stone",
+    "class": "mindustry.content.Blocks$37",
+    "building": null
+  }, {
+    "id": 61,
+    "name": "rhyolite-vent",
+    "class": "mindustry.content.Blocks$38",
+    "building": null
+  }, {
+    "id": 62,
+    "name": "carbon-vent",
+    "class": "mindustry.content.Blocks$39",
+    "building": null
+  }, {
+    "id": 63,
+    "name": "arkyic-vent",
+    "class": "mindustry.content.Blocks$40",
+    "building": null
+  }, {
+    "id": 64,
+    "name": "yellow-stone-vent",
+    "class": "mindustry.content.Blocks$41",
+    "building": null
+  }, {
+    "id": 65,
+    "name": "red-stone-vent",
+    "class": "mindustry.content.Blocks$42",
+    "building": null
+  }, {
+    "id": 66,
+    "name": "crystalline-vent",
+    "class": "mindustry.content.Blocks$43",
+    "building": null
+  }, {
+    "id": 67,
+    "name": "stone-vent",
+    "class": "mindustry.content.Blocks$44",
+    "building": null
+  }, {
+    "id": 68,
+    "name": "basalt-vent",
+    "class": "mindustry.content.Blocks$45",
+    "building": null
+  }, {
+    "id": 69,
+    "name": "redmat",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 70,
+    "name": "bluemat",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 71,
+    "name": "grass",
+    "class": "mindustry.content.Blocks$46",
+    "building": null
+  }, {
+    "id": 72,
+    "name": "salt",
+    "class": "mindustry.content.Blocks$47",
+    "building": null
+  }, {
+    "id": 73,
+    "name": "snow",
+    "class": "mindustry.content.Blocks$48",
+    "building": null
+  }, {
+    "id": 74,
+    "name": "ice",
+    "class": "mindustry.content.Blocks$49",
+    "building": null
+  }, {
+    "id": 75,
+    "name": "ice-snow",
+    "class": "mindustry.content.Blocks$50",
+    "building": null
+  }, {
+    "id": 76,
+    "name": "shale",
+    "class": "mindustry.content.Blocks$51",
+    "building": null
+  }, {
+    "id": 77,
+    "name": "moss",
+    "class": "mindustry.content.Blocks$52",
+    "building": null
+  }, {
+    "id": 78,
+    "name": "core-zone",
+    "class": "mindustry.content.Blocks$53",
+    "building": null
+  }, {
+    "id": 79,
+    "name": "spore-moss",
+    "class": "mindustry.content.Blocks$54",
+    "building": null
+  }, {
+    "id": 80,
+    "name": "stone-wall",
+    "class": "mindustry.content.Blocks$55",
+    "building": null
+  }, {
+    "id": 81,
+    "name": "spore-wall",
+    "class": "mindustry.content.Blocks$56",
+    "building": null
+  }, {
+    "id": 82,
+    "name": "dirt-wall",
+    "class": "mindustry.world.blocks.environment.StaticWall",
+    "building": null
+  }, {
+    "id": 83,
+    "name": "dacite-wall",
+    "class": "mindustry.world.blocks.environment.StaticWall",
+    "building": null
+  }, {
+    "id": 84,
+    "name": "ice-wall",
+    "class": "mindustry.content.Blocks$57",
+    "building": null
+  }, {
+    "id": 85,
+    "name": "snow-wall",
+    "class": "mindustry.world.blocks.environment.StaticWall",
+    "building": null
+  }, {
+    "id": 86,
+    "name": "dune-wall",
+    "class": "mindustry.content.Blocks$58",
+    "building": null
+  }, {
+    "id": 87,
+    "name": "regolith-wall",
+    "class": "mindustry.content.Blocks$59",
+    "building": null
+  }, {
+    "id": 88,
+    "name": "yellow-stone-wall",
+    "class": "mindustry.content.Blocks$60",
+    "building": null
+  }, {
+    "id": 89,
+    "name": "rhyolite-wall",
+    "class": "mindustry.content.Blocks$61",
+    "building": null
+  }, {
+    "id": 90,
+    "name": "carbon-wall",
+    "class": "mindustry.content.Blocks$62",
+    "building": null
+  }, {
+    "id": 91,
+    "name": "ferric-stone-wall",
+    "class": "mindustry.content.Blocks$63",
+    "building": null
+  }, {
+    "id": 92,
+    "name": "beryllic-stone-wall",
+    "class": "mindustry.content.Blocks$64",
+    "building": null
+  }, {
+    "id": 93,
+    "name": "arkyic-wall",
+    "class": "mindustry.content.Blocks$65",
+    "building": null
+  }, {
+    "id": 94,
+    "name": "crystalline-stone-wall",
+    "class": "mindustry.content.Blocks$66",
+    "building": null
+  }, {
+    "id": 95,
+    "name": "red-ice-wall",
+    "class": "mindustry.content.Blocks$67",
+    "building": null
+  }, {
+    "id": 96,
+    "name": "red-stone-wall",
+    "class": "mindustry.content.Blocks$68",
+    "building": null
+  }, {
+    "id": 97,
+    "name": "red-diamond-wall",
+    "class": "mindustry.content.Blocks$69",
+    "building": null
+  }, {
+    "id": 98,
+    "name": "sand-wall",
+    "class": "mindustry.content.Blocks$70",
+    "building": null
+  }, {
+    "id": 99,
+    "name": "salt-wall",
+    "class": "mindustry.world.blocks.environment.StaticWall",
+    "building": null
+  }, {
+    "id": 100,
+    "name": "shrubs",
+    "class": "mindustry.world.blocks.environment.StaticWall",
+    "building": null
+  }, {
+    "id": 101,
+    "name": "shale-wall",
+    "class": "mindustry.world.blocks.environment.StaticWall",
+    "building": null
+  }, {
+    "id": 102,
+    "name": "spore-pine",
+    "class": "mindustry.content.Blocks$71",
+    "building": null
+  }, {
+    "id": 103,
+    "name": "snow-pine",
+    "class": "mindustry.world.blocks.environment.StaticTree",
+    "building": null
+  }, {
+    "id": 104,
+    "name": "pine",
+    "class": "mindustry.world.blocks.environment.StaticTree",
+    "building": null
+  }, {
+    "id": 105,
+    "name": "white-tree-dead",
+    "class": "mindustry.world.blocks.environment.TreeBlock",
+    "building": null
+  }, {
+    "id": 106,
+    "name": "white-tree",
+    "class": "mindustry.world.blocks.environment.TreeBlock",
+    "building": null
+  }, {
+    "id": 107,
+    "name": "spore-cluster",
+    "class": "mindustry.content.Blocks$72",
+    "building": null
+  }, {
+    "id": 108,
+    "name": "redweed",
+    "class": "mindustry.content.Blocks$73",
+    "building": null
+  }, {
+    "id": 109,
+    "name": "pur-bush",
+    "class": "mindustry.content.Blocks$74",
+    "building": null
+  }, {
+    "id": 110,
+    "name": "yellowcoral",
+    "class": "mindustry.content.Blocks$75",
+    "building": null
+  }, {
+    "id": 111,
+    "name": "boulder",
+    "class": "mindustry.content.Blocks$76",
+    "building": null
+  }, {
+    "id": 112,
+    "name": "snow-boulder",
+    "class": "mindustry.content.Blocks$77",
+    "building": null
+  }, {
+    "id": 113,
+    "name": "shale-boulder",
+    "class": "mindustry.content.Blocks$78",
+    "building": null
+  }, {
+    "id": 114,
+    "name": "sand-boulder",
+    "class": "mindustry.content.Blocks$79",
+    "building": null
+  }, {
+    "id": 115,
+    "name": "dacite-boulder",
+    "class": "mindustry.content.Blocks$80",
+    "building": null
+  }, {
+    "id": 116,
+    "name": "basalt-boulder",
+    "class": "mindustry.content.Blocks$81",
+    "building": null
+  }, {
+    "id": 117,
+    "name": "carbon-boulder",
+    "class": "mindustry.content.Blocks$82",
+    "building": null
+  }, {
+    "id": 118,
+    "name": "ferric-boulder",
+    "class": "mindustry.content.Blocks$83",
+    "building": null
+  }, {
+    "id": 119,
+    "name": "beryllic-boulder",
+    "class": "mindustry.content.Blocks$84",
+    "building": null
+  }, {
+    "id": 120,
+    "name": "yellow-stone-boulder",
+    "class": "mindustry.content.Blocks$85",
+    "building": null
+  }, {
+    "id": 121,
+    "name": "arkyic-boulder",
+    "class": "mindustry.content.Blocks$86",
+    "building": null
+  }, {
+    "id": 122,
+    "name": "crystal-cluster",
+    "class": "mindustry.content.Blocks$87",
+    "building": null
+  }, {
+    "id": 123,
+    "name": "vibrant-crystal-cluster",
+    "class": "mindustry.content.Blocks$88",
+    "building": null
+  }, {
+    "id": 124,
+    "name": "crystal-blocks",
+    "class": "mindustry.content.Blocks$89",
+    "building": null
+  }, {
+    "id": 125,
+    "name": "crystal-orbs",
+    "class": "mindustry.content.Blocks$90",
+    "building": null
+  }, {
+    "id": 126,
+    "name": "crystalline-boulder",
+    "class": "mindustry.content.Blocks$91",
+    "building": null
+  }, {
+    "id": 127,
+    "name": "red-ice-boulder",
+    "class": "mindustry.content.Blocks$92",
+    "building": null
+  }, {
+    "id": 128,
+    "name": "rhyolite-boulder",
+    "class": "mindustry.content.Blocks$93",
+    "building": null
+  }, {
+    "id": 129,
+    "name": "red-stone-boulder",
+    "class": "mindustry.content.Blocks$94",
+    "building": null
+  }, {
+    "id": 130,
+    "name": "metal-floor",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 131,
+    "name": "metal-floor-damaged",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 132,
+    "name": "metal-floor-2",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 133,
+    "name": "metal-floor-3",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 134,
+    "name": "metal-floor-4",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 135,
+    "name": "metal-floor-5",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 136,
+    "name": "dark-panel-1",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 137,
+    "name": "dark-panel-2",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 138,
+    "name": "dark-panel-3",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 139,
+    "name": "dark-panel-4",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 140,
+    "name": "dark-panel-5",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 141,
+    "name": "dark-panel-6",
+    "class": "mindustry.world.blocks.environment.Floor",
+    "building": null
+  }, {
+    "id": 142,
+    "name": "dark-metal",
+    "class": "mindustry.world.blocks.environment.StaticWall",
+    "building": null
+  }, {
+    "id": 143,
+    "name": "metal-tiles-1",
+    "class": "mindustry.content.Blocks$95",
+    "building": null
+  }, {
+    "id": 144,
+    "name": "metal-tiles-2",
+    "class": "mindustry.content.Blocks$96",
+    "building": null
+  }, {
+    "id": 145,
+    "name": "metal-tiles-3",
+    "class": "mindustry.content.Blocks$97",
+    "building": null
+  }, {
+    "id": 146,
+    "name": "metal-tiles-4",
+    "class": "mindustry.content.Blocks$98",
+    "building": null
+  }, {
+    "id": 147,
+    "name": "metal-tiles-5",
+    "class": "mindustry.content.Blocks$99",
+    "building": null
+  }, {
+    "id": 148,
+    "name": "metal-tiles-6",
+    "class": "mindustry.content.Blocks$100",
+    "building": null
+  }, {
+    "id": 149,
+    "name": "metal-tiles-7",
+    "class": "mindustry.content.Blocks$101",
+    "building": null
+  }, {
+    "id": 150,
+    "name": "metal-tiles-8",
+    "class": "mindustry.content.Blocks$102",
+    "building": null
+  }, {
+    "id": 151,
+    "name": "metal-tiles-9",
+    "class": "mindustry.content.Blocks$103",
+    "building": null
+  }, {
+    "id": 152,
+    "name": "metal-tiles-10",
+    "class": "mindustry.content.Blocks$104",
+    "building": null
+  }, {
+    "id": 153,
+    "name": "metal-tiles-11",
+    "class": "mindustry.content.Blocks$105",
+    "building": null
+  }, {
+    "id": 154,
+    "name": "metal-tiles-12",
+    "class": "mindustry.content.Blocks$106",
+    "building": null
+  }, {
+    "id": 155,
+    "name": "metal-tiles-13",
+    "class": "mindustry.content.Blocks$107",
+    "building": null
+  }, {
+    "id": 156,
+    "name": "metal-wall-1",
+    "class": "mindustry.content.Blocks$108",
+    "building": null
+  }, {
+    "id": 157,
+    "name": "metal-wall-2",
+    "class": "mindustry.content.Blocks$109",
+    "building": null
+  }, {
+    "id": 158,
+    "name": "metal-wall-3",
+    "class": "mindustry.content.Blocks$110",
+    "building": null
+  }, {
+    "id": 159,
+    "name": "colored-floor",
+    "class": "mindustry.content.Blocks$111",
+    "building": null
+  }, {
+    "id": 160,
+    "name": "colored-wall",
+    "class": "mindustry.content.Blocks$112",
+    "building": null
+  }, {
+    "id": 161,
+    "name": "character-overlay",
+    "class": "mindustry.content.Blocks$113",
+    "building": null
+  }, {
+    "id": 162,
+    "name": "character-overlay-white",
+    "class": "mindustry.content.Blocks$114",
+    "building": null
+  }, {
+    "id": 163,
+    "name": "rune-overlay",
+    "class": "mindustry.content.Blocks$115",
+    "building": null
+  }, {
+    "id": 164,
+    "name": "rune-overlay-crux",
+    "class": "mindustry.world.blocks.environment.RuneOverlay",
+    "building": null
+  }, {
+    "id": 165,
+    "name": "pebbles",
+    "class": "mindustry.world.blocks.environment.OverlayFloor",
+    "building": null
+  }, {
+    "id": 166,
+    "name": "tendrils",
+    "class": "mindustry.world.blocks.environment.OverlayFloor",
+    "building": null
+  }, {
+    "id": 167,
+    "name": "ore-copper",
+    "class": "mindustry.content.Blocks$116",
+    "building": null
+  }, {
+    "id": 168,
+    "name": "ore-lead",
+    "class": "mindustry.content.Blocks$117",
+    "building": null
+  }, {
+    "id": 169,
+    "name": "ore-scrap",
+    "class": "mindustry.world.blocks.environment.OreBlock",
+    "building": null
+  }, {
+    "id": 170,
+    "name": "ore-coal",
+    "class": "mindustry.content.Blocks$118",
+    "building": null
+  }, {
+    "id": 171,
+    "name": "ore-titanium",
+    "class": "mindustry.content.Blocks$119",
+    "building": null
+  }, {
+    "id": 172,
+    "name": "ore-thorium",
+    "class": "mindustry.content.Blocks$120",
+    "building": null
+  }, {
+    "id": 173,
+    "name": "ore-beryllium",
+    "class": "mindustry.world.blocks.environment.OreBlock",
+    "building": null
+  }, {
+    "id": 174,
+    "name": "ore-tungsten",
+    "class": "mindustry.world.blocks.environment.OreBlock",
+    "building": null
+  }, {
+    "id": 175,
+    "name": "ore-crystal-thorium",
+    "class": "mindustry.world.blocks.environment.OreBlock",
+    "building": null
+  }, {
+    "id": 176,
+    "name": "ore-wall-thorium",
+    "class": "mindustry.content.Blocks$121",
+    "building": null
+  }, {
+    "id": 177,
+    "name": "ore-wall-beryllium",
+    "class": "mindustry.content.Blocks$122",
+    "building": null
+  }, {
+    "id": 178,
+    "name": "graphitic-wall",
+    "class": "mindustry.content.Blocks$123",
+    "building": null
+  }, {
+    "id": 179,
+    "name": "ore-wall-graphite",
+    "class": "mindustry.content.Blocks$124",
+    "building": null
+  }, {
+    "id": 180,
+    "name": "ore-wall-tungsten",
+    "class": "mindustry.content.Blocks$125",
+    "building": null
+  }, {
+    "id": 181,
+    "name": "graphite-press",
+    "class": "mindustry.content.Blocks$126",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 182,
+    "name": "multi-press",
+    "class": "mindustry.content.Blocks$127",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 183,
+    "name": "silicon-smelter",
+    "class": "mindustry.content.Blocks$128",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 184,
+    "name": "silicon-crucible",
+    "class": "mindustry.content.Blocks$129",
+    "building": "mindustry.world.blocks.production.AttributeCrafter$AttributeCrafterBuild",
+    "version": 0
+  }, {
+    "id": 185,
+    "name": "kiln",
+    "class": "mindustry.content.Blocks$130",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 186,
+    "name": "plastanium-compressor",
+    "class": "mindustry.content.Blocks$131",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 187,
+    "name": "phase-weaver",
+    "class": "mindustry.content.Blocks$132",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 188,
+    "name": "surge-smelter",
+    "class": "mindustry.content.Blocks$133",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 189,
+    "name": "cryofluid-mixer",
+    "class": "mindustry.content.Blocks$134",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 190,
+    "name": "pyratite-mixer",
+    "class": "mindustry.content.Blocks$135",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 191,
+    "name": "blast-mixer",
+    "class": "mindustry.content.Blocks$136",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 192,
+    "name": "melter",
+    "class": "mindustry.content.Blocks$137",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 193,
+    "name": "separator",
+    "class": "mindustry.content.Blocks$138",
+    "building": "mindustry.world.blocks.production.Separator$SeparatorBuild",
+    "version": 1
+  }, {
+    "id": 194,
+    "name": "disassembler",
+    "class": "mindustry.content.Blocks$139",
+    "building": "mindustry.world.blocks.production.Separator$SeparatorBuild",
+    "version": 1
+  }, {
+    "id": 195,
+    "name": "spore-press",
+    "class": "mindustry.content.Blocks$140",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 196,
+    "name": "pulverizer",
+    "class": "mindustry.content.Blocks$141",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 197,
+    "name": "coal-centrifuge",
+    "class": "mindustry.content.Blocks$142",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 198,
+    "name": "incinerator",
+    "class": "mindustry.content.Blocks$143",
+    "building": "mindustry.world.blocks.production.Incinerator$IncineratorBuild",
+    "version": 0
+  }, {
+    "id": 199,
+    "name": "silicon-arc-furnace",
+    "class": "mindustry.content.Blocks$144",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 200,
+    "name": "electrolyzer",
+    "class": "mindustry.content.Blocks$145",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 201,
+    "name": "atmospheric-concentrator",
+    "class": "mindustry.content.Blocks$146",
+    "building": "mindustry.world.blocks.production.HeatCrafter$HeatCrafterBuild",
+    "version": 0
+  }, {
+    "id": 202,
+    "name": "oxidation-chamber",
+    "class": "mindustry.content.Blocks$147",
+    "building": "mindustry.world.blocks.heat.HeatProducer$HeatProducerBuild",
+    "version": 0
+  }, {
+    "id": 203,
+    "name": "electric-heater",
+    "class": "mindustry.content.Blocks$148",
+    "building": "mindustry.world.blocks.heat.HeatProducer$HeatProducerBuild",
+    "version": 0
+  }, {
+    "id": 204,
+    "name": "slag-heater",
+    "class": "mindustry.content.Blocks$149",
+    "building": "mindustry.world.blocks.heat.HeatProducer$HeatProducerBuild",
+    "version": 0
+  }, {
+    "id": 205,
+    "name": "phase-heater",
+    "class": "mindustry.content.Blocks$150",
+    "building": "mindustry.world.blocks.heat.HeatProducer$HeatProducerBuild",
+    "version": 0
+  }, {
+    "id": 206,
+    "name": "heat-redirector",
+    "class": "mindustry.content.Blocks$151",
+    "building": "mindustry.world.blocks.heat.HeatConductor$HeatConductorBuild",
+    "version": 0
+  }, {
+    "id": 207,
+    "name": "small-heat-redirector",
+    "class": "mindustry.content.Blocks$152",
+    "building": "mindustry.world.blocks.heat.HeatConductor$HeatConductorBuild",
+    "version": 0
+  }, {
+    "id": 208,
+    "name": "heat-router",
+    "class": "mindustry.content.Blocks$153",
+    "building": "mindustry.world.blocks.heat.HeatConductor$HeatConductorBuild",
+    "version": 0
+  }, {
+    "id": 209,
+    "name": "slag-incinerator",
+    "class": "mindustry.content.Blocks$154",
+    "building": "mindustry.world.blocks.production.ItemIncinerator$ItemIncineratorBuild",
+    "version": 0
+  }, {
+    "id": 210,
+    "name": "carbide-crucible",
+    "class": "mindustry.content.Blocks$155",
+    "building": "mindustry.world.blocks.production.HeatCrafter$HeatCrafterBuild",
+    "version": 0
+  }, {
+    "id": 211,
+    "name": "slag-centrifuge",
+    "class": "mindustry.content.Blocks$156",
+    "building": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+    "version": 0
+  }, {
+    "id": 212,
+    "name": "surge-crucible",
+    "class": "mindustry.content.Blocks$157",
+    "building": "mindustry.world.blocks.production.HeatCrafter$HeatCrafterBuild",
+    "version": 0
+  }, {
+    "id": 213,
+    "name": "cyanogen-synthesizer",
+    "class": "mindustry.content.Blocks$158",
+    "building": "mindustry.world.blocks.production.HeatCrafter$HeatCrafterBuild",
+    "version": 0
+  }, {
+    "id": 214,
+    "name": "phase-synthesizer",
+    "class": "mindustry.content.Blocks$159",
+    "building": "mindustry.world.blocks.production.HeatCrafter$HeatCrafterBuild",
+    "version": 0
+  }, {
+    "id": 215,
+    "name": "heat-reactor",
+    "class": "mindustry.content.Blocks$160",
+    "building": "mindustry.world.blocks.heat.HeatProducer$HeatProducerBuild",
+    "version": 0
+  }, {
+    "id": 216,
+    "name": "copper-wall",
+    "class": "mindustry.content.Blocks$161",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 217,
+    "name": "copper-wall-large",
+    "class": "mindustry.content.Blocks$162",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 218,
+    "name": "titanium-wall",
+    "class": "mindustry.content.Blocks$163",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 219,
+    "name": "titanium-wall-large",
+    "class": "mindustry.content.Blocks$164",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 220,
+    "name": "plastanium-wall",
+    "class": "mindustry.content.Blocks$165",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 221,
+    "name": "plastanium-wall-large",
+    "class": "mindustry.content.Blocks$166",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 222,
+    "name": "thorium-wall",
+    "class": "mindustry.content.Blocks$167",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 223,
+    "name": "thorium-wall-large",
+    "class": "mindustry.content.Blocks$168",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 224,
+    "name": "phase-wall",
+    "class": "mindustry.content.Blocks$169",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 225,
+    "name": "phase-wall-large",
+    "class": "mindustry.content.Blocks$170",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 226,
+    "name": "surge-wall",
+    "class": "mindustry.content.Blocks$171",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 227,
+    "name": "surge-wall-large",
+    "class": "mindustry.content.Blocks$172",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 228,
+    "name": "door",
+    "class": "mindustry.content.Blocks$173",
+    "building": "mindustry.world.blocks.defense.Door$DoorBuild",
+    "version": 0
+  }, {
+    "id": 229,
+    "name": "door-large",
+    "class": "mindustry.content.Blocks$174",
+    "building": "mindustry.world.blocks.defense.Door$DoorBuild",
+    "version": 0
+  }, {
+    "id": 230,
+    "name": "scrap-wall",
+    "class": "mindustry.content.Blocks$175",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 231,
+    "name": "scrap-wall-large",
+    "class": "mindustry.content.Blocks$176",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 232,
+    "name": "scrap-wall-huge",
+    "class": "mindustry.content.Blocks$177",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 233,
+    "name": "scrap-wall-gigantic",
+    "class": "mindustry.content.Blocks$178",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 234,
+    "name": "thruster",
+    "class": "mindustry.content.Blocks$179",
+    "building": "mindustry.world.blocks.defense.Thruster$ThrusterBuild",
+    "version": 0
+  }, {
+    "id": 235,
+    "name": "beryllium-wall",
+    "class": "mindustry.content.Blocks$180",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 236,
+    "name": "beryllium-wall-large",
+    "class": "mindustry.content.Blocks$181",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 237,
+    "name": "tungsten-wall",
+    "class": "mindustry.content.Blocks$182",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 238,
+    "name": "tungsten-wall-large",
+    "class": "mindustry.content.Blocks$183",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 239,
+    "name": "blast-door",
+    "class": "mindustry.content.Blocks$184",
+    "building": "mindustry.world.blocks.defense.AutoDoor$AutoDoorBuild",
+    "version": 0
+  }, {
+    "id": 240,
+    "name": "reinforced-surge-wall",
+    "class": "mindustry.content.Blocks$185",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 241,
+    "name": "reinforced-surge-wall-large",
+    "class": "mindustry.content.Blocks$186",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 242,
+    "name": "carbide-wall",
+    "class": "mindustry.content.Blocks$187",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 243,
+    "name": "carbide-wall-large",
+    "class": "mindustry.content.Blocks$188",
+    "building": "mindustry.world.blocks.defense.Wall$WallBuild",
+    "version": 0
+  }, {
+    "id": 244,
+    "name": "shielded-wall",
+    "class": "mindustry.content.Blocks$189",
+    "building": "mindustry.world.blocks.defense.ShieldWall$ShieldWallBuild",
+    "version": 0
+  }, {
+    "id": 245,
+    "name": "mender",
+    "class": "mindustry.content.Blocks$190",
+    "building": "mindustry.world.blocks.defense.MendProjector$MendBuild",
+    "version": 0
+  }, {
+    "id": 246,
+    "name": "mend-projector",
+    "class": "mindustry.content.Blocks$191",
+    "building": "mindustry.world.blocks.defense.MendProjector$MendBuild",
+    "version": 0
+  }, {
+    "id": 247,
+    "name": "overdrive-projector",
+    "class": "mindustry.content.Blocks$192",
+    "building": "mindustry.world.blocks.defense.OverdriveProjector$OverdriveBuild",
+    "version": 0
+  }, {
+    "id": 248,
+    "name": "overdrive-dome",
+    "class": "mindustry.content.Blocks$193",
+    "building": "mindustry.world.blocks.defense.OverdriveProjector$OverdriveBuild",
+    "version": 0
+  }, {
+    "id": 249,
+    "name": "force-projector",
+    "class": "mindustry.content.Blocks$194",
+    "building": "mindustry.world.blocks.defense.ForceProjector$ForceBuild",
+    "version": 0
+  }, {
+    "id": 250,
+    "name": "shock-mine",
+    "class": "mindustry.content.Blocks$195",
+    "building": "mindustry.world.blocks.defense.ShockMine$ShockMineBuild",
+    "version": 0
+  }, {
+    "id": 251,
+    "name": "radar",
+    "class": "mindustry.content.Blocks$196",
+    "building": "mindustry.world.blocks.defense.Radar$RadarBuild",
+    "version": 0
+  }, {
+    "id": 252,
+    "name": "build-tower",
+    "class": "mindustry.content.Blocks$197",
+    "building": "mindustry.world.blocks.defense.BuildTurret$BuildTurretBuild",
+    "version": 0
+  }, {
+    "id": 253,
+    "name": "regen-projector",
+    "class": "mindustry.content.Blocks$198",
+    "building": "mindustry.world.blocks.defense.RegenProjector$RegenProjectorBuild",
+    "version": 0
+  }, {
+    "id": 254,
+    "name": "shockwave-tower",
+    "class": "mindustry.content.Blocks$199",
+    "building": "mindustry.world.blocks.defense.ShockwaveTower$ShockwaveTowerBuild",
+    "version": 0
+  }, {
+    "id": 255,
+    "name": "shield-projector",
+    "class": "mindustry.content.Blocks$200",
+    "building": "mindustry.world.blocks.defense.BaseShield$BaseShieldBuild",
+    "version": 1
+  }, {
+    "id": 256,
+    "name": "large-shield-projector",
+    "class": "mindustry.content.Blocks$201",
+    "building": "mindustry.world.blocks.defense.BaseShield$BaseShieldBuild",
+    "version": 1
+  }, {
+    "id": 257,
+    "name": "conveyor",
+    "class": "mindustry.content.Blocks$202",
+    "building": "mindustry.world.blocks.distribution.Conveyor$ConveyorBuild",
+    "version": 1
+  }, {
+    "id": 258,
+    "name": "titanium-conveyor",
+    "class": "mindustry.content.Blocks$203",
+    "building": "mindustry.world.blocks.distribution.Conveyor$ConveyorBuild",
+    "version": 1
+  }, {
+    "id": 259,
+    "name": "plastanium-conveyor",
+    "class": "mindustry.content.Blocks$204",
+    "building": "mindustry.world.blocks.distribution.StackConveyor$StackConveyorBuild",
+    "version": 0
+  }, {
+    "id": 260,
+    "name": "armored-conveyor",
+    "class": "mindustry.content.Blocks$205",
+    "building": "mindustry.world.blocks.distribution.ArmoredConveyor$ArmoredConveyorBuild",
+    "version": 1
+  }, {
+    "id": 261,
+    "name": "junction",
+    "class": "mindustry.content.Blocks$206",
+    "building": "mindustry.world.blocks.distribution.Junction$JunctionBuild",
+    "version": 1
+  }, {
+    "id": 262,
+    "name": "bridge-conveyor",
+    "class": "mindustry.content.Blocks$207",
+    "building": "mindustry.world.blocks.distribution.BufferedItemBridge$BufferedItemBridgeBuild",
+    "version": 1
+  }, {
+    "id": 263,
+    "name": "phase-conveyor",
+    "class": "mindustry.content.Blocks$208",
+    "building": "mindustry.world.blocks.distribution.ItemBridge$ItemBridgeBuild",
+    "version": 1
+  }, {
+    "id": 264,
+    "name": "sorter",
+    "class": "mindustry.content.Blocks$209",
+    "building": "mindustry.world.blocks.distribution.Sorter$SorterBuild",
+    "version": 2
+  }, {
+    "id": 265,
+    "name": "inverted-sorter",
+    "class": "mindustry.content.Blocks$210",
+    "building": "mindustry.world.blocks.distribution.Sorter$SorterBuild",
+    "version": 2
+  }, {
+    "id": 266,
+    "name": "router",
+    "class": "mindustry.content.Blocks$211",
+    "building": "mindustry.world.blocks.distribution.Router$RouterBuild",
+    "version": 0
+  }, {
+    "id": 267,
+    "name": "distributor",
+    "class": "mindustry.content.Blocks$212",
+    "building": "mindustry.world.blocks.distribution.Router$RouterBuild",
+    "version": 0
+  }, {
+    "id": 268,
+    "name": "overflow-gate",
+    "class": "mindustry.content.Blocks$213",
+    "building": "mindustry.world.blocks.distribution.OverflowGate$OverflowGateBuild",
+    "version": 4
+  }, {
+    "id": 269,
+    "name": "underflow-gate",
+    "class": "mindustry.content.Blocks$214",
+    "building": "mindustry.world.blocks.distribution.OverflowGate$OverflowGateBuild",
+    "version": 4
+  }, {
+    "id": 270,
+    "name": "unloader",
+    "class": "mindustry.content.Blocks$215",
+    "building": "mindustry.world.blocks.storage.Unloader$UnloaderBuild",
+    "version": 1
+  }, {
+    "id": 271,
+    "name": "mass-driver",
+    "class": "mindustry.content.Blocks$216",
+    "building": "mindustry.world.blocks.distribution.MassDriver$MassDriverBuild",
+    "version": 0
+  }, {
+    "id": 272,
+    "name": "duct",
+    "class": "mindustry.content.Blocks$217",
+    "building": "mindustry.world.blocks.distribution.Duct$DuctBuild",
+    "version": 1
+  }, {
+    "id": 273,
+    "name": "armored-duct",
+    "class": "mindustry.content.Blocks$218",
+    "building": "mindustry.world.blocks.distribution.Duct$DuctBuild",
+    "version": 1
+  }, {
+    "id": 274,
+    "name": "duct-router",
+    "class": "mindustry.content.Blocks$219",
+    "building": "mindustry.world.blocks.distribution.DuctRouter$DuctRouterBuild",
+    "version": 1
+  }, {
+    "id": 275,
+    "name": "overflow-duct",
+    "class": "mindustry.content.Blocks$220",
+    "building": "mindustry.world.blocks.distribution.OverflowDuct$OverflowDuctBuild",
+    "version": 0
+  }, {
+    "id": 276,
+    "name": "underflow-duct",
+    "class": "mindustry.content.Blocks$221",
+    "building": "mindustry.world.blocks.distribution.OverflowDuct$OverflowDuctBuild",
+    "version": 0
+  }, {
+    "id": 277,
+    "name": "duct-bridge",
+    "class": "mindustry.content.Blocks$222",
+    "building": "mindustry.world.blocks.distribution.DuctBridge$DuctBridgeBuild",
+    "version": 0
+  }, {
+    "id": 278,
+    "name": "duct-unloader",
+    "class": "mindustry.content.Blocks$223",
+    "building": "mindustry.world.blocks.distribution.DirectionalUnloader$DirectionalUnloaderBuild",
+    "version": 0
+  }, {
+    "id": 279,
+    "name": "surge-conveyor",
+    "class": "mindustry.content.Blocks$224",
+    "building": "mindustry.world.blocks.distribution.StackConveyor$StackConveyorBuild",
+    "version": 0
+  }, {
+    "id": 280,
+    "name": "surge-router",
+    "class": "mindustry.content.Blocks$225",
+    "building": "mindustry.world.blocks.distribution.StackRouter$StackRouterBuild",
+    "version": 1
+  }, {
+    "id": 281,
+    "name": "unit-cargo-loader",
+    "class": "mindustry.content.Blocks$226",
+    "building": "mindustry.world.blocks.units.UnitCargoLoader$UnitTransportSourceBuild",
+    "version": 0
+  }, {
+    "id": 282,
+    "name": "unit-cargo-unload-point",
+    "class": "mindustry.content.Blocks$227",
+    "building": "mindustry.world.blocks.units.UnitCargoUnloadPoint$UnitCargoUnloadPointBuild",
+    "version": 0
+  }, {
+    "id": 283,
+    "name": "mechanical-pump",
+    "class": "mindustry.content.Blocks$228",
+    "building": "mindustry.world.blocks.production.Pump$PumpBuild",
+    "version": 0
+  }, {
+    "id": 284,
+    "name": "rotary-pump",
+    "class": "mindustry.content.Blocks$229",
+    "building": "mindustry.world.blocks.production.Pump$PumpBuild",
+    "version": 0
+  }, {
+    "id": 285,
+    "name": "impulse-pump",
+    "class": "mindustry.content.Blocks$230",
+    "building": "mindustry.world.blocks.production.Pump$PumpBuild",
+    "version": 0
+  }, {
+    "id": 286,
+    "name": "conduit",
+    "class": "mindustry.content.Blocks$231",
+    "building": "mindustry.world.blocks.liquid.Conduit$ConduitBuild",
+    "version": 0
+  }, {
+    "id": 287,
+    "name": "pulse-conduit",
+    "class": "mindustry.content.Blocks$232",
+    "building": "mindustry.world.blocks.liquid.Conduit$ConduitBuild",
+    "version": 0
+  }, {
+    "id": 288,
+    "name": "plated-conduit",
+    "class": "mindustry.content.Blocks$233",
+    "building": "mindustry.world.blocks.liquid.ArmoredConduit$ArmoredConduitBuild",
+    "version": 0
+  }, {
+    "id": 289,
+    "name": "liquid-router",
+    "class": "mindustry.content.Blocks$234",
+    "building": "mindustry.world.blocks.liquid.LiquidRouter$LiquidRouterBuild",
+    "version": 0
+  }, {
+    "id": 290,
+    "name": "liquid-container",
+    "class": "mindustry.content.Blocks$235",
+    "building": "mindustry.world.blocks.liquid.LiquidRouter$LiquidRouterBuild",
+    "version": 0
+  }, {
+    "id": 291,
+    "name": "liquid-tank",
+    "class": "mindustry.content.Blocks$236",
+    "building": "mindustry.world.blocks.liquid.LiquidRouter$LiquidRouterBuild",
+    "version": 0
+  }, {
+    "id": 292,
+    "name": "liquid-junction",
+    "class": "mindustry.content.Blocks$237",
+    "building": "mindustry.world.blocks.liquid.LiquidJunction$LiquidJunctionBuild",
+    "version": 0
+  }, {
+    "id": 293,
+    "name": "bridge-conduit",
+    "class": "mindustry.content.Blocks$238",
+    "building": "mindustry.world.blocks.liquid.LiquidBridge$LiquidBridgeBuild",
+    "version": 1
+  }, {
+    "id": 294,
+    "name": "phase-conduit",
+    "class": "mindustry.content.Blocks$239",
+    "building": "mindustry.world.blocks.liquid.LiquidBridge$LiquidBridgeBuild",
+    "version": 1
+  }, {
+    "id": 295,
+    "name": "reinforced-pump",
+    "class": "mindustry.content.Blocks$240",
+    "building": "mindustry.world.blocks.production.Pump$PumpBuild",
+    "version": 0
+  }, {
+    "id": 296,
+    "name": "reinforced-conduit",
+    "class": "mindustry.content.Blocks$241",
+    "building": "mindustry.world.blocks.liquid.ArmoredConduit$ArmoredConduitBuild",
+    "version": 0
+  }, {
+    "id": 297,
+    "name": "reinforced-liquid-junction",
+    "class": "mindustry.content.Blocks$242",
+    "building": "mindustry.world.blocks.liquid.LiquidJunction$LiquidJunctionBuild",
+    "version": 0
+  }, {
+    "id": 298,
+    "name": "reinforced-bridge-conduit",
+    "class": "mindustry.content.Blocks$243",
+    "building": "mindustry.world.blocks.distribution.DirectionLiquidBridge$DuctBridgeBuild",
+    "version": 0
+  }, {
+    "id": 299,
+    "name": "reinforced-liquid-router",
+    "class": "mindustry.content.Blocks$244",
+    "building": "mindustry.world.blocks.liquid.LiquidRouter$LiquidRouterBuild",
+    "version": 0
+  }, {
+    "id": 300,
+    "name": "reinforced-liquid-container",
+    "class": "mindustry.content.Blocks$245",
+    "building": "mindustry.world.blocks.liquid.LiquidRouter$LiquidRouterBuild",
+    "version": 0
+  }, {
+    "id": 301,
+    "name": "reinforced-liquid-tank",
+    "class": "mindustry.content.Blocks$246",
+    "building": "mindustry.world.blocks.liquid.LiquidRouter$LiquidRouterBuild",
+    "version": 0
+  }, {
+    "id": 302,
+    "name": "power-node",
+    "class": "mindustry.content.Blocks$247",
+    "building": "mindustry.world.blocks.power.PowerNode$PowerNodeBuild",
+    "version": 0
+  }, {
+    "id": 303,
+    "name": "power-node-large",
+    "class": "mindustry.content.Blocks$248",
+    "building": "mindustry.world.blocks.power.PowerNode$PowerNodeBuild",
+    "version": 0
+  }, {
+    "id": 304,
+    "name": "surge-tower",
+    "class": "mindustry.content.Blocks$249",
+    "building": "mindustry.world.blocks.power.PowerNode$PowerNodeBuild",
+    "version": 0
+  }, {
+    "id": 305,
+    "name": "diode",
+    "class": "mindustry.content.Blocks$250",
+    "building": "mindustry.world.blocks.power.PowerDiode$PowerDiodeBuild",
+    "version": 0
+  }, {
+    "id": 306,
+    "name": "battery",
+    "class": "mindustry.content.Blocks$251",
+    "building": "mindustry.world.blocks.power.Battery$BatteryBuild",
+    "version": 0
+  }, {
+    "id": 307,
+    "name": "battery-large",
+    "class": "mindustry.content.Blocks$252",
+    "building": "mindustry.world.blocks.power.Battery$BatteryBuild",
+    "version": 0
+  }, {
+    "id": 308,
+    "name": "combustion-generator",
+    "class": "mindustry.content.Blocks$253",
+    "building": "mindustry.world.blocks.power.ConsumeGenerator$ConsumeGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 309,
+    "name": "thermal-generator",
+    "class": "mindustry.content.Blocks$254",
+    "building": "mindustry.world.blocks.power.ThermalGenerator$ThermalGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 310,
+    "name": "steam-generator",
+    "class": "mindustry.content.Blocks$255",
+    "building": "mindustry.world.blocks.power.ConsumeGenerator$ConsumeGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 311,
+    "name": "differential-generator",
+    "class": "mindustry.content.Blocks$256",
+    "building": "mindustry.world.blocks.power.ConsumeGenerator$ConsumeGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 312,
+    "name": "rtg-generator",
+    "class": "mindustry.content.Blocks$257",
+    "building": "mindustry.world.blocks.power.ConsumeGenerator$ConsumeGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 313,
+    "name": "solar-panel",
+    "class": "mindustry.content.Blocks$258",
+    "building": "mindustry.world.blocks.power.SolarGenerator$SolarGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 314,
+    "name": "solar-panel-large",
+    "class": "mindustry.content.Blocks$259",
+    "building": "mindustry.world.blocks.power.SolarGenerator$SolarGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 315,
+    "name": "thorium-reactor",
+    "class": "mindustry.content.Blocks$260",
+    "building": "mindustry.world.blocks.power.NuclearReactor$NuclearReactorBuild",
+    "version": 1
+  }, {
+    "id": 316,
+    "name": "impact-reactor",
+    "class": "mindustry.content.Blocks$261",
+    "building": "mindustry.world.blocks.power.ImpactReactor$ImpactReactorBuild",
+    "version": 1
+  }, {
+    "id": 317,
+    "name": "beam-node",
+    "class": "mindustry.content.Blocks$262",
+    "building": "mindustry.world.blocks.power.BeamNode$BeamNodeBuild",
+    "version": 0
+  }, {
+    "id": 318,
+    "name": "beam-tower",
+    "class": "mindustry.content.Blocks$263",
+    "building": "mindustry.world.blocks.power.BeamNode$BeamNodeBuild",
+    "version": 0
+  }, {
+    "id": 319,
+    "name": "beam-link",
+    "class": "mindustry.content.Blocks$264",
+    "building": "mindustry.world.blocks.power.LongPowerNode$LongPowerNodeBuild",
+    "version": 0
+  }, {
+    "id": 320,
+    "name": "turbine-condenser",
+    "class": "mindustry.content.Blocks$265",
+    "building": "mindustry.world.blocks.power.ThermalGenerator$ThermalGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 321,
+    "name": "chemical-combustion-chamber",
+    "class": "mindustry.content.Blocks$266",
+    "building": "mindustry.world.blocks.power.ConsumeGenerator$ConsumeGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 322,
+    "name": "pyrolysis-generator",
+    "class": "mindustry.content.Blocks$267",
+    "building": "mindustry.world.blocks.power.ConsumeGenerator$ConsumeGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 323,
+    "name": "flux-reactor",
+    "class": "mindustry.content.Blocks$268",
+    "building": "mindustry.world.blocks.power.VariableReactor$VariableReactorBuild",
+    "version": 1
+  }, {
+    "id": 324,
+    "name": "neoplasia-reactor",
+    "class": "mindustry.content.Blocks$269",
+    "building": "mindustry.world.blocks.power.HeaterGenerator$HeaterGeneratorBuild",
+    "version": 1
+  }, {
+    "id": 325,
+    "name": "mechanical-drill",
+    "class": "mindustry.content.Blocks$270",
+    "building": "mindustry.world.blocks.production.Drill$DrillBuild",
+    "version": 1
+  }, {
+    "id": 326,
+    "name": "pneumatic-drill",
+    "class": "mindustry.content.Blocks$271",
+    "building": "mindustry.world.blocks.production.Drill$DrillBuild",
+    "version": 1
+  }, {
+    "id": 327,
+    "name": "laser-drill",
+    "class": "mindustry.content.Blocks$272",
+    "building": "mindustry.world.blocks.production.Drill$DrillBuild",
+    "version": 1
+  }, {
+    "id": 328,
+    "name": "blast-drill",
+    "class": "mindustry.content.Blocks$273",
+    "building": "mindustry.world.blocks.production.Drill$DrillBuild",
+    "version": 1
+  }, {
+    "id": 329,
+    "name": "water-extractor",
+    "class": "mindustry.content.Blocks$274",
+    "building": "mindustry.world.blocks.production.SolidPump$SolidPumpBuild",
+    "version": 0
+  }, {
+    "id": 330,
+    "name": "cultivator",
+    "class": "mindustry.content.Blocks$275",
+    "building": "mindustry.world.blocks.production.AttributeCrafter$AttributeCrafterBuild",
+    "version": 0
+  }, {
+    "id": 331,
+    "name": "oil-extractor",
+    "class": "mindustry.content.Blocks$276",
+    "building": "mindustry.world.blocks.production.Fracker$FrackerBuild",
+    "version": 0
+  }, {
+    "id": 332,
+    "name": "vent-condenser",
+    "class": "mindustry.content.Blocks$277",
+    "building": "mindustry.world.blocks.production.AttributeCrafter$AttributeCrafterBuild",
+    "version": 0
+  }, {
+    "id": 333,
+    "name": "cliff-crusher",
+    "class": "mindustry.content.Blocks$278",
+    "building": "mindustry.world.blocks.production.WallCrafter$WallCrafterBuild",
+    "version": 0
+  }, {
+    "id": 334,
+    "name": "large-cliff-crusher",
+    "class": "mindustry.content.Blocks$279",
+    "building": "mindustry.world.blocks.production.WallCrafter$WallCrafterBuild",
+    "version": 0
+  }, {
+    "id": 335,
+    "name": "plasma-bore",
+    "class": "mindustry.content.Blocks$280",
+    "building": "mindustry.world.blocks.production.BeamDrill$BeamDrillBuild",
+    "version": 1
+  }, {
+    "id": 336,
+    "name": "large-plasma-bore",
+    "class": "mindustry.content.Blocks$281",
+    "building": "mindustry.world.blocks.production.BeamDrill$BeamDrillBuild",
+    "version": 1
+  }, {
+    "id": 337,
+    "name": "impact-drill",
+    "class": "mindustry.content.Blocks$282",
+    "building": "mindustry.world.blocks.production.BurstDrill$BurstDrillBuild",
+    "version": 1
+  }, {
+    "id": 338,
+    "name": "eruption-drill",
+    "class": "mindustry.content.Blocks$283",
+    "building": "mindustry.world.blocks.production.BurstDrill$BurstDrillBuild",
+    "version": 1
+  }, {
+    "id": 339,
+    "name": "core-shard",
+    "class": "mindustry.content.Blocks$284",
+    "building": "mindustry.world.blocks.storage.CoreBlock$CoreBuild",
+    "version": 1
+  }, {
+    "id": 340,
+    "name": "core-foundation",
+    "class": "mindustry.content.Blocks$285",
+    "building": "mindustry.world.blocks.storage.CoreBlock$CoreBuild",
+    "version": 1
+  }, {
+    "id": 341,
+    "name": "core-nucleus",
+    "class": "mindustry.content.Blocks$286",
+    "building": "mindustry.world.blocks.storage.CoreBlock$CoreBuild",
+    "version": 1
+  }, {
+    "id": 342,
+    "name": "core-bastion",
+    "class": "mindustry.content.Blocks$287",
+    "building": "mindustry.world.blocks.storage.CoreBlock$CoreBuild",
+    "version": 1
+  }, {
+    "id": 343,
+    "name": "core-citadel",
+    "class": "mindustry.content.Blocks$288",
+    "building": "mindustry.world.blocks.storage.CoreBlock$CoreBuild",
+    "version": 1
+  }, {
+    "id": 344,
+    "name": "core-acropolis",
+    "class": "mindustry.content.Blocks$289",
+    "building": "mindustry.world.blocks.storage.CoreBlock$CoreBuild",
+    "version": 1
+  }, {
+    "id": 345,
+    "name": "container",
+    "class": "mindustry.content.Blocks$290",
+    "building": "mindustry.world.blocks.storage.StorageBlock$StorageBuild",
+    "version": 0
+  }, {
+    "id": 346,
+    "name": "vault",
+    "class": "mindustry.content.Blocks$291",
+    "building": "mindustry.world.blocks.storage.StorageBlock$StorageBuild",
+    "version": 0
+  }, {
+    "id": 347,
+    "name": "reinforced-container",
+    "class": "mindustry.content.Blocks$292",
+    "building": "mindustry.world.blocks.storage.StorageBlock$StorageBuild",
+    "version": 0
+  }, {
+    "id": 348,
+    "name": "reinforced-vault",
+    "class": "mindustry.content.Blocks$293",
+    "building": "mindustry.world.blocks.storage.StorageBlock$StorageBuild",
+    "version": 0
+  }, {
+    "id": 349,
+    "name": "duo",
+    "class": "mindustry.content.Blocks$294",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 350,
+    "name": "scatter",
+    "class": "mindustry.content.Blocks$295",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 351,
+    "name": "scorch",
+    "class": "mindustry.content.Blocks$296",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 352,
+    "name": "hail",
+    "class": "mindustry.content.Blocks$297",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 353,
+    "name": "wave",
+    "class": "mindustry.content.Blocks$298",
+    "building": "mindustry.world.blocks.defense.turrets.LiquidTurret$LiquidTurretBuild",
+    "version": 1
+  }, {
+    "id": 354,
+    "name": "lancer",
+    "class": "mindustry.content.Blocks$299",
+    "building": "mindustry.world.blocks.defense.turrets.PowerTurret$PowerTurretBuild",
+    "version": 1
+  }, {
+    "id": 355,
+    "name": "arc",
+    "class": "mindustry.content.Blocks$300",
+    "building": "mindustry.world.blocks.defense.turrets.PowerTurret$PowerTurretBuild",
+    "version": 1
+  }, {
+    "id": 356,
+    "name": "parallax",
+    "class": "mindustry.content.Blocks$301",
+    "building": "mindustry.world.blocks.defense.turrets.TractorBeamTurret$TractorBeamBuild",
+    "version": 0
+  }, {
+    "id": 357,
+    "name": "swarmer",
+    "class": "mindustry.content.Blocks$302",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 358,
+    "name": "salvo",
+    "class": "mindustry.content.Blocks$303",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 359,
+    "name": "segment",
+    "class": "mindustry.content.Blocks$304",
+    "building": "mindustry.world.blocks.defense.turrets.PointDefenseTurret$PointDefenseBuild",
+    "version": 0
+  }, {
+    "id": 360,
+    "name": "tsunami",
+    "class": "mindustry.content.Blocks$305",
+    "building": "mindustry.world.blocks.defense.turrets.LiquidTurret$LiquidTurretBuild",
+    "version": 1
+  }, {
+    "id": 361,
+    "name": "fuse",
+    "class": "mindustry.content.Blocks$306",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 362,
+    "name": "ripple",
+    "class": "mindustry.content.Blocks$307",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 363,
+    "name": "cyclone",
+    "class": "mindustry.content.Blocks$308",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 364,
+    "name": "foreshadow",
+    "class": "mindustry.content.Blocks$309",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 365,
+    "name": "spectre",
+    "class": "mindustry.content.Blocks$310",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 366,
+    "name": "meltdown",
+    "class": "mindustry.content.Blocks$311",
+    "building": "mindustry.world.blocks.defense.turrets.LaserTurret$LaserTurretBuild",
+    "version": 1
+  }, {
+    "id": 367,
+    "name": "breach",
+    "class": "mindustry.content.Blocks$312",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 368,
+    "name": "diffuse",
+    "class": "mindustry.content.Blocks$313",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 369,
+    "name": "sublimate",
+    "class": "mindustry.content.Blocks$314",
+    "building": "mindustry.world.blocks.defense.turrets.ContinuousLiquidTurret$ContinuousLiquidTurretBuild",
+    "version": 3
+  }, {
+    "id": 370,
+    "name": "titan",
+    "class": "mindustry.content.Blocks$315",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 371,
+    "name": "disperse",
+    "class": "mindustry.content.Blocks$316",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 372,
+    "name": "afflict",
+    "class": "mindustry.content.Blocks$317",
+    "building": "mindustry.world.blocks.defense.turrets.PowerTurret$PowerTurretBuild",
+    "version": 1
+  }, {
+    "id": 373,
+    "name": "lustre",
+    "class": "mindustry.content.Blocks$318",
+    "building": "mindustry.world.blocks.defense.turrets.ContinuousTurret$ContinuousTurretBuild",
+    "version": 3
+  }, {
+    "id": 374,
+    "name": "scathe",
+    "class": "mindustry.content.Blocks$319",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 375,
+    "name": "smite",
+    "class": "mindustry.content.Blocks$320",
+    "building": "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild",
+    "version": 2
+  }, {
+    "id": 376,
+    "name": "malign",
+    "class": "mindustry.content.Blocks$321",
+    "building": "mindustry.world.blocks.defense.turrets.PowerTurret$PowerTurretBuild",
+    "version": 1
+  }, {
+    "id": 377,
+    "name": "ground-factory",
+    "class": "mindustry.content.Blocks$322",
+    "building": "mindustry.world.blocks.units.UnitFactory$UnitFactoryBuild",
+    "version": 3
+  }, {
+    "id": 378,
+    "name": "air-factory",
+    "class": "mindustry.content.Blocks$323",
+    "building": "mindustry.world.blocks.units.UnitFactory$UnitFactoryBuild",
+    "version": 3
+  }, {
+    "id": 379,
+    "name": "naval-factory",
+    "class": "mindustry.content.Blocks$324",
+    "building": "mindustry.world.blocks.units.UnitFactory$UnitFactoryBuild",
+    "version": 3
+  }, {
+    "id": 380,
+    "name": "additive-reconstructor",
+    "class": "mindustry.content.Blocks$325",
+    "building": "mindustry.world.blocks.units.Reconstructor$ReconstructorBuild",
+    "version": 3
+  }, {
+    "id": 381,
+    "name": "multiplicative-reconstructor",
+    "class": "mindustry.content.Blocks$326",
+    "building": "mindustry.world.blocks.units.Reconstructor$ReconstructorBuild",
+    "version": 3
+  }, {
+    "id": 382,
+    "name": "exponential-reconstructor",
+    "class": "mindustry.content.Blocks$327",
+    "building": "mindustry.world.blocks.units.Reconstructor$ReconstructorBuild",
+    "version": 3
+  }, {
+    "id": 383,
+    "name": "tetrative-reconstructor",
+    "class": "mindustry.content.Blocks$328",
+    "building": "mindustry.world.blocks.units.Reconstructor$ReconstructorBuild",
+    "version": 3
+  }, {
+    "id": 384,
+    "name": "repair-point",
+    "class": "mindustry.content.Blocks$329",
+    "building": "mindustry.world.blocks.units.RepairTurret$RepairPointBuild",
+    "version": 1
+  }, {
+    "id": 385,
+    "name": "repair-turret",
+    "class": "mindustry.content.Blocks$330",
+    "building": "mindustry.world.blocks.units.RepairTurret$RepairPointBuild",
+    "version": 1
+  }, {
+    "id": 386,
+    "name": "tank-fabricator",
+    "class": "mindustry.content.Blocks$331",
+    "building": "mindustry.world.blocks.units.UnitFactory$UnitFactoryBuild",
+    "version": 3
+  }, {
+    "id": 387,
+    "name": "ship-fabricator",
+    "class": "mindustry.content.Blocks$332",
+    "building": "mindustry.world.blocks.units.UnitFactory$UnitFactoryBuild",
+    "version": 3
+  }, {
+    "id": 388,
+    "name": "mech-fabricator",
+    "class": "mindustry.content.Blocks$333",
+    "building": "mindustry.world.blocks.units.UnitFactory$UnitFactoryBuild",
+    "version": 3
+  }, {
+    "id": 389,
+    "name": "tank-refabricator",
+    "class": "mindustry.content.Blocks$334",
+    "building": "mindustry.world.blocks.units.Reconstructor$ReconstructorBuild",
+    "version": 3
+  }, {
+    "id": 390,
+    "name": "ship-refabricator",
+    "class": "mindustry.content.Blocks$335",
+    "building": "mindustry.world.blocks.units.Reconstructor$ReconstructorBuild",
+    "version": 3
+  }, {
+    "id": 391,
+    "name": "mech-refabricator",
+    "class": "mindustry.content.Blocks$336",
+    "building": "mindustry.world.blocks.units.Reconstructor$ReconstructorBuild",
+    "version": 3
+  }, {
+    "id": 392,
+    "name": "prime-refabricator",
+    "class": "mindustry.content.Blocks$337",
+    "building": "mindustry.world.blocks.units.Reconstructor$ReconstructorBuild",
+    "version": 3
+  }, {
+    "id": 393,
+    "name": "tank-assembler",
+    "class": "mindustry.content.Blocks$338",
+    "building": "mindustry.world.blocks.units.UnitAssembler$UnitAssemblerBuild",
+    "version": 1
+  }, {
+    "id": 394,
+    "name": "ship-assembler",
+    "class": "mindustry.content.Blocks$339",
+    "building": "mindustry.world.blocks.units.UnitAssembler$UnitAssemblerBuild",
+    "version": 1
+  }, {
+    "id": 395,
+    "name": "mech-assembler",
+    "class": "mindustry.content.Blocks$340",
+    "building": "mindustry.world.blocks.units.UnitAssembler$UnitAssemblerBuild",
+    "version": 1
+  }, {
+    "id": 396,
+    "name": "basic-assembler-module",
+    "class": "mindustry.content.Blocks$341",
+    "building": "mindustry.world.blocks.units.UnitAssemblerModule$UnitAssemblerModuleBuild",
+    "version": 0
+  }, {
+    "id": 397,
+    "name": "unit-repair-tower",
+    "class": "mindustry.content.Blocks$342",
+    "building": "mindustry.world.blocks.units.RepairTower$RepairTowerBuild",
+    "version": 0
+  }, {
+    "id": 398,
+    "name": "payload-conveyor",
+    "class": "mindustry.content.Blocks$343",
+    "building": "mindustry.world.blocks.payloads.PayloadConveyor$PayloadConveyorBuild",
+    "version": 0
+  }, {
+    "id": 399,
+    "name": "payload-router",
+    "class": "mindustry.content.Blocks$344",
+    "building": "mindustry.world.blocks.payloads.PayloadRouter$PayloadRouterBuild",
+    "version": 1
+  }, {
+    "id": 400,
+    "name": "reinforced-payload-conveyor",
+    "class": "mindustry.content.Blocks$345",
+    "building": "mindustry.world.blocks.payloads.PayloadConveyor$PayloadConveyorBuild",
+    "version": 0
+  }, {
+    "id": 401,
+    "name": "reinforced-payload-router",
+    "class": "mindustry.content.Blocks$346",
+    "building": "mindustry.world.blocks.payloads.PayloadRouter$PayloadRouterBuild",
+    "version": 1
+  }, {
+    "id": 402,
+    "name": "payload-mass-driver",
+    "class": "mindustry.content.Blocks$347",
+    "building": "mindustry.world.blocks.payloads.PayloadMassDriver$PayloadDriverBuild",
+    "version": 1
+  }, {
+    "id": 403,
+    "name": "large-payload-mass-driver",
+    "class": "mindustry.content.Blocks$348",
+    "building": "mindustry.world.blocks.payloads.PayloadMassDriver$PayloadDriverBuild",
+    "version": 1
+  }, {
+    "id": 404,
+    "name": "small-deconstructor",
+    "class": "mindustry.content.Blocks$349",
+    "building": "mindustry.world.blocks.payloads.PayloadDeconstructor$PayloadDeconstructorBuild",
+    "version": 0
+  }, {
+    "id": 405,
+    "name": "deconstructor",
+    "class": "mindustry.content.Blocks$350",
+    "building": "mindustry.world.blocks.payloads.PayloadDeconstructor$PayloadDeconstructorBuild",
+    "version": 0
+  }, {
+    "id": 406,
+    "name": "constructor",
+    "class": "mindustry.content.Blocks$351",
+    "building": "mindustry.world.blocks.payloads.Constructor$ConstructorBuild",
+    "version": 0
+  }, {
+    "id": 407,
+    "name": "large-constructor",
+    "class": "mindustry.content.Blocks$352",
+    "building": "mindustry.world.blocks.payloads.Constructor$ConstructorBuild",
+    "version": 0
+  }, {
+    "id": 408,
+    "name": "payload-loader",
+    "class": "mindustry.content.Blocks$353",
+    "building": "mindustry.world.blocks.payloads.PayloadLoader$PayloadLoaderBuild",
+    "version": 1
+  }, {
+    "id": 409,
+    "name": "payload-unloader",
+    "class": "mindustry.content.Blocks$354",
+    "building": "mindustry.world.blocks.payloads.PayloadUnloader$PayloadUnloaderBuild",
+    "version": 1
+  }, {
+    "id": 410,
+    "name": "power-source",
+    "class": "mindustry.content.Blocks$355",
+    "building": "mindustry.world.blocks.sandbox.PowerSource$PowerSourceBuild",
+    "version": 0
+  }, {
+    "id": 411,
+    "name": "power-void",
+    "class": "mindustry.content.Blocks$356",
+    "building": "mindustry.gen.Building",
+    "version": 0
+  }, {
+    "id": 412,
+    "name": "item-source",
+    "class": "mindustry.content.Blocks$357",
+    "building": "mindustry.world.blocks.sandbox.ItemSource$ItemSourceBuild",
+    "version": 0
+  }, {
+    "id": 413,
+    "name": "item-void",
+    "class": "mindustry.content.Blocks$358",
+    "building": "mindustry.world.blocks.sandbox.ItemVoid$ItemVoidBuild",
+    "version": 0
+  }, {
+    "id": 414,
+    "name": "liquid-source",
+    "class": "mindustry.content.Blocks$359",
+    "building": "mindustry.world.blocks.sandbox.LiquidSource$LiquidSourceBuild",
+    "version": 1
+  }, {
+    "id": 415,
+    "name": "liquid-void",
+    "class": "mindustry.content.Blocks$360",
+    "building": "mindustry.world.blocks.sandbox.LiquidVoid$LiquidVoidBuild",
+    "version": 0
+  }, {
+    "id": 416,
+    "name": "payload-source",
+    "class": "mindustry.content.Blocks$361",
+    "building": "mindustry.world.blocks.payloads.PayloadSource$PayloadSourceBuild",
+    "version": 1
+  }, {
+    "id": 417,
+    "name": "payload-void",
+    "class": "mindustry.content.Blocks$362",
+    "building": "mindustry.world.blocks.payloads.PayloadVoid$PayloadVoidBuild",
+    "version": 0
+  }, {
+    "id": 418,
+    "name": "heat-source",
+    "class": "mindustry.content.Blocks$363",
+    "building": "mindustry.world.blocks.heat.HeatProducer$HeatProducerBuild",
+    "version": 0
+  }, {
+    "id": 419,
+    "name": "target-dummy",
+    "class": "mindustry.content.Blocks$364",
+    "building": "mindustry.world.blocks.defense.TargetDummy$TargetDummyBuild",
+    "version": 0
+  }, {
+    "id": 420,
+    "name": "illuminator",
+    "class": "mindustry.content.Blocks$365",
+    "building": "mindustry.world.blocks.power.LightBlock$LightBuild",
+    "version": 0
+  }, {
+    "id": 421,
+    "name": "legacy-mech-pad",
+    "class": "mindustry.world.blocks.legacy.LegacyMechPad",
+    "building": "mindustry.world.blocks.legacy.LegacyMechPad$LegacyMechPadBuild",
+    "version": 0
+  }, {
+    "id": 422,
+    "name": "legacy-unit-factory",
+    "class": "mindustry.world.blocks.legacy.LegacyUnitFactory",
+    "building": "mindustry.world.blocks.legacy.LegacyUnitFactory$LegacyUnitFactoryBuild",
+    "version": 0
+  }, {
+    "id": 423,
+    "name": "legacy-unit-factory-air",
+    "class": "mindustry.content.Blocks$366",
+    "building": "mindustry.world.blocks.legacy.LegacyUnitFactory$LegacyUnitFactoryBuild",
+    "version": 0
+  }, {
+    "id": 424,
+    "name": "legacy-unit-factory-ground",
+    "class": "mindustry.content.Blocks$367",
+    "building": "mindustry.world.blocks.legacy.LegacyUnitFactory$LegacyUnitFactoryBuild",
+    "version": 0
+  }, {
+    "id": 425,
+    "name": "command-center",
+    "class": "mindustry.content.Blocks$368",
+    "building": "mindustry.world.blocks.legacy.LegacyCommandCenter$LegacyCommandBuild",
+    "version": 0
+  }, {
+    "id": 426,
+    "name": "launch-pad",
+    "class": "mindustry.content.Blocks$369",
+    "building": "mindustry.world.blocks.campaign.LaunchPad$LaunchPadBuild",
+    "version": 1
+  }, {
+    "id": 427,
+    "name": "advanced-launch-pad",
+    "class": "mindustry.content.Blocks$370",
+    "building": "mindustry.world.blocks.campaign.LaunchPad$LaunchPadBuild",
+    "version": 1
+  }, {
+    "id": 428,
+    "name": "landing-pad",
+    "class": "mindustry.content.Blocks$371",
+    "building": "mindustry.world.blocks.campaign.LandingPad$LandingPadBuild",
+    "version": 1
+  }, {
+    "id": 429,
+    "name": "interplanetary-accelerator",
+    "class": "mindustry.content.Blocks$372",
+    "building": "mindustry.world.blocks.campaign.Accelerator$AcceleratorBuild",
+    "version": 1
+  }, {
+    "id": 430,
+    "name": "message",
+    "class": "mindustry.content.Blocks$373",
+    "building": "mindustry.world.blocks.logic.MessageBlock$MessageBuild",
+    "version": 0
+  }, {
+    "id": 431,
+    "name": "switch",
+    "class": "mindustry.content.Blocks$374",
+    "building": "mindustry.world.blocks.logic.SwitchBlock$SwitchBuild",
+    "version": 1
+  }, {
+    "id": 432,
+    "name": "micro-processor",
+    "class": "mindustry.content.Blocks$375",
+    "building": "mindustry.world.blocks.logic.LogicBlock$LogicBuild",
+    "version": 5
+  }, {
+    "id": 433,
+    "name": "logic-processor",
+    "class": "mindustry.content.Blocks$376",
+    "building": "mindustry.world.blocks.logic.LogicBlock$LogicBuild",
+    "version": 5
+  }, {
+    "id": 434,
+    "name": "hyper-processor",
+    "class": "mindustry.content.Blocks$377",
+    "building": "mindustry.world.blocks.logic.LogicBlock$LogicBuild",
+    "version": 5
+  }, {
+    "id": 435,
+    "name": "memory-cell",
+    "class": "mindustry.content.Blocks$378",
+    "building": "mindustry.world.blocks.logic.MemoryBlock$MemoryBuild",
+    "version": 1
+  }, {
+    "id": 436,
+    "name": "memory-bank",
+    "class": "mindustry.content.Blocks$379",
+    "building": "mindustry.world.blocks.logic.MemoryBlock$MemoryBuild",
+    "version": 1
+  }, {
+    "id": 437,
+    "name": "logic-display",
+    "class": "mindustry.content.Blocks$380",
+    "building": "mindustry.world.blocks.logic.LogicDisplay$LogicDisplayBuild",
+    "version": 1
+  }, {
+    "id": 438,
+    "name": "large-logic-display",
+    "class": "mindustry.content.Blocks$381",
+    "building": "mindustry.world.blocks.logic.LogicDisplay$LogicDisplayBuild",
+    "version": 1
+  }, {
+    "id": 439,
+    "name": "tile-logic-display",
+    "class": "mindustry.content.Blocks$382",
+    "building": "mindustry.world.blocks.logic.TileableLogicDisplay$TileableLogicDisplayBuild",
+    "version": 1
+  }, {
+    "id": 440,
+    "name": "canvas",
+    "class": "mindustry.content.Blocks$383",
+    "building": "mindustry.world.blocks.logic.CanvasBlock$CanvasBuild",
+    "version": 0
+  }, {
+    "id": 441,
+    "name": "large-canvas",
+    "class": "mindustry.content.Blocks$384",
+    "building": "mindustry.world.blocks.logic.CanvasBlock$CanvasBuild",
+    "version": 0
+  }, {
+    "id": 442,
+    "name": "reinforced-message",
+    "class": "mindustry.content.Blocks$385",
+    "building": "mindustry.world.blocks.logic.MessageBlock$MessageBuild",
+    "version": 0
+  }, {
+    "id": 443,
+    "name": "world-processor",
+    "class": "mindustry.content.Blocks$386",
+    "building": "mindustry.world.blocks.logic.LogicBlock$LogicBuild",
+    "version": 5
+  }, {
+    "id": 444,
+    "name": "world-cell",
+    "class": "mindustry.content.Blocks$387",
+    "building": "mindustry.world.blocks.logic.MemoryBlock$MemoryBuild",
+    "version": 1
+  }, {
+    "id": 445,
+    "name": "world-message",
+    "class": "mindustry.content.Blocks$388",
+    "building": "mindustry.world.blocks.logic.MessageBlock$MessageBuild",
+    "version": 0
+  }, {
+    "id": 446,
+    "name": "world-switch",
+    "class": "mindustry.content.Blocks$389",
+    "building": "mindustry.world.blocks.logic.SwitchBlock$SwitchBuild",
+    "version": 1
+  } ],
+  "classes": {
+    "mindustry.gen.Building": {
+      "superclass": null,
+      "declares": [ "version", "write", "read", "writeSync", "readSync", "writeAll", "readAll" ],
+      "version": 0,
+      "blocks": [ "power-void" ],
+      "write": [ ]
+    },
+    "mindustry.world.blocks.ConstructBlock$ConstructBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "build1", "build2", "build3", "build4", "build5", "build6", "build7", "build8", "build9", "build10", "build11", "build12", "build13", "build14", "build15", "build16" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      }, {
+        "field": "previous",
+        "codec": "Writes.s"
+      }, {
+        "field": "current",
+        "codec": "Writes.s"
+      }, {
+        "codec": "Writes.b",
+        "constant": -1,
+        "if": "?"
+      }, {
+        "field": "accumulator",
+        "codec": "Writes.b"
+      }, {
+        "field": "accumulator",
+        "codec": "Writes.f",
+        "loop": true
+      }, {
+        "field": "totalAccumulator",
+        "codec": "Writes.f",
+        "loop": true
+      }, {
+        "field": "itemsLeft",
+        "codec": "Writes.i",
+        "loop": true
+      } ]
+    },
+    "mindustry.world.blocks.campaign.Accelerator$AcceleratorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "interplanetary-accelerator" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.campaign.LandingPad$LandingPadBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "landing-pad" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "config",
+        "codec": "TypeIO.writeItem"
+      }, {
+        "field": "priority",
+        "codec": "Writes.i"
+      }, {
+        "field": "cooldown",
+        "codec": "Writes.f"
+      }, {
+        "field": "arriving",
+        "codec": "TypeIO.writeItem"
+      }, {
+        "field": "arrivingTimer",
+        "codec": "Writes.f"
+      }, {
+        "field": "liquidRemoved",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.campaign.LaunchPad$LaunchPadBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "launch-pad", "advanced-launch-pad" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "launchCounter",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.defense.AutoDoor$AutoDoorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "blast-door" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "open",
+        "codec": "Writes.bool"
+      } ]
+    },
+    "mindustry.world.blocks.defense.BaseShield$BaseShieldBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "shield-projector", "large-shield-projector" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "smoothRadius",
+        "codec": "Writes.f"
+      }, {
+        "field": "broken",
+        "codec": "Writes.bool"
+      } ]
+    },
+    "mindustry.world.blocks.defense.BuildTurret$BuildTurretBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.BaseTurret$BaseTurretBuild",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "build-tower" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "rotation",
+        "codec": "Writes.f"
+      }, {
+        "field": "unit",
+        "codec": "TypeIO.writePlans"
+      } ]
+    },
+    "mindustry.world.blocks.defense.Door$DoorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "door", "door-large" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "open",
+        "codec": "Writes.bool"
+      } ]
+    },
+    "mindustry.world.blocks.defense.ForceProjector$ForceBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "force-projector" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "broken",
+        "codec": "Writes.bool"
+      }, {
+        "field": "buildup",
+        "codec": "Writes.f"
+      }, {
+        "field": "radscl",
+        "codec": "Writes.f"
+      }, {
+        "field": "warmup",
+        "codec": "Writes.f"
+      }, {
+        "field": "phaseHeat",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.defense.MendProjector$MendBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "mender", "mend-projector" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "heat",
+        "codec": "Writes.f"
+      }, {
+        "field": "phaseHeat",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.defense.OverdriveProjector$OverdriveBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "overdrive-projector", "overdrive-dome" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "heat",
+        "codec": "Writes.f"
+      }, {
+        "field": "phaseHeat",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.defense.Radar$RadarBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "radar" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.defense.RegenProjector$RegenProjectorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "regen-projector" ]
+    },
+    "mindustry.world.blocks.defense.ShieldWall$ShieldWallBuild": {
+      "superclass": "mindustry.world.blocks.defense.Wall$WallBuild",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "shielded-wall" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "shield",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.defense.ShockMine$ShockMineBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "shock-mine" ]
+    },
+    "mindustry.world.blocks.defense.ShockwaveTower$ShockwaveTowerBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "shockwave-tower" ]
+    },
+    "mindustry.world.blocks.defense.TargetDummy$TargetDummyBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "target-dummy" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "unit",
+        "codec": "Writes.i"
+      }, {
+        "field": "boosting",
+        "codec": "Writes.bool"
+      }, {
+        "field": "unitArmor",
+        "codec": "Writes.f"
+      }, {
+        "field": "resetTime",
+        "codec": "Writes.f"
+      }, {
+        "field": "dummySize",
+        "codec": "Writes.f"
+      }, {
+        "field": "unitTeam",
+        "codec": "Writes.i"
+      } ]
+    },
+    "mindustry.world.blocks.defense.Thruster$ThrusterBuild": {
+      "superclass": "mindustry.world.blocks.defense.Wall$WallBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "thruster" ]
+    },
+    "mindustry.world.blocks.defense.Wall$WallBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "copper-wall", "copper-wall-large", "titanium-wall", "titanium-wall-large", "plastanium-wall", "plastanium-wall-large", "thorium-wall", "thorium-wall-large", "phase-wall", "phase-wall-large", "surge-wall", "surge-wall-large", "scrap-wall", "scrap-wall-large", "scrap-wall-huge", "scrap-wall-gigantic", "beryllium-wall", "beryllium-wall-large", "tungsten-wall", "tungsten-wall-large", "reinforced-surge-wall", "reinforced-surge-wall-large", "carbide-wall", "carbide-wall-large" ]
+    },
+    "mindustry.world.blocks.defense.turrets.BaseTurret$BaseTurretBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ]
+    },
+    "mindustry.world.blocks.defense.turrets.ContinuousLiquidTurret$ContinuousLiquidTurretBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.ContinuousTurret$ContinuousTurretBuild",
+      "declares": [ ],
+      "version": 3,
+      "blocks": [ "sublimate" ]
+    },
+    "mindustry.world.blocks.defense.turrets.ContinuousTurret$ContinuousTurretBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.Turret$TurretBuild",
+      "declares": [ "version", "write", "read" ],
+      "version": 3,
+      "blocks": [ "lustre" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "lastLength",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.defense.turrets.ItemTurret$ItemTurretBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.Turret$TurretBuild",
+      "declares": [ "version", "write", "read" ],
+      "version": 2,
+      "blocks": [ "duo", "scatter", "scorch", "hail", "swarmer", "salvo", "fuse", "ripple", "cyclone", "foreshadow", "spectre", "breach", "diffuse", "titan", "disperse", "scathe", "smite" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "ammo",
+        "codec": "Writes.b"
+      }, {
+        "codec": "Writes.s",
+        "loop": true
+      }, {
+        "codec": "Writes.s",
+        "loop": true
+      } ]
+    },
+    "mindustry.world.blocks.defense.turrets.LaserTurret$LaserTurretBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.PowerTurret$PowerTurretBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "meltdown" ]
+    },
+    "mindustry.world.blocks.defense.turrets.LiquidTurret$LiquidTurretBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.Turret$TurretBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "wave", "tsunami" ]
+    },
+    "mindustry.world.blocks.defense.turrets.PointDefenseTurret$PointDefenseBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.ReloadTurret$ReloadTurretBuild",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "segment" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "rotation",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.defense.turrets.PowerTurret$PowerTurretBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.Turret$TurretBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "lancer", "arc", "afflict", "malign" ]
+    },
+    "mindustry.world.blocks.defense.turrets.ReloadTurret$ReloadTurretBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.BaseTurret$BaseTurretBuild",
+      "declares": [ ]
+    },
+    "mindustry.world.blocks.defense.turrets.TractorBeamTurret$TractorBeamBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.BaseTurret$BaseTurretBuild",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "parallax" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "rotation",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.defense.turrets.Turret$TurretBuild": {
+      "superclass": "mindustry.world.blocks.defense.turrets.ReloadTurret$ReloadTurretBuild",
+      "declares": [ "version", "write", "read", "readSync" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "reloadCounter",
+        "codec": "Writes.f"
+      }, {
+        "field": "rotation",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.ArmoredConveyor$ArmoredConveyorBuild": {
+      "superclass": "mindustry.world.blocks.distribution.Conveyor$ConveyorBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "armored-conveyor" ]
+    },
+    "mindustry.world.blocks.distribution.BufferedItemBridge$BufferedItemBridgeBuild": {
+      "superclass": "mindustry.world.blocks.distribution.ItemBridge$ItemBridgeBuild",
+      "declares": [ "write", "read" ],
+      "version": 1,
+      "blocks": [ "bridge-conveyor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "buffer",
+        "codec": "ItemBuffer.write"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.Conveyor$ConveyorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "conveyor", "titanium-conveyor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "len",
+        "codec": "Writes.i"
+      }, {
+        "field": "ids",
+        "codec": "Writes.s",
+        "loop": true
+      }, {
+        "field": "xs",
+        "codec": "Writes.b",
+        "loop": true
+      }, {
+        "field": "ys",
+        "codec": "Writes.b",
+        "loop": true
+      } ]
+    },
+    "mindustry.world.blocks.distribution.DirectionBridge$DirectionBridgeBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ]
+    },
+    "mindustry.world.blocks.distribution.DirectionLiquidBridge$DuctBridgeBuild": {
+      "superclass": "mindustry.world.blocks.distribution.DirectionBridge$DirectionBridgeBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "reinforced-bridge-conduit" ]
+    },
+    "mindustry.world.blocks.distribution.DirectionalUnloader$DirectionalUnloaderBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "duct-unloader" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "unloadItem",
+        "codec": "Writes.s"
+      }, {
+        "field": "offset",
+        "codec": "Writes.s"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.Duct$DuctBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "duct", "armored-duct" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "recDir",
+        "codec": "Writes.b"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.DuctBridge$DuctBridgeBuild": {
+      "superclass": "mindustry.world.blocks.distribution.DirectionBridge$DirectionBridgeBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "duct-bridge" ]
+    },
+    "mindustry.world.blocks.distribution.DuctRouter$DuctRouterBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "duct-router" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "sortItem",
+        "codec": "Writes.s"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.ItemBridge$ItemBridgeBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "phase-conveyor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "link",
+        "codec": "Writes.i"
+      }, {
+        "field": "warmup",
+        "codec": "Writes.f"
+      }, {
+        "field": "incoming",
+        "codec": "Writes.b"
+      }, {
+        "field": "incoming",
+        "codec": "Writes.i",
+        "loop": true
+      }, {
+        "field": "wasMoved",
+        "codec": "Writes.bool"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.Junction$JunctionBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "junction" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "buffer",
+        "codec": "DirectionalItemBuffer.write"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.MassDriver$MassDriverBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "mass-driver" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "link",
+        "codec": "Writes.i"
+      }, {
+        "field": "rotation",
+        "codec": "Writes.f"
+      }, {
+        "field": "state",
+        "codec": "Writes.b"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.OverflowDuct$OverflowDuctBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "overflow-duct", "underflow-duct" ]
+    },
+    "mindustry.world.blocks.distribution.OverflowGate$OverflowGateBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "read" ],
+      "version": 4,
+      "blocks": [ "overflow-gate", "underflow-gate" ]
+    },
+    "mindustry.world.blocks.distribution.Router$RouterBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "router", "distributor" ]
+    },
+    "mindustry.world.blocks.distribution.Sorter$SorterBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 2,
+      "blocks": [ "sorter", "inverted-sorter" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "sortItem",
+        "codec": "Writes.s"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.StackConveyor$StackConveyorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "plastanium-conveyor", "surge-conveyor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "link",
+        "codec": "Writes.i"
+      }, {
+        "field": "cooldown",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.distribution.StackRouter$StackRouterBuild": {
+      "superclass": "mindustry.world.blocks.distribution.DuctRouter$DuctRouterBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "surge-router" ]
+    },
+    "mindustry.world.blocks.heat.HeatConductor$HeatConductorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "heat-redirector", "small-heat-redirector", "heat-router" ]
+    },
+    "mindustry.world.blocks.heat.HeatProducer$HeatProducerBuild": {
+      "superclass": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "oxidation-chamber", "electric-heater", "slag-heater", "phase-heater", "heat-reactor", "heat-source" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "heat",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.legacy.LegacyCommandCenter$LegacyCommandBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "command-center" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "codec": "Writes.b",
+        "constant": 0
+      } ]
+    },
+    "mindustry.world.blocks.legacy.LegacyMechPad$LegacyMechPadBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "read" ],
+      "version": 0,
+      "blocks": [ "legacy-mech-pad" ]
+    },
+    "mindustry.world.blocks.legacy.LegacyUnitFactory$LegacyUnitFactoryBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "read" ],
+      "version": 0,
+      "blocks": [ "legacy-unit-factory", "legacy-unit-factory-air", "legacy-unit-factory-ground" ]
+    },
+    "mindustry.world.blocks.liquid.ArmoredConduit$ArmoredConduitBuild": {
+      "superclass": "mindustry.world.blocks.liquid.Conduit$ConduitBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "plated-conduit", "reinforced-conduit" ]
+    },
+    "mindustry.world.blocks.liquid.Conduit$ConduitBuild": {
+      "superclass": "mindustry.world.blocks.liquid.LiquidBlock$LiquidBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "conduit", "pulse-conduit" ]
+    },
+    "mindustry.world.blocks.liquid.LiquidBlock$LiquidBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ]
+    },
+    "mindustry.world.blocks.liquid.LiquidBridge$LiquidBridgeBuild": {
+      "superclass": "mindustry.world.blocks.distribution.ItemBridge$ItemBridgeBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "bridge-conduit", "phase-conduit" ]
+    },
+    "mindustry.world.blocks.liquid.LiquidJunction$LiquidJunctionBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "liquid-junction", "reinforced-liquid-junction" ]
+    },
+    "mindustry.world.blocks.liquid.LiquidRouter$LiquidRouterBuild": {
+      "superclass": "mindustry.world.blocks.liquid.LiquidBlock$LiquidBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "liquid-router", "liquid-container", "liquid-tank", "reinforced-liquid-router", "reinforced-liquid-container", "reinforced-liquid-tank" ]
+    },
+    "mindustry.world.blocks.logic.CanvasBlock$CanvasBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "canvas", "large-canvas" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "data",
+        "codec": "Writes.i"
+      }, {
+        "field": "data",
+        "codec": "Writes.b(byte[])"
+      } ]
+    },
+    "mindustry.world.blocks.logic.LogicBlock$LogicBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 5,
+      "blocks": [ "micro-processor", "logic-processor", "hyper-processor", "world-processor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "codec": "Writes.i"
+      }, {
+        "codec": "Writes.b(byte[])"
+      }, {
+        "codec": "Writes.i"
+      }, {
+        "codec": "Writes.str",
+        "constant": "@unit",
+        "if": "?"
+      }, {
+        "field": "executor",
+        "codec": "TypeIO.writeObject",
+        "if": "?"
+      }, {
+        "codec": "Writes.str",
+        "loop": true
+      }, {
+        "codec": "TypeIO.writeObject",
+        "loop": true
+      }, {
+        "codec": "Writes.i",
+        "constant": 0
+      }, {
+        "field": "ipt",
+        "codec": "Writes.s",
+        "if": "?"
+      }, {
+        "field": "ipt",
+        "codec": "Writes.s"
+      }, {
+        "field": "tag",
+        "codec": "TypeIO.writeString"
+      }, {
+        "field": "iconTag",
+        "codec": "Writes.s"
+      }, {
+        "codec": "Writes.s"
+      }, {
+        "codec": "Writes.s",
+        "loop": true
+      }, {
+        "codec": "Writes.f",
+        "loop": true
+      }, {
+        "field": "accumulator",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.logic.LogicDisplay$LogicDisplayBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "logic-display", "large-logic-display" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "codec": "Writes.bool",
+        "constant": 1,
+        "if": "?"
+      }, {
+        "field": "transform",
+        "codec": "Writes.f",
+        "loop": true,
+        "if": "?"
+      }, {
+        "codec": "Writes.bool",
+        "constant": 0
+      } ]
+    },
+    "mindustry.world.blocks.logic.MemoryBlock$MemoryBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "memory-cell", "memory-bank", "world-cell" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "objectMemory",
+        "codec": "Writes.i"
+      }, {
+        "field": "numberMemory",
+        "codec": "TypeIO.writeObject",
+        "loop": true,
+        "if": "?"
+      }, {
+        "codec": "TypeIO.writeObject",
+        "loop": true
+      } ]
+    },
+    "mindustry.world.blocks.logic.MessageBlock$MessageBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "message", "reinforced-message", "world-message" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "message",
+        "codec": "Writes.str"
+      } ]
+    },
+    "mindustry.world.blocks.logic.SwitchBlock$SwitchBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "switch", "world-switch" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "enabled",
+        "codec": "Writes.bool"
+      } ]
+    },
+    "mindustry.world.blocks.logic.TileableLogicDisplay$TileableLogicDisplayBuild": {
+      "superclass": "mindustry.world.blocks.logic.LogicDisplay$LogicDisplayBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "tile-logic-display" ]
+    },
+    "mindustry.world.blocks.payloads.BlockProducer$BlockProducerBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild",
+      "declares": [ "write", "read" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.payloads.Constructor$ConstructorBuild": {
+      "superclass": "mindustry.world.blocks.payloads.BlockProducer$BlockProducerBuild",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "constructor", "large-constructor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "recipe",
+        "codec": "Writes.s"
+      } ]
+    },
+    "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "payVector",
+        "codec": "Writes.f"
+      }, {
+        "field": "payVector",
+        "codec": "Writes.f"
+      }, {
+        "field": "payRotation",
+        "codec": "Writes.f"
+      }, {
+        "field": "payload",
+        "codec": "Payload.write"
+      } ]
+    },
+    "mindustry.world.blocks.payloads.PayloadConveyor$PayloadConveyorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "payload-conveyor", "reinforced-payload-conveyor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      }, {
+        "field": "itemRotation",
+        "codec": "Writes.f"
+      }, {
+        "field": "item",
+        "codec": "Payload.write"
+      } ]
+    },
+    "mindustry.world.blocks.payloads.PayloadDeconstructor$PayloadDeconstructorBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "small-deconstructor", "deconstructor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      }, {
+        "field": "accum",
+        "codec": "Writes.s",
+        "if": "?"
+      }, {
+        "codec": "Writes.f",
+        "loop": true,
+        "if": "?"
+      }, {
+        "codec": "Writes.s",
+        "constant": 0
+      }, {
+        "field": "deconstructing",
+        "codec": "Payload.write"
+      } ]
+    },
+    "mindustry.world.blocks.payloads.PayloadLoader$PayloadLoaderBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "payload-loader" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "exporting",
+        "codec": "Writes.bool"
+      } ]
+    },
+    "mindustry.world.blocks.payloads.PayloadMassDriver$PayloadDriverBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "payload-mass-driver", "large-payload-mass-driver" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "link",
+        "codec": "Writes.i"
+      }, {
+        "field": "turretRotation",
+        "codec": "Writes.f"
+      }, {
+        "field": "state",
+        "codec": "Writes.b"
+      }, {
+        "field": "reloadCounter",
+        "codec": "Writes.f"
+      }, {
+        "field": "charge",
+        "codec": "Writes.f"
+      }, {
+        "field": "loaded",
+        "codec": "Writes.bool"
+      }, {
+        "field": "charging",
+        "codec": "Writes.bool"
+      } ]
+    },
+    "mindustry.world.blocks.payloads.PayloadRouter$PayloadRouterBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadConveyor$PayloadConveyorBuild",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "payload-router", "reinforced-payload-router" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "sorted",
+        "codec": "Writes.b"
+      }, {
+        "field": "sorted",
+        "codec": "Writes.s"
+      }, {
+        "field": "recDir",
+        "codec": "Writes.b"
+      } ]
+    },
+    "mindustry.world.blocks.payloads.PayloadSource$PayloadSourceBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "payload-source" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "unit",
+        "codec": "Writes.s"
+      }, {
+        "field": "configBlock",
+        "codec": "Writes.s"
+      }, {
+        "field": "commandPos",
+        "codec": "TypeIO.writeVecNullable"
+      } ]
+    },
+    "mindustry.world.blocks.payloads.PayloadUnloader$PayloadUnloaderBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadLoader$PayloadLoaderBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "payload-unloader" ]
+    },
+    "mindustry.world.blocks.payloads.PayloadVoid$PayloadVoidBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "payload-void" ]
+    },
+    "mindustry.world.blocks.power.Battery$BatteryBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "battery", "battery-large" ]
+    },
+    "mindustry.world.blocks.power.BeamNode$BeamNodeBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "beam-node", "beam-tower" ]
+    },
+    "mindustry.world.blocks.power.ConsumeGenerator$ConsumeGeneratorBuild": {
+      "superclass": "mindustry.world.blocks.power.PowerGenerator$GeneratorBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "combustion-generator", "steam-generator", "differential-generator", "rtg-generator", "chemical-combustion-chamber", "pyrolysis-generator" ]
+    },
+    "mindustry.world.blocks.power.HeaterGenerator$HeaterGeneratorBuild": {
+      "superclass": "mindustry.world.blocks.power.ConsumeGenerator$ConsumeGeneratorBuild",
+      "declares": [ "write", "read" ],
+      "version": 1,
+      "blocks": [ "neoplasia-reactor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "heat",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.power.ImpactReactor$ImpactReactorBuild": {
+      "superclass": "mindustry.world.blocks.power.PowerGenerator$GeneratorBuild",
+      "declares": [ "write", "read" ],
+      "version": 1,
+      "blocks": [ "impact-reactor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "warmup",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.power.LightBlock$LightBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "illuminator" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "color",
+        "codec": "Writes.i"
+      } ]
+    },
+    "mindustry.world.blocks.power.LongPowerNode$LongPowerNodeBuild": {
+      "superclass": "mindustry.world.blocks.power.PowerNode$PowerNodeBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "beam-link" ]
+    },
+    "mindustry.world.blocks.power.NuclearReactor$NuclearReactorBuild": {
+      "superclass": "mindustry.world.blocks.power.PowerGenerator$GeneratorBuild",
+      "declares": [ "write", "read" ],
+      "version": 1,
+      "blocks": [ "thorium-reactor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "heat",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.power.PowerDiode$PowerDiodeBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "diode" ]
+    },
+    "mindustry.world.blocks.power.PowerGenerator$GeneratorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "productionEfficiency",
+        "codec": "Writes.f"
+      }, {
+        "field": "generateTime",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.power.PowerNode$PowerNodeBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "power-node", "power-node-large", "surge-tower" ]
+    },
+    "mindustry.world.blocks.power.SolarGenerator$SolarGeneratorBuild": {
+      "superclass": "mindustry.world.blocks.power.PowerGenerator$GeneratorBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "solar-panel", "solar-panel-large" ]
+    },
+    "mindustry.world.blocks.power.ThermalGenerator$ThermalGeneratorBuild": {
+      "superclass": "mindustry.world.blocks.power.PowerGenerator$GeneratorBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "thermal-generator", "turbine-condenser" ]
+    },
+    "mindustry.world.blocks.power.VariableReactor$VariableReactorBuild": {
+      "superclass": "mindustry.world.blocks.power.PowerGenerator$GeneratorBuild",
+      "declares": [ "write", "read" ],
+      "version": 1,
+      "blocks": [ "flux-reactor" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "heat",
+        "codec": "Writes.f"
+      }, {
+        "field": "instability",
+        "codec": "Writes.f"
+      }, {
+        "field": "warmup",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.production.AttributeCrafter$AttributeCrafterBuild": {
+      "superclass": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "silicon-crucible", "cultivator", "vent-condenser" ]
+    },
+    "mindustry.world.blocks.production.BeamDrill$BeamDrillBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "plasma-bore", "large-plasma-bore" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "time",
+        "codec": "Writes.f"
+      }, {
+        "field": "warmup",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.production.BurstDrill$BurstDrillBuild": {
+      "superclass": "mindustry.world.blocks.production.Drill$DrillBuild",
+      "declares": [ ],
+      "version": 1,
+      "blocks": [ "impact-drill", "eruption-drill" ]
+    },
+    "mindustry.world.blocks.production.Drill$DrillBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "mechanical-drill", "pneumatic-drill", "laser-drill", "blast-drill" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      }, {
+        "field": "warmup",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.production.Fracker$FrackerBuild": {
+      "superclass": "mindustry.world.blocks.production.SolidPump$SolidPumpBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "oil-extractor" ]
+    },
+    "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "graphite-press", "multi-press", "silicon-smelter", "kiln", "plastanium-compressor", "phase-weaver", "surge-smelter", "cryofluid-mixer", "pyratite-mixer", "blast-mixer", "melter", "spore-press", "pulverizer", "coal-centrifuge", "silicon-arc-furnace", "electrolyzer", "slag-centrifuge" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      }, {
+        "field": "warmup",
+        "codec": "Writes.f"
+      }, {
+        "codec": "Writes.f",
+        "constant": 0.0,
+        "if": "?"
+      } ]
+    },
+    "mindustry.world.blocks.production.HeatCrafter$HeatCrafterBuild": {
+      "superclass": "mindustry.world.blocks.production.GenericCrafter$GenericCrafterBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "atmospheric-concentrator", "carbide-crucible", "surge-crucible", "cyanogen-synthesizer", "phase-synthesizer" ]
+    },
+    "mindustry.world.blocks.production.Incinerator$IncineratorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "incinerator" ]
+    },
+    "mindustry.world.blocks.production.ItemIncinerator$ItemIncineratorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "slag-incinerator" ]
+    },
+    "mindustry.world.blocks.production.Pump$PumpBuild": {
+      "superclass": "mindustry.world.blocks.liquid.LiquidBlock$LiquidBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "mechanical-pump", "rotary-pump", "impulse-pump", "reinforced-pump" ]
+    },
+    "mindustry.world.blocks.production.Separator$SeparatorBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "separator", "disassembler" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      }, {
+        "field": "warmup",
+        "codec": "Writes.f"
+      }, {
+        "field": "seed",
+        "codec": "Writes.i"
+      } ]
+    },
+    "mindustry.world.blocks.production.SolidPump$SolidPumpBuild": {
+      "superclass": "mindustry.world.blocks.production.Pump$PumpBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "water-extractor" ]
+    },
+    "mindustry.world.blocks.production.WallCrafter$WallCrafterBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "cliff-crusher", "large-cliff-crusher" ]
+    },
+    "mindustry.world.blocks.sandbox.ItemSource$ItemSourceBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "item-source" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "outputItem",
+        "codec": "Writes.s"
+      } ]
+    },
+    "mindustry.world.blocks.sandbox.ItemVoid$ItemVoidBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "item-void" ]
+    },
+    "mindustry.world.blocks.sandbox.LiquidSource$LiquidSourceBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "liquid-source" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "source",
+        "codec": "Writes.s"
+      } ]
+    },
+    "mindustry.world.blocks.sandbox.LiquidVoid$LiquidVoidBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "liquid-void" ]
+    },
+    "mindustry.world.blocks.sandbox.PowerSource$PowerSourceBuild": {
+      "superclass": "mindustry.world.blocks.power.PowerNode$PowerNodeBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "power-source" ]
+    },
+    "mindustry.world.blocks.storage.CoreBlock$CoreBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "core-shard", "core-foundation", "core-nucleus", "core-bastion", "core-citadel", "core-acropolis" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "commandPos",
+        "codec": "TypeIO.writeVecNullable"
+      } ]
+    },
+    "mindustry.world.blocks.storage.StorageBlock$StorageBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "container", "vault", "reinforced-container", "reinforced-vault" ]
+    },
+    "mindustry.world.blocks.storage.Unloader$UnloaderBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "unloader" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "sortItem",
+        "codec": "Writes.s"
+      } ]
+    },
+    "mindustry.world.blocks.units.Reconstructor$ReconstructorBuild": {
+      "superclass": "mindustry.world.blocks.units.UnitBlock$UnitBuild",
+      "declares": [ "version", "write", "read" ],
+      "version": 3,
+      "blocks": [ "additive-reconstructor", "multiplicative-reconstructor", "exponential-reconstructor", "tetrative-reconstructor", "tank-refabricator", "ship-refabricator", "mech-refabricator", "prime-refabricator" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      }, {
+        "field": "commandPos",
+        "codec": "TypeIO.writeVecNullable"
+      }, {
+        "field": "command",
+        "codec": "TypeIO.writeCommand"
+      } ]
+    },
+    "mindustry.world.blocks.units.RepairTower$RepairTowerBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "unit-repair-tower" ]
+    },
+    "mindustry.world.blocks.units.RepairTurret$RepairPointBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "repair-point", "repair-turret" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "rotation",
+        "codec": "Writes.f"
+      } ]
+    },
+    "mindustry.world.blocks.units.UnitAssembler$UnitAssemblerBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild",
+      "declares": [ "version", "write", "read" ],
+      "version": 1,
+      "blocks": [ "tank-assembler", "ship-assembler", "mech-assembler" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      }, {
+        "field": "units",
+        "codec": "Writes.b"
+      }, {
+        "codec": "Writes.i",
+        "loop": true
+      }, {
+        "field": "blocks",
+        "codec": "PayloadSeq.write"
+      }, {
+        "field": "commandPos",
+        "codec": "TypeIO.writeVecNullable"
+      } ]
+    },
+    "mindustry.world.blocks.units.UnitAssemblerModule$UnitAssemblerModuleBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild",
+      "declares": [ ],
+      "version": 0,
+      "blocks": [ "basic-assembler-module" ]
+    },
+    "mindustry.world.blocks.units.UnitBlock$UnitBuild": {
+      "superclass": "mindustry.world.blocks.payloads.PayloadBlock$PayloadBlockBuild",
+      "declares": [ ]
+    },
+    "mindustry.world.blocks.units.UnitCargoLoader$UnitTransportSourceBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "unit-cargo-loader" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "unit",
+        "codec": "Writes.i"
+      } ]
+    },
+    "mindustry.world.blocks.units.UnitCargoUnloadPoint$UnitCargoUnloadPointBuild": {
+      "superclass": "mindustry.gen.Building",
+      "declares": [ "write", "read" ],
+      "version": 0,
+      "blocks": [ "unit-cargo-unload-point" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "item",
+        "codec": "Writes.s"
+      }, {
+        "field": "stale",
+        "codec": "Writes.bool"
+      } ]
+    },
+    "mindustry.world.blocks.units.UnitFactory$UnitFactoryBuild": {
+      "superclass": "mindustry.world.blocks.units.UnitBlock$UnitBuild",
+      "declares": [ "version", "write", "read" ],
+      "version": 3,
+      "blocks": [ "ground-factory", "air-factory", "naval-factory", "tank-fabricator", "ship-fabricator", "mech-fabricator" ],
+      "write": [ {
+        "codec": "super.write"
+      }, {
+        "field": "progress",
+        "codec": "Writes.f"
+      }, {
+        "field": "currentPlan",
+        "codec": "Writes.s"
+      }, {
+        "field": "commandPos",
+        "codec": "TypeIO.writeVecNullable"
+      }, {
+        "field": "command",
+        "codec": "TypeIO.writeCommand"
+      } ]
+    }
+  }
+}

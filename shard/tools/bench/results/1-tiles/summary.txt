@@ -1,0 +1,64 @@
+RUN base-r1    ticks=18137 dropped=0 tick p50=0.319 p99=1.535 ms total=4.293 tick=3.826 MiB/s tick=12.96 KiB/wtick gc=1 pause=21 ms
+     62.95 MiB  24.8%  TileSolidity.grid:27  TileSolidity$$Lambda
+     13.74 MiB   5.4%  EntityProjector.unit:89  UnitProjection
+     10.82 MiB   4.3%  Frame.udp:131  HeapByteBufferR
+      9.32 MiB   3.7%  BulletUpdate.lambda$run$1:49  Bullet
+      8.73 MiB   3.4%  BulletUpdate.collide:249  ArrayList
+      8.70 MiB   3.4%  BulletUpdate.collide:251  ArrayList$Itr
+      8.45 MiB   3.3%  BulletUpdate.lambda$run$0:48  Bullet
+      7.60 MiB   3.0%  Frame.packet:65  [B
+      5.06 MiB   2.0%  UnitProjection.<init>:56  Object;
+      4.83 MiB   1.9%  Frame.packet:75  [B
+      4.38 MiB   1.7%  NanoClock$1.awaitNanos:19  AbstractQueuedSynchronizer$ConditionNode
+      4.11 MiB   1.6%  Targets$$Lambda.accept:-1  Object;
+      3.90 MiB   1.5%  UnitProjection.<init>:54  Codecs$Mount
+      3.90 MiB   1.5%  Predict.quad:72  [F
+      3.64 MiB   1.4%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+RUN base-r2    ticks=18105 dropped=0 tick p50=0.415 p99=2.815 ms total=4.304 tick=3.835 MiB/s tick=13.01 KiB/wtick gc=1 pause=38 ms
+     78.96 MiB  30.2%  TileSolidity.grid:27  TileSolidity$$Lambda
+     12.33 MiB   4.7%  BulletUpdate.lambda$run$0:48  Bullet
+     10.69 MiB   4.1%  UnitProjection.<init>:54  Codecs$Mount
+      9.10 MiB   3.5%  EntityProjector.unit:89  UnitProjection
+      7.19 MiB   2.8%  BulletUpdate.collide:249  ArrayList
+      6.00 MiB   2.3%  Frame.udp:131  HeapByteBufferR
+      5.27 MiB   2.0%  Writes.toByteArray:119  [B
+      4.83 MiB   1.9%  BulletUpdate.lambda$run$1:49  Bullet
+      4.83 MiB   1.9%  BulletUpdate.collide:251  ArrayList$Itr
+      4.70 MiB   1.8%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      4.61 MiB   1.8%  (no Shard frame)  AbstractQueuedSynchronizer$ConditionNode
+      4.54 MiB   1.7%  UnitProjection.<init>:56  Object;
+      4.50 MiB   1.7%  Predict.quad:72  [F
+      3.92 MiB   1.5%  UnitProjection.<init>:57  ArrayList
+      3.72 MiB   1.4%  Frame.udp:130  HeapByteBuffer
+RUN mine-r1    ticks=18125 dropped=0 tick p50=0.415 p99=1.919 ms total=3.128 tick=2.654 MiB/s tick=9.00 KiB/wtick gc=0 pause=0 ms
+     12.21 MiB   6.6%  Frame.udp:131  HeapByteBufferR
+     11.55 MiB   6.2%  UnitProjection.<init>:54  Codecs$Mount
+      9.80 MiB   5.3%  BulletUpdate.lambda$run$0:48  Bullet
+      7.67 MiB   4.1%  EntityProjector.unit:89  UnitProjection
+      6.64 MiB   3.6%  BulletUpdate.collide:249  ArrayList
+      6.32 MiB   3.4%  BulletUpdate.lambda$run$1:49  Bullet
+      5.94 MiB   3.2%  UnitProjection.<init>:56  Object;
+      5.02 MiB   2.7%  BulletUpdate.collide:251  ArrayList$Itr
+      4.71 MiB   2.5%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      4.14 MiB   2.2%  UnitProjection.<init>:52  Object;
+      4.02 MiB   2.2%  Frame.packet:65  [B
+      3.87 MiB   2.1%  Predict.quad:72  [F
+      3.70 MiB   2.0%  (no Shard frame)  AbstractQueuedSynchronizer$ConditionNode
+      3.08 MiB   1.7%  UnitProjection.<init>:65  ArrayList
+      3.00 MiB   1.6%  Predict.intercept:28  Vec2
+RUN mine-r2    ticks=18126 dropped=0 tick p50=0.383 p99=1.919 ms total=3.122 tick=2.654 MiB/s tick=9.00 KiB/wtick gc=0 pause=0 ms
+     11.94 MiB   6.4%  EntityProjector.unit:89  UnitProjection
+      9.14 MiB   4.9%  BulletUpdate.lambda$run$0:48  Bullet
+      8.86 MiB   4.7%  Frame.udp:131  HeapByteBufferR
+      8.27 MiB   4.4%  BulletUpdate.collide:249  ArrayList
+      6.74 MiB   3.6%  Frame.packet:65  [B
+      6.71 MiB   3.6%  UnitProjection.<init>:54  Codecs$Mount
+      6.51 MiB   3.5%  Predict.quad:72  [F
+      6.03 MiB   3.2%  BulletUpdate.lambda$run$1:49  Bullet
+      4.83 MiB   2.6%  BulletUpdate.collide:251  ArrayList$Itr
+      4.35 MiB   2.3%  BulletUpdate.collide:250  BulletUpdate$$Lambda
+      3.79 MiB   2.0%  Predict.intercept:28  Vec2
+      3.42 MiB   1.8%  UnitProjection.<init>:57  ArrayList
+      3.30 MiB   1.8%  Writes.toByteArray:119  [B
+      3.22 MiB   1.7%  UnitProjection.<init>:65  ArrayList
+      3.20 MiB   1.7%  UnitProjection.<init>:56  Object;

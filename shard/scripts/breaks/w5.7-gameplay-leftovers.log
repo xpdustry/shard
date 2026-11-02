@@ -1,0 +1,56 @@
+OK       clean: fails nothing
+breaks: 18 to run, 4 at a time
+breaks:   127 s  block unit: a new team stays on the unit
+breaks:   168 s  block unit: killed() spares the turret
+breaks:   177 s  player: the update sets the unit's team field
+CAUGHT   block unit: damage reaches the turret halved: fails BlockUnitOracleTest
+           BlockUnitOracleTest: 1 of 1 failed; first: org.opentest4j.MultipleFailuresError: after frame 150 (1 failure) | 	org.opentest4j.AssertionFailedError: buildings #0 ==> expected: <duo@20,20 t1 hp 220.0(435c0000) items []> but was: <duo@20,20 t1 hp 235.0(436b0000) items []>
+CAUGHT   block unit: killed() spares the turret: fails BlockUnitOracleTest
+           BlockUnitOracleTest: 1 of 1 failed; first: org.opentest4j.MultipleFailuresError: after frame 500 (1 failure) | 	org.opentest4j.AssertionFailedError: buildings: [duo@20,20 t1 hp 103.0(42ce0000) items []] vs [duo@20,20 t1 hp 103.0(42ce0000) items [], duo@20,26 t1 hp 250.0(437a0000) items []] ==> expected
+CAUGHT   block unit: a new team stays on the unit: fails BlockUnitOracleTest
+           BlockUnitOracleTest: 1 of 1 failed; first: org.opentest4j.MultipleFailuresError: after frame 220 (2 failures) | 	org.opentest4j.AssertionFailedError: buildings #0 ==> expected: <duo@20,20 t5 hp 220.0(435c0000) items []> but was: <duo@20,20 t1 hp 220.0(435c0000) items []> | 	org.opentest4j.AssertionFail
+CAUGHT   player: the update sets the unit's team field: fails BlockUnitOracleTest
+           BlockUnitOracleTest: 1 of 1 failed; first: org.opentest4j.MultipleFailuresError: after frame 301 (4 failures) | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-476666512624871776> but was: <-3535496059292054204> | 	org.opentest4j.AssertionFailedError: random state ==> expected: <-461
+breaks:   181 s  block unit: damage reaches the turret halved
+CAUGHT   payDrop: no timeout: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 167 ==> expected: <[]> but was: <[all tcp PayloadDropped 0200000003431a068a42a02b72]>
+breaks:   127 s  payDrop: no timeout
+MISSED   payTake: units within twice the reach: fails nothing
+breaks:   126 s  payTake: units within twice the reach
+CAUGHT   payTake: a building is never lifted whole: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 292 ==> expected: <[all tcp PickedBuildPayload 0200000003000e001401]> but was: <[]>
+breaks:   124 s  payTake: a building is never lifted whole
+CAUGHT   payTake: a take that found nothing keeps the timeout: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 167 ==> expected: <[]> but was: <[all tcp PayloadDropped 0200000003431a068a42a02b72]>
+breaks:   127 s  payTake: a take that found nothing keeps the timeout
+CAUGHT   payEnter: refused by the building under it: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.AssertionFailedError: Calls in frame 45 ==> expected: <[all tcp UnitBuildingControlSelect 020000000a001e001e]> but was: <[]>
+breaks:   150 s  payEnter: refused by the building under it
+CAUGHT   entering a block: no new id posted: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.MultipleFailuresError: after frame 46 (1 failure) | 	org.opentest4j.AssertionFailedError: the entity id counter ==> expected: <15> but was: <14>
+breaks:   170 s  entering a block: no new id posted
+CAUGHT   payload block: an entering unit keeps no rotation: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.AssertionFailedError: after frame 46: the payload of the block at 30,30 ==> expected: <mono unit#14 at 228.33891(436456c3),240.30359(43704db8) rot 357.4664(43b2bbb3)> but was: <mono unit#14 at 228.33891(436456c3),240.30359(43704db8) rot 0.0(0)>
+breaks:   175 s  payload block: an entering unit keeps no rotation
+CAUGHT   payload conveyor: an entering unit is lost: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.AssertionFailedError: after frame 98: the payload of the block at 20,10 ==> expected: <dagger unit#8 at 148.12971(43142135),80.0(42a00000) rot 9.530565E-5(38c7ded5)> but was: <->
+breaks:   172 s  payload conveyor: an entering unit is lost
+CAUGHT   setprop @payloadType: a unit made for the derelict: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.AssertionFailedError: after frame 481: what the units carry ==> expected: <[unit#3 [dagger unit#7 at 0.0(0),0.0(0) rot 0.0(0)]]> but was: <[unit#3 []]>
+breaks:   148 s  setprop @payloadType: a unit made for the derelict
+CAUGHT   setprop @payloadType: a building made for the derelict: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.AssertionFailedError: after frame 482: what the units carry ==> expected: <[unit#3 [duo t1, dagger unit#10 at 0.0(0),0.0(0) rot 0.0(0), router t1]]> but was: <[unit#3 [dagger unit#10 at 0.0(0),0.0(0) rot 0.0(0)]]>
+breaks:   147 s  setprop @payloadType: a building made for the derelict
+CAUGHT   setprop @payloadType: null leaves the payload: fails UnitLogicOracleTest
+           UnitLogicOracleTest: 1 of 12 failed; first: org.opentest4j.AssertionFailedError: after frame 482: what the units carry ==> expected: <[unit#3 [duo t1, dagger unit#10 at 0.0(0),0.0(0) rot 0.0(0), router t1]]> but was: <[unit#3 [dagger unit#7 at 193.7658(4341c40b),160.28052(432047d0) rot 192.90358(4340e75
+breaks:   145 s  setprop @payloadType: null leaves the payload
+CAUGHT   stats: a destroyed building counts twice: fails ObjectiveOracleTest
+           ObjectiveOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 100: game stats ==> expected: <enemyUnitsDestroyed 0 wavesLasted 0 buildingsBuilt 0 buildingsDeconstructed 0 buildingsDestroyed 1 unitsCreated 4 placed {} destroyed {} coreItems {}> but was: <enemyUnitsDestroyed
+breaks:   143 s  stats: a destroyed building counts twice
+CAUGHT   stats: derelict buildings don't count: fails ObjectiveOracleTest
+           ObjectiveOracleTest: 1 of 3 failed; first: org.opentest4j.AssertionFailedError: after frame 120: game stats ==> expected: <enemyUnitsDestroyed 0 wavesLasted 0 buildingsBuilt 0 buildingsDeconstructed 0 buildingsDestroyed 1 unitsCreated 4 placed {} destroyed {copper-wall=1} coreItems {}> but was: <enemyU
+breaks:   117 s  stats: derelict buildings don't count
+CAUGHT   duct unloader codec: offset read off by one: fails DuctOracleTest
+           DuctOracleTest: 1 of 4 failed; first: org.opentest4j.AssertionFailedError: duct-unloader at (4, 2): save chunk ==> expected: <0042f0000080010301090000ffffffff0011> but was: <0042f0000080010301090000ffffffff0012>
+breaks:    72 s  duct unloader codec: offset read off by one
+breaks: 19 in 744 s

@@ -1,0 +1,47 @@
+# W5.3 (WP83) L5, four clients on pvp.msav (PvpMap.java: a sharded core in the west, a crux core in the east, a
+# derelict switch in the middle that sets off a world processor's explosion over the crux core), hosted as PvP, one
+# script for Shard and vanilla:
+# - alpha joins alone: one team has a player, so the game waits for players, paused (pvpAutoPause), which the client
+#   reads from the state snapshot; connectConfirm still spawns its unit at once, even paused (NetServer.java:1024);
+# - bravo joins on the other team (assignTeam: the team with fewer players), and the game resumes;
+# - charlie and delta join: charlie's team is a tie, broken at random; delta joins the other; two on each team;
+# - alpha turns the switch on (a tileConfig, as a tap sends it): the crux core falls, sharded is the last team with
+#   cores, the game is over, and every client gets the game-over message naming sharded the winner (the name in its
+#   team colour tags, which the label keeps).
+#
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp "$RIG"/scenarios/pvp.msav maps/ \
+#     && PUSH=~/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh "pvp pvp"' \
+#     --clients 4 --script rig/scenarios/pvp.rig --type large
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p config/maps && cp "$RIG"/scenarios/pvp.msav config/maps/ \
+#     && exec "$RIG"/vm/vanilla-server.sh -- "host pvp pvp"' --clients 4 --script rig/scenarios/pvp.rig --type large
+timeout 10m
+
+wait port 240s
+alpha: join
+alpha: expect js "Vars.state.rules.pvp + ' ' + Vars.state.map.name()" /^true pvp$/ 10s
+alpha: expect js "Vars.state.isPaused()" /^true$/ 15s
+alpha: wait 2s
+alpha: expect js "Vars.state.isPaused()" /^true$/ 5s
+alpha: shot waiting
+
+bravo: join
+all: expect js "Vars.state.isPaused()" /^false$/ 15s
+alpha: expect js "Groups.player.find(function(p){return p.plainName() == 'bravo'}).team() != Vars.player.team()" /^true$/ 10s
+
+charlie: join
+delta: join
+all: shot joined
+all: expect js "Groups.player.size()" /^4(\.0)?$/ 10s
+all: expect js "Groups.player.count(function(p){return p.team() == Vars.player.team()})" /^2(\.0)?$/ 10s
+charlie: expect js "Groups.player.find(function(p){return p.plainName() == 'delta'}).team() != Vars.player.team()" /^true$/ 10s
+all: expect js "Vars.state.teams.cores(Team.sharded).size + ' ' + Vars.state.teams.cores(Team.crux).size" /^1 1$/ 10s
+
+# the switch: the crux core falls and the game is over
+alpha: expect js "Call.tileConfig(Vars.player, Vars.world.build(30, 15), true); 'sent'" /^sent$/ 10s
+all: expect js "Vars.state.teams.cores(Team.crux).size" /^0$/ 20s
+all: expect js "Vars.world.build(50, 15) == null" /^true$/ 10s
+all: expect js "Vars.state.gameOver" /^true$/ 20s
+all: expect js "var t = ''; var c = Core.scene.root.getChildren(); for(var i = 0; i < c.size; i++){ var e = c.get(i); if(e instanceof Packages.arc.scene.ui.Dialog){ var k = e.cont.getChildren(); for(var j = 0; j < k.size; j++){ if(k.get(j) instanceof Packages.arc.scene.ui.Label) t += k.get(j).getText(); } } } t" /(?s)The .*sharded.* team is victorious!.*Next selected map: .*New game begins in \d+ seconds\./ 15s
+all: shot game-over
+all: dismiss
+assert clean server

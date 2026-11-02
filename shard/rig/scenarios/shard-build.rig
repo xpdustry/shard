@@ -1,0 +1,76 @@
+# WP30 on Shard (L5), 2 stock clients on sync-routers.msav (SyncRoutersMap.java) in survival: core-shard at 8,8 on
+# open stone, a router field at 20..39 x 20..29. Alpha breaks ten routers of the field for their copper (Shard's
+# hosted world keeps the map's empty core: it doesn't apply the loadout yet), builds a conveyor line and a router from
+# that copper, and breaks the line's middle. Bravo, who builds nothing, sees each block appear and go as the server's
+# Calls and block snapshots say: no construction site or block left behind (a ghost), no rebuild plan, and, after a
+# rejoin, the same blocks in a fresh world stream. The end-of-run checks fail on "Missing entity" and every other
+# desync line. Only ported blocks: a live-built block of a kind Shard doesn't port, such as a wall, can't be written
+# into a world stream yet.
+#
+#   scripts/vm-gradle.sh :server:installDist
+#   rig/run.sh --vm "$(cat .vm-id)" --server 'mkdir -p maps && cp /home/user/shard/rig/scenarios/sync-routers.msav maps/routers.msav \
+#     && PUSH=/home/user/shard/server/build/install/shard exec "$RIG"/vm/shard-server.sh routers' --clients 2 --script rig/scenarios/shard-build.rig
+timeout 8m
+
+wait port 90s
+alpha: join
+bravo: join
+all: shot joined
+# 16 px a tile: the core and the field's first row both on screen
+alpha: zoom 2
+
+# deconstruct ten routers: each refunds half its 3 copper, rounded
+alpha: drag right tile 20 20 tile 29 20
+alpha: expect tile 20 20 air 30s
+alpha: expect tile 29 20 air 30s
+bravo: expect tile 20 20 air 30s
+bravo: expect tile 25 20 air 10s
+bravo: expect tile 29 20 air 10s
+bravo: expect tile 20 21 router 5s
+alpha: expect js "Vars.player.team().core().items.get(Items.copper)" /^[1-9][0-9]*(\.0)?$/ 10s
+all: shot routers-broken
+
+# a conveyor line right of the core and a router above its start, paid with that copper
+alpha: select conveyor
+alpha: rotate 0
+alpha: drag left tile 11 8 tile 15 8
+alpha: place router tile 11 10
+alpha: expect tile 11 8 conveyor 30s
+alpha: expect tile 15 8 conveyor 30s
+alpha: expect tile 11 10 router 30s
+bravo: expect tile 11 8 conveyor 30s
+bravo: expect tile 12 8 conveyor 10s
+bravo: expect tile 13 8 conveyor 10s
+bravo: expect tile 14 8 conveyor 10s
+bravo: expect tile 15 8 conveyor 10s
+bravo: expect tile 11 10 router 10s
+all: shot built
+
+# a right click drops the selection; a right drag breaks the line's middle three
+alpha: click right tile 8 3
+alpha: expect selected none
+alpha: drag right tile 12 8 tile 14 8
+alpha: expect tile 13 8 air 30s
+bravo: expect tile 12 8 air 30s
+bravo: expect tile 13 8 air 10s
+bravo: expect tile 14 8 air 10s
+bravo: expect tile 11 8 conveyor 5s
+bravo: expect tile 15 8 conveyor 5s
+all: shot line-broken
+
+# no construction site anywhere, and no rebuild plan: nothing was destroyed. Wait out a block snapshot (6 s) first.
+wait 7s
+all: expect js "(function(){var n=0;Vars.world.tiles.eachTile(function(t){if(t.block().name.startsWith('build'))n++});return n})()" /^0(\.0)?$/ 10s
+all: expect js "Vars.player.team().data().plans.size" /^0(\.0)?$/ 10s
+
+# a fresh world stream has the same blocks
+bravo: rejoin
+bravo: expect tile 11 8 conveyor 30s
+bravo: expect tile 13 8 air 10s
+bravo: expect tile 15 8 conveyor 10s
+bravo: expect tile 11 10 router 10s
+bravo: expect tile 25 20 air 10s
+all: shot rejoined
+
+assert clean all
+assert clean server

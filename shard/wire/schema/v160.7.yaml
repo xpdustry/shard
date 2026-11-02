@@ -1,0 +1,1482 @@
+# Lifted from the vanilla jar's bytecode by :tools:wirelift (WireLift). Do not edit: run ./gradlew :tools:wirelift:lift.
+build: "160.7"
+# Enums the wire carries as ordinals; constants in ordinal order (X.all[ordinal]).
+enums:
+  AdminAction: [kick, ban, trace, wave, switchTeam]
+  ContentType: [item, block, mech_UNUSED, bullet, liquid, status, unit, weather, effect_UNUSED, sector, loadout_UNUSED, typeid_UNUSED, error, planet, ammo_UNUSED, team, unitCommand, unitStance]
+  KickReason: [kick, clientOutdated, serverOutdated, banned, gameover, recentKick, nameInUse, idInUse, nameEmpty, customClient, serverClose, vote, typeMismatch, whitelist, playerLimit, serverRestarting]
+  LAccess: [totalItems, firstItem, totalLiquids, totalPower, itemCapacity, liquidCapacity, powerCapacity, powerNetStored, powerNetCapacity, powerNetIn, powerNetOut, ammo, ammoCapacity, currentAmmoType, memoryCapacity, health, maxHealth, heat, shield, armor, efficiency, progress, timescale, rotation, x, "y", velocityX, velocityY, shootX, shootY, cameraX, cameraY, cameraWidth, cameraHeight, displayWidth, displayHeight, bufferSize, operations, size, solid, dead, range, shooting, boosting, mineX, mineY, mining, buildX, buildY, pingX, pingY, pingText, building, breaking, speed, team, type, flag, flying, controlled, controller, name, payloadCount, payloadType, totalPayload, payloadCapacity, maxUnits, id, selectedBlock, selectedRotation, bulletLifetime, bulletTime, enabled, shoot, shootp, config, color]
+  LMarkerControl: [remove, world, minimap, light, autoscale, pos, endPos, drawLayer, color, radius, stroke, outline, rotation, shape, arc, flushText, fontSize, textHeight, textAlign, lineAlign, labelFlags, texture, textureSize, posi, uvi, colori]
+  UiKey: [table, pane, stack, label, image, button, imageButton, field, check, slider, space, defaults, buttonTable, row, text, wrap, region, icon, placeholder, scaling, background, margin, id, hint, maxLength, checked, min, max, step, defaultValue, clicked, enter, style, group, condition, color, disabled, grow, growX, growY, fill, fillX, fillY, expand, expandX, expandY, width, height, size, minWidth, maxWidth, minHeight, maxHeight, pad, padTop, padLeft, padBottom, padRight, align, labelAlign, colspan, uniform, uniformX, uniformY]
+# One layout per distinct writeSync body, named after its most generic class. sync: the writeSync fields in wire
+# order (local: @SyncLocal, interp: the client interpolates it). save: write() after its i16 revision (entities).
+# defaults: what a fresh entity holds other than zero. old: earlier save bodies read() still reads, named after the
+# first class and revision that wrote them; _ is dropped.
+layouts:
+  BuildingTetherPayloadUnit:
+    sync:
+      - {name: abilities, codec: Abilities}
+      - {name: aimX, codec: f32}
+      - {name: aimY, codec: f32}
+      - {name: building, codec: Building}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32, local: true}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile, local: true}
+      - {name: mounts, codec: Mounts, local: true}
+      - {name: payloads, codec: seq<Payload>, count: i32}
+      - {name: plans, codec: PlansQueueNet, local: true}
+      - {name: rotation, codec: f32, local: true, interp: slerp}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool, local: true}
+      - {name: vel, codec: Vec2, local: true}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: abilities, codec: Abilities}
+      - {name: building, codec: Building}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile}
+      - {name: mounts, codec: Mounts}
+      - {name: payloads, codec: seq<Payload>, count: i32}
+      - {name: plans, codec: seq<Plan>, count: i32}
+      - {name: rotation, codec: f32}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool}
+      - {name: vel, codec: Vec2}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    defaults: {updateBuilding: true}
+    old:
+      BuildingTetherPayloadUnit.0:
+        - {name: _, codec: f32}
+        - {name: building, codec: Building}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      BuildingTetherPayloadUnit.1:
+        - {name: abilities, codec: Abilities}
+        - {name: _, codec: f32}
+        - {name: building, codec: Building}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+  Fire:
+    sync:
+      - {name: lifetime, codec: f32}
+      - {name: tile, codec: Tile}
+      - {name: time, codec: f32}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: lifetime, codec: f32}
+      - {name: tile, codec: Tile}
+      - {name: time, codec: f32}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    old:
+      Fire.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: i16}
+        - {name: lifetime, codec: f32}
+        - {name: _, codec: f32}
+        - {name: tile, codec: Tile}
+        - {name: time, codec: f32}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+  LaunchPayload:
+    save:
+      - {name: lifetime, codec: f32}
+      - {name: stacks, codec: seq<Items>, count: i32}
+      - {name: team, codec: Team}
+      - {name: time, codec: f32}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+  MechUnit:
+    sync:
+      - {name: abilities, codec: Abilities}
+      - {name: aimX, codec: f32}
+      - {name: aimY, codec: f32}
+      - {name: baseRotation, codec: f32, local: true, interp: slerp}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32, local: true}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile, local: true}
+      - {name: mounts, codec: Mounts, local: true}
+      - {name: plans, codec: PlansQueueNet, local: true}
+      - {name: rotation, codec: f32, local: true, interp: slerp}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool, local: true}
+      - {name: vel, codec: Vec2, local: true}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: abilities, codec: Abilities}
+      - {name: baseRotation, codec: f32}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile}
+      - {name: mounts, codec: Mounts}
+      - {name: plans, codec: seq<Plan>, count: i32}
+      - {name: rotation, codec: f32}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool}
+      - {name: vel, codec: Vec2}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    defaults: {updateBuilding: true}
+    old:
+      MechUnit.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: _, codec: bool}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      MechUnit.1:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      MechUnit.2:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      MechUnit.3:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      MechUnit.4:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      MechUnit.5:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      MechUnit.6:
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      MechUnit.7:
+        - {name: abilities, codec: Abilities}
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      MechUnitLegacyNova.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: _, codec: bool}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      MechUnitLegacyNova.1:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: baseRotation, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+  PayloadUnit:
+    sync:
+      - {name: abilities, codec: Abilities}
+      - {name: aimX, codec: f32}
+      - {name: aimY, codec: f32}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32, local: true}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile, local: true}
+      - {name: mounts, codec: Mounts, local: true}
+      - {name: payloads, codec: seq<Payload>, count: i32}
+      - {name: plans, codec: PlansQueueNet, local: true}
+      - {name: rotation, codec: f32, local: true, interp: slerp}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool, local: true}
+      - {name: vel, codec: Vec2, local: true}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: abilities, codec: Abilities}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile}
+      - {name: mounts, codec: Mounts}
+      - {name: payloads, codec: seq<Payload>, count: i32}
+      - {name: plans, codec: seq<Plan>, count: i32}
+      - {name: rotation, codec: f32}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool}
+      - {name: vel, codec: Vec2}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    defaults: {updateBuilding: true}
+    old:
+      PayloadUnit.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: _, codec: bool}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      PayloadUnit.1:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      PayloadUnit.2:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      PayloadUnit.3:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      PayloadUnit.4:
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      PayloadUnit.5:
+        - {name: abilities, codec: Abilities}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      PayloadUnitLegacyQuad.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: _, codec: bool}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      PayloadUnitLegacyQuad.1:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      PayloadUnitLegacyQuad.2:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: payloads, codec: seq<Payload>, count: i32}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+  Player:
+    sync:
+      - {name: admin, codec: bool}
+      - {name: boosting, codec: bool, local: true}
+      - {name: color, codec: Color}
+      - {name: mouseX, codec: f32, local: true}
+      - {name: mouseY, codec: f32, local: true}
+      - {name: name, codec: String}
+      - {name: selectedBlock, codec: ref<block>, local: true}
+      - {name: selectedRotation, codec: i32, local: true}
+      - {name: shooting, codec: bool, local: true}
+      - {name: team, codec: Team}
+      - {name: typing, codec: bool, local: true}
+      - {name: unit, codec: Unit}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: admin, codec: bool}
+      - {name: boosting, codec: bool}
+      - {name: color, codec: Color}
+      - {name: lastCommand, codec: Command}
+      - {name: mouseX, codec: f32}
+      - {name: mouseY, codec: f32}
+      - {name: name, codec: String}
+      - {name: selectedBlock, codec: ref<block>}
+      - {name: selectedRotation, codec: i32}
+      - {name: shooting, codec: bool}
+      - {name: team, codec: Team}
+      - {name: typing, codec: bool}
+      - {name: unit, codec: Unit}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    defaults: {selectedBlock: -1}
+    old:
+      Player.0:
+        - {name: admin, codec: bool}
+        - {name: boosting, codec: bool}
+        - {name: color, codec: Color}
+        - {name: mouseX, codec: f32}
+        - {name: mouseY, codec: f32}
+        - {name: name, codec: String}
+        - {name: shooting, codec: bool}
+        - {name: team, codec: Team}
+        - {name: typing, codec: bool}
+        - {name: unit, codec: Unit}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      Player.1:
+        - {name: admin, codec: bool}
+        - {name: boosting, codec: bool}
+        - {name: color, codec: Color}
+        - {name: lastCommand, codec: Command}
+        - {name: mouseX, codec: f32}
+        - {name: mouseY, codec: f32}
+        - {name: name, codec: String}
+        - {name: shooting, codec: bool}
+        - {name: team, codec: Team}
+        - {name: typing, codec: bool}
+        - {name: unit, codec: Unit}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+  Puddle:
+    sync:
+      - {name: amount, codec: f32}
+      - {name: liquid, codec: ref<liquid>}
+      - {name: tile, codec: Tile}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: amount, codec: f32}
+      - {name: liquid, codec: ref<liquid>}
+      - {name: tile, codec: Tile}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    defaults: {liquid: -1}
+    old:
+      Puddle.0:
+        - {name: amount, codec: f32}
+        - {name: _, codec: i32}
+        - {name: liquid, codec: ref<liquid>}
+        - {name: tile, codec: Tile}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+  TargetDummyUnit:
+    sync:
+      - {name: abilities, codec: Abilities}
+      - {name: aimX, codec: f32}
+      - {name: aimY, codec: f32}
+      - {name: building, codec: Building}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32, local: true}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile, local: true}
+      - {name: mounts, codec: Mounts, local: true}
+      - {name: plans, codec: PlansQueueNet, local: true}
+      - {name: rotation, codec: f32, local: true, interp: slerp}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool, local: true}
+      - {name: vel, codec: Vec2, local: true}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: abilities, codec: Abilities}
+      - {name: building, codec: Building}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile}
+      - {name: mounts, codec: Mounts}
+      - {name: plans, codec: seq<Plan>, count: i32}
+      - {name: rotation, codec: f32}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool}
+      - {name: vel, codec: Vec2}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    defaults: {updateBuilding: true}
+  TimedKillUnit:
+    sync:
+      - {name: abilities, codec: Abilities}
+      - {name: aimX, codec: f32}
+      - {name: aimY, codec: f32}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32, local: true}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: lifetime, codec: f32}
+      - {name: mineTile, codec: Tile, local: true}
+      - {name: mounts, codec: Mounts, local: true}
+      - {name: plans, codec: PlansQueueNet, local: true}
+      - {name: rotation, codec: f32, local: true, interp: slerp}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: time, codec: f32}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool, local: true}
+      - {name: vel, codec: Vec2, local: true}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: abilities, codec: Abilities}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: lifetime, codec: f32}
+      - {name: mineTile, codec: Tile}
+      - {name: mounts, codec: Mounts}
+      - {name: plans, codec: seq<Plan>, count: i32}
+      - {name: rotation, codec: f32}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: time, codec: f32}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool}
+      - {name: vel, codec: Vec2}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    defaults: {updateBuilding: true}
+    old:
+      TimedKillUnit.0:
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: lifetime, codec: f32}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: time, codec: f32}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      TimedKillUnit.1:
+        - {name: abilities, codec: Abilities}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: lifetime, codec: f32}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: time, codec: f32}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+  UnitEntity:
+    sync:
+      - {name: abilities, codec: Abilities}
+      - {name: aimX, codec: f32}
+      - {name: aimY, codec: f32}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32, local: true}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile, local: true}
+      - {name: mounts, codec: Mounts, local: true}
+      - {name: plans, codec: PlansQueueNet, local: true}
+      - {name: rotation, codec: f32, local: true, interp: slerp}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool, local: true}
+      - {name: vel, codec: Vec2, local: true}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: abilities, codec: Abilities}
+      - {name: controller, codec: Controller}
+      - {name: elevation, codec: f32}
+      - {name: flag, codec: f64}
+      - {name: health, codec: f32}
+      - {name: isShooting, codec: bool}
+      - {name: mineTile, codec: Tile}
+      - {name: mounts, codec: Mounts}
+      - {name: plans, codec: seq<Plan>, count: i32}
+      - {name: rotation, codec: f32}
+      - {name: shield, codec: f32}
+      - {name: spawnedByCore, codec: bool}
+      - {name: stack, codec: Items}
+      - {name: statuses, codec: seq<Status>, count: i32}
+      - {name: team, codec: Team}
+      - {name: type, codec: ref<unit>}
+      - {name: updateBuilding, codec: bool}
+      - {name: vel, codec: Vec2}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    defaults: {updateBuilding: true}
+    old:
+      UnitEntityLegacyAlpha.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      UnitEntityLegacyAlpha.1:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      UnitEntityLegacyAlpha.2:
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      UnitEntityLegacyAlpha.3:
+        - {name: abilities, codec: Abilities}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: updateBuilding, codec: bool}
+        - {name: vel, codec: Vec2}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      BlockUnitUnit.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: _, codec: bool}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      BlockUnitUnit.1:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      BlockUnitUnit.2:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      BlockUnitUnit.3:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      UnitEntityLegacyMono.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: _, codec: bool}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      UnitEntityLegacyMono.1:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      UnitEntityLegacyPoly.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: _, codec: bool}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      UnitEntityLegacyPoly.1:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mineTile, codec: Tile}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      LegsUnitLegacySpiroct.0:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: _, codec: bool}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      LegsUnitLegacySpiroct.1:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      LegsUnitLegacySpiroct.2:
+        - {name: _, codec: f32}
+        - {name: _, codec: f32}
+        - {name: controller, codec: Controller}
+        - {name: elevation, codec: f32}
+        - {name: flag, codec: f64}
+        - {name: health, codec: f32}
+        - {name: isShooting, codec: bool}
+        - {name: mounts, codec: Mounts}
+        - {name: plans, codec: seq<Plan>, count: i32}
+        - {name: rotation, codec: f32}
+        - {name: shield, codec: f32}
+        - {name: spawnedByCore, codec: bool}
+        - {name: stack, codec: Items}
+        - {name: statuses, codec: seq<Status>, count: i32}
+        - {name: team, codec: Team}
+        - {name: type, codec: ref<unit>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+  WeatherState:
+    sync:
+      - {name: effectTimer, codec: f32}
+      - {name: intensity, codec: f32}
+      - {name: life, codec: f32}
+      - {name: opacity, codec: f32}
+      - {name: weather, codec: ref<weather>}
+      - {name: windVector, codec: Vec2}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+    save:
+      - {name: effectTimer, codec: f32}
+      - {name: intensity, codec: f32}
+      - {name: life, codec: f32}
+      - {name: opacity, codec: f32}
+      - {name: weather, codec: ref<weather>}
+      - {name: windVector, codec: Vec2}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+    defaults: {intensity: 1.0, weather: -1}
+    old:
+      WeatherState.0:
+        - {name: intensity, codec: f32}
+        - {name: life, codec: f32}
+        - {name: opacity, codec: f32}
+        - {name: weather, codec: ref<weather>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+      WeatherState.1:
+        - {name: effectTimer, codec: f32}
+        - {name: intensity, codec: f32}
+        - {name: life, codec: f32}
+        - {name: opacity, codec: f32}
+        - {name: weather, codec: ref<weather>}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+  WorldLabel:
+    sync:
+      - {name: flags, codec: i8}
+      - {name: fontSize, codec: f32}
+      - {name: parent, codec: PosEntity}
+      - {name: text, codec: String}
+      - {name: x, codec: f32, local: true, interp: lerp}
+      - {name: "y", codec: f32, local: true, interp: lerp}
+      - {name: z, codec: f32}
+    save:
+      - {name: flags, codec: i8}
+      - {name: fontSize, codec: f32}
+      - {name: parent, codec: PosEntity}
+      - {name: text, codec: String}
+      - {name: x, codec: f32}
+      - {name: "y", codec: f32}
+      - {name: z, codec: f32}
+    defaults: {flags: 3, fontSize: 1.0, z: 151.0}
+    old:
+      WorldLabel.0:
+        - {name: flags, codec: i8}
+        - {name: fontSize, codec: f32}
+        - {name: text, codec: String}
+        - {name: x, codec: f32}
+        - {name: "y", codec: f32}
+        - {name: z, codec: f32}
+# EntityMapping.idMap: the class id is the u8 before a synced entity and the first byte of a save chunk.
+entities:
+  - {id: 0, class: UnitEntityLegacyAlpha, layout: UnitEntity, revision: 5, old: {0: UnitEntityLegacyAlpha.0, 1: UnitEntityLegacyAlpha.1, 2: UnitEntityLegacyAlpha.2, 3: UnitEntityLegacyAlpha.3, 4: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 2, class: BlockUnitUnit, layout: UnitEntity, revision: 9, old: {0: BlockUnitUnit.0, 1: BlockUnitUnit.1, 2: BlockUnitUnit.2, 3: BlockUnitUnit.3, 4: UnitEntityLegacyAlpha.0, 5: UnitEntityLegacyAlpha.1, 6: UnitEntityLegacyAlpha.2, 7: UnitEntityLegacyAlpha.3, 8: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 3, class: UnitEntity, layout: UnitEntity, revision: 9, old: {0: BlockUnitUnit.0, 1: BlockUnitUnit.1, 2: BlockUnitUnit.2, 3: BlockUnitUnit.3, 4: UnitEntityLegacyAlpha.0, 5: UnitEntityLegacyAlpha.1, 6: UnitEntityLegacyAlpha.2, 7: UnitEntityLegacyAlpha.3, 8: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 4, class: MechUnit, layout: MechUnit, revision: 9, old: {0: MechUnit.0, 1: MechUnit.1, 2: MechUnit.2, 3: MechUnit.3, 4: MechUnit.4, 5: MechUnit.5, 6: MechUnit.6, 7: MechUnit.7, 8: MechUnit.7}, serialize: true, unit: true}
+  - {id: 5, class: PayloadUnit, layout: PayloadUnit, revision: 7, old: {0: PayloadUnit.0, 1: PayloadUnit.1, 2: PayloadUnit.2, 3: PayloadUnit.3, 4: PayloadUnit.4, 5: PayloadUnit.5, 6: PayloadUnit.5}, serialize: true, unit: true}
+  - {id: 6, class: Building, serialize: false}
+  - {id: 7, class: Bullet, serialize: false}
+  - {id: 8, class: Decal, serialize: false}
+  - {id: 9, class: EffectState, serialize: false}
+  - {id: 10, class: Fire, layout: Fire, revision: 1, old: {0: Fire.0}, serialize: true}
+  - {id: 11, class: LaunchCore, serialize: false}
+  - {id: 12, class: Player, layout: Player, revision: 2, old: {0: Player.0, 1: Player.1}, serialize: false}
+  - {id: 13, class: Puddle, layout: Puddle, revision: 1, old: {0: Puddle.0}, serialize: true}
+  - {id: 14, class: WeatherState, layout: WeatherState, revision: 2, old: {0: WeatherState.0, 1: WeatherState.1}, serialize: true}
+  - {id: 15, class: LaunchPayload, layout: LaunchPayload, revision: 0, serialize: true}
+  - {id: 16, class: UnitEntityLegacyMono, layout: UnitEntity, revision: 8, old: {0: UnitEntityLegacyMono.0, 1: UnitEntityLegacyMono.1, 2: BlockUnitUnit.3, 3: UnitEntityLegacyAlpha.0, 4: UnitEntityLegacyAlpha.1, 5: UnitEntityLegacyAlpha.2, 6: UnitEntityLegacyAlpha.3, 7: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 17, class: MechUnitLegacyNova, layout: MechUnit, revision: 7, old: {0: MechUnitLegacyNova.0, 1: MechUnitLegacyNova.1, 2: MechUnit.4, 3: MechUnit.5, 4: MechUnit.6, 5: MechUnit.7, 6: MechUnit.7}, serialize: true, unit: true}
+  - {id: 18, class: UnitEntityLegacyPoly, layout: UnitEntity, revision: 7, old: {0: UnitEntityLegacyPoly.0, 1: UnitEntityLegacyPoly.1, 2: UnitEntityLegacyAlpha.0, 3: UnitEntityLegacyAlpha.1, 4: UnitEntityLegacyAlpha.2, 5: UnitEntityLegacyAlpha.3, 6: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 19, class: MechUnitLegacyPulsar, layout: MechUnit, revision: 5, old: {0: MechUnit.4, 1: MechUnit.5, 2: MechUnit.6, 3: MechUnit.7, 4: MechUnit.7}, serialize: true, unit: true}
+  - {id: 20, class: UnitWaterMove, layout: UnitEntity, revision: 9, old: {0: BlockUnitUnit.0, 1: BlockUnitUnit.1, 2: BlockUnitUnit.2, 3: BlockUnitUnit.3, 4: UnitEntityLegacyAlpha.0, 5: UnitEntityLegacyAlpha.1, 6: UnitEntityLegacyAlpha.2, 7: UnitEntityLegacyAlpha.3, 8: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 21, class: LegsUnitLegacySpiroct, layout: UnitEntity, revision: 8, old: {0: LegsUnitLegacySpiroct.0, 1: LegsUnitLegacySpiroct.1, 2: LegsUnitLegacySpiroct.2, 3: UnitEntityLegacyAlpha.0, 4: UnitEntityLegacyAlpha.1, 5: UnitEntityLegacyAlpha.2, 6: UnitEntityLegacyAlpha.3, 7: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 23, class: PayloadUnitLegacyQuad, layout: PayloadUnit, revision: 8, old: {0: PayloadUnitLegacyQuad.0, 1: PayloadUnitLegacyQuad.1, 2: PayloadUnitLegacyQuad.2, 3: PayloadUnit.2, 4: PayloadUnit.3, 5: PayloadUnit.4, 6: PayloadUnit.5, 7: PayloadUnit.5}, serialize: true, unit: true}
+  - {id: 24, class: LegsUnit, layout: UnitEntity, revision: 9, old: {0: BlockUnitUnit.0, 1: BlockUnitUnit.1, 2: BlockUnitUnit.2, 3: BlockUnitUnit.3, 4: UnitEntityLegacyAlpha.0, 5: UnitEntityLegacyAlpha.1, 6: UnitEntityLegacyAlpha.2, 7: UnitEntityLegacyAlpha.3, 8: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 26, class: PayloadUnitLegacyOct, layout: PayloadUnit, revision: 7, old: {0: PayloadUnitLegacyQuad.1, 1: PayloadUnitLegacyQuad.2, 2: PayloadUnit.2, 3: PayloadUnit.3, 4: PayloadUnit.4, 5: PayloadUnit.5, 6: PayloadUnit.5}, serialize: true, unit: true}
+  - {id: 28, class: PosTeam, serialize: true}
+  - {id: 29, class: LegsUnitLegacyArkyid, layout: UnitEntity, revision: 5, old: {0: UnitEntityLegacyAlpha.0, 1: UnitEntityLegacyAlpha.1, 2: UnitEntityLegacyAlpha.2, 3: UnitEntityLegacyAlpha.3, 4: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 30, class: UnitEntityLegacyBeta, layout: UnitEntity, revision: 5, old: {0: UnitEntityLegacyAlpha.0, 1: UnitEntityLegacyAlpha.1, 2: UnitEntityLegacyAlpha.2, 3: UnitEntityLegacyAlpha.3, 4: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 31, class: UnitEntityLegacyGamma, layout: UnitEntity, revision: 5, old: {0: UnitEntityLegacyAlpha.0, 1: UnitEntityLegacyAlpha.1, 2: UnitEntityLegacyAlpha.2, 3: UnitEntityLegacyAlpha.3, 4: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 32, class: MechUnitLegacyQuasar, layout: MechUnit, revision: 5, old: {0: MechUnit.4, 1: MechUnit.5, 2: MechUnit.6, 3: MechUnit.7, 4: MechUnit.7}, serialize: true, unit: true}
+  - {id: 33, class: LegsUnitLegacyToxopid, layout: UnitEntity, revision: 5, old: {0: UnitEntityLegacyAlpha.0, 1: UnitEntityLegacyAlpha.1, 2: UnitEntityLegacyAlpha.2, 3: UnitEntityLegacyAlpha.3, 4: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 35, class: WorldLabel, layout: WorldLabel, revision: 1, old: {0: WorldLabel.0}, serialize: false}
+  - {id: 36, class: BuildingTetherPayloadUnit, layout: BuildingTetherPayloadUnit, revision: 3, old: {0: BuildingTetherPayloadUnit.0, 1: BuildingTetherPayloadUnit.1, 2: BuildingTetherPayloadUnit.1}, serialize: true, unit: true}
+  - {id: 39, class: TimedKillUnit, layout: TimedKillUnit, revision: 3, old: {0: TimedKillUnit.0, 1: TimedKillUnit.1, 2: TimedKillUnit.1}, serialize: true, unit: true}
+  - {id: 42, class: PowerGraphUpdater, serialize: false}
+  - {id: 43, class: TankUnit, layout: UnitEntity, revision: 2, old: {0: UnitEntityLegacyAlpha.3, 1: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 45, class: ElevationMoveUnit, layout: UnitEntity, revision: 2, old: {0: UnitEntityLegacyAlpha.3, 1: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 46, class: CrawlUnit, layout: UnitEntity, revision: 2, old: {0: UnitEntityLegacyAlpha.3, 1: UnitEntityLegacyAlpha.3}, serialize: true, unit: true}
+  - {id: 49, class: TargetDummyUnit, layout: TargetDummyUnit, revision: 0, serialize: true, unit: true}
+# The types packets cast a read entity to, and the entity classes that are one: vanilla's read fails for others.
+casts:
+  Itemsc: [0, 2, 3, 4, 5, 16, 17, 18, 19, 20, 21, 23, 24, 26, 29, 30, 31, 32, 33, 36, 39, 43, 45, 46, 49]
+  Player: [12]
+# Ids are positions in registration order: Net.<clinit>, then Call.registerPackets(). dir: who reads it (allow()).
+packets:
+  - {id: 0, name: StreamBegin, dir: S>C, framework: true, priority: normal, reliable: "-", layout: "i32 id, i32 total, i8 type"}
+  - {id: 1, name: StreamChunk, dir: S>C, framework: true, priority: normal, reliable: "-", layout: "i32 id, i16 (short)data.length, raw data"}
+  - {id: 2, name: WorldStream, dir: S>C, framework: true, priority: high, reliable: "-", layout: "-"}
+  - {id: 3, name: ConnectPacket, dir: both, framework: true, priority: high, reliable: "-", layout: "i32 Version.build, String versionType, String name, String locale, String usid, raw b, i64 crc.getValue(), [if mobile eq], i8 0|1, i32 color, i8 (byte)mods.size, [if i mpge mods.size], *?String mods.get(i), [loop]"}
+  - {id: 4, name: AssetRequirementStream, dir: S>C, framework: true, priority: high, reliable: "-", layout: "-"}
+  - {id: 5, name: AssetStream, dir: S>C, framework: true, priority: high, reliable: "-", layout: "-"}
+  - {id: 6, name: TextureStream, dir: S>C, framework: true, priority: high, reliable: "-", layout: "-"}
+  - {id: 7, name: AdminRequest, dir: C>S, priority: normal, reliable: tcp, layout: "Entity<Player> other, Action action, ObjectSafe params"}
+  - {id: 8, name: Announce, dir: S>C, priority: normal, reliable: tcp, layout: "String message"}
+  - {id: 9, name: AssemblerDroneSpawned, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile, i32 id"}
+  - {id: 10, name: AssemblerUnitSpawned, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile"}
+  - {id: 11, name: AutoDoorToggle, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile, bool open"}
+  - {id: 12, name: BeginBreak, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit, Team team, i32 x, i32 y"}
+  - {id: 13, name: BeginPlace, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit, Block result, Team team, i32 x, i32 y, i32 rotation, ObjectSafe placeConfig"}
+  - {id: 14, name: BlockSnapshot, dir: S>C, priority: low, reliable: udp, layout: "i16 amount, Bytes data"}
+  - {id: 15, name: BuildDestroyed, dir: S>C, priority: normal, reliable: tcp, layout: "Building build"}
+  - {id: 16, name: BuildHealthUpdate, dir: S>C, priority: normal, reliable: tcp, layout: "IntSeq buildings"}
+  - {id: 17, name: BuildingControlSelect, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Building build"}
+  - {id: 18, name: ClearItems, dir: S>C, priority: normal, reliable: udp, layout: "Building build"}
+  - {id: 19, name: ClearLiquids, dir: S>C, priority: normal, reliable: udp, layout: "Building build"}
+  - {id: 20, name: ClearObjectives, dir: S>C, priority: normal, reliable: tcp, layout: "(empty)"}
+  - {id: 21, name: ClientBinaryPacketReliable, dir: S>C, priority: normal, reliable: tcp, layout: "String type, Bytes contents"}
+  - {id: 22, name: ClientBinaryPacketUnreliable, dir: S>C, priority: normal, reliable: udp, layout: "String type, Bytes contents"}
+  - {id: 23, name: ClientLogicDataReliable, dir: C>S, priority: normal, reliable: tcp, layout: "String channel, ObjectSafe value"}
+  - {id: 24, name: ClientLogicDataUnreliable, dir: C>S, priority: normal, reliable: udp, layout: "String channel, ObjectSafe value"}
+  - {id: 25, name: ClientPacketReliable, dir: S>C, priority: normal, reliable: tcp, layout: "String type, String contents"}
+  - {id: 26, name: ClientPacketUnreliable, dir: S>C, priority: normal, reliable: udp, layout: "String type, String contents"}
+  - {id: 27, name: ClientPlanSnapshot, dir: C>S, priority: low, reliable: udp, layout: "i32 groupId, ClientPlans plans"}
+  - {id: 28, name: ClientPlanSnapshotReceived, dir: S>C, priority: low, reliable: udp, layout: "Entity<Player> player, i32 groupId, ClientPlans plans"}
+  - {id: 29, name: ClientSnapshot, dir: C>S, priority: high, reliable: udp, layout: "i32 snapshotID, i32 unitID, bool dead, f32 x, f32 y, f32 pointerX, f32 pointerY, f32 rotation, f32 baseRotation, f32 xVelocity, f32 yVelocity, Tile mining, bool boosting, bool shooting, bool chatting, bool building, Block selectedBlock, i32 selectedRotation, PlansQueueNet plans, f32 viewX, f32 viewY, f32 viewWidth, f32 viewHeight"}
+  - {id: 30, name: CommandBuilding, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Ints buildings, Vec2 target"}
+  - {id: 31, name: CommandUnits, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Ints unitIds, Building buildTarget, Unit unitTarget, Vec2 posTarget, bool queueCommand, bool finalBatch"}
+  - {id: 32, name: CompleteObjective, dir: S>C, priority: normal, reliable: tcp, layout: "i32 index"}
+  - {id: 33, name: Connect, dir: S>C, priority: high, reliable: tcp, layout: "String ip, i32 port"}
+  - {id: 34, name: ConnectConfirm, dir: C>S, priority: high, reliable: tcp, layout: "(empty)"}
+  - {id: 35, name: ConstructFinish, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile, Block block, Unit builder, i8 rotation, Team team, ObjectSafe config"}
+  - {id: 36, name: CopyToClipboard, dir: S>C, priority: normal, reliable: tcp, layout: "String text"}
+  - {id: 37, name: CreateBullet, dir: S>C, priority: normal, reliable: udp, layout: "BulletType type, Team team, f32 x, f32 y, f32 angle, f32 damage, f32 velocityScl, f32 lifetimeScl"}
+  - {id: 38, name: CreateMarker, dir: S>C, priority: normal, reliable: udp, layout: "i32 id, ObjectiveMarker marker"}
+  - {id: 39, name: CreateWeather, dir: S>C, priority: normal, reliable: tcp, layout: "Weather weather, f32 intensity, f32 duration, f32 windX, f32 windY"}
+  - {id: 40, name: DebugStatusClient, dir: S>C, priority: high, reliable: tcp, layout: "i32 value, i32 lastClientSnapshot"}
+  - {id: 41, name: DebugStatusClientUnreliable, dir: S>C, priority: high, reliable: udp, layout: "i32 value, i32 lastClientSnapshot"}
+  - {id: 42, name: DeconstructFinish, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile, Block block, Unit builder"}
+  - {id: 43, name: DeletePlans, dir: both, priority: normal, reliable: udp, layout: "[if net.server() eq], ?Entity<Player> player, Ints positions"}
+  - {id: 44, name: DestroyPayload, dir: S>C, priority: normal, reliable: udp, layout: "Building build"}
+  - {id: 45, name: DropItem, dir: C>S, priority: normal, reliable: tcp, layout: "f32 angle"}
+  - {id: 46, name: Effect, dir: S>C, priority: normal, reliable: udp, layout: "Effect effect, f32 x, f32 y, f32 rotation, Color color"}
+  - {id: 47, name: Effect2, dir: S>C, priority: normal, reliable: udp, layout: "Effect effect, f32 x, f32 y, f32 rotation, Color color, ObjectSafe data"}
+  - {id: 48, name: EffectReliable, dir: S>C, priority: normal, reliable: tcp, layout: "Effect effect, f32 x, f32 y, f32 rotation, Color color"}
+  - {id: 49, name: EntitySnapshot, dir: S>C, priority: low, reliable: udp, layout: "i16 amount, Bytes data"}
+  - {id: 50, name: FillTileBlocks, dir: S>C, priority: normal, reliable: tcp, layout: "i32 x, i32 y, i32 x2, i32 y2, Block block, Team team"}
+  - {id: 51, name: FillTileFloors, dir: S>C, priority: normal, reliable: tcp, layout: "i32 x, i32 y, i32 x2, i32 y2, Block block"}
+  - {id: 52, name: FillTileOverlays, dir: S>C, priority: normal, reliable: tcp, layout: "i32 x, i32 y, i32 x2, i32 y2, Block block"}
+  - {id: 53, name: FollowUpMenu, dir: S>C, priority: normal, reliable: tcp, layout: "i32 menuId, String title, String message, StringArray options"}
+  - {id: 54, name: GameOver, dir: S>C, priority: normal, reliable: tcp, layout: "Team winner"}
+  - {id: 55, name: HiddenSnapshot, dir: S>C, priority: low, reliable: udp, layout: "IntSeq ids"}
+  - {id: 56, name: HideFollowUpMenu, dir: S>C, priority: normal, reliable: tcp, layout: "i32 menuId"}
+  - {id: 57, name: HideHudText, dir: S>C, priority: normal, reliable: tcp, layout: "(empty)"}
+  - {id: 58, name: HideMenuBuilder, dir: S>C, priority: normal, reliable: tcp, layout: "i32 menuId"}
+  - {id: 59, name: InfoMessage, dir: S>C, priority: normal, reliable: tcp, layout: "String message"}
+  - {id: 60, name: InfoPopup, dir: S>C, priority: normal, reliable: udp, layout: "String message, f32 duration, i32 align, i32 top, i32 left, i32 bottom, i32 right"}
+  - {id: 61, name: InfoPopup2, dir: S>C, priority: normal, reliable: udp, layout: "String message, String id, f32 duration, i32 align, i32 top, i32 left, i32 bottom, i32 right"}
+  - {id: 62, name: InfoPopupReliable, dir: S>C, priority: normal, reliable: tcp, layout: "String message, f32 duration, i32 align, i32 top, i32 left, i32 bottom, i32 right"}
+  - {id: 63, name: InfoPopupReliable2, dir: S>C, priority: normal, reliable: tcp, layout: "String message, String id, f32 duration, i32 align, i32 top, i32 left, i32 bottom, i32 right"}
+  - {id: 64, name: InfoToast, dir: S>C, priority: normal, reliable: tcp, layout: "String message, f32 duration"}
+  - {id: 65, name: Kick, dir: S>C, priority: high, reliable: tcp, layout: "String reason"}
+  - {id: 66, name: Kick2, dir: S>C, priority: high, reliable: tcp, layout: "Kick reason"}
+  - {id: 67, name: Label, dir: S>C, priority: normal, reliable: udp, layout: "String message, f32 duration, f32 worldx, f32 worldy"}
+  - {id: 68, name: Label2, dir: S>C, priority: normal, reliable: udp, layout: "String message, i32 id, f32 duration, f32 worldx, f32 worldy"}
+  - {id: 69, name: Label3, dir: S>C, priority: normal, reliable: udp, layout: "String message, i32 id, f32 duration, f32 worldx, f32 worldy, i32 flags"}
+  - {id: 70, name: LabelReliable, dir: S>C, priority: normal, reliable: tcp, layout: "String message, f32 duration, f32 worldx, f32 worldy"}
+  - {id: 71, name: LabelReliable2, dir: S>C, priority: normal, reliable: tcp, layout: "String message, i32 id, f32 duration, f32 worldx, f32 worldy"}
+  - {id: 72, name: LabelReliable3, dir: S>C, priority: normal, reliable: tcp, layout: "String message, i32 id, f32 duration, f32 worldx, f32 worldy, i32 flags"}
+  - {id: 73, name: LandingPadLanded, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile"}
+  - {id: 74, name: LogicExplosion, dir: S>C, priority: normal, reliable: udp, layout: "Team team, f32 x, f32 y, f32 radius, f32 damage, bool air, bool ground, bool pierce, bool effect"}
+  - {id: 75, name: Menu, dir: S>C, priority: normal, reliable: tcp, layout: "i32 menuId, String title, String message, StringArray options"}
+  - {id: 76, name: MenuBuilder, dir: S>C, priority: normal, reliable: tcp, layout: "i32 id, i64 token, String title, bool hideOnClick, bool hidePrevious, bool fillScreen, UiBuilder builder"}
+  - {id: 77, name: MenuBuilderChoose, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, i32 menuId, MenuResult results"}
+  - {id: 78, name: MenuBuilderUpdate, dir: S>C, priority: normal, reliable: tcp, layout: "i32 id, String tableId, UiBuilder builder"}
+  - {id: 79, name: MenuChoose, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, i32 menuId, i32 option"}
+  - {id: 80, name: OpenURI, dir: S>C, priority: normal, reliable: tcp, layout: "String uri"}
+  - {id: 81, name: PayloadDropped, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit, f32 x, f32 y"}
+  - {id: 82, name: PickedBuildPayload, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit, Building build, bool onGround"}
+  - {id: 83, name: PickedUnitPayload, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit, Unit target"}
+  - {id: 84, name: Ping, dir: C>S, priority: high, reliable: tcp, layout: "i64 time"}
+  - {id: 85, name: PingLocation, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, f32 x, f32 y, String text"}
+  - {id: 86, name: PingResponse, dir: S>C, priority: normal, reliable: tcp, layout: "i64 time"}
+  - {id: 87, name: PlayMusic, dir: S>C, priority: normal, reliable: tcp, layout: "String musicName, bool interrupt"}
+  - {id: 88, name: PlayerDisconnect, dir: S>C, priority: normal, reliable: tcp, layout: "i32 playerid"}
+  - {id: 89, name: PlayerSpawn, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile, Entity<Player> player"}
+  - {id: 90, name: RemoveMarker, dir: S>C, priority: normal, reliable: udp, layout: "i32 id"}
+  - {id: 91, name: RemoveQueueBlock, dir: S>C, priority: normal, reliable: tcp, layout: "i32 x, i32 y, bool breaking"}
+  - {id: 92, name: RemoveTile, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile"}
+  - {id: 93, name: RemoveWorldLabel, dir: S>C, priority: normal, reliable: tcp, layout: "i32 id"}
+  - {id: 94, name: RequestAssets, dir: C>S, priority: high, reliable: tcp, layout: "Shorts ids"}
+  - {id: 95, name: RequestBlockSnapshot, dir: C>S, priority: low, reliable: udp, layout: "i32 pos"}
+  - {id: 96, name: RequestBuildPayload, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Building build"}
+  - {id: 97, name: RequestDebugStatus, dir: C>S, priority: normal, reliable: tcp, layout: "(empty)"}
+  - {id: 98, name: RequestDropPayload, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, f32 x, f32 y"}
+  - {id: 99, name: RequestItem, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Building build, Item item, i32 amount"}
+  - {id: 100, name: RequestUnitPayload, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Unit target"}
+  - {id: 101, name: RequestWorld, dir: C>S, priority: high, reliable: tcp, layout: "(empty)"}
+  - {id: 102, name: Researched, dir: S>C, priority: normal, reliable: tcp, layout: "Content content"}
+  - {id: 103, name: RotateBlock, dir: both, priority: normal, reliable: udp, layout: "[if net.server() eq], ?Entity<Player> player, Building build, bool direction"}
+  - {id: 104, name: SectorCapture, dir: S>C, priority: normal, reliable: tcp, layout: "(empty)"}
+  - {id: 105, name: SendChatMessage, dir: C>S, priority: normal, reliable: tcp, layout: "String message"}
+  - {id: 106, name: SendMessage, dir: S>C, priority: normal, reliable: tcp, layout: "String message"}
+  - {id: 107, name: SendMessage2, dir: S>C, priority: normal, reliable: tcp, layout: "String message, String unformatted, Entity<Player> playersender"}
+  - {id: 108, name: ServerBinaryPacketReliable, dir: C>S, priority: normal, reliable: tcp, layout: "String type, Bytes contents"}
+  - {id: 109, name: ServerBinaryPacketUnreliable, dir: C>S, priority: normal, reliable: udp, layout: "String type, Bytes contents"}
+  - {id: 110, name: ServerPacketReliable, dir: C>S, priority: normal, reliable: tcp, layout: "String type, String contents"}
+  - {id: 111, name: ServerPacketUnreliable, dir: C>S, priority: normal, reliable: udp, layout: "String type, String contents"}
+  - {id: 112, name: SetCameraPosition, dir: S>C, priority: normal, reliable: udp, layout: "f32 x, f32 y"}
+  - {id: 113, name: SetFlag, dir: S>C, priority: normal, reliable: tcp, layout: "String flag, bool add"}
+  - {id: 114, name: SetFloor, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile, Block floor, Block overlay"}
+  - {id: 115, name: SetHudText, dir: S>C, priority: normal, reliable: udp, layout: "String message"}
+  - {id: 116, name: SetHudTextReliable, dir: S>C, priority: normal, reliable: tcp, layout: "String message"}
+  - {id: 117, name: SetItem, dir: S>C, priority: normal, reliable: udp, layout: "Building build, Item item, i32 amount"}
+  - {id: 118, name: SetItems, dir: S>C, priority: normal, reliable: udp, layout: "Building build, ItemStacks items"}
+  - {id: 119, name: SetLiquid, dir: S>C, priority: normal, reliable: udp, layout: "Building build, Liquid liquid, f32 amount"}
+  - {id: 120, name: SetLiquids, dir: S>C, priority: normal, reliable: udp, layout: "Building build, LiquidStacks liquids"}
+  - {id: 121, name: SetMapArea, dir: S>C, priority: normal, reliable: tcp, layout: "i32 x, i32 y, i32 w, i32 h"}
+  - {id: 122, name: SetObjectives, dir: S>C, priority: normal, reliable: tcp, layout: "Objectives executor"}
+  - {id: 123, name: SetOverlay, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile, Block overlay"}
+  - {id: 124, name: SetPlayerTeamEditor, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Team team"}
+  - {id: 125, name: SetPosition, dir: S>C, priority: normal, reliable: tcp, layout: "f32 x, f32 y"}
+  - {id: 126, name: SetRule, dir: S>C, priority: normal, reliable: tcp, layout: "String rule, String jsonData"}
+  - {id: 127, name: SetRules, dir: S>C, priority: normal, reliable: tcp, layout: "Rules rules"}
+  - {id: 128, name: SetTeam, dir: S>C, priority: normal, reliable: tcp, layout: "Building build, Team team"}
+  - {id: 129, name: SetTeams, dir: S>C, priority: normal, reliable: tcp, layout: "Ints positions, Team team"}
+  - {id: 130, name: SetTile, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile, Block block, Team team, i32 rotation"}
+  - {id: 131, name: SetTileBlocks, dir: S>C, priority: normal, reliable: tcp, layout: "Block block, Team team, Ints positions"}
+  - {id: 132, name: SetTileFloors, dir: S>C, priority: normal, reliable: tcp, layout: "Block block, Ints positions"}
+  - {id: 133, name: SetTileItems, dir: S>C, priority: normal, reliable: udp, layout: "Item item, i32 amount, Ints positions"}
+  - {id: 134, name: SetTileLiquids, dir: S>C, priority: normal, reliable: udp, layout: "Liquid liquid, f32 amount, Ints positions"}
+  - {id: 135, name: SetTileOverlays, dir: S>C, priority: normal, reliable: tcp, layout: "Block block, Ints positions"}
+  - {id: 136, name: SetUnitCommand, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Ints unitIds, Command command"}
+  - {id: 137, name: SetUnitStance, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Ints unitIds, Stance stance, bool enable"}
+  - {id: 138, name: Sound, dir: S>C, priority: normal, reliable: udp, layout: "Sound sound, f32 volume, f32 pitch, f32 pan"}
+  - {id: 139, name: SoundAt, dir: S>C, priority: normal, reliable: udp, layout: "Sound sound, f32 x, f32 y, f32 volume, f32 pitch"}
+  - {id: 140, name: SpawnEffect, dir: S>C, priority: normal, reliable: udp, layout: "f32 x, f32 y, f32 rotation, UnitType u"}
+  - {id: 141, name: StateSnapshot, dir: S>C, priority: low, reliable: udp, layout: "f32 waveTime, i32 wave, i32 enemies, bool paused, bool gameOver, i32 timeData, i8 tps, i64 rand0, i64 rand1, Bytes coreData"}
+  - {id: 142, name: SyncVariable, dir: S>C, priority: normal, reliable: udp, layout: "Building building, i32 variable, ObjectSafe value"}
+  - {id: 143, name: TakeItems, dir: S>C, priority: normal, reliable: udp, layout: "Building build, Item item, i32 amount, Unit to"}
+  - {id: 144, name: TextInput, dir: S>C, priority: normal, reliable: tcp, layout: "i32 textInputId, String title, String message, i32 textLength, String def, bool numeric"}
+  - {id: 145, name: TextInput2, dir: S>C, priority: normal, reliable: tcp, layout: "i32 textInputId, String title, String message, i32 textLength, String def, bool numeric, bool allowEmpty"}
+  - {id: 146, name: TextInputResult, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, i32 textInputId, String text"}
+  - {id: 147, name: TileConfig, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Building build, ObjectSafe value"}
+  - {id: 148, name: TileTap, dir: both, priority: normal, reliable: udp, layout: "[if net.server() eq], ?Entity<Player> player, Tile tile"}
+  - {id: 149, name: TraceInfo, dir: S>C, priority: normal, reliable: tcp, layout: "Entity<Player> player, TraceInfo info"}
+  - {id: 150, name: TransferInventory, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Building build"}
+  - {id: 151, name: TransferItemEffect, dir: S>C, priority: normal, reliable: udp, layout: "Item item, f32 x, f32 y, Entity<Itemsc> to"}
+  - {id: 152, name: TransferItemTo, dir: S>C, priority: normal, reliable: udp, layout: "Unit unit, Item item, i32 amount, f32 x, f32 y, Building build"}
+  - {id: 153, name: TransferItemToUnit, dir: S>C, priority: normal, reliable: udp, layout: "Item item, f32 x, f32 y, Entity<Itemsc> to"}
+  - {id: 154, name: UnitBlockSpawn, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile"}
+  - {id: 155, name: UnitBuildingControlSelect, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit, Building build"}
+  - {id: 156, name: UnitCapDeath, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit"}
+  - {id: 157, name: UnitClear, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player"}
+  - {id: 158, name: UnitControl, dir: both, priority: normal, reliable: tcp, layout: "[if net.server() eq], ?Entity<Player> player, Unit unit"}
+  - {id: 159, name: UnitDeath, dir: S>C, priority: normal, reliable: tcp, layout: "i32 uid"}
+  - {id: 160, name: UnitDespawn, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit"}
+  - {id: 161, name: UnitDestroy, dir: S>C, priority: normal, reliable: tcp, layout: "i32 uid"}
+  - {id: 162, name: UnitEnteredPayload, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit, Building build"}
+  - {id: 163, name: UnitEnvDeath, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit"}
+  - {id: 164, name: UnitSafeDeath, dir: S>C, priority: normal, reliable: tcp, layout: "Unit unit"}
+  - {id: 165, name: UnitSpawn, dir: S>C, priority: low, reliable: udp, layout: "UnitContainer container"}
+  - {id: 166, name: UnitTetherBlockSpawned, dir: S>C, priority: normal, reliable: tcp, layout: "Tile tile, i32 id"}
+  - {id: 167, name: UpdateGameOver, dir: S>C, priority: normal, reliable: tcp, layout: "Team winner"}
+  - {id: 168, name: UpdateMarker, dir: S>C, priority: normal, reliable: udp, layout: "i32 id, MarkerControl control, f64 p1, f64 p2, f64 p3"}
+  - {id: 169, name: UpdateMarkerText, dir: S>C, priority: normal, reliable: udp, layout: "i32 id, MarkerControl type, bool fetch, String text"}
+  - {id: 170, name: UpdateMarkerTexture, dir: S>C, priority: normal, reliable: udp, layout: "i32 id, ObjectSafe texture"}
+  - {id: 171, name: WarningToast, dir: S>C, priority: normal, reliable: tcp, layout: "i32 unicode, String text"}
+  - {id: 172, name: WorldDataBegin, dir: S>C, priority: normal, reliable: tcp, layout: "(empty)"}
+# Lifted bodies SchemaEmit did not recognise. WireGen refuses to run while any remain.
+problems: []
